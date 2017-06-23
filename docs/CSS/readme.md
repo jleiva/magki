@@ -9,11 +9,11 @@ Consenso acerca de nuestros est&aacute;ndares de codificaci&oacute;n para:
 
 ## Tabla de Contenidos
 
-* [Sintaxis y formato](#sintaxis-y-formato)
-* [Orden y especificidad](#orden-y-especificidad)
-* [Uso de whitespace](#uso-de-whitespace)
-* [Comentarios](#comentarios)
-* [Lectura adicional](#fuentes)
+  1. [Sintaxis y formato](#sintaxis-y-formato)
+  1. [Orden y especificidad](#orden-y-especificidad)
+  1. [Uso de whitespace](#uso-de-whitespace)
+  1. [Comentarios](#comentarios)
+  1. [Lectura adicional](#fuentes)
 
 ## Sintaxis y formato
 

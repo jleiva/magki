@@ -23,7 +23,8 @@ JavaScript Coding Standards
   1. [Licencia](#license)
 
 [Basado en Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
-[Licencia](#license)
+
+## Sintaxis y formato
 
 A manera general queremos:
 
@@ -329,18 +330,6 @@ A manera general queremos:
   - Usar una declaración `var` por variable.
 
     ```javascript
-    // mal
-    var items = getItems(),
-        goSportsTeam = true,
-        dragonball = 'z';
-
-    // mal
-    // (compara con lo de arriba y encuentra el error)
-    var items = getItems(),
-        goSportsTeam = true;
-        dragonball = 'z';
-
-    // bien
     var items = getItems();
     var goSportsTeam = true;
     var dragonball = 'z';
@@ -349,19 +338,6 @@ A manera general queremos:
   - Declarar a las variables sin asignación al final. Esto es útil cuando necesites asignar una variable luego dependiendo de una de las variables asignadas previamente.
 
     ```javascript
-    // mal
-    var i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
-
-    // mal
-    var i;
-    var items = getItems();
-    var dragonball;
-    var goSportsTeam = true;
-    var len;
-
-    // bien
     var items = getItems();
     var goSportsTeam = true;
     var dragonball;
@@ -519,10 +495,7 @@ A manera general queremos:
     }
     ```
 
-  - Para más información lee [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) por [Ben Cherry](http://www.adequatelygood.com/)
-
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
-
 
 
 ## <a name='conditionals'>Expresiones de comparación e igualdad</a>
@@ -567,9 +540,6 @@ A manera general queremos:
       // ...stuff...
     }
     ```
-
-  - Para más información revisa [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) por Angus Croll
-
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
@@ -677,7 +647,6 @@ A manera general queremos:
   - Funciones de acceso para las propiedades no son requeridas, pero s&iacute; se crean, usar  ```getVal()``` y ```setVal('hello')```. Ejem: `getAge()`, `setAge(25)`.
 
   - Si la propiedad es un booleano, usa ```isVal()``` o ```hasVal()```.
-    ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
@@ -785,12 +754,16 @@ A manera general queremos:
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
 
-**Recursos**
-
+## <a name='recursos'>Recursos</a>
+  
+  - [JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+  - [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108)
+  - [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting)
   - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) (Guía de Estilo de Javascript de Google)
   - [jQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines) (Lineamientos de Estilo con el núcleo de jQuery)
   - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/) (Idiomatic Javascript: Principios de Escritura Consistente)
   - [JavaScript Standard Style](https://github.com/feross/standard) (Estilo estándar de JavaScript)
+  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
 
 
 ## <a name='license'>Licencia</a>

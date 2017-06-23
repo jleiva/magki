@@ -1,4 +1,4 @@
-CSS-Coding-Standards
+CSS Coding Standards
 ====================
 
 Consenso acerca de nuestros est&aacute;ndares de codificaci&oacute;n para:
@@ -21,13 +21,12 @@ A manera general queremos:
 
 * Indentar con **2** espacios, no tabs.
 * Uso significativo de espacio en blanco.
-* Ordenar alfab&eacute;ticamente.
-* Uso de min&uacute;sculas y nombres en ingl&eacute;s.
-* Cambio de palabra separado por un gui&oacute;n (**-**).
-* Columnas con ancho no mayor a 80 caracteres.
-* Cuide el [orden y especificidad](#orden-y-especificidad), evite darle *estilo* a IDs y sobrecalificar selectores
+* Uso de min&uacute;sculas y nombres en ingl&eacute;s para selectores por clase.
+* Cambio de palabra separado por un gui&oacute;n (-), ejem. `.menu-item`
+* Columnas con ancho no mayor a 80 caracteres; configure su IDE o editor de texto.
+* Cuide el [orden y especificidad](#orden-y-especificidad), evite darle *estilo* a IDs y sobrecalificar selectores.
 * Evite el uso del * wildcard selector.
-* Como regla general, evite anidación innecesario, y nunca anidar m&aacute;s de tres niveles. Si no puede evitarlo, de un paso atrás y reconsidere su estrategia.
+* Como regla general, evite anidación innecesaria, y nunca anidar m&aacute;s de tres niveles. Si no puede evitarlo, de un paso atrás y reconsidere su estrategia.
 * Evite anidar selectores: [selectores descendientes son los selectores más lentos](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Writing_efficient_CSS#Guidelines_for_Efficient_CSS).
 * Evite especificar unidades cuando el valor es 0 (cero), ejemplo, 
   * `margin: 0;` en lugar de `margin: 0px;`
@@ -83,6 +82,7 @@ Siempre usamos min&uacute;scula, y el cambio de palabra separado por gui&oacute;
 #### Namespaces:
 
 * **js-** cuando seleccionamos elementos en el DOM con Javascript lo ideal es hacerlo via: ID's (preferiblemente) y, cuando son multiples elementos, usamos clasess con el prefijo js-, por ejemplo `js-submenu`. Estas clases **nunca** deben ser utilizadas para *styling*.
+* Usamos [BEM](http://getbem.com/naming/) como convencion para nombrar.
 
 #### Abreviaciones:
 
@@ -275,11 +275,11 @@ selector {
 
 // Bien
 selector {
-    propiedad: valor;
+  propiedad: valor;
 }
 
 selector {
-    propiedad: valor;
+  propiedad: valor;
 }
 ```
 
@@ -309,7 +309,7 @@ selector {
 
 // Bien
 selector {
-    font-family: "Goudy Bookletter 1911", sans-serif;
+  font-family: "Goudy Bookletter 1911", sans-serif;
 }
 ```
 
@@ -339,3 +339,4 @@ Debido a que, vamos a eliminar los comentarios de las hojas de estilo en la vers
 * [CSS Style Guides - CSS-Tricks ](https://css-tricks.com/css-style-guides/)
 * [Writing efficient CSS - MDN ](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Writing_efficient_CSS)
 * [Code Guide by @mdo](http://codeguide.co/)
+* [BEM](http://getbem.com/naming/)

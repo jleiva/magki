@@ -16,9 +16,9 @@ A manera general queremos:
 * Separar responsabilidades. Mantener markup (HTML), estilos (CSS) y comportamiento (JS) separado.
 * Utilice HTML de acuerdo a su propósito. Utilice elementos para lo que se han creado. Por ejemplo, utilice elementos de encabezado (`h1 - h6`) para encabezados, elementos `p` para párrafos, elementos `a` para anclajes, etc.
 
-** HTML5 doctype
+## HTML5 doctype
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +35,7 @@ Use elementos apropiados de HTML5 para bloques; en caso de duda, leer sobre el e
 
 ## Atributo de lenguaje
 
-```
+```HTML
 <html lang="es">
   <!-- ... -->
 </html>
@@ -43,7 +43,7 @@ Use elementos apropiados de HTML5 para bloques; en caso de duda, leer sobre el e
 
 ## Character encoding
 
-```
+```HTML
 <head>
   <meta charset="UTF-8">
 </head>
@@ -51,14 +51,14 @@ Use elementos apropiados de HTML5 para bloques; en caso de duda, leer sobre el e
 
 ## IE compatibility mode
 
-```
+```HTML
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 ```
 
 ## Inclusion de CSS y JavaScript
 Siguiendo la especificacion de HTML5, no es obligatorio especificar el `type` cuando se incluye CSS y JavaScript como `text/css` y `text/javascript`, cuando estos valores son los default.
 
-```
+```HTML
 <!-- External CSS -->
 <link rel="stylesheet" href="code-guide.css">
 
@@ -74,7 +74,7 @@ Siguiendo la especificacion de HTML5, no es obligatorio especificar el `type` cu
 ## Reducir markup
 Siempre que sea posible, evitar escribir elementos "padre" innecesarios.
 
-```
+```HTML
 <!-- Not so great -->
 <span class="avatar">
   <img src="...">
@@ -87,7 +87,7 @@ Siempre que sea posible, evitar escribir elementos "padre" innecesarios.
 ## Formularios
 Siempre incluir un atributo `for` para elementos `label`. 
 
-```
+```HTML
 <!-- Bad Example -->
 <label><input type="radio" name="input" value="first"> First</label>
  
@@ -98,7 +98,7 @@ Siempre incluir un atributo `for` para elementos `label`.
 
 No usar el atributo `placeholder` para etiquetas; siempre usar un elemento `label`.
 
-```
+```HTML
 <!-- Bad Example -->
 <input type="text" id="name" placeholder="Enter your name">
  
@@ -109,7 +109,8 @@ No usar el atributo `placeholder` para etiquetas; siempre usar un elemento `labe
 
 ## Comentarios
 Siempre son una buena idea.
-```
+
+```HTML
 <!-- Good single line comment -->
  
 <!--
@@ -122,7 +123,7 @@ If your comment takes up multiple lines, please do this.
 Usar nombre semanticos para  Clases y Ids, evitar nombres de "presentaci&oacute;n".
 
 
-```
+```HTML
 <!-- Bad Example -->
 <button type="submit" class="button-green">Submit</button>
 

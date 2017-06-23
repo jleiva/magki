@@ -28,6 +28,7 @@ JavaScript Coding Standards
 
 A manera general queremos:
 
+* Utilizamos ECMAScript 5.1 (ES5) - [Annotated ECMAScript 5.1](https://es5.github.io/)
 * Indentar con **2** espacios, no tabs.
 * Deja un espacio antes de la llave de apertura `{`.
 * Usar llaves con todos los bloques de múltiples líneas (```if``` , ```function```).

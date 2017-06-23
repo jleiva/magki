@@ -3,6 +3,8 @@ JavaScript Coding Standards
 
 A manera general queremos:
 
+* Indentar con **2** espacios, no tabs.
+* Deja un espacio antes de la llave de apertura `{`.
 * Ser descriptivo con nombres de variables, m&eacute;todos, funciones, etc.
 * camelCase para nombrar objetos, funciones e instancias, ejem: `thisIsMyObject`, `thisIsMyFunction`
 * PascalCase cuando nombre constructores o clases.
@@ -640,20 +642,6 @@ A manera general queremos:
   - Usa `/** ... */` para comentarios de múltiples líneas. Incluye una descripción, especificación de tipos y valores para todos los parámetros y valores de retorno.
 
     ```javascript
-    // mal
-    // make() returns a new element
-    // based on the passed in tag name
-    //
-    // @param {String} tag
-    // @return {Element} element
-    function make(tag) {
-
-      // ...stuff...
-
-      return element;
-    }
-
-    // bien
     /**
      * make() returns a new element
      * based on the passed in tag name
@@ -672,23 +660,6 @@ A manera general queremos:
   - Usa `//` para comentarios de una sola línea. Ubica los comentarios de una sola línea encima de la sentencia comentada. Deja una línea en blanco antes del comentario.
 
     ```javascript
-    // mal
-    var active = true;  // is current tab
-
-    // bien
-    // is current tab
-    var active = true;
-
-    // mal
-    function getType() {
-      console.log('fetching type...');
-      // set the default type to 'no type'
-      var type = this._type || 'no type';
-
-      return type;
-    }
-
-    // bien
     function getType() {
       console.log('fetching type...');
 
@@ -698,32 +669,6 @@ A manera general queremos:
       return type;
     }
     ```
-
-  - Agregando a tus comentarios los prefijos `FIXME` o `TODO`, ayudará a otros desarrolladores a entender rápidamente si estás apuntando a un problema que precisa ser revisado o si estás sugiriendo una solución al problema que debería ser implementado. Estos son diferentes a comentarios regulares en el sentido que requieren alguna acción. Las acciones son `FIXME -- necesito resolver esto` o `TODO -- necesita implementarse`.
-
-  - Usa `// FIXME:` para anotar problemas.
-
-    ```javascript
-    function Calculator() {
-
-      // FIXME: shouldn't use a global here
-      total = 0;
-
-      return this;
-    }
-    ```
-
-  - Usa `// TODO:` para anotar soluciones a los problemas.
-
-    ```javascript
-    function Calculator() {
-
-      // TODO: total should be configurable by an options param
-      this.total = 0;
-
-      return this;
-    }
-  ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
@@ -1061,13 +1006,6 @@ A manera general queremos:
      */
     var val = inputValue >> 0;
     ```
-
-  > **Nota:** Ten mucho cuidado al hacer operaciones de Bitshift. En Javascript los números son representados como [valores de 64-bit](http://es5.github.io/#x4.3.19), sin embargo las operaciones de Bitshift siempre retornan un entero de 32-bits ([fuente](http://es5.github.io/#x11.7)). Bitshift puede presentarnos un comportamiento inesperado para valores enteros mayores a 32 bits. [Discusión](https://github.com/airbnb/javascript/issues/109). El mayor entero con signo de 32 bits es 2,147,483,647:
-  ```javascript
-  2147483647 >> 0 //=> 2147483647
-  2147483648 >> 0 //=> -2147483648
-  2147483649 >> 0 //=> -2147483647
-  ```
 
   - Booleans:
 

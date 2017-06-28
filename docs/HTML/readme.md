@@ -5,10 +5,10 @@ A manera general queremos:
 
 * Indentar con **2** espacios, no tabs.
 * Elementos anidados deben ser indentados una vez (2 espacios).
-* Usar comillas dobles (`" "`), nunca comillas simples, en atributos. `<div class="valor"></div>`
+* En los atributos de elemento, usar comillas dobles (`" "`), nunca comillas simples. `<div class="valor"></div>`
 * No incluir "trailing slash" (`/`) en elementos que se autocierran, es opcional seg&uacute;n la especificacio&oacute;n de HTML5.  `<img src="" alt="">`
 * No omitir etiquetas de cierre. ejem: `</li> &oacute; </body>`.
-* Separar atributos por un espacio.
+* Separar atributos por un espacio. `<img src="ruta/de/laimagen.jpg" class="valor" alt="Texto">`
 * Siempre usar igual y comillas dobles para valores de atributos. `<img class="valor" alt="valor" src="">`
 * Siempre incluir etiquetas `html`, `head`, y `body`.
 * Siempre usar min&uacute;scula para nombre de etiquetas y atributos.
@@ -120,8 +120,7 @@ If your comment takes up multiple lines, please do this.
 ```
 
 ## Nombre de Clases y Ids
-Usar nombre semanticos para  Clases y Ids, evitar nombres de "presentaci&oacute;n".
-
+Usar nombres sem&aacute;nticos para Clases y Ids, evitar nombres de "presentaci&oacute;n".
 
 ```HTML
 <!-- Bad Example -->

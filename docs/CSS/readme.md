@@ -44,8 +44,8 @@ A manera general queremos:
 
 ```css
 selector {
-    propiedad: valor;
-    [<--declaración--->]
+  propiedad: valor;
+  [<--declaración--->]
 }
 [<--Regla o ruleset--->]
 ```
@@ -61,8 +61,8 @@ selector {
 Cualquier nombre que se utiliza directamente en el HTML (class/id) deben tener en cuenta [estos principios](https://github.com/stubbornella/oocss/wiki/FAQ):
 
 * **Claridad** - comportamiento esperado / estilo debe ser inmediatamente obvio.
-* **Sem&aacute;ntica** - lo que un objeto es importa m&aacute;s que como se ve.
-* **Genérico** - el nombre debe ser aplicar para la mayoría de los sitios. Nombres demasiado específicos reducen el número de casos de uso o causa que clases sem&aacute;nticas sean utilizados en una forma no sem&aacute;ntica.
+* **Sem&aacute;ntica** - lo que un objeto es (funcionalidad), importa m&aacute;s que como se ve.
+* **Genérico** - el nombre debe aplicar para la mayoría de los sitios. Nombres demasiado específicos reducen el número de casos de uso, &oacute; causa que clases sem&aacute;nticas sean utilizados en una forma no sem&aacute;ntica.
 * **Brevedad** - cada byte cuenta, así que mantenga nombres tan cortos como sea posible, pero siempre y cuando sea necesario. Nombres m&aacute;s de 5-7 caracteres deben ser abreviados.
 
 Siempre usamos min&uacute;scula, y el cambio de palabra separado por gui&oacute;n (*-*). Esto aplica para: selectores por clase &oacute; id:
@@ -70,23 +70,23 @@ Siempre usamos min&uacute;scula, y el cambio de palabra separado por gui&oacute;
 ```css
 // Mal
 .main_top { 
-    color: #FFC20E; 
+  color: #FFC20E; 
 }
 
 // Bien
 .main-top { 
-    color: #ffc20e; 
+  color: #ffc20e; 
 }
 ```
 
 #### Namespaces:
 
-* **js-** cuando seleccionamos elementos en el DOM con Javascript lo ideal es hacerlo via: ID's (preferiblemente) y, cuando son multiples elementos, usamos clasess con el prefijo js-, por ejemplo `js-submenu`. Estas clases **nunca** deben ser utilizadas para *styling*.
-* Usamos [BEM](http://getbem.com/naming/) como convencion para nombrar.
+* Cuando seleccionamos elementos en el DOM con Javascript lo ideal es hacerlo via: ID's (preferiblemente) y, cuando son multiples elementos, usamos clasess con el prefijo **js-** , por ejemplo `js-submenu`. Estas clases **nunca** deben ser utilizadas para *styling*.
+* Sugerimos usar [BEM](http://getbem.com/naming/) como convenci&oacute;n para nombrar Clases.
 
 #### Abreviaciones:
 
-Cada byte cuenta, as&iacute; que, mantenga nombres tan cortos como sea posible. Como regla general, nombres de m&aacute;s de 5-7 caracteres deben ser abreviados, sin embargo, no sacrificamos la **claridad** por brevedad. Algunas ideas de abreviaciones:
+Como regla general, nombres de m&aacute;s de 5-7 caracteres deben ser abreviados, sin embargo, no sacrificamos la **claridad** por brevedad. Algunas ideas de abreviaciones:
 
 * configuration => config
 * introduction => intro
@@ -94,13 +94,13 @@ Cada byte cuenta, as&iacute; que, mantenga nombres tan cortos como sea posible. 
 * category => cat
 
 ## Orden y especificidad
-Las reglas se deben escribir de tal manera que, utilicemos la Cascada y la Herencia, y siempre tratar de que la Especificidad este a un nivel similar (en la medida de lo posible).
+Las reglas se deben escribir de tal manera que, utilicemos la Cascada y la Herencia a nuestro favor, y siempre tratar de que la Especificidad este a un nivel similar (en la medida de lo posible).
 
 #### Especificidad
 
 * Escribir los bloques de reglas en un orden específico: reset, third party, elementos, patrones, objetos, componentes, etc **No** escribir las reglas seg&uacute;n el orden en que los elementos se muestran en la p&aacute;gina.
-* En la medida de lo posible, las reglas subsecuentes deben heredar, en la medida de lo posible, no sobreescribir.
-* Selector por Etiqueta - s&oacute;lo darle *estilo* a etiquetas globales.
+* En la medida de lo posible, las reglas subsecuentes deben heredar no sobreescribir.
+* Selector por Etiqueta - s&oacute;lo usarlas cuando sabemos que a nivel global se van a utilizar.
 * Selector por Clase - siempre es preferible darle *estilo* a selectores de tipo clase (.nombre-selector).
 * IDs - evitar darle *estilo* a IDs. Incluso si el ID ya existe en la p&aacute;gina, es mejor añadir una clase y darle *estilo*.
 * Evitar sobrecalificar selectores, esto incrementa la especificidad, limita la reutilizaci&oacute;n y son menos eficientes (m&aacute;s trabajo para el browser)
@@ -194,7 +194,7 @@ ul {
 ## Uso de whitespace
 
 #### Indentación
-Indentamos con **2 espacios**, no tabs. Puede configurar su editor para que lo realice de manera autom&aacute;tica. Los espacios son la &uacute;nica forma de garantizar que el c&oacute;digo *renderea* igual en el entorno de cualquier persona.
+Indentamos con **2 espacios**, no tabs. Puede configurar su editor para que lo realice de manera autom&aacute;tica.
 
 ```css
 // Mal
@@ -252,12 +252,13 @@ Espacio después de **:** (dos puntos), **;** (punto y coma) y **,** (comas).
 ```css
 // Mal
 selector {
-    color:red;font-family:Helvetica,Arial,sans-serif;
+  color:red;font-family:Helvetica,Arial,sans-serif;
 }
 
 // Bien
 selector {
-  color: red; font-family: Helvetica, Arial, sans-serif;
+  color: red; 
+  font-family: Helvetica, Arial, sans-serif;
 }
 ```
 
@@ -332,7 +333,7 @@ selector {
 }
 ```
 
-Debido a que, vamos a eliminar los comentarios de las hojas de estilo en la versi&oacute;n de producci&oacute;n, no se preocupe por la longitud de lo que escribe. Al mismo tiempo, nuestro objetivo debe ser: c&oacute;digo debe autoexplicarse, las classes nos sirven para eso, y mantener al m&iacute;nimo la cantidad de comentarios, para que el propósito/uso de un documento sea claro y que el mantenimiento no se convierta en algo tedioso.
+Debido a que, vamos a eliminar los comentarios de las hojas de estilo en la versi&oacute;n de producci&oacute;n, no se preocupe por la longitud de lo que escribe. Al mismo tiempo, nuestro objetivo debe ser: escribir c&oacute;digo que se autoexplique sin necesidad de comentarios.
 
 ## Fuentes
 

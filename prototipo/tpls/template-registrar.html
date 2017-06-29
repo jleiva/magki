@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+</head>
+<body>
+  <header>
+    <h1>Magki</h1>
+    <a href="">JUAN PATAS</a>
+    <nav>
+      <ul>
+        <li><a href="">Usuarios</a></li>
+        <li><a href="">Academias</a></li>
+        <li><a href="">Organizaciones</a></li>
+        <li><a href="">Lugares</a></li>
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Reportes</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Registrar [Entidad]</h2>
+        <p>Los campos marcados con asterisco (*) son requeridos</p>
+      </div>
+      
+      <form>
+        <div class="field-wrap">
+          <label for="codigo">Código *</label>
+          <input type="text" id="codigo" name="">
+        </div>
+        
+        <div class="field-wrap">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="">
+        </div>
+
+        <div class="field-wrap">
+          <label for="tipo-organizacion">Tipo de organización *</label>
+          <select name="example">
+            <option value="gubernamental">Gubernamental</option>
+              <option value="no-gubernamental">No Gubernamental</option>
+          </select>
+        </div>
+
+        <div class="field-wrap">
+          <label for="descripcion">Descripción</label>
+          <textarea name="descripcion"></textarea>
+        </div>
+
+        <div class="field-wrap">
+          <h4>Estado</h4>
+          <label for="habilitar">Habilitar</label>
+          <input type="radio" name="habilitar">
+          
+          <label for="habilitar">Deshabilitar</label>
+          <input type="radio" name="habilitar">
+        </div>
+
+        <button id="save" value="Guardar">Guardar</button>
+      </form>
+    </div>    
+  </main>
+  <footer>
+    <a href="">Magki<span>Gestor de eventos</span></a>
+    <ul>
+      <li><a href="">Eventos</a></li>
+      <li><a href="">Ayuda</a></li>
+      <li><a href="">tkdcr.org</a></li>
+    </ul>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <link rel="stylesheet" href="../pattern/css/styles.css">
+<!--   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"> -->
+</head>
+<body>
+  <main class="main">
+    <div class="main-content">      
+      <div class="js-login-form login-form__wrap">
+        <form id="js-form" novalidate>
+          <p id="m-error"></p>
+          <div class="field-wrapper">
+            <label for="username" class="">Correo Electr&oacute;nico</label>
+            <input type="email" name="username" id="username" tabindex="1" autofocus="autofocus" autocorrect="off" autocapitalize="off" required> 
+          </div>
+        
+          <div class="field-wrapper">
+            <label for="password" class="">Contraseña</label>
+            <input type="password" name="password" tabindex="2" id="password" maxlength="51" required>
+          </div>
+
+          <button id="submit-login" type="submit" value="log in" class="full-width" tabindex="3">Log in</button>
+
+          <p class="note"><strong>Ayuda:</strong>  <a href="recuperar.html">Olvido su contraseña?</a></p>
+        </form>
+      </div>
+      <p class="note help-txt">!Necesita una cuenta de usuario en Magki? <a href="#">Contactenos para iniciar el registro.</a></p>
+    </div>    
+  </main>
+
+  <script src="js/util.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/pages/login/login.js"></script>
+</body>
+</html>
+

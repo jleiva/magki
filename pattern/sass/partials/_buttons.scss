@@ -1,0 +1,82 @@
+button,
+.button,
+.button:link,
+input[type="button"],
+input[type="submit"] {
+  padding: 0 26px;
+  padding: 0 1.625rem;
+  margin: 0 8px 4px 0;
+  margin: 0 0.5rem 0.25rem 0;
+  line-height: 40px;
+  line-height: 2.5rem;
+  font-size: 14px;
+  font-size: 0.875rem;
+  min-height: 19px;
+  min-height: 1.1875rem;
+  border-radius: 4px;
+  border-radius: 0.25rem;
+  background-color: #399fd3;
+  -moz-box-sizing: content-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-weight: normal;
+  font-family: $font-family-contrast;
+  height: 40px;
+  min-width: auto;
+  overflow: visible;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  width: auto;
+  vertical-align: middle;
+}
+
+button:hover, 
+button:focus, 
+.button:hover, 
+input[type="button"][disabled]:hover, 
+input[type="submit"][disabled]:hover, 
+button[disabled]:hover, 
+.button-disabled:hover, 
+.button.button-disabled:hover:focus, 
+.button.button-disabled:hover:active, 
+input[type="button"][disabled]:focus, 
+input[type="submit"][disabled]:focus, 
+button[disabled]:focus, 
+input[type="button"]:hover, 
+input[type="button"]:focus, 
+input[type="submit"]:hover, 
+input[type="submit"]:focus {
+  background-color: #7ab5d6;
+  cursor: pointer;
+}
+
+.button-l, 
+input.button-l, 
+.button-l:link, 
+.button-l:visited, 
+.button-l:hover, 
+.button-l:focus, 
+.button-l:active {
+  min-height: 50px;
+  min-height: 3.125rem;
+  padding: 0 32px;
+  padding: 0 2rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+}
+
+.button-prominent, 
+input.button-prominent, 
+.button-prominent:link, 
+.button-prominent:visited, 
+.button-prominent:hover, 
+.button-prominent:focus, 
+.button-prominent:active {
+  background: #cf1b41;
+}
+

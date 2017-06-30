@@ -1,0 +1,87 @@
+p {
+  font-size: 1em;
+  margin-bottom: 1.3em;}
+
+p, 
+blockquote, 
+ul, 
+ol {
+  margin-bottom: 1.3em;
+}
+
+abbr {
+  border-bottom: 1px dotted;
+  border-color: #999595;
+}
+
+abbr[title="required"], 
+abbr[title="Required"] {
+  color: #cf1b41;
+  color: rgba(207, 27, 65, 0.8);
+  border-bottom: none;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  margin: 1.414em 0 0.5em;
+  font-family: $font-family-contrast;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {font-size: 2.369em;}
+
+h2 {font-size: 1.777em;}
+
+h3 {font-size: 1.333em;}
+
+h4,
+h5,
+h6 {
+  font-size: 1em;
+}
+
+small, .font_small {font-size: 0.75em;}
+
+
+ol,
+ul {
+  margin: 8px 0;
+  margin: 0.5rem 0;
+  padding: 0 0 0 35px;
+  padding: 0 0 0 2.1875rem;
+}
+
+ul {
+  padding-left: 0;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+ul li {
+  background-image: url("../img/bullet.gif");
+  background-repeat: no-repeat;
+  list-style-type: none;
+  background-position: left 0.63em;
+  padding-left: 1.3em;
+}
+
+.note {
+  color: #999595;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  display: inline-block;
+  line-height: 22px;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+
+.section-intro__leading {
+  font-size: 1.333em;
+}

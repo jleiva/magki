@@ -1,0 +1,20 @@
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+  color: #cf1b41;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+  border-bottom: 1px solid;
+  border-color: #cf1b41;
+  border-color: rgba(207, 27, 65, 0.7);
+}
+
+a img {
+  border: none;
+}

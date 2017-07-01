@@ -1,44 +1,11 @@
 'use strict';
+var db = require('../../database/storage');
+var loadData = require('../../helpers/load-data');
+var msg = require('../../helpers/messages');
+var formValidation = require('../../helpers/form-validation');
+var user = require('../../modules/user');
 
-var login = (function(window, $, db) {
-  var appLS = {};
-  var messages = {
-    emailAndPasswordInvalid: 'Correo electronio o contraseña incorrectos',
-    emailAndPasswordRequired: 'Los campos de Correo Electronico y Contraseña son requeridos'
-  };
-
-  function initLogin() {
-    $('#submit-login').on('click', validateForm);
-
-    initLS();
-  }
-
-  function initLS() {
-    appLS.users = [{
-      id: 503240386,
-      name: 'Jose',
-      lastName: 'Leiva',
-      email: 'leivajd@gmail.com',
-      password: '2105'
-    },
-    {
-      id: 103240386,
-      name: 'Juan',
-      lastName: 'Patas',
-      email: 'patasd@gmail.com',
-      password: '2106'
-    },
-    {
-      id: 111710816,
-      name: 'Maria',
-      lastName: 'Martinez',
-      email: 'maria@gmail.com',
-      password: '2107'
-    }];
-
-    db.put('appUsersLs', appLS);
-  }
-
+var login = (function() {
   function validateForm(e) {
     e.preventDefault();
     var valid = $('form').valid();
@@ -70,16 +37,6 @@ var login = (function(window, $, db) {
         '<span class="note alert-failure js-login-msg">' + messages.emailAndPasswordInvalid + '</span>');
       }
     }
-
-    //   $('#username').addClass('error');
-    //   $('#password').addClass('error');
-
-    //   if ($alertBox) { 
-    //   $alertBox.html(messages.emailAndPasswordRequired);
-    //   } else {
-    //     $('.js-login-form').insertAdjacentHTML('afterbegin', 
-    //     '<span class="note alert-failure js-login-msg">' + messages.emailAndPasswordRequired + '</span>');
-    //   }
   }
 
   function validateCredentials(userMail, userPassword) {
@@ -115,18 +72,21 @@ var login = (function(window, $, db) {
 
     return usersInfo;
   }
+})();
 
-  return {
-    initLS: initLS,
-    initLogin: initLogin
-  }
+function bindEvents() {
+  var submitBtn = document.getElementById('submit-login');
+  submitBtn.addEventListener('click', validateForm);
+}
 
-})(window, $util, app.storage);
+function validateForm(e) {
+  e.preventDefault;
+  console.log('validando' + e.currentTarget);
+}
 
-
-(function(document, window, domIsReady, undefined) {
-  domIsReady(function() {
-    login.initLogin();
-  });
-})(document, window, domIsReady);
+// https://www.sitepoint.com/jquery-document-ready-plain-javascript/
+document.addEventListener('DOMContentLoaded', function(){
+  loadData.init();
+  bindEvents();
+});
 

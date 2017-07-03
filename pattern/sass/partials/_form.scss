@@ -27,6 +27,11 @@ select {
   display: inline-block;
 }
 
+input[type="text"][disabled] {
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, 0.5);
+}
+
 select {
   background-image: url(../img/arrow-triangle-down.png);
   background-position: 96% center;
@@ -45,6 +50,18 @@ select {
   line-height: 1.4em;
   -webkit-appearance: none;
   min-width: 150px;
+}
+
+select[disabled] {
+  cursor: not-allowed;
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, 0.5);
+}
+
+textarea[disabled] {
+  cursor: not-allowed;
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, 0.5);
 }
 
 fieldset {
@@ -84,4 +101,55 @@ label {
     margin-bottom: 0;
     margin-top: 1em;
   }
+}
+
+legend {
+  font-family: $font-family-contrast;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.field-group {
+  width: 100%;
+  float: left;
+  margin-bottom: 0.5em;
+
+  .field-wrapper  {
+    float: left;
+    width: 48%;
+  }
+  .field-wrapper:last-child {
+  margin-right: 0;
+  float: right;
+}
+}
+
+.form__wrap {
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0 , .1);
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.list-form {
+  margin-left: 0;
+  float: left;
+  padding-left: 0;
+  width: 100%;
+}
+
+.list-form li {
+  list-style-type: none;
+  margin-bottom: 0.5em;
+  background-image: none;
+  padding-left: 0;
+}
+
+.feature-fieldset {
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, .35);
+  border: 1px solid #e5e5e5;
+  margin-bottom: 1em;
+  padding: 20px 20px 10px;
 }

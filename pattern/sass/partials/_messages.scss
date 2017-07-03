@@ -18,18 +18,24 @@
   color: #494c49;
 }
 
-.alert p, .alert-failure p, .alert-success p, .alert-info p {
+.alert p, 
+.alert-failure p, 
+.alert-success p, 
+.alert-info p {
   margin: 0;
 }
-.alert p + *, .alert-failure p + *, .alert-success p + *, .alert-info p + * {
+.alert p + *, 
+.alert-failure p + *, 
+.alert-success p + *, 
+.alert-info p + * {
   margin-bottom: 8px;
   margin-bottom: 0.5rem;
 }
 
 .alert-failure {
-  background: #cf1b41;
+  background: $red;
   background: rgba(207, 27, 65, 0.3);
-  border-color: #cf1b41;
+  border-color: $red;
   border-color: rgba(207, 27, 65, 0.1);
 }
 

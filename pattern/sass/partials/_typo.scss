@@ -14,9 +14,9 @@ abbr {
   border-color: #999595;
 }
 
-abbr[title="required"], 
-abbr[title="Required"] {
-  color: #cf1b41;
+abbr[title="requerido"], 
+abbr[title="Requerido"] {
+  color: $red;
   color: rgba(207, 27, 65, 0.8);
   border-bottom: none;
 }
@@ -80,6 +80,10 @@ ul li {
   line-height: 22px;
   margin-bottom: 0;
   vertical-align: top;
+
+  * {
+    color: inherit;
+  }
 }
 
 .section-intro__leading {

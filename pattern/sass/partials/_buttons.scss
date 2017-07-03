@@ -77,6 +77,24 @@ input.button-prominent,
 .button-prominent:hover, 
 .button-prominent:focus, 
 .button-prominent:active {
-  background: #cf1b41;
+  background: $red;
+}
+
+.button-secondary,
+input.button-secondary
+.button-secondary:link,
+.button-secondary:hover {
+  color: #6d6e71;
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, 0.35);
+  text-shadow: none;
+  border: 1px solid #e5e5e5;
+}
+
+.button-secondary:hover,
+.button-secondary:focus,
+.button-secondary:active {
+  background: #e5e5e5;
+  background: rgba(229, 229, 229, 0.6);
 }
 

@@ -38,11 +38,16 @@
 .pattern .source textarea {
     width: 90%;
 }
+
+.doc-wrapper {
+  margin: 40px auto;
+  max-width: 80%;
+}
 </style>
 </head>
 <body>
   <div class="pp-header"></div>
-  <div class="wrapper">
+  <div class="doc-wrapper">
 
     <?php
     $files = array();

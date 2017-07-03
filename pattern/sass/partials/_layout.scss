@@ -1,9 +1,3 @@
-.wrapper {
-  width: 80%;
-  padding: 1em 2%;
-  margin: 40px auto 0;
-}
-
 .pp-header {
   background-color: #f1f1f1;
   padding: 0.5em 0;
@@ -28,4 +22,36 @@
 .main-content {
   margin: 0 auto;
   max-width: 900px;
+}
+
+.group {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.group:before,
+.group:after {
+  content: " ";
+  display: table;
+}
+
+.group:after, 
+.group:after {
+  clear: both;
+}
+
+.wrapper {
+  background-color: #f4f4f4;
+  padding: 40px 0 60px;
+}
+
+.site-header {
+  background-color: $blue;
+  padding: 15px 0;
+}
+
+.site-footer {
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  padding: 30px 0;
 }

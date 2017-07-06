@@ -172,3 +172,54 @@ legend {
   margin-bottom: 1em;
   padding: 20px 20px 10px;
 }
+
+.save-product {
+  padding: 15px;
+  margin-bottom: 40px;
+  background-color: #f4f4f4;
+  border: 1px solid #f9f9f9; 
+}
+
+.remove-square {
+  visibility: hidden; 
+}
+
+.input-file::before {
+  content: 'Seleccionar';
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9 , #e3e3e3 );
+  border: 1px solid #d6d5d5 ;
+  border-radius: 2px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  visibility: visible;
+  position: relative;
+  margin: 20px 0; 
+}
+
+.input-file:hover::before {
+  border-color: #bababa; 
+}
+
+.input-file-error::before {
+  content: 'Seleccionar';
+  display: inline-block;
+  border-radius: 2px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  visibility: visible;
+  position: relative;
+  margin: 20px 0;
+  background: -webkit-linear-gradient(top, #ffc0cb , #ffccd5 );;
+  border: 1px solid #df8380 ; 
+}
+
+.input-file-error:hover::before {
+  border: 1px solid #c7534f; 
+}
+
+.imgLogo {
+  width: 250px; 
+}

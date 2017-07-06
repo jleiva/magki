@@ -1,0 +1,41 @@
+.actions-tabs {
+  margin-left: 0;
+  float: left;
+  width: 100%;
+  padding: 0;
+  padding-top: 20px;
+  border-bottom: 2px solid $gray;
+  text-align: center;
+  margin: 0 0 40px;
+  font-size: 14px;
+}
+
+.nav-tab {
+  float: left;
+  font-family: $font-family-contrast;
+  font-weight: 600;
+  display: inline-block;
+  background-image: none;
+  padding-left: 0;
+
+  .nav-tab-link {
+    border-bottom: 4px solid transparent;
+    padding: 16px 20px 13px;
+    margin: 0 0 0 20px;
+    display: block;
+    position: relative;
+  }
+  .is-active {
+    border-bottom-color: $gray;
+  }
+}
+
+.actions-tabs__options {
+  clear: both;
+  display: table;
+  width: 96%;
+  float: none;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+}

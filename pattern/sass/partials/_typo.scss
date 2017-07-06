@@ -68,7 +68,7 @@ ul li {
   background-image: url("../img/bullet.gif");
   background-repeat: no-repeat;
   list-style-type: none;
-  background-position: left 0.63em;
+  background-position: left 6px;
   padding-left: 1.3em;
 }
 
@@ -86,6 +86,20 @@ ul li {
   }
 }
 
+.section-intro {
+  margin-bottom: 30px;
+  margin-top: 40px;
+
+  h2 {
+    display: inline-block;
+    margin-top: 0;
+  }
+  .button {
+    float: right;
+  }
+}
+
 .section-intro__leading {
   font-size: 1.333em;
+  margin-bottom: 0;
 }

@@ -27,7 +27,7 @@ select {
   display: inline-block;
 }
 
-input[type="text"][disabled] {
+input[disabled] {
   background: #e5e5e5;
   background: rgba(229, 229, 229, 0.5);
 }
@@ -50,6 +50,12 @@ select {
   line-height: 1.4em;
   -webkit-appearance: none;
   min-width: 150px;
+}
+
+textarea {
+  padding: 1em 1%;
+  font-size: 1em;
+  margin: 0;
 }
 
 select[disabled] {
@@ -85,7 +91,11 @@ label {
 .field-wrapper {
   margin-bottom: 1em;
 
-  input,
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="date"],
+  input[type="password"],
   textarea,
   select {
     width: 100%;
@@ -100,6 +110,10 @@ label {
   input[type="submit"] {
     margin-bottom: 0;
     margin-top: 1em;
+  }
+
+  input.short-input {
+    width: 48%;
   }
 }
 
@@ -130,6 +144,11 @@ legend {
   border-radius: 4px;
   margin: 0 auto;
   padding: 40px;
+
+  form {
+    margin: 30px auto;
+    max-width: 700px
+  }
 }
 
 .list-form {

@@ -1,0 +1,16 @@
+.item-list {
+  margin-top: 20px;
+  
+  li {
+    margin-bottom: 5px;
+  }
+  .link-remove {
+    border: 0;
+    color: $blue;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+}

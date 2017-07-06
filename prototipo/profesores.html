@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="#">Magki</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="" class="is-active">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="wrapper">
+
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Listado de Profesores</h2>
+
+       <a href="registrar-alumno.html" class="button btn-small" id="btn-register">Registrar Alumno</a>
+      </div>
+
+     <input type="text" name="buscar">
+         <input type="button" id="loadButton" value="Buscar">
+      <table id="tblProfessor">
+        <thead>
+          <tr>
+            <th>Identificacion</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cinturon</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+  </div>
+</main>
+<footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+<script src="js/helpers/util.js"></script>
+<script src="js/database/orm.js"></script>
+<script src="js/database/storage.js"></script>
+<script src="js/helpers/validate.js"></script>
+<script src="js/helpers/messages.js"></script>
+<script src="js/pages/users/professor/logicProf.js"></script>
+<script src="js/pages/users/professor/listProf.js"></script>
+<script src="js/pages/main.js"></script>
+</body>
+</html>

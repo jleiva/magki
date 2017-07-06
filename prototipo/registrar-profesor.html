@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="#">Magki</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="" class="is-active">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="wrapper">
+		<div class="main-content">
+			<div class="section-intro">
+				<h2>Registrar Profesor</h2>
+			</div>
+
+			<div class="form__wrap js-form">
+			<form id="register-user">
+            <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
+        <div class="field-wrapper">
+					<label for="id">Numero de Identificacion * </label>
+					<input type="number" id="id" required>
+				</div>
+
+				<div class="field-wrapper">
+					<label for="name">Primer Nombre *</label>
+					<input type="text" id="name" required>
+				</div>
+
+				<div class="field-wrapper">
+					<label for="secName">Segundo Nombre</label>
+					<input type="text" id="secName" >
+				</div>
+
+        <div class="field-wrapper">
+					<label for="lastName">Primer Apellido * </label>
+					<input type="text" id="lastName" required>
+				</div>
+
+        <div class="field-wrapper">
+					<label for="secLastName">Segundo Apellido </label>
+					<input type="text" id="secLastName" name="">
+				</div>
+
+
+				<div class="field-wrapper">
+					<label for="bday">Fecha de Nacimiento *</label>
+					<input type="date" id="bday" required>
+				</div>
+
+        <div class="field-wrapper">
+					<label for="email">Correo Electronico *</label>
+					<input type="text" id="email" required>
+				</div>
+
+        <div class="field-wrapper">
+					<label for="phone">Numero de Telefono </label>
+					<input type="number" id="phone" >
+				</div>
+
+
+            <div class="field-wrapper">
+    					<label for="gender">Genero</label>
+    					<select name="genero" id="gender">
+								<option value="select">Seleccionar</option>
+    						<option value="masculino">Masculino</option>
+    		    		<option value="femenino">Femenino</option>
+    					</select>
+
+              <div class="field-wrapper">
+                <label for="age">Edad </label>
+                <input type="number" id="age">
+              </div>
+
+              <div class="field-wrapper">
+      					<label for="academy">Seleccion Academias</label>
+      					<select name="academias" id="academy">
+									<option value="select">Seleccionar</option>
+      						<option value="Ying">Ying Yang</option>
+      		    		<option value="Kenn">Kenn Do</option>
+      					</select>
+
+              <div class="field-wrapper">
+                <label for="belt">Grado Cinta</label>
+                <select name="grado-cinta" id="belt">
+									<option value="select">Seleccionar</option>
+                  <option value="blanco">Blanco</option>
+                  <option value="amarillo">Amarillo</option>
+                  <option value="verde">Verde</option>
+                  <option value="azul">Azul</option>
+                  <option value="rojo">Rojo</option>
+                  <option value="negro">Negro</option>
+                </select>
+				        </div>
+
+
+								<button id="save" value="">Guardar</button>
+										</form>
+
+		</div>
+		</div>
+	</main>
+<footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+	<script src="js/helpers/util.js"></script>
+	<script src="js/helpers/messages.js"></script>
+	<script src="js/helpers/validate.js"></script>
+	<script src="js/pages/users/professor/registerProfe.js"></script>
+	<script src="js/pages/users/professor/logicProf.js"></script>
+</body>
+</html>

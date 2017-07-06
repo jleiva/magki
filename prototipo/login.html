@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
-  <link rel="stylesheet" href="../pattern/css/styles.css">
-<!--   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"> -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
-<body>
-  <main class="main">
+<body class="bg-gray">
+  <main class="wrapper">
     <div class="main-content">      
-      <div class="js-login-form login-form__wrap">
-        <form id="js-form" novalidate>
-          <p id="m-error"></p>
+      <div class="js-form login-form__wrap">
+        <form id="login-form" novalidate>
           <div class="field-wrapper">
             <label for="username" class="">Correo Electr&oacute;nico</label>
             <input type="email" name="username" id="username" tabindex="1" autofocus="autofocus" autocorrect="off" autocapitalize="off" required> 
@@ -27,13 +26,15 @@
           <p class="note"><strong>Ayuda:</strong>  <a href="recuperar.html">Olvido su contraseña?</a></p>
         </form>
       </div>
-      <p class="note help-txt">!Necesita una cuenta de usuario en Magki? <a href="#">Contactenos para iniciar el registro.</a></p>
+      <p class="note help-txt"><strong>!Necesita una cuenta en Magki?</strong> <a href="index.html">Contactenos para iniciar el registro.</a></p>
     </div>    
   </main>
   
+  <script src="js/helpers/util.js"></script>
   <script src="js/database/storage.js"></script>
   <script src="js/helpers/messages.js"></script>
-  <script src="js/helpers/validation.js"></script>
+  <script src="js/helpers/validate.js"></script>
+  <script src="js/helpers/load-data.js"></script>
   <script src="js/modules/login.js"></script>
   <script src="js/pages/login/index.js"></script>
 </body>

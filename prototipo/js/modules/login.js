@@ -1,152 +1,136 @@
 'use strict';
 
-// var login = (function(window, $, db) {
-//   var appLS = {};
-//   var messages = {
-//     emailAndPasswordInvalid: 'Correo electronio o contraseña incorrectos',
-//     emailAndPasswordRequired: 'Los campos de Correo Electronico y Contraseña son requeridos'
-//   };
+var login = (function(window) {
+  var appLS = {};
 
-//   function initLogin() {
-//     $('#submit-login').on('click', validateForm);
+  function initLogin() {
+    $util('#submit-login').on('click', validateForm);
 
-//     initLS();
-//   }
+    loadData.init();
+  }
 
-//   function initLS() {
-//     appLS.users = [{
-//       id: 503240386,
-//       name: 'Jose',
-//       lastName: 'Leiva',
-//       email: 'leivajd@gmail.com',
-//       password: '2105'
-//     },
-//     {
-//       id: 103240386,
-//       name: 'Juan',
-//       lastName: 'Patas',
-//       email: 'patasd@gmail.com',
-//       password: '2106'
-//     },
-//     {
-//       id: 111710816,
-//       name: 'Maria',
-//       lastName: 'Martinez',
-//       email: 'maria@gmail.com',
-//       password: '2107'
-//     }];
+  function initRecover() {
+    $util('#submit-login').on('click', validateEmail);
 
-//     db.put('appUsersLs', appLS);
-//   }
+    loadData.init();
+  }
 
-//   function validateForm(e) {
-//     e.preventDefault();
-//     var valid = $('form').valid();
-//     var inputs = document.querySelectorAll('input:required');
+  function validateEmail(e) {
+    e.preventDefault();
+    var validForm;
 
-//     inputs.removeClass('error');
+    if (!validate.emptyFields()) {
+      validForm = validate.fieldsValue('login-form');
 
-//     if (valid[1].length) {
-//       valid[1].forEach(function(element) {
-//         element.addClass('error');
-//       });
-//     } else {
-//       validate();
-//     }
-//   }
+      // no hay errores
+      if (!validForm[1].length) {
+        var username = $util('#username').val();
+        var $alertBox = $util('.js-login-msg');
 
-//   function validate(e) {
-//     var username = $('#username').val();
-//     var password = $('#password').val();
-//     var $alertBox = $('.js-login-msg');
+        if (validateRecoverEmail(username)) {
+          $util('#username').removeClass('error');
+          
+          if ($alertBox) {
+            $alertBox.removeClass('alert-failure')
+              .addClass('alert-success')
+              .html(msg.key.successRecover);
+          } else {
+            $util('.js-form').insertAdjacentHTML('afterbegin', 
+            '<span class="note alert-success js-login-msg">' + msg.key.successRecover+ '</span>');
+          }
+        } else {
+          if ($alertBox) {
+            $alertBox.html(msg.key.failRecover);
+          } else {
+            $util('.js-form').insertAdjacentHTML('afterbegin', 
+            '<span class="note alert-failure js-login-msg">' + msg.key.failRecover + '</span>');
+          }
+        }
+      }
+    }
+  }
 
-//     if (validateCredentials(username, password)) {
-//       window.location.replace('dashboard.html');
-//     } else {
-//       if ($alertBox) {
-//         $alertBox.html(messages.emailAndPasswordInvalid);
-//       } else {
-//         $('.js-login-form').insertAdjacentHTML('afterbegin', 
-//         '<span class="note alert-failure js-login-msg">' + messages.emailAndPasswordInvalid + '</span>');
-//       }
-//     }
+  function validateForm(e) {
+    e.preventDefault();
+    var validForm;
 
-//     //   $('#username').addClass('error');
-//     //   $('#password').addClass('error');
+    if (!validate.emptyFields()) {
+      validForm = validate.fieldsValue('login-form');
 
-//     //   if ($alertBox) { 
-//     //   $alertBox.html(messages.emailAndPasswordRequired);
-//     //   } else {
-//     //     $('.js-login-form').insertAdjacentHTML('afterbegin', 
-//     //     '<span class="note alert-failure js-login-msg">' + messages.emailAndPasswordRequired + '</span>');
-//     //   }
-//   }
+      // no hay errores
+      if (!validForm[1].length) {
+        var username = $util('#username').val();
+        var password = $util('#password').val();
+        var $alertBox = $util('.js-login-msg');
 
-//   function validateCredentials(userMail, userPassword) {
-//     var usersLS = getUsersInfo();
-//     var validCredentials;
-//     var isValid;
+        if (validateCredentials(username, password)) {
+          window.location.replace('dashboard.html');
+        } else {
+          if ($alertBox) {
+            $alertBox.html(msg.key.emailAndPasswordInvalid);
+          } else {
+            $util('.js-login-form').insertAdjacentHTML('afterbegin', 
+            '<span class="note alert-failure js-login-msg">' + msg.key.emailAndPasswordInvalid + '</span>');
+          }
+        }
+      }
+    }
+  }
 
-//     validCredentials = usersLS.users.find(function findUser(user) {
-//       return user.email === userMail;
-//     });
+  function validateRecoverEmail(userMail) {
+    var appLS = storage.get('appLS') || {};
+    var usersLS = getUsersInfo(appLS);
+    var validCredentials;
+    var isValid;
 
-//     if (validCredentials && validCredentials.password === userPassword) {
-//       appLS.logguedInUser = {
-//         id: validCredentials.id,
-//         name: validCredentials.name,
-//         lastName: validCredentials.lastName
-//       };
-
-//       db.put('appUsersLs', appLS);
-
-//       isValid = true;
-//     }
-
-//     return isValid;
-//   }
-
-//   function getUsersInfo() {
-//     var usersInfo = db.get('appUsersLs');
-
-//     if (usersInfo === null) {
-//         usersInfo = [];
-//     };
-
-//     return usersInfo;
-//   }
-
-//   return {
-//     initLS: initLS,
-//     initLogin: initLogin
-//   }
-
-// })(window, $util, app.storage);
-
-
-var login = (function() {
-  //private
-  function bindEvents() {
-    var submitBtn = document.getElementById('submit-login');
-    submitBtn.addEventListener('click', function(e) {
-      e.preventDefault;
-      validateForm();
+    validCredentials = usersLS.users.find(function findUser(user) {
+      if (user.email === userMail) {
+        isValid = true;
+      }
     });
+
+    return isValid;
   }
 
-  function validateForm() {
-    if (validation.notEmptyFields()) {
-      alert('no vacio');
-    } else {
-      alert('algun campo vacio');
+  function validateCredentials(userMail, userPassword) {
+    var appLS = storage.get('appLS') || {};
+    var usersLS = getUsersInfo(appLS);
+    var validCredentials;
+    var isValid;
+
+    validCredentials = usersLS.users.find(function findUser(user) {
+      return user.email === userMail;
+    });
+
+    if (validCredentials && validCredentials.password === userPassword) {
+      appLS.logguedInUser = {
+        id: validCredentials.id,
+        name: validCredentials.name,
+        lastName: validCredentials.lastName
+      };
+
+      storage.put('appLS', appLS);
+
+      isValid = true;
     }
+
+    return isValid;
   }
 
-  // todo lo retornado es publico
+  function getUsersInfo(data) {
+    var usersInfo = data;
+
+    if (usersInfo.users === null) {
+        usersInfo = [];
+    };
+
+    return usersInfo;
+  }
+
   return {
-    init: function() {
-      bindEvents();
-    }
+    initLogin: initLogin,
+    initRecover: initRecover
   }
-}());
+
+})(window);
 

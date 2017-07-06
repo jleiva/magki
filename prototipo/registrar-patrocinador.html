@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body id="events-page">
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="dashboard.html">Magki</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html" class="is-active">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="wrapper">
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Registrar Patrocinador</h2>
+      </div>
+
+      <div class="form__wrap">
+        <div class="js-form">
+          <form id="register-sponsor" name="sponsorForm">
+          <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
+            <div class="field-wrapper">
+              <label for="txtID">Cédula jurídica <abbr title="Requerido">*</abbr></label>
+              <input type="text" id="txtID" required class="js-event-field">
+            </div>
+
+            <div class="field-wrapper">
+               <label for="txtName">Nombre comercial del patrocinador <abbr title="Requerido">*</abbr></label>
+               <input type="text" id="txtName" required class="js-event-field">
+            </div>
+
+            <div class="field-wrapper">
+              <label for="txtBusinessName">Razón social <abbr title="Requerido">*</abbr></label>
+              <input type="text" id="txtBusinessName" required class="js-event-field">
+            </div>
+
+            <label>Logo <abbr title="Requerido">*</abbr></label>
+            <div id="imgSponsor" class="imgLogo"></div>
+            <input id="sponsorLogo" class="file-input" type="file" class="js-event-field" required/>
+
+            <section class="save-product">
+              <legend>Agregar producto</legend>
+
+              <div id="imgProducto" class="imgLogo"></div>
+              <input id="productLogo" class="file-input" type="file"/>
+
+              <div class="field-wrapper">
+                <label for="txtProductName">Nombre del producto </label>
+                <input type="text" id="txtProductName">
+              </div>
+
+              <button id="addProdBttn" class="button-secondary">Agregar producto</button>
+            </section>
+
+            <button type="button" id="saveBttn" value=" guardar">Guardar</button>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/helpers/util.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
+	<script src="js/helpers/messages.js"></script>
+	<script src="js/helpers/validate.js"></script>
+  <script src="js/pages/Sponsosrs/logicaNegocioPats.js"></script>
+  <script src="js/pages/Sponsosrs/registrarPatrocinador.js"></script>
+  <script src="js/pages/main.js"></script>
+</body>
+</html>

@@ -3,29 +3,36 @@
 <head>
   <meta charset="utf-8">
   <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
-  <link rel="stylesheet" href="../pattern/css/styles.css">
-<!--   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"> -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
-<body>
-  <main class="main">
+<body class="bg-gray">
+  <main class="wrapper">
     <div class="main-content">      
-      <div class="js-login-form login-form__wrap">
-        <form>
+      <div class="js-form login-form__wrap">
+        <form id="login-form" novalidate>
           <div class="field-wrapper">
             <label for="username" class="">Correo Electr&oacute;nico</label>
             <input type="email" name="username" id="username" tabindex="1" autofocus="autofocus" autocorrect="off" autocapitalize="off" class="" value="" required> 
           </div>
-          <button id="submit-login" type="submit" value="log in" class="full-width" tabindex="3">Envieme una nueva contraseña</button>
-          <p class="note">Recuerde revisar el folder de correo no deseado (Spam) y filtre por soporte@emaildemagki.com</p>
+          <button id="submit-login" type="submit" value="recover" class="full-width" tabindex="3">Envieme una nueva contraseña</button>
+          <div class="recover-txt">
+          <h4>?No recibi&oacute; el correo electr&oacute;nico con su nueva contraseña?</h4>
+          <p class="note">Recuerde revisar el folder de correo no deseado (Spam) y filtre por soporte@emaildemagki.com</p></div>
         </form>
       </div>
       <p class="note help-txt">No importa, regrese a la <a href="login.html">secci&oacute;n de ingreso.</a></p>
     </div>    
   </main>
 
-  <script src="js/util.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/pages/login/login.js"></script>
+
+  <script src="js/database/storage.js"></script>
+  <script src="js/helpers/util.js"></script>
+  <script src="js/helpers/messages.js"></script>
+  <script src="js/helpers/validate.js"></script>
+  <script src="js/helpers/load-data.js"></script>
+  <script src="js/modules/login.js"></script>
+  <script src="js/pages/recover/index.js"></script>
 </body>
 </html>
 

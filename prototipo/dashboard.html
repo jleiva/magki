@@ -3,31 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
-  <link rel="stylesheet" href="../pattern/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Magki</h1>
-    <a href="" class="js-user-card">JUAN PATAS</a>
-    <nav>
-      <ul>
-        <li><a href="">Usuarios</a></li>
-        <li><a href="">Academias</a></li>
-        <li><a href="">Organizaciones</a></li>
-        <li><a href="">Lugares</a></li>
-        <li><a href="">Eventos</a></li>
-        <li><a href="">Reportes</a></li>
-      </ul>
-    </nav>
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="#">Magki</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <main>
+  <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
         <h2>Registrar [Entidad]</h2>
         <p>Los campos marcados con asterisco (*) son requeridos</p>
       </div>
-      
+      <div class="js-form form__wrap">
       <form>
         <div class="field-wrapper">
           <label for="codigo">Código *</label>
@@ -63,19 +65,23 @@
 
         <button id="save" value="Guardar">Guardar</button>
       </form>
+      </div>
     </div>    
   </main>
-  <footer>
-    <a href="">Magki<span>Gestor de eventos</span></a>
-    <ul>
-      <li><a href="">Eventos</a></li>
-      <li><a href="">Ayuda</a></li>
-      <li><a href="">tkdcr.org</a></li>
-    </ul>
+  <footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
   </footer>
-
-  <script src="js/util.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
+  
+  <script src="js/helpers/util.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/pages/main.js"></script>
 </body>
 </html>

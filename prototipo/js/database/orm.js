@@ -26,14 +26,20 @@ var orm = (function(window, undefined) {
   }
 
   function findVenues() {
-    var appVenuesListLS = storage.get('listaRegistrosPlaceLS') || [];
+    var appVenuesListLS = storage.get('listaLugaresLS') || [];
 
     return appVenuesListLS;
   }
 
+  function findSponsors() {
+    var appSponsorsListLS = storage.get('sponsorListLS') || [];
+
+    return appSponsorsListLS;
+  }
+
   function findLogguedUser() {
-    var appLS = storage.get('appLS');
-    var logguedInUser = appLS.logguedInUser;
+    var appLS = storage.get('appLS') || {};
+    var logguedInUser = appLS.logguedInUser || {};
 
     return logguedInUser;
   }
@@ -70,6 +76,7 @@ var orm = (function(window, undefined) {
     findEventByName: findEventByName,
     findOrgs: findOrgs,
     findVenues: findVenues,
+    findSponsors: findSponsors,
     findLogguedUser: findLogguedUser,
     populateSelect: populateSelect
   };

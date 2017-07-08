@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body>
+   <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="perfil-admin.html">Magki</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html" class="is-active">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="wrapper">
+
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Asignar Puntaje Competidores</h2>
+        <h3 class="section-intro__leading">Registro de Puntajes</h3>
+      </div>
+
+      <div class="actions-tabs">
+        <div class="search-form">
+          <input type="text" id="edit-query" name="query" value="" size="30" maxlength="128" class="search-form__text" placeholder="Buscar...">
+        </div>
+        <ul class="actions-tabs__options">
+          <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Puntaje para el participante</a></li>
+        </ul>
+      </div>
+
+      <table id="tblFighters">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>ID</th>
+            <th>Categoría</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+
+       <div class="no-data">
+        <h3>No hay competidores registrados aún</h3>
+      </div>
+      
+      <button id="btn-save" value="Guardar" class="">Guardar</button>
+    
+    </div>    
+  </main>
+  <footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/helpers/util.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/helpers/validate.js"></script>
+  <script src="js/helpers/messages.js"></script>
+  <script src="js/pages/events/fightersScore.js"></script>
+  <script src="js/pages/main.js"></script>
+</body>
+</html>

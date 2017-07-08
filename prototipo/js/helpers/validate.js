@@ -21,6 +21,10 @@ var validate = (function(window, undefined) {
     }
   }
 
+  function greatThanZero(value) {
+    return value >= 0;
+  }
+
   function emptyFields(inputs) {
     var formInputs = inputs || document.querySelectorAll('input:required');
     var $alertBox = $util('.js-login-msg');

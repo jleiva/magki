@@ -2,26 +2,31 @@ fillTable();
 
 function fillTable() {
 	var studentsList = getStudentsList();
-	var tbody = document.querySelector('#tblStudents tbody');
+	var $error = document.querySelector('.no-data');
 
+	if (studentsList.length) {
+	$error.hide();
+
+	var tbody = document.querySelector('#tblStudents tbody');
 	tbody.innerHTML = '';
 
 	for(var i=0; i<studentsList.length; i++) {
 		var row = tbody.insertRow(i);
 
-		//if(organizationsList[i][4]){
 			var idColumn = row.insertCell();
 			var nameColumn = row.insertCell();
 			var lastNameColumn = row.insertCell();
 			var ageColumn = row.insertCell();
 			var beltColumn = row.insertCell();
-			var editColumn = row.insertCell();''
+			var academyColumn = row.insertCell();
+			var editColumn = row.insertCell();
 
 			idColumn.innerHTML = studentsList[i][0];
 			nameColumn.innerHTML = studentsList[i][1];
 			lastNameColumn.innerHTML = studentsList[i][3];
 			ageColumn.innerHTML = studentsList[i][10];
-			beltColumn.innerHTML = studentsList[i][13];
+			beltColumn.innerHTML = studentsList[i][16];
+			academyColumn.innerHTML= studentsList[i][14];
 
 			var editLink = document.createElement('a');
 			var linkName = document.createTextNode("Editar");
@@ -31,7 +36,7 @@ function fillTable() {
 			editLink.name = studentsList[i][0];
 
 			editColumn.appendChild(editLink);
-		//}
+
 	}
 
 	var btnEdit = document.querySelectorAll('.js-edit-event');
@@ -42,4 +47,7 @@ function fillTable() {
 			localStorage.setItem('studentCode', studentId);
 		})
 	});
+} else {
+	$error.show();
+	}
 }

@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Registrar Lugar</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="dashboard.html">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="" class="is-active">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html" class="is-active">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
@@ -27,50 +27,54 @@
     <div class="main-content">
       <div class="section-intro">
         <h2>Registrar Lugar</h2>
-        
       </div>
       <div class="js-form form__wrap">
       <form id="register-place">
-       
-        <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-        <div class="field-wrapper">
-          <label for="nombreLugar">Nombre de lugar *</label>
-          <input type="text" id="nombreLugar" name="nombreLugar" required class="js-event-field">
-        </div>
+       <fieldset>
+          <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
+          <div class="field-wrapper">
+            <label for="nombreLugar">Nombre de lugar *</label>
+            <input type="text" id="nombreLugar" name="nombreLugar" required class="js-event-field">
+          </div>
 
-         <div class="field-wrapper">
-          <label for="direccionLugar">Direcci&oacute; f&iacute;sica * </label>
-          <input type="text" id="direccionLugar" required class="js-event-field" name="direccionLugar">
-        </div>
+          <div class="field-wrapper">
+            <label for="direccionLugar">Direcci&oacute; f&iacute;sica * </label>
+            <input type="text" id="direccionLugar" required class="js-event-field" name="direccionLugar">
+          </div>
 
-        <div class="field-wrapper">
           <h4>Dirección del lugar por localización satelital</h4>
-            <label for="latitudLugar">Latitud</label>
-          	<input type="text" id="latitudLugar" name="latitudLugar" class="js-event-field">
-          	<label for="longitudLugar">Longitud</label>
-          	<input type="text" id="longitudLugar" name="longitudLugar" class="js-event-field">
-        </div>
-        <div class="field-wrapper">
-          <label for="telefonoEncargado">Telefono del encargado *</label>
-          <input type="text" id="telefonoEncargado" name="telefonoEncargado" required class="js-event-field">
-        </div>
-        <div class="field-wrapper">
-          <label for="horariosLugar">Horarios de disponibilidad *</label>
-          <input type="text" id="horarioLugar" required class="js-event-field" name="horarioLugar">
-        </div>
-        <div class="field-wrapper">
-          <label for="capacidadLugar">Capacidad de personas*</label>
-          <input type="text" id="capacidadLugar" name="capacidadLugar" required class="js-event-field"> 
-        </div>
+            <div class="field-wrapper">
+              <label for="latitudLugar">Latitud</label>
+          	 <input type="text" id="latitudLugar" name="latitudLugar" class="js-event-field">
+            </div>
+            <div class="field-wrapper">
+          	 <label for="longitudLugar">Longitud</label>
+          	 <input type="text" id="longitudLugar" name="longitudLugar" class="js-event-field">
+            </div>
 
-        <button id="save" value="Guardar">Guardar</button>
+            <div class="field-wrapper">
+              <label for="telefonoEncargado">Telefono del encargado *</label>
+              <input type="text" id="telefonoEncargado" name="telefonoEncargado" required class="js-event-field">
+            </div>
+            <div class="field-wrapper">
+              <label for="horariosLugar">Horarios de disponibilidad *</label>
+              <input type="text" id="horarioLugar" required class="js-event-field" name="horarioLugar">
+            </div>
+            <div class="field-wrapper">
+              <label for="capacidadLugar">Capacidad de personas*</label>
+              <input type="text" id="capacidadLugar" name="capacidadLugar" required class="js-event-field"> 
+              <input type="hidden" id="status" name="status" value="1" class="js-event-field"/>
+            </div>
+
+          <button id="save" value="Guardar">Guardar</button>
+        </fieldset>
       </form>
 	</div>  
     </div>    
   </main>
 <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>

@@ -64,12 +64,12 @@ var login = (function(window) {
         var $alertBox = $util('.js-login-msg');
 
         if (validateCredentials(username, password)) {
-          window.location.replace('dashboard.html');
+          window.location.replace('perfil-admin.html');
         } else {
           if ($alertBox) {
             $alertBox.html(msg.key.emailAndPasswordInvalid);
           } else {
-            $util('.js-login-form').insertAdjacentHTML('afterbegin', 
+            $util('.js-form').insertAdjacentHTML('afterbegin', 
             '<span class="note alert-failure js-login-msg">' + msg.key.emailAndPasswordInvalid + '</span>');
           }
         }

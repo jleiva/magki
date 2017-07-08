@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Editar Organizaci&oacute;n</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html" class="is-active">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
@@ -29,13 +29,13 @@
         <h2>Editar Organización</h2>
       </div>
       <div class="form__wrap js-form">
-
-        <form id="editOrganization-form">
+ 
+        <form id="edit-organization-form" novalidate>
         <fieldset>
             <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
         <div class="field-wrapper">
          <label for="code">C&oacute;digo (C&eacute;dula Jur&iacute;dica) <abbr title="Requerido">*</abbr></label>
-          <input class="alert-failure codeError" type="text" id="code" name="" required>
+          <input class="js-event-field codeError" type="text" id="code" name="" required>
         </div>
 
          <div class="field-wrapper">
@@ -46,8 +46,8 @@
         <div class="field-wrapper">
           <label for="organization-type">Tipo Organizaci&oacute;n <abbr title="Requerido">*</abbr></label>
           <select class="js-event-field" id="organization-type" required>
-            <option value="governmental">Gubernamental</option>
-            <option value="non-governmental">No Gubernamental</option>
+            <option value="Gubernamental">Gubernamental</option>
+            <option value="No Gubernamental">No Gubernamental</option>
           </select>
         </div>
 
@@ -77,7 +77,7 @@
   </main>
   <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>

@@ -1,6 +1,6 @@
-
 fillTable();
-$util('#txtSearch').addEventListener('keyup', search);
+// Comentado, porque no es el mismo patron para todas secciones
+// $util('#txtSearch').addEventListener('keyup', search);
 
 function fillTable(){
   var sponsorList = getSponsorList();
@@ -41,7 +41,7 @@ function getInfoSponsorByID() {
   var idSponsor = this.name;
   var info = getInfoById(idSponsor);
   localStorage.setItem('infoSponsorLS',JSON.stringify(info));
-  window.location="editarPatrocinador.html";
+  window.location="editar-patrocinador.html";
 }
 
 function search() {
@@ -70,4 +70,3 @@ function search() {
     }
   }
 }
-

@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Listado de Academias</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html" class="is-active">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
@@ -29,74 +29,36 @@
         <h2>Listar Academias</h2>
         <a href="registrar-academia.html" class="button btn-small" id="btn-register">Registrar Academia</a>
       </div>
-        <table id="tblAcademies">
+
+      <div class="actions-tabs">
+        <div class="search-form">
+          <input type="text" id="edit-query" name="query" value="" size="30" maxlength="128" class="search-form__text" placeholder="Buscar...">
+        </div>
+        <ul class="actions-tabs__options">
+          <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Academias</a></li>
+        </ul>
+      </div>
+
+      <table id="tblAcademies">
         <thead>
           <tr>
             <th>Nombre de Academia</th>            
-            <th>Editar</th>
+            <th></th>
           </tr>
         </thead>
-          <tbody>
-            
-          </tbody>
+        <tbody>
+          
+        </tbody>
       </table>
-        <div class="no-data">
-            <h3>No hay academias disponibles</h3>
-        </div>
+      <div class="no-data">
+          <h3>No hay academias disponibles</h3>
+      </div>
     </div>    
   </main>
-<!--CEDULA JURIDICA
-  <div class="popup">
-      
-      <div class="field-wrapper">
-        <label for="nombreAcademia">Nombre de academia *</label>
-        <input type="text" id="nombreAcademia" name="nombreAcademia" required class="js-event-field">
-      </div>
 
-        <div class="field-wrapper">
-              <label for="telefonoAcademia">Teléfono *</label>
-              <input type="text" id="telefonoAcademia" name="telefonoAcademia" required class="js-event-field">
-        </div>
-
-        <div class="field-wrapper">
-          <label for="emailAcademia">Correo Electrónico *</label>
-          <input type="email" id="emailAcademia" name="emailAcademia" required class="js-event-field">
-        </div>
-        
-        
-        
-
-        <div class="field-wrapper">
-          <h4>Datos Encargado</h4>
-            <label for="nombreEncargado">Nombre *</label>
-          	<input type="text" id="NombreEncargado" name="NombreEncargado" required class="js-event-field">
-          	<label for="primerApellidoEncargado">Primer Apellido *</label>
-          	<input type="text" id="primerApellidoEncargado" name="primerApellidoEncargado" required class="js-event-field">
-          	<label for="segundoApellidoEncargado">Segundo Apellido </label>
-			<input type="text" id="segundoApellidoEncargado" name="segundoApellidoEncargado"> 
-        </div>
-       <div class="field-wrapper">
-          <label for="direccionAcademia">Direcci&oacute; f&iacute;sica</label>
-		   <input type="text" id="direccionAcademia" name="direccionAcademia" required class="js-event-field">
-        </div>
-
-        <div class="field-wrapper">
-          <h4>Dirección del lugar por localización satelital</h4>
-            <label for="latitudAcademia">Latitud</label>
-          	<input type="text" id="latitudAcademia" name="latitudAcademia" class="js-event-field">
-          	<label for="longitudAcademia">Longitud</label>
-          	<input type="text" id="longitudAcademia" name="longitudAcademia" class="js-event-field">
-        </div>
-      
-
-      <input type="hidden" id="editingRow" />
-      <input type="button" id="button1" value="Save" onclick="saveEditedValues()" /> <a class="close" href="#close"></a>
-
-</div>
--->
   <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
@@ -112,7 +74,5 @@
   <script src="js/pages/academies/businessLogicAcademy.js"></script>
   <script src="js/pages/academies/listAcademy.js"></script>
   <script src="js/pages/main.js"></script>
-    
-
 </body>
 </html>

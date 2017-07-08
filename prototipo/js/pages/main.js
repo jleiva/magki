@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   btnLogOut.addEventListener('click', function() {
-    var appLS = storage.get('appLS');
-    appLS.logguedInUser = null;
-    storage.put('appLS', appLS);
+    storage.drop();
     window.location.replace('index.html');
   });
 });

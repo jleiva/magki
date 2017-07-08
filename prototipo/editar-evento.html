@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Editar Evento</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body id="event-edit">
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="dashboard.html">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html" class="is-active">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
@@ -26,7 +26,7 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Registrar Evento</h2>
+        <h2>Editar Evento</h2>
         <p class="section-intro__leading"><strong>Recuerde:</strong> Puede <em>Guardar</em> un evento sin completar los campos requeridos, pero no Publicarlo.</p>
       </div>
       
@@ -60,8 +60,6 @@
                 <label for="venue">Lugar del evento <abbr title="Requerido">*</abbr></label>
                 <select class="js-event-field" name="venue" id="venue" required>
                   <option value="">Seleccione un Lugar...</option>
-                  <option value="sabana">Sabana</option>
-                  <option value="gimnasio">Gimnasio</option>
                 </select>
               </div>
               
@@ -110,23 +108,51 @@
                   </div>
                 </div>
                 <div class="field-wrapper">
+                <fieldset class="select field">
+                  <legend>Habilitar Categor&iacute;as</legend>
                     <fieldset class="select field">
-                      <legend>Habilitar Categor&iacute;as <abbr title="Requerido">*</abbr></legend>
+                      <legend>Masculino</legend>
                       <ul class="list-form">
                         <li>
-                          <label for="cat1">
-                          <input class="js-event-field" id="cat1" name="cat1" type="checkbox"/> Choice A</label>
+                          <label for="masc1">
+                          <input class="js-event-field" id="masc1" name="masc1" type="checkbox"/> Infantil/Junior (4 años a 11)</label>
                         </li>
                         <li>
-                          <label for="cat2">
-                          <input class="js-event-field" id="cat2" name="cat2" type="checkbox"/> Choice B</label>
+                          <label for="masc2">
+                          <input class="js-event-field" id="masc2" name="masc2" type="checkbox"/> Cadete (12 años a 16 años)</label>
                         </li>
                         <li>
-                          <label for="cat3">
-                          <input class="js-event-field" id="cat3" name="cat3" type="checkbox"/> Choice C</label>
+                          <label for="masc3">
+                          <input class="js-event-field" id="masc3" name="masc3" type="checkbox"/> Elite (17 años a 23 años)</label>
+                        </li>
+                        <li>
+                          <label for="masc4">
+                          <input class="js-event-field" id="masc4" name="masc4" type="checkbox"/> Senior mayores de 23 años</label>
                         </li>
                       </ul>
                     </fieldset>
+                    <fieldset class="select field">
+                      <legend>Femenino</legend>
+                      <ul class="list-form">
+                        <li>
+                          <label for="fem1">
+                          <input class="js-event-field" id="fem1" name="fem1" type="checkbox"/> Infantil/Junior (4 años a 11)</label>
+                        </li>
+                        <li>
+                          <label for="fem2">
+                          <input class="js-event-field" id="fem2" name="fem2" type="checkbox"/> Cadete (12 años a 16 años)</label>
+                        </li>
+                        <li>
+                          <label for="fem3">
+                          <input class="js-event-field" id="fem3" name="fem3" type="checkbox"/> Elite (17 años a 23 años)</label>
+                        </li>
+                        <li>
+                          <label for="fem4">
+                          <input class="js-event-field" id="fem4" name="fem4" type="checkbox"/> Senior mayores de 23 años</label>
+                        </li>
+                      </ul>
+                    </fieldset>
+                  </fieldset>
                   </div>
                 </div>
 
@@ -164,17 +190,15 @@
             <legend>Patrocinadores</legend>
             <div class="field-wrapper">
               <label for="sponsor">Seleccionador Patrocinador (opcional)</label>
-              <select class="js-event-field" name="sponsor">
+              <select class="js-event-field" name="sponsor" id="sponsor">
                 <option value="">Seleccione un Patrocinador...</option>
-                <option value="sponsor1">Sponsor 1</option>
-                <option value="sponsor2">Sponsor 2</option>
               </select>
             </div>
 
             <div class="is-hidden js-sponsors-info">
               <div class="field-wrapper">
                 <label for="sponsorBrand">Producto patrocinador</label>
-                <select class="js-event-field" name="sponsorBrand">
+                <select class="js-event-field" name="sponsorBrand" id="sponsorBrand">
                   <option value="">Seleccione un producto...</option>
                   <option value="coca">Coca Cola</option>
                   <option value="fanta">Fanta Naranja</option>
@@ -184,7 +208,7 @@
 
               <div class="field-wrapper">
                 <label for="sponsorType">Tipo de patrocinio</label>
-                <select class="js-event-field" name="sponsorType">
+                <select class="js-event-field" name="sponsorType" id="sponsorType">
                   <option value="">Seleccione un patrocinio...</option>
                   <option value="money">Dinero</option>
                   <option value="equitment">Equipo</option>
@@ -204,9 +228,21 @@
             </div>
           </fieldset>
 
+          <fieldset class="select field">
+            <legend>Estado<abbr title="Requerido">*</abbr></legend>
+            <ul class="list-form">
+              <li>
+                <label for="able"><input id="able" name="status" type="radio"/>Habilitar</label>
+              </li>
+              <li>
+                <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
+              </li>
+            </ul>
+          </fieldset>
+
           <div class="field-wrapper">
-            <button class="button-secondary" id="btn-save" value="Guardar">Guardar</button> 
-            <button id="btn-publish" value="Publicar">Publicar</button>
+            <button class="button-secondary" id="btn-save-edit" value="Guardar">Guardar</button> 
+            <button id="btn-publish-edit" value="Publicar">Publicar</button>
           </div>
         </form>
       </div>
@@ -214,7 +250,7 @@
   </main>
   <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
@@ -230,7 +266,7 @@
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/modules/events.js"></script>
-  <script src="js/pages/events/index.js"></script>
+  <script src="js/pages/events/edit.js"></script>
   <script src="js/pages/main.js"></script>
 </body>
 </html>

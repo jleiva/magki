@@ -11,9 +11,13 @@ var msg = (function(window, undefined) {
     publishEventSuccess: 'Se Publico el evento de manera correcta.',
     saveSuccess: 'Los datos se guardaron correctamente.',
     academySucess: 'Se Guardo la academia de manera correcta.',
-    registerSponsorSuccess: 'Se guardó el patrocinador de manera correcta'
+    academyUpdate: 'Se Actualizo la academia de manera correcta.',
+    registeredProduct: 'Producto guardado',
+    productError: 'Debe llenar ambos campos',
+    placeSucess: 'Se guardó el lugar de manera correcta',
+    placeUpdate: 'Los datos se guardaron correctamente.'
   };
-  
+
   return {
     key: message
   };

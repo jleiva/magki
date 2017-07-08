@@ -1,13 +1,7 @@
-// - Cambie a 2 espacios
-// - Borre codigo comentado
-
-// cambio en ID
 $util('#btn-save').on('click', registerOrganization);
-// var error = document.querySelector('#codeError');
 
 function registerOrganization(e) {
   e.preventDefault();
-  // Especifico los campos que quiero validar que no sean vacios
   var formInputs = document.querySelectorAll('#organization-form .js-event-field:required');
 
   if(!validate.emptyFields(formInputs)) {
@@ -36,9 +30,10 @@ function getRegisterData() {
   var selected = organizationType.options[organizationType.selectedIndex].text;
   description = document.querySelector('#description').value;
 
-  organizationInfo.push(code, organizationName, selected, description,true);
+  organizationInfo.push(code, organizationName, selected, description, true);
   addOrganization(organizationInfo);
   disableFields();
+  document.querySelector('#btn-save').disabled = true;
 }
 
 function validateForm() {
@@ -68,10 +63,6 @@ function validateForm() {
       $util('.js-form').insertAdjacentHTML('afterbegin', 
         '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
     }
-
-    codeField.addClass('error');
-    // error.style.display = 'block';
-    // error.innerHTML = 'Este código ya existe, no se realizó el registro';
   }
 }
 

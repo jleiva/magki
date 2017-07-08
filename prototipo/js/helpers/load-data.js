@@ -1,14 +1,23 @@
 var loadData = (function(window, undefined) {
   function init() {
     var appLS = storage.get('appLS') || {};
+    var listaAcademiasLS = storage.get('listaAcademiasLS') || [];
     
     appLS.users = [{
       id: 503240386,
-      name: 'Jose',
-      lastName: 'Leiva',
-      email: 'leivajd@gmail.com',
+      name: 'Juan',
+      lastName: 'Picado',
+      email: 'admin@makgi.cr',
       password: '2105',
       role: 0
+      },
+      {
+        id: 503240386,
+        name: 'Jose',
+        lastName: 'Leiva',
+        email: 'leivajd@gmail.com',
+        password: '2105',
+        role: 0
       },
       {
         id: 103240386,
@@ -35,15 +44,31 @@ var loadData = (function(window, undefined) {
         role: 3
     }];
 
-    appLS.venue = [{
-      name: 'Sabana',
-      capacity: 200
-    },{
-      name: 'Gimnasio',
-      capacity: 5000
+    listaAcademiasLS = [{
+      nombreAcademia: 'Escuela De Taekwondo Bhan Seok',
+      telefonoAcademia: '2227 4333',
+      emailAcademia: 'bhanseok@gmail.com',
+      NombreEncargado: 'Ronald',
+      primerApellidoEncargado: 'Solano',
+      direccionAcademia: '300 mts al sur de Autos Bohío Barrió Córdoba Zapote, San Jose',
+      latitudAcademia: '',
+      longitudAcademia: '',
+      status: '1'
+    },
+    {
+      nombreAcademia: 'Academia de Taekwondo Tigres Chali',
+      telefonoAcademia: '7029 4850',
+      emailAcademia: 'academiachali@gmail.com ',
+      NombreEncargado: 'Ronald',
+      primerApellidoEncargado: 'Chacon',
+      direccionAcademia: 'San Francisco de Dos Ríos, San Jose',
+      latitudAcademia: '',
+      longitudAcademia: '',
+      status: '1'
     }];
   
     storage.put('appLS', appLS);
+    storage.put('listaAcademiasLS', listaAcademiasLS);
   }
 
   return {

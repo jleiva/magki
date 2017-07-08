@@ -1,6 +1,6 @@
 var profList=[];
 
-function getProfList(){
+function getProfList() {
   var profList = JSON.parse(localStorage.getItem('profListLS'));
 
   if(profList == null){
@@ -10,7 +10,7 @@ function getProfList(){
 }
 
 
-function registrar(pPersona){
+function registrar(pPersona) {
   var profList = getProfList();
   profList.push(pPersona);
   localStorage.setItem('profListLS',JSON.stringify(profList));
@@ -18,23 +18,19 @@ function registrar(pPersona){
 
 function findById(pId) {
 	var profList = getProfList();
-	var profInfo; // se declaro el arreglo
+	var profInfo;
 
-	for(var i=0; i < profList.length; i ++){
-		//verifica si esta el pcode que se pidio en el editar
+	for(var i=0; i < profList.length; i ++) {
 		if (profList[i][0] == pId) {
 			profInfo = profList[i];
 		}
 	}
 
 	return profInfo;
-	//le retorna el valor si esta
 }
 
 function updateProfInfo(pInfo) {
-//deme la lista de organizaciones
 	var profList = getProfList();
-// si la encuentra reemplaza la info
 	for(var i = 0; i < profList.length; i++) {
 		if(profList[i][0] == pInfo[0]){
 			profInfo[i] = pInfo;
@@ -43,4 +39,3 @@ function updateProfInfo(pInfo) {
 
 	localStorage.setItem('profListLS', JSON.stringify(profList));
 }
-// se debe volver a setear el local storage, con la misma que se hace el registrar

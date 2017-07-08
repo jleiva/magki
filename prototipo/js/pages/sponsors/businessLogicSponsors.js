@@ -13,19 +13,15 @@ function getSponsorList(){
   return sponsorList;
 }
 
-function addProductSponsor(pProducts){
-  var prodsList = getProductList();
-  prodsList.push(pProducts);
-  localStorage.setItem('productsListLS',JSON.stringify(prodsList));
-}
+function addProductSponsor(pid,pProduct){
+  var sponsorList = getSponsorList();
 
-function getProductList(){
-  var prodsList = JSON.parse(localStorage.getItem('productsListLS'));
-
-  if(prodsList == null){
-    prodsList = [];
+  for(var i = 0; i < sponsorList.length; i++){
+    if(sponsorList[i][0] == pid){
+      sponsorList[i].push(pProduct);
+    }
   }
-  return prodsList;
+  localStorage.setItem('sponsorListLS', JSON.stringify(sponsorList));
 }
 
 function getInfoById(idSponsor){
@@ -38,4 +34,16 @@ function getInfoById(idSponsor){
     }
   }
   return sponsor;
+}
+
+function editSponsor(pInfoEdit){
+
+  var sponsorList = getSponsorList();
+
+  for(var i = 0; i < sponsorList.length; i++){
+    if(sponsorList[i][0] == pInfoEdit[0]){
+      sponsorList[i] = pInfoEdit;
+    }
+  }
+  localStorage.setItem('sponsorListLS', JSON.stringify(sponsorList));
 }

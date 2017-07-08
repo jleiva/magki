@@ -13,27 +13,42 @@ function getAsistList(){
 function registrar(pPersona){
   var asistList = getAsistList();
   asistList.push(pPersona);
+  document.querySelector('#save').disabled = true;
+  disableFields();
   localStorage.setItem('asistListLS',JSON.stringify(asistList));
 }
 
 function findById(pId) {
 	var asistList = getAsistList();
-	var asistInfo; // se declaro el arreglo
+	var assistInfo; // se declaro el arreglo
 
 	for(var i=0; i < asistList.length; i ++){
 		//verifica si esta el pcode que se pidio en el editar
 		if (asistList[i][0] == pId) {
-			asistInfo= asistList[i];
+			assistInfo= asistList[i];
 		}
 	}
 
-	return asistInfo;
+	return assistInfo;
 	//le retorna el valor si esta
+}
+
+function disableFields() {
+  document.querySelector('#id').disabled = true;
+  document.querySelector('#name').disabled = true;
+  document.querySelector('#secName').disabled = true;
+  document.querySelector('#lastName').disabled = true;
+  document.querySelector('#secLastName').disabled = true;
+  document.querySelector('#bday').disabled = true;
+  document.querySelector('#email').disabled = true;
+  document.querySelector('#phone').disabled = true;
+  document.querySelector('#gender').disabled = true;
+  document.querySelector('#age').disabled = true;
 }
 
 function updateAsistInfo(pInfo) {
 //deme la lista de organizaciones
-	var asistInfo = getAsistList();
+	var assistInfo = getAsistList();
 // si la encuentra reemplaza la info
 	for(var i = 0; i < asistList.length; i++) {
 		if(asistList[i][0] == pInfo[0]){

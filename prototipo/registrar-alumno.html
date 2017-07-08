@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Registrar Evento</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="" class="is-active">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html" class="is-active">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
@@ -29,69 +29,73 @@
         <h2>Registrar Alumno</h2>
       </div>
       <div class="form__wrap js-form">
-					<form id="register-user">
+        <form id="register-user">
           <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-            <div class="field-wrapper">
-    					<label for="id">Numero de Identificacion * </label>
-    					<input type="number" id="id" required pattern="[0-9]">
-    				</div>
 
+          <div class="field-wrapper">
+            <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr> </label>
+            <input type="text"  class="js-event-field" id="id" required pattern="[0-9]">
+          </div>
+
+          <div class="field-wrapper">
+            <label for="name">Primer Nombre <abbr title="Requerido">*</abbr></label>
+            <input type="text" class="js-event-field" id="name" required>
+          </div>
+
+          <div class="field-wrapper">
+            <label for="sec-name">Segundo Nombre</label>
+            <input type="text" id="sec-name">
+          </div>
+
+          <div class="field-wrapper">
+            <label for="last-name">Primer Apellido<abbr title="Requerido">*</abbr> </label>
+            <input type="text" class="js-event-field" id="last-name" required>
+          </div>
+
+          <div class="field-wrapper">
+            <label for="sec-last-name">Segundo Apellido </label>
+            <input type="text" id="sec-last-name">
+          </div>
+          
+          <div class="field-group">
             <div class="field-wrapper">
-            <label for="name">Primer Nombre *</label>
-            <input type="text" id="name" required>
+              <label for="bday">Fecha de Nacimiento <abbr title="Requerido">*</abbr></label>
+              <input type="date" class="js-event-field" id="bday" required>
             </div>
 
             <div class="field-wrapper">
-    					<label for="sec-name">Segundo Nombre</label>
-    					<input type="text" id="sec-name">
-    				</div>
+              <label for="age">Edad </label>
+              <input type="text" id="age">
+            </div>
+          </div>
 
+          <div class="field-wrapper">
+            <label for="email">Correo Electrónico <abbr title="Requerido">*</abbr></label>
+            <input type="text" class="js-event-field" id="email" required>
+          </div>
+          
+          <div class="field-group">
             <div class="field-wrapper">
-    					<label for="last-name">Primer Apellido * </label>
-    					<input type="text" id="last-name" required>
-    				</div>
-
-            <div class="field-wrapper">
-    					<label for="sec-last-name">Segundo Apellido </label>
-    					<input type="text" id="sec-last-name">
-    				</div>
-
-
-            <div class="field-wrapper">
-    					<label for="bday">Fecha de Nacimiento *</label>
-              <input type="date" id="bday" required>
-    				</div>
-
-            <div class="field-wrapper">
-    					<label for="email">Correo Electronico </label>
-    					<input type="text" id="email" required>
-    				</div>
-
-            <div class="field-wrapper">
-    					<label for="weight">Peso </label>
-    					<input type="number" id="weight">
-    				</div>
-
-            <div class="field-wrapper">
-    					<label for="height">Altura </label>
-    					<input type="number" id="height">
-    				</div>
-
-
-            <div class="field-wrapper">
-              <label for="gender">Genero</label>
-              <select name="genero" id="gender">
-                <option value="select">Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-              </select>
+              <label for="weight">Peso </label>
+              <input type="number" id="weight">
             </div>
 
             <div class="field-wrapper">
-    					<label for="age">Edad </label>
-    					<input type="text" id="age">
-    				</div>
+              <label for="height">Altura </label>
+              <input type="number" id="height">
+            </div>
+          </div>
 
+          <div class="field-wrapper">
+            <label for="gender">Género</label>
+            <select name="genero" class="js-event-field" id="gender" required="">
+              <option value="">Seleccionar</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
+          </div>
+          
+          <div class="field-group">
             <div class="field-wrapper">
               <label for="part-tournament">Torneos Participados </label>
               <input type="number" id="part-tournament" >
@@ -101,28 +105,49 @@
               <label for="win-tournament">Torneos Ganados </label>
               <input type="number" id="win-tournament" >
             </div>
+          </div>
 
-            <div class="field-wrapper">
-              <label for="belt">Grado Cinta</label>
-              <select name="belt-grade" id="belt">
-                <option value="select">Seleccionar</option>
-                <option value="blanco">Blanco</option>
-                <option value="amarillo">Amarillo</option>
-                <option value="verde">Verde</option>
-                <option value="azul">Azul</option>
-                <option value="rojo">Rojo</option>
-                <option value="negro">Negro</option>
-              </select>
+          <div class="field-wrapper">
+            <label for="exhibition">Exhibiciones Participadas </label>
+            <input type="number" id="exhibition" class="short-input">
+          </div>
+
+          <div class="field-wrapper">
+            <label for="academy">Academia <abbr title="Requerido">*</abbr></label>
+            <select class="js-event-field" id="academy" required>
+            <option value="">Seleccionar</option>
+            </select>
+          </div>
+
+          <div class="field-wrapper">
+            <label for="professor">Profesor Guía <abbr title="Requerido">*</abbr></label>
+            <select class="js-event-field" id="professor" required>
+            <option value="">Seleccionar</option>
+          </select>
+          </div>
+
+          <div class="field-wrapper">
+            <label for="belt">Grado Cinta</label>
+            <select name="belt-grade" class="js-event-field" id="belt" required>
+              <option value="">Seleccionar</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Amarillo">Amarillo</option>
+              <option value="Verde">Verde</option>
+              <option value="Azul">Azul</option>
+              <option value="Rojo">Rojo</option>
+              <option value="Negro">Negro</option>
+            </select>
+            </div>
+
+          <button id="save" value="">Guardar</button>
+              </form>
               </div>
+            </div>
+          </main>
 
-					<button id="save" value="">Guardar</button>
-				      </form>
-				      </div>
-				    </div>
-				  </main>
-<footer class="site-footer">
+    <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
@@ -130,10 +155,15 @@
       </ul>
     </div>
   </footer>
-	<script src="js/helpers/util.js"></script>
-	<script src="js/helpers/messages.js"></script>
-	<script src="js/helpers/validate.js"></script>
-	<script src="js/pages/users/student/registerAlumno.js"></script>
-	<script src="js/pages/users/student/logicAlumno.js"></script>
+  <script src="js/helpers/util.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/helpers/messages.js"></script>
+  <script src="js/helpers/validate.js"></script>
+  <script src="js/pages/academies/businessLogicAcademy.js"></script>
+  <script src="js/pages/users/professor/logicProf.js"></script>
+  <script src="js/pages/users/student/registerAlumno.js"></script>
+  <script src="js/pages/users/student/logicAlumno.js"></script>
+  <script src="js/pages/main.js"></script>
 </body>
 </html>

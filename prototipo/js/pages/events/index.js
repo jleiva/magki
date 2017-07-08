@@ -1,16 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   function init() {
     var isEventsPage = document.querySelector('#events-page');
-    var isEditEventPage = document.querySelector('#event-edit');
     var isRegisterEventPage = document.querySelector('#event-register');
 
     if (isEventsPage) {
       loadEventsData();
-    }
-
-    if (isEditEventPage) {
-      loadEventData();
-      bindEventsPageUI();
     }
 
     if (isRegisterEventPage) {
@@ -57,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
       validate.validateDateRange(sDate, eDate);
     });
 
+    document.querySelector('#priceTicket').addEventListener('change', function(e) {
+      var currentItem = e.currentTarget;
+
+      if (events.validateValue()) {
+
+      }
+    });
+
     document.querySelector('#eventName').addEventListener('change', function() {
       var eventName = document.querySelector('#eventName');
       var eventNameValue = document.querySelector('#eventName').value;
@@ -88,11 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function loadEventsData() {
     loadData.init();
     initEventsList();
-  }
-
-  // Edit Event page
-  function loadEventData() {
-    events.fillEditForm();
   }
 
   init();

@@ -56,7 +56,11 @@ var events = (function(window) {
 
       formInputs.forEach(function(input) {
         input.setAttribute('disabled', true);
+        input.removeClass('error');
       });
+
+      document.querySelector('#btn-save').disabled = true;
+      document.querySelector('#btn-publish').disabled = true;
     } else {
       if ($alertBox) {
         $alertBox.html(msg.key.nameFieldRequired);
@@ -144,8 +148,8 @@ var events = (function(window) {
   }
 
   function updateVenueCapacity(e) {
-    var appLS = storage.get('listaRegistrosPlaceLS') || {};
-    var venueCapField = $util('#venueCap');
+    var appLS = storage.get('listaLugaresLS') || {};
+    var venueCapField = document.querySelector('#venueCap');
     var venueSelected = e.target.value;
     var venueCapacity = 0;
 
@@ -155,7 +159,7 @@ var events = (function(window) {
       }
     });
 
-    venueCapField.setAttribute('value', venueCapacity);
+    venueCapField.value = venueCapacity;
   }
 
   function validateTicketsPerVenue(e) {
@@ -180,9 +184,7 @@ var events = (function(window) {
     var events = appLS.events || [];
     
     events.push(data);
-
     appLS.events = events;
-
     storage.put('appLS', appLS);
   }
 
@@ -193,7 +195,22 @@ var events = (function(window) {
     setEventToEdit(currentItemId);
   }
 
+  function triggerRegAthletes(e) {
+    var currentItem = e.currentTarget;
+    var currentItemId = currentItem.dataset.index;
+
+    setEventToRegAthletes(currentItemId);
+  }
+
   function setEventToEdit(currentItemId) {
+    var appLS = storage.get('appLS') || {};
+    var eventId = currentItemId;
+
+    appLS.eventToEdit = eventId;
+    storage.put('appLS', appLS);
+  }
+
+  function setEventToRegAthletes(currentItemId) {
     var appLS = storage.get('appLS') || {};
     var eventId = currentItemId;
 
@@ -211,18 +228,44 @@ var events = (function(window) {
   function fillEditForm() {
     var eventId = getEventToEdit();
     var eventData = orm.findEventbyId(eventId);
-    var formInputstoFill = document.querySelectorAll('#event-form .js-event-field');
 
-    formInputstoFill.forEach(function(fillInput) {
-      var inputName = fillInput.name;
-      var inputValue = eventData[inputName];
+    var eventName = $util('#eventName');
+    var dateStart = $util('#dateStart');
+    var dateEnd = $util('#dateEnd');
+    var venue = $util('#venue');
+    var venueCap = $util('#venueCap');
+    var ticketQ = $util('#ticketQ');
+    var priceTicket = $util('#priceTicket');
+    var tipoEvento = $util('#tipoEvento');
+    var entryFee = $util('#entryFee');
+    var weightDate = $util('#weightDate');
+    var guess = $util('#guess');
+    var guessOrg = $util('#guessOrg');
+    var orgName = $util('#orgName');
+    var sponsor = $util('#sponsor');
+    var sponsorBrand = $util('#sponsorBrand');    
+    var sponsorType = $util('#sponsorType');
+    var sponsorDesc = $util('#sponsorDesc');
+    var sponsorValue = $util('#sponsorValue');
 
-      if (fillInput.type === 'checkbox' && inputValue === 'on') {
-        fillInput.setAttribute('checked', 'checked')
-      } else {
-        fillInput.value = inputValue;
-      }
-    });
+    eventName.value = eventData.eventName;
+    dateStart.value = eventData.dateStart;
+    dateEnd.value = eventData.dateEnd;
+    venue.value =  eventData.venue;
+    venueCap.value = eventData.venueCap;
+    ticketQ.value = eventData.ticketQ;
+    priceTicket.value = eventData.priceTicket;
+    tipoEvento.value = eventData.tipoEvento;
+    entryFee.value = eventData.entryFee;
+    weightDate.value = eventData.weightDate;
+    guess.value = eventData.guess;
+    guessOrg.value = eventData.guessOrg;
+    orgName.value = eventData.orgName;
+    sponsor.value = eventData.sponsor;
+    sponsorBrand.value = eventData.sponsorBrand;
+    sponsorType.value = eventData.sponsorType;
+    sponsorDesc.value = eventData.sponsorDesc;
+    sponsorValue.value = eventData.sponsorValue;
   }
 
   function buildEventsList(eventsData) {
@@ -257,7 +300,8 @@ var events = (function(window) {
       var linkText = document.createTextNode('Inscribir atletas');
       anchorRegister.appendChild(linkText);
       anchorRegister.className = 'btn-action-event js-athlete-event';
-      anchorRegister.href = 'dashboard.html';
+      anchorRegister.dataset.index = index;
+      anchorRegister.href = 'inscribir-competidores.html';
       
       eventActions.appendChild(anchorEdit);
       eventActions.appendChild(anchorRegister);
@@ -276,16 +320,85 @@ var events = (function(window) {
         triggerEditAction(e);
       });
     });
+
+    document.querySelectorAll('.js-athlete-event').forEach(function(btnEdit) {
+      btnEdit.addEventListener('click', function(e) {
+        triggerRegAthletes(e);
+      });
+    });
+  }
+
+  function buildEventsListProfile(eventsData) {
+    var eventsTable = document.querySelector('#profile-events tbody');
+
+    eventsData.forEach(function(data, index) {
+      var tr = document.createElement('tr');
+      var eventName = document.createElement('td');
+      var eventType = document.createElement('td');
+      var eventActions = document.createElement('td');
+
+      var nameTxt = document.createTextNode(data.eventName);
+      var typeTxt = document.createTextNode(data.tipoEvento);
+
+      eventName.appendChild(nameTxt);
+      eventType.appendChild(typeTxt);
+
+      var anchorEdit = document.createElement('a');
+      var linkText = document.createTextNode('Editar');
+      anchorEdit.appendChild(linkText);
+      anchorEdit.className = 'btn-action-event js-edit-event';
+      anchorEdit.dataset.index = index;
+      anchorEdit.href = 'editar-evento.html';
+
+      var anchorRegister = document.createElement('a');
+      var linkText = document.createTextNode('Inscribir atletas');
+      anchorRegister.appendChild(linkText);
+      anchorRegister.className = 'btn-action-event js-athlete-event';
+      anchorRegister.dataset.index = index;
+      anchorRegister.href = 'inscribir-competidores.html';
+
+      var anchorResults = document.createElement('a');
+      var linkText = document.createTextNode('Registrar Resultados');
+      anchorResults.appendChild(linkText);
+      anchorResults.className = 'btn-action-event';
+      anchorResults.dataset.index = index;
+      anchorResults.href = 'registrar-resultados.html';
+      
+      eventActions.appendChild(anchorEdit);
+      eventActions.appendChild(anchorRegister);
+      eventActions.appendChild(anchorResults);
+
+      tr.appendChild(eventName);
+      tr.appendChild(eventType);
+      tr.appendChild(eventActions);
+
+      eventsTable.appendChild(tr);
+    });
+
+    document.querySelectorAll('.js-edit-event').forEach(function(btnEdit) {
+      btnEdit.addEventListener('click', function(e) {
+        triggerEditAction(e);
+      });
+    });
+
+    document.querySelectorAll('.js-athlete-event').forEach(function(btnEdit) {
+      btnEdit.addEventListener('click', function(e) {
+        triggerRegAthletes(e);
+      });
+    });
   }
 
   function populateSelects() {
     var selectOrg = $util('#orgName');
     var selectVenue = $util('#venue');
+    var selectSponsor = $util('#sponsor');
     var orgList = orm.findOrgs();
     var venueList = orm.findVenues();
+    var sponsorList = orm.findSponsors();
 
     orm.populateSelect('orgName', orgList, true);
     orm.populateSelect('venue', venueList, false);
+    orm.populateSelect('sponsor', sponsorList, true);
   }
 
   return {
@@ -294,6 +407,8 @@ var events = (function(window) {
     changeEventType: changeEventType,
     updateVenueCapacity: updateVenueCapacity,
     buildEventsList: buildEventsList,
+    buildEventsListProfile: buildEventsListProfile,
+    buildEventDataObject: buildEventDataObject,
     fillEditForm: fillEditForm,
     validateTicketsPerVenue: validateTicketsPerVenue,
     showSponsorInfo: showSponsorInfo,

@@ -2,29 +2,119 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Sistema de Gesti&ocute;n de Eventos</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/landing.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
-<body id="event-register">
+<body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="#">Makgi</a></h1>
       <nav class="main-nav" role="">
+        <nav class="main-nav" role="">
         <ul class="menu">
+          <li class="main-nav__item"><a href="#">Acerca</a></li>
+          <li class="main-nav__item"><a href="#">Aprenda Taekwondo</a></li>
+          <li class="main-nav__item"><a href="#">Eventos</a></li>
+          <li class="main-nav__item"><a href="#">Contacto</a></li>
           <li class="main-nav__item main-nav__item--profile"><a href="login.html">Iniciar Sesi&oacute;n</a></li>
         </ul>
+      </nav>
       </nav>
     </div>
   </header>
   <main class="wrapper">
+    <div class="slider"><img src="img/hero.jpg" alt=""/></div>
     <div class="main-content">
-      <h2>Landing App</h2>
-    </div>    
+      <div class="promo-box">
+        <h2 class="promo-box__title">2017 Campeonato Nacional de Taekwondo</h2>
+        <div class="promo-left">
+          <h4>Detalles del evento</h4>
+          <p>
+          <strong>Lugar:</strong> Ciudad Deportiva de Hatillo<br/>
+          <strong>Fecha:</strong> 30 de Junio de 2017<br/>
+            Detalles del evento<br/><br/>
+           <a href="reserve.html" class="button btn-small" id="btn-register">Reservar Entradas</a>
+          </p>
+        </div>
+        <div class="promo-right">
+          <h4>Inscripción de Atletas:</h4>
+          <strong>Fecha límite de inscripción:</strong> 20 de Julio de 2017<br/>
+          <strong>Fecha de pesaje:</strong> 28 de Julio de 2017<br/>
+          <strong>Costo de Inscripción:</strong> ¢15.000<br/>
+          
+          <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su Academia debe de estar registrada en Makgi previamente.</p>
+        </div>
+      </div>
+
+      <div class="next-events">
+          <h2>Próximos Eventos</h2>
+          <table>
+              <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Tipo</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td><a href="#">2017 Las Vegas Open</a></td>
+                <td>June 29 - July 06, 2017</td>
+                <td>Gimnasio Nacional, San Jos<em>é</em></td>
+                <td>Torneo</td>
+                <td><a href="reserve.html">Reservar Entrada</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">USAT Poomsae Referee Seminar</a></td>
+                <td>Sept. 02 -03, 2017</td>
+                <td>Polideportivo de Alajuela</td>
+                <td>Torneo</td>
+                <td><a href="reserve.html">Reservar Entrada</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">2017 NAPA Open International Taekwondo</a></td>
+                <td>Oct. 21, 2017</td>
+                <td>Ciudad Deportiva de Hatillo</td>
+                <td>Torneo</td>
+                <td><a href="reserve.html">Reservar Entrada</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">2017 USAT RDP Seminar Louisiana</a></td>
+                <td>Nov. 11, 2017</td>
+                <td>Ciudad Deportiva de Hatillo</td>
+                <td>Exibicion</td>
+                <td><a href="reserve.html">Reservar Entrada</a></td>
+              </tr>
+          </table>
+      </div>
+    </div>  
+    <div class="voices">
+      
+    </div>
+    <div class="main-content about">
+       <div class="promo-bottom-left">
+        <h3>TKDCR</h3>
+        <div class="promo-content">
+          <p>Federación Costarricense de Taekwondo conforme a los preceptos establecidos en sus estatutos y reglamentos, los de la Federación Mundial de Taekwondo (W.T.F) y los de la Unión Panamericana de Taekwondo (P.A.T.U), de las cuales es miembro, siendo la unica y es el Único ente regulatorio del Taekwondo en Costa Rica. 
+          </p>
+          <a href="#">Conozca m&aacute;s sobre TKDCR</a>
+        </div>
+      </div>
+      
+      <div class="promo-bottom-right">
+        <h3>Empiece a entrenar Taekwondo hoy</h3>
+        <div class="promo-content">
+        <p>¿Piensas que el fin de practicar Taekwondo es solo para competir? Los beneficios de la práctica continua del Taekwondo son innumerables, tanto para adultos como niños, por ejemplo: menos riesgos de obesidad, desarrollo de enfermedades crónicas, drogadicción, entre otras condiciones que afectan la salud física, mental y emocional.</p>
+        <p>
+          <a href="#">Encuentre una Academia</a> cerca de usted y empiece a entrenar Taekwondo hoy.</p>
+        </div>
+      </div>
+    </div>  
   </main>
   <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>

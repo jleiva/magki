@@ -2,38 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Magki - [T&iacute;tulo de Secci&oacute;n]</title>
+  <title>Makgi - Listado de Alumnos</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
-          <li class="main-nav__item"><a href="" class="is-active">Usuarios</a></li>
+          <li class="main-nav__item"><a href="alumnos.html" class="is-active">Usuarios</a></li>
           <li class="main-nav__item"><a href="academias.html">Academias</a></li>
           <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="">Lugares</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
           <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
           <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="#"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <main class="wrapper">
-
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Alumnos</h2>
-
-       <a href="registrar-alumno.html" class="button btn-small" id="btn-register">Registrar Alumno</a>
+        <a href="registrar-alumno.html" class="button btn-small" id="btn-register">Registrar Alumno</a>
       </div>
-      
-      <input type="text" name="buscar">
-         <input type="button" id="loadButton" value="Buscar Estudiante">
+     <div class="actions-tabs">
+        <div class="search-form">
+          <input type="text" id="edit-query" name="query" value="" size="30" maxlength="128" class="search-form__text" placeholder="Buscar...">
+        </div>
+        <ul class="actions-tabs__options">
+          <li class="nav-tab"><a class="nav-tab-link is-active" href="alumnos.html">Alumnos</a></li>
+          <li class="nav-tab"><a class="nav-tab-link" href="profesores.html">Profesores</a></li>
+          <li class="nav-tab"><a class="nav-tab-link" href="asistentes.html">Asistentes</a></li>
+        </ul>
+      </div>
+
       <table id="tblStudents">
         <thead>
           <tr>
@@ -42,6 +48,7 @@
             <th>Apellido</th>
             <th>Edad</th>
             <th>Cinturon</th>
+            <th>Academia</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -49,11 +56,14 @@
 
         </tbody>
       </table>
+      <div class="no-data">
+        <h3>No hay alumnos registrados.</h3>
+      </div>
   </div>
 </main>
 <footer class="site-footer">
     <div class="group">
-      <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
         <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>

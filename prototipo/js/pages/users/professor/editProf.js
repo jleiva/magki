@@ -20,10 +20,8 @@ function validateChanges(e) {
 function loadProfData() {
 
 	var profId = localStorage.getItem('profCode');
-	//agarra el codigo que se guardo
+
 	var profInfo = findById(profId);
-	// aqui llama la capa logica principal
-	//toda la informacion de la entidad o que quiero del formulario
 
   document.querySelector('#id').value = profInfo[0]; //lllena el primer campo
 	document.querySelector('#id').disabled = true; //y no habilita el campo que yo le diga
@@ -38,16 +36,7 @@ function loadProfData() {
   document.querySelector('#age').value = profInfo[9];
   document.querySelector('#academy').value =  profInfo[10];
   document.querySelector('#belt').value = profInfo[11];
-	/*var beltType = document.querySelector('#belt');
-	var beltGrade = document.createElement('option');
-	 beltGrade.innerHTML =  studentsInfo[13];*/
 
-
-	/*if(studentsInfo[14]) {
-		document.querySelector('#able').checked = true;
-	}else{
-		disableFields();
-	}*/
 }
 
 
@@ -85,7 +74,7 @@ var profInfo = [];
 
 	profInfo.push(id, firstName, secName, lastName,secLastName,bday,email, phone, gender,age,belt, status);
 	updateProfInfo(profInfo); //esta en la principal
-	//loadNewData(id);
+
 
 	if (status){
 	enableFields();
@@ -93,41 +82,8 @@ var profInfo = [];
 		disableFields();
 	}
 
-
 }
 
-/*function loadNewData(pId) {
-	var studentsInfo = findById(pId);
-
-// se le pide que busque la info actualizada
-	document.querySelector('#id').value = studentsInfo[0];
-	document.querySelector('#name').value = studentsInfo[1];
-  document.querySelector('#sec-name').value = studentsInfo[2];
-  document.querySelector('#last-name').value = studentsInfo[3];
-  document.querySelector('#sec-last-name').value = studentsInfo[4];
- 	document.querySelector('#bday').value=studentsInfo[5];
-	document.querySelector('#email').value = studentsInfo[6];
-	document.querySelector('#weight').value=studentsInfo[7];
- 	document.querySelector('#height').value=studentsInfo[8];
-	document.querySelector('#gender').value=studentsInfo[9];
-	document.querySelector('#age').value=studentsInfo[10];
-  document.querySelector('#part-tournament').value = studentsInfo[11];
-  document.querySelector('#win-tournament').value = studentsInfo[12];
-
-  var belt = document.querySelector('#belt');
-  var grade = document.createElement('option');
-  grade.innerHTML = studentsInfo[13];
-  belt.appendChild(grade);
-
-//evalua cual estado fue seleccionado
-	if(organizationInfo[14]) {
-		document.querySelector('#able').checked = true;
-	}else{
-		disableFields();
-	}
-}*/
-
-//la funcion que deshabilitado todos los campos y le ponga el check
 function disableFields() {
 	//document.querySelector('#disable').checked = true;
   document.querySelector('#id').disabled = true;
@@ -146,7 +102,7 @@ function disableFields() {
 }
 
 function enableFields() {
-	//document.querySelector('#disable').checked = true;
+
 
   document.querySelector('#name').disabled = false;
   document.querySelector('#sec-name').disabled = false;

@@ -24,6 +24,19 @@
   max-width: 900px;
 }
 
+.main-content {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after, 
+  &:after {
+    clear: both;
+  }
+}
+
 .group {
   margin: 0 auto;
   max-width: 1200px;

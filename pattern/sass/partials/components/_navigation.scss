@@ -57,3 +57,17 @@
 .nav-footer {
   float: right;
 }
+
+.menu-quick-links {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 10px;
+  
+  a {
+    color: $blue;
+  }
+  li {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}

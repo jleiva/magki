@@ -453,6 +453,15 @@ input.button-secondary
 .btn-action-event:hover {
   color: #373737; }
 
+button[disabled],
+button[disabled]:hover,
+button[disabled]:focus,
+button[disabled]:active {
+  background-color: #e5e5e5;
+  cursor: not-allowed;
+  text-shadow: none;
+  color: #999595; }
+
 textarea,
 input,
 select {

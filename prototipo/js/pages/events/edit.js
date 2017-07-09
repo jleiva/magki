@@ -129,13 +129,13 @@ document.addEventListener('DOMContentLoaded', function() {
       validate.validateDateRange(sDate, eDate);
     });
 
-    document.querySelector('#priceTicket').addEventListener('change', function(e) {
-      var currentItem = e.currentTarget;
+    // document.querySelector('#priceTicket').addEventListener('change', function(e) {
+    //   var currentItem = e.currentTarget;
 
-      if (events.validateValue()) {
+    //   if (events.validateValue()) {
 
-      }
-    });
+    //   }
+    // });
 
     document.querySelector('#eventName').addEventListener('change', function() {
       var eventName = document.querySelector('#eventName');

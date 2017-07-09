@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   btnLogOut.addEventListener('click', function() {
-    storage.drop();
+    var appLS = storage.get('appLS') || {};
+    appLS.logguedInUser = null;
+
+    storage.put('appLS', appLS);
+
     window.location.replace('index.html');
   });
 });

@@ -1,22 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-var nombre = "Evento prueba";
 var eventsData;
 var currentEvent;
 findEvent();
 $util('#saveBttn').on('click',validateReserve);
 
-function findEvent(){
+function findEvent() {
   eventsData = storage.get('appLS');
   var events = eventsData.events;
+  var idEventReserve = eventsData.eventToReserve;
+
 
   for (var i = 0; i < events.length; i++) {
-    if(events[i].eventName == nombre){
+    if(events[i].eventName == idEventReserve){
       currentEvent = events[i];
     }
   }
 
   $util(".promo-box__title").innerHTML = currentEvent.eventName;
-  $util("#place").innerHTML = currentEvent.place;
+  $util("#place").innerHTML = currentEvent.venue;
   $util("#date").innerHTML = currentEvent.dateStart;
   $util("#typeEvent").innerHTML = currentEvent.tipoEvento;
 }
@@ -24,9 +25,10 @@ function findEvent(){
 function setVenueCap(pNewVenueCap){
   eventsData = storage.get('appLS');
   var events = eventsData.events;
+  var idEventReserve = eventsData.eventToReserve;
 
   for (var i = 0; i < eventsData.events.length; i++) {
-    if(eventsData.events[i].eventName == nombre){
+    if(eventsData.events[i].eventName == idEventReserve){
       eventsData.events[i].venueCap = pNewVenueCap;
     }
   }
@@ -43,7 +45,7 @@ function validateReserve(e) {
     validForm = validate.fieldsValue('reserve');
 
     if (!validForm[1].length) {
-      if (tickets < currentEvent.venueCap) {
+      if (tickets < currentEvent.ticketQ) {
         getReserveData();
 
         if ($alertBox) {

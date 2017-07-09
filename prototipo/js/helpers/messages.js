@@ -13,7 +13,8 @@ var msg = (function(window, undefined) {
     academySucess: 'Se Guardo la academia de manera correcta.',
     academyUpdate: 'Se Actualizo la academia de manera correcta.',
     registeredProduct: 'Producto guardado',
-    productError: 'Debe llenar ambos campos',
+    productError: 'El campo de nombre es obligatorio',
+    reserveSucess: 'La información de la reserva se le envió al correo electrónico',
     placeSucess: 'Se guardó el lugar de manera correcta',
     placeUpdate: 'Los datos se guardaron correctamente.'
   };

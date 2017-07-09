@@ -195,11 +195,26 @@ var events = (function(window) {
     setEventToEdit(currentItemId);
   }
 
+  function triggerReserveTicket(e) {
+    var currentItem = e.currentTarget;
+    var currentItemId = currentItem.dataset.name;
+
+    setEventToReserve(currentItemId);
+  }
+
   function triggerRegAthletes(e) {
     var currentItem = e.currentTarget;
     var currentItemId = currentItem.dataset.index;
 
     setEventToRegAthletes(currentItemId);
+  }
+
+  function setEventToReserve(currentItemId) {
+    var appLS = storage.get('appLS') || {};
+    var eventId = currentItemId;
+
+    appLS.eventToReserve = eventId;
+    storage.put('appLS', appLS);
   }
 
   function setEventToEdit(currentItemId) {
@@ -388,6 +403,57 @@ var events = (function(window) {
     });
   }
 
+  function buildEventsListHome(eventsData) {
+    var eventsTable = document.querySelector('#next-events tbody');
+
+    eventsData.forEach(function(data, index) {
+      if (data.isPublish) {
+        var $noData = document.querySelector('.no-data');
+        var tr = document.createElement('tr');
+        var eventName = document.createElement('td');
+        var eventDate = document.createElement('td');
+        var eventVenue = document.createElement('td');
+        var eventType = document.createElement('td');
+        var eventActions = document.createElement('td');
+
+        var nameTxt = document.createTextNode(data.eventName);
+        var dateTxt = document.createTextNode(data.dateStart);
+        var venueTxt = document.createTextNode(data.venue);
+        var typeTxt = document.createTextNode(data.tipoEvento);
+
+        $noData.hide();
+
+        eventName.appendChild(nameTxt);
+        eventDate.appendChild(dateTxt);
+        eventVenue.appendChild(venueTxt);
+        eventType.appendChild(typeTxt);
+
+        var anchorTicket = document.createElement('a');
+        var linkText = document.createTextNode('Reservar Entradas');
+        anchorTicket.appendChild(linkText);
+        anchorTicket.className = 'btn-action-event js-book-event';
+        anchorTicket.dataset.name = data.eventName;
+        anchorTicket.href = 'reserve.html';
+        
+        eventActions.appendChild(anchorTicket);
+
+        tr.appendChild(eventName);
+        tr.appendChild(eventDate);
+        tr.appendChild(eventVenue);
+        tr.appendChild(eventType);
+        tr.appendChild(eventActions);
+
+        eventsTable.appendChild(tr);
+      }
+    });
+
+    document.querySelectorAll('.js-book-event').forEach(function(btnEdit) {
+      btnEdit.addEventListener('click', function(e) {
+        triggerReserveTicket(e);
+      });
+    });
+  }
+
   function populateSelects() {
     var selectOrg = $util('#orgName');
     var selectVenue = $util('#venue');
@@ -408,6 +474,7 @@ var events = (function(window) {
     updateVenueCapacity: updateVenueCapacity,
     buildEventsList: buildEventsList,
     buildEventsListProfile: buildEventsListProfile,
+    buildEventsListHome: buildEventsListHome,
     buildEventDataObject: buildEventDataObject,
     fillEditForm: fillEditForm,
     validateTicketsPerVenue: validateTicketsPerVenue,

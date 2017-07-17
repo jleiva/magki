@@ -1,19 +1,16 @@
 $util('#btn-save').on('click', validateChanges);
-
 loadOrganizationData();
 
 function validateChanges(e) {
-  var $alertBox = $util('.js-login-msg');
-
   e.preventDefault();
-  var formInputs = document.querySelectorAll('#edit-organization-form .js-event-field:required');
+  var $alertBox = $util('.js-login-msg');
+  var formInputs = document.querySelectorAll('#edit-organization-form .js-form-field:required');
 
   if (!validate.emptyFields(formInputs)) {
     var validForm = validate.fieldsValue('edit-organization-form');
 
     if (!validForm[1].length) {
       getUpdateData();
-      window.scrollTo(0, 0);
     
       if ($alertBox) { 
         $alertBox.removeClass('alert-failure')
@@ -21,7 +18,7 @@ function validateChanges(e) {
           .html(msg.key.saveSuccess);
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+        '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
       }
     } else {
       if ($alertBox) { 
@@ -31,68 +28,44 @@ function validateChanges(e) {
           .html('Este código ya existe, no se realizó el registro');
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
+        '<span class="note alert alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
       }
     }
   }
+
+  window.scrollTo(0, 0);
 }
 
 function loadOrganizationData() {
   var organizationCode = localStorage.getItem('entityCode');
-  var organizationInfo = findOrgByCode(organizationCode);
+  var organizationInfo = {};
+  organizationInfo = findOrgByCode(organizationCode);
+  var formInputs = document.querySelectorAll('#edit-organization-form .js-form-field');
 
-  document.querySelector('#code').value = organizationInfo[0];
-  document.querySelector('#code').disabled = true;
-  document.querySelector('#organization-name').value = organizationInfo[1];
-  document.querySelector('#organization-type').value = organizationInfo[2];
-  document.querySelector('#description').value = organizationInfo[3];
-
-  if (organizationInfo[4]) {
-    document.querySelector('#able').checked = true;
-    enableFields();
+  document.querySelector('#code').value = organizationInfo.codeNumber;
+  document.querySelector('#organizationName').value = organizationInfo.organization;
+  document.querySelector('#organizationType').value = organizationInfo.organizationType;
+  document.querySelector('#description').value = organizationInfo.description;
+  
+  if (organizationInfo.status) {
+    misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#code').disabled = true;
   } else {
-    disableFields();
+    misc.disableFieldsOnEdit(formInputs);
   }
 }
 
 function getUpdateData() {
-  var code = '';
-  var organizationName = '';
-  var organizationType = '';
-  var description = '';
-  var condition = '';
-  var organizationInfo = [];
-
-  code = document.querySelector('#code').value;
-  organizationName = document.querySelector('#organization-name').value;
-  organizationType  = document.querySelector('#organization-type');
-  var selected = organizationType.options[organizationType.selectedIndex].text;
-  description = document.querySelector('#description').value;
+  var formInputs = document.querySelectorAll('#edit-organization-form .js-form-field');
+  var organizationData = misc.buildDataObject(formInputs);
   var status = document.querySelector('#able').checked;
-
-  organizationInfo.push(code, organizationName, selected, description,status);
-  updateOrgInformation(organizationInfo);
+  organizationData.status = status;
   
-  if (organizationInfo[4]) {
-      document.querySelector('#able').checked = true;
-      enableFields();
+  if (status) {
+    misc.enabledFieldsOnEdit(formInputs);
   } else {
-      disableFields();
+    misc.disableFieldsOnEdit(formInputs);
   }
-}
 
-function disableFields() {
-  document.querySelector('#disable').checked = true;
-  document.querySelector('#code').disabled = true;
-  document.querySelector('#organization-name').disabled = true;
-  document.querySelector('#organization-type').disabled = true;
-  document.querySelector('#description').disabled = true;
+  updateOrgInformation(organizationData);
 }
-
-function enableFields() {
-  document.querySelector('#able').checked = true;
-  document.querySelector('#organization-name').disabled = false;
-  document.querySelector('#organization-type').disabled = false;
-  document.querySelector('#description').disabled = false;
-}
-

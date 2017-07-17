@@ -31,58 +31,67 @@
       <div class="js-form form__wrap">
       <form id="register-place">
        <fieldset>
-          <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-          <div class="field-wrapper">
-            <label for="nombreLugar">Nombre de lugar <abbr title="Requerido">*</abbr></label>
-            <input type="text" id="nombreLugar" name="nombreLugar" required class="js-event-field">
-          </div>
+          <legend>Campos obligatorios est&aacute;n marcados con <abbr title="Requerido">*</abbr></legend>
 
-          <div class="field-wrapper">
-            <label for="direccionLugar">Direcci&oacute;n f&iacute;sica <abbr title="Requerido">*</abbr></label>
-            <input type="text" id="direccionLugar" required class="js-event-field" name="direccionLugar">
-          </div>
-
-          <h4>Dirección del lugar por localización satelital</h4>
+          <fieldset class="feature-fieldset">
+            <legend>Datos generales</legend>
             <div class="field-wrapper">
-              <label for="latitudLugar">Latitud</label>
-          	 <input type="text" id="latitudLugar" name="latitudLugar" class="js-event-field">
+              <label for="nombreLugar">Nombre de lugar <abbr title="Requerido">*</abbr></label>
+              <input type="text" id="nombreLugar" name="nombreLugar" required class="js-form-field">
             </div>
             <div class="field-wrapper">
-          	 <label for="longitudLugar">Longitud</label>
-          	 <input type="text" id="longitudLugar" name="longitudLugar" class="js-event-field">
-            </div>
-
-            <div class="field-wrapper">
-              <label for="telefonoEncargado">Telefono del encargado <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="telefonoEncargado" name="telefonoEncargado" required class="js-event-field">
+              <label for="telefonoEncargado">Tel&eacute;fono del encargado <abbr title="Requerido">*</abbr></label>
+              <input type="text" id="telefonoEncargado" name="telefonoEncargado" required class="js-form-field">
+              <small class="note">Ejemplo: 2222-2334</small>
             </div>
             <div class="field-wrapper">
               <label for="horariosLugar">Horarios de disponibilidad <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="horarioLugar" required class="js-event-field" name="horarioLugar">
+              <input type="text" required class="js-form-field" name="horarioLugar">
+              <small class="note">Ejemplo: Lunes a Viernes de 8am a 5pm</small>
             </div>
             <div class="field-wrapper">
-              <label for="capacidadLugar">Capacidad de personas <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="capacidadLugar" name="capacidadLugar" required class="js-event-field"> 
-              <input type="hidden" id="status" name="status" value="1" class="js-event-field"/>
+              <label for="capacidadLugar">Capacidad m&aacute;xima de personas <abbr title="Requerido">*</abbr></label>
+              <input type="text" id="capacidadLugar" name="capacidadLugar" required class="short-input js-form-field"> <small class="note">Cantidad debe ser mayor a cero (0).</small>
             </div>
+          </fieldset>
 
-          <button id="save" value="Guardar">Guardar</button>
+          <fieldset class="feature-fieldset">
+            <legend>Datos de ubicaci&oacute;n</legend>
+            <div class="field-wrapper">
+              <label for="direccionLugar">Direcci&oacute;n f&iacute;sica <abbr title="Requerido">*</abbr></label>
+              <textarea name="direccionLugar" class="js-form-field" id="direccionLugar" required></textarea>
+            </div>
+            <div class="field-group">
+              <div class="field-wrapper">
+                <label for="latitudLugar">Latitud</label>
+                <input type="text" id="latitudLugar" name="latitudLugar" class="js-form-field">
+                <small class="note">Ejemplo: 41.40338</small>
+              </div>
+              <div class="field-wrapper">
+               <label for="longitudLugar">Longitud</label>
+               <input type="text" id="longitudLugar" name="longitudLugar" class="js-form-field">
+               <small class="note">Ejemplo: 2.17403</small>
+              </div>
+            </div>
+          </fieldset>
+          
+          <button id="btn-save" value="Guardar">Guardar</button>
         </fieldset>
       </form>
 	</div>  
     </div>    
   </main>
-<footer class="site-footer">
+  <footer class="site-footer">
     <div class="group">
       <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>
     </div>
   </footer>
-	<script src="js/helpers/util.js"></script>
+  <script src="js/helpers/util.js"></script>
+	<script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
 	<script src="js/helpers/validate.js"></script>

@@ -2,7 +2,7 @@ $util('#btn-save').on('click', registerOrganization);
 
 function registerOrganization(e) {
   e.preventDefault();
-  var formInputs = document.querySelectorAll('#organization-form .js-event-field:required');
+  var formInputs = document.querySelectorAll('#organization-form .js-form-field:required');
 
   if(!validate.emptyFields(formInputs)) {
     var validForm = validate.fieldsValue('organization-form');
@@ -16,32 +16,20 @@ function registerOrganization(e) {
 }
 
 function getRegisterData() {
-  var code = '';
-  var organizationName = '';
-  var organizationType = '';
-  var description = '';
-  var condicion = '';
-  var organizationInfo = [];
-
-
-  code = document.querySelector('#code').value;
-  organizationName = document.querySelector('#organization-name').value;
-  organizationType  = document.querySelector('#organization-type');
-  var selected = organizationType.options[organizationType.selectedIndex].text;
-  description = document.querySelector('#description').value;
-
-  organizationInfo.push(code, organizationName, selected, description, true);
-  addOrganization(organizationInfo);
-  disableFields();
-  document.querySelector('#btn-save').disabled = true;
+  var formInputs = document.querySelectorAll('#organization-form .js-form-field');
+  var organizationData = misc.buildDataObject(formInputs);
+  organizationData.status = true;
+  addOrganization(organizationData);
+  misc.disableFieldsOnSave(formInputs);
 }
 
 function validateForm() {
   var codeField = document.querySelector('#code');
   var codeValue = codeField.value;
   var $alertBox = $util('.js-login-msg');
+  var organizationInfo = findOrgByCode(codeValue);
 
-  if (findOrgByCode(codeValue) == null) {
+  if (!organizationInfo) {
     getRegisterData();
 
     if ($alertBox) { 
@@ -50,28 +38,19 @@ function validateForm() {
         .html(msg.key.saveSuccess);
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin', 
-      '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+      '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
-
   } else {
     if ($alertBox) { 
       $alertBox
         .removeClass('alert-success')
         .addClass('alert-failure')
-        .html('Este código ya existe, no se realizó el registro');
+        .html(msg.key.orgDuplicate);
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
+        '<span class="note alert alert-failure js-login-msg">' +msg.key.orgDuplicate+'</span>');
     }
+
+    document.querySelector('#code').addClass('error');
   }
 }
-
-function disableFields() {
-  document.querySelector('#code').disabled = true;
-  document.querySelector('#organization-name').disabled = true;
-  document.querySelector('#organization-type').disabled = true;
-  document.querySelector('#description').disabled = true;
-}
-
-
-

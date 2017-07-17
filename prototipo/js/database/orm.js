@@ -25,10 +25,30 @@ var orm = (function(window, undefined) {
     return appOrgListLS;
   }
 
+  function findActiveOrgs() {
+    var orgListLS = findOrgs();
+
+    var orgList = orgListLS.filter(function(org) {
+      return org.status === true;
+    })
+
+    return orgList;
+  }
+
   function findVenues() {
     var appVenuesListLS = storage.get('listaLugaresLS') || [];
 
     return appVenuesListLS;
+  }
+
+  function findActiveVenues() {
+    var venuesListLS = findVenues();
+
+    var venuesList = venuesListLS.filter(function(venue) {
+      return venue.status === true;
+    })
+
+    return venuesList;
   }
 
   function findSponsors() {
@@ -43,41 +63,15 @@ var orm = (function(window, undefined) {
 
     return logguedInUser;
   }
-
-  // Populate SELECT
-  // Usage: populateSelect('selectElementId', arrayItems);
-  function populateSelect(target, optList, array) {
-    if (!target){
-      return false;
-    }
-    else if(array) {
-      select = document.getElementById(target);
-
-      optList.forEach(function(item) {
-        var opt = document.createElement('option');
-        opt.value = item[1];
-        opt.innerHTML = opt.value;
-        select.appendChild(opt);
-      });
-    } else {
-      select = document.getElementById(target);
-
-      optList.forEach(function(item) {
-        var opt = document.createElement('option');
-        opt.value = item.nombreLugar;
-        opt.innerHTML = opt.value;
-        select.appendChild(opt);
-      });
-    }
-  }
   
   return {
     findEventbyId: findEventbyId,
     findEventByName: findEventByName,
     findOrgs: findOrgs,
+    findActiveOrgs: findActiveOrgs,
     findVenues: findVenues,
+    findActiveVenues: findActiveVenues,
     findSponsors: findSponsors,
-    findLogguedUser: findLogguedUser,
-    populateSelect: populateSelect
+    findLogguedUser: findLogguedUser
   };
 })(window);

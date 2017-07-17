@@ -32,41 +32,46 @@
  
         <form id="edit-organization-form" novalidate>
         <fieldset>
-            <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-        <div class="field-wrapper">
-         <label for="code">C&oacute;digo (C&eacute;dula Jur&iacute;dica) <abbr title="Requerido">*</abbr></label>
-          <input class="js-event-field codeError" type="text" id="code" name="" required>
-        </div>
+          <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
+          <fieldset class="feature-fieldset">
+            <legend>Datos generales</legend>
+            <div class="field-wrapper">
+             <label for="code">C&oacute;digo (C&eacute;dula Jur&iacute;dica) <abbr title="Requerido">*</abbr></label>
+              <input type="text" class="js-form-field" id="code" name="codeNumber" required>
+              <small class="note">Cédula Jurídica &oacute; identificaci&oacute;n.</small>
+            </div>
 
-         <div class="field-wrapper">
-          <label for="organization-name">Nombre <abbr title="Requerido">*</abbr>
-          <input type="text" class="js-event-field" id="organization-name" name="" required>
-        </div>
+             <div class="field-wrapper">
+              <label for="organizationName">Nombre <abbr title="Requerido">*</abbr>
+              <input type="text" class="js-form-field" id="organizationName" name="organization" required>
+            </div>
 
-        <div class="field-wrapper">
-          <label for="organization-type">Tipo Organizaci&oacute;n <abbr title="Requerido">*</abbr></label>
-          <select class="js-event-field" id="organization-type" required>
-            <option value="Gubernamental">Gubernamental</option>
-            <option value="No Gubernamental">No Gubernamental</option>
-          </select>
-        </div>
+            <div class="field-wrapper">
+              <label for="organizationType">Tipo Organizaci&oacute;n <abbr title="Requerido">*</abbr></label>
+              <select class="js-form-field" id="organizationType" name="organizationType" required>
+                <option value="Gubernamental">Gubernamental</option>
+                <option value="No Gubernamental">No Gubernamental</option>
+              </select>
+            </div>
 
-        <div class="field-wrapper">
-          <label for="description">Descripci&oacute;n</label>
-          <textarea name="" id="description"></textarea>
-        </div>
+            <div class="field-wrapper">
+              <label for="description">Descripci&oacute;n</label>
+              <textarea name="description"  class="js-form-field" id="description"></textarea>
+            </div>
+          </fieldset>
 
         <fieldset class="select field">
-  <legend>Estado<abbr title="Requerido">*</abbr></legend>
-  <ul class="list-form">
-    <li>
-      <label for="able"><input id="able" name="status" type="radio"/>Habilitar</label>
-    </li>
-    <li>
-      <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
-    </li>
-  </ul>
-</fieldset>
+          <legend>Estado<abbr title="Requerido">*</abbr></legend>
+          <ul class="list-form">
+            <li>
+              <label for="able"><input id="able" name="status" type="radio"/>Habilitar</label>
+            </li>
+            <li>
+              <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
+            </li>
+          </ul>
+          <small class="note"><strong>Deshabilitar:</strong> no se muestra en listados p&uacute;blicos &oacute; formularios.</small>
+        </fieldset>
 
         <button id="btn-save" value="Guardar">Guardar</button>
       </form>
@@ -79,7 +84,6 @@
     <div class="group">
       <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>
@@ -88,8 +92,8 @@
   <script src="js/helpers/util.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/messages.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/pages/organizations/organizationLogicalPart.js"></script> 
   <script src="js/pages/organizations/editOrganization.js"></script>
-   
 </body>
 </html>

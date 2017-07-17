@@ -1,22 +1,21 @@
 var msg = (function(window, undefined) {
   var message = {
-    emailAndPasswordInvalid: 'Correo electronio o contraseña incorrectos',
-    emailAndPasswordRequired: 'Los campos de Correo Electronico y Contraseña son requeridos',
-    wrongFormat: 'Verifique el formato',
-    fieldsRequired: 'Campos indicados como requeridos deben ser completados',
-    successRecover: 'Hemos enviado su nueva contraseña por correo electronico.',
-    failRecover: 'Correo electronico no existe.',
-    nameFieldRequired: 'Para salvar un Evento, el campo de Nombre es obligatorio.',
-    registerEventSuccess: 'Se Guardo el evento de manera correcta.',
-    publishEventSuccess: 'Se Publico el evento de manera correcta.',
-    saveSuccess: 'Los datos se guardaron correctamente.',
-    academySucess: 'Se Guardo la academia de manera correcta.',
-    academyUpdate: 'Se Actualizo la academia de manera correcta.',
-    registeredProduct: 'Producto guardado',
-    productError: 'El campo de nombre es obligatorio',
-    reserveSucess: 'La información de la reserva se le envió al correo electrónico',
-    placeSucess: 'Se guardó el lugar de manera correcta',
-    placeUpdate: 'Los datos se guardaron correctamente.'
+    emailAndPasswordInvalid: 'Correo electrónico o contraseña incorrectos.',
+    emailAndPasswordRequired: 'Los campos de correo electrónico y contraseña son requeridos.',
+    wrongFormat: 'Verifique el formato.',
+    fieldsRequired: 'Campos indicados como requeridos (*) deben ser completados.',
+    successRecover: 'Se ha enviado la nueva contraseña por correo electrónico.',
+    failRecover: 'Correo electrónico no existe.',
+    nameFieldRequired: 'Para guardar un evento, el campo de nombre es obligatorio.',
+    registerEventSuccess: 'Se guardó el evento de manera exitosa.',
+    publishEventSuccess: 'Se publicó el evento de manera exitosa.',
+    saveSuccess: 'Los datos se guardaron exitosamente.',
+    academySucess: 'Se guardó la academia de manera exitosa.',
+    academyUpdate: 'Se actualizó la academia de manera exitosa.',
+    reserveSucess: 'La reservación fue exitosa y se ha enviado un correo electrónico con el detalle de la reservación.',
+    placeSucess: 'Se guardó el lugar de manera exitosa.',
+    placeUpdate: 'Se actualizó el lugar exitosamente.',
+    orgDuplicate: 'Ya existe una organizacion registrada con el código ingresado.'
   };
 
   return {

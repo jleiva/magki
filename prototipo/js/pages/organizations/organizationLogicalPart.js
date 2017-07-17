@@ -8,38 +8,33 @@ function getOrganizationsList() {
   var organizationsList = JSON.parse(localStorage.getItem('organizationsList'));
 
   if (organizationsList == null) {
-      organizationsList = [];
+    organizationsList = [];
   }
 
   return  organizationsList;
 }
 
 function findOrgByCode(pCode) {
-  // Si organizationsList esta vacio, organizationInfo queda como undefined
-  // lo que va puede dar bronca con validateForm() linea 47
   var organizationsList = getOrganizationsList();
-  var organizationInfo;
 
-  for(var i = 0; i < organizationsList.length; i ++){
-      if (organizationsList[i][0] === pCode) {
-          organizationInfo = organizationsList[i];
-      }
-  }
+  var orgInfo = organizationsList.find(function(org) {
+    return org.codeNumber === pCode;
+  });
 
-  return organizationInfo;
+  return orgInfo;
 }
 
 function updateOrgInformation(pOrgInfo) {
   var organizationsList = getOrganizationsList();
   var orgLength = organizationsList.length;
+  var foundOrg = false;
 
-  for(var i = 0; i < orgLength; i++) {
-      if(organizationsList[i][0] == pOrgInfo[0]){
-          organizationsList[i] = pOrgInfo;
-      }
+  for (var i = 0; i < orgLength && !foundOrg; i++) {
+    if (organizationsList[i].codeNumber === pOrgInfo.codeNumber) {
+      organizationsList[i] = pOrgInfo;
+      foundOrg = true;
+    }
   }
 
   localStorage.setItem('organizationsList', JSON.stringify(organizationsList));
 }
-
-

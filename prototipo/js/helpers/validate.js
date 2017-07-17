@@ -6,6 +6,44 @@ var validate = (function(window, undefined) {
     return re.test(str);
   }
 
+  function dateEqualOrGreatThanToday() {
+    var today = new Date();
+  }
+
+  function getToday() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd<10) {
+      dd = '0'+dd
+    } 
+
+    if (mm<10) {
+      mm = '0'+mm
+    } 
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    return today;
+  }
+
+  function validateStartDate(sDate) {
+    var startDate = sDate.value;
+    var today = getToday();
+    var startDateMsg = $util('.js-start-date-error');
+
+    if ((Date.parse(startDate) < Date.parse(today))) {
+      startDateMsg.removeClass('is-hidden').addClass('alert-failure');
+      sDate.addClass('error');
+      sDate.value = '';
+    } else {
+      startDateMsg.addClass('is-hidden');
+      sDate.removeClass('error');
+    }
+  }
+
   function validateDateRange(sDate, eDate) {
     var startDate = sDate.value;
     var endDate = eDate.value;
@@ -46,7 +84,7 @@ var validate = (function(window, undefined) {
         $alertBox.html(msg.key.fieldsRequired);
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-failure js-login-msg">' + msg.key.fieldsRequired + '</span>');
+        '<span class="note alert alert-failure js-login-msg">' + msg.key.fieldsRequired + '</span>');
       }
     }
 
@@ -60,7 +98,7 @@ var validate = (function(window, undefined) {
       $alertBox.html(msg.key.wrongFormat);
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin', 
-      '<span class="note alert-failure js-login-msg">' + msg.key.wrongFormat + '</span>');
+      '<span class="note alert alert-failure js-login-msg">' + msg.key.wrongFormat + '</span>');
     }
   }
 
@@ -155,6 +193,7 @@ var validate = (function(window, undefined) {
     emptyFields: emptyFields,
     fieldsValue: fieldsValue,
     checkPassword: checkPassword,
-    validateDateRange: validateDateRange
+    validateDateRange: validateDateRange,
+    validateStartDate: validateStartDate
   };
 })(window);

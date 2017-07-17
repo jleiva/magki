@@ -1,18 +1,16 @@
-//var listaRegistros=[];
-function registrar(pLugar){
+function registrar(pLugar) {
   var listaRegistros = obtenerListaRegistros();
   listaRegistros.push(pLugar);
-  document.querySelector('#save').disabled = true;
   localStorage.setItem('listaLugaresLS', JSON.stringify(listaRegistros));
 }
 
-
-function obtenerListaRegistros(){
+function obtenerListaRegistros() {
   var listaRegistros = JSON.parse(localStorage.getItem('listaLugaresLS'));
 
-  if(listaRegistros == null){
+  if (listaRegistros == null) {
     listaRegistros= [];
   }
+
   return listaRegistros;
 }
 
@@ -29,7 +27,6 @@ function findByTelefono(telefono) {
 
   return placeInfo;
 }
-
 
 function updatePlaceInformation(pPlaceInfo) {
   var placeList = obtenerListaRegistros();

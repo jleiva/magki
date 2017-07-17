@@ -1,52 +1,46 @@
-
 fillTable();
 
 function fillTable() {
-	var organizationsList = getOrganizationsList();
-	var $error = document.querySelector('.no-data');
+  var organizationsList = getOrganizationsList();
+  var $error = document.querySelector('.no-data');
 
-	if(organizationsList.length) {
+  if (organizationsList.length) {
+    var tbody = document.querySelector('#tblOrganizations tbody');
+    $error.hide();
+    tbody.innerHTML = '';
 
-		$error.hide();
+    organizationsList.forEach(function(data, index) {
+      var row = tbody.insertRow();
+      var codeColumn = row.insertCell();
+      var nameColumn = row.insertCell();
+      var contactColumn = row.insertCell();
+      var statusColumn = row.insertCell();
+      var editColumn = row.insertCell();
+      var editLink = document.createElement('a');
+      var linkName = document.createTextNode('Editar');
 
-		var tbody = document.querySelector('#tblOrganizations tbody');
+      codeColumn.innerHTML = data.codeNumber;
+      nameColumn.innerHTML = data.organization;
+      contactColumn.innerHTML = data.organizationType;
+      statusColumn.innerHTML = data.status ? 'Habilitado' : 'Deshabilitado';
 
-		tbody.innerHTML = '';
+      editLink.appendChild(linkName);
+      editLink.href = 'editar-organizacion.html';
+      editLink.className = 'btn-action-event js-edit-event';
+      editLink.name = data.codeNumber;
+      editColumn.appendChild(editLink);
+    });
 
-		for(var i=0; i<organizationsList.length; i++) {
-			var row = tbody.insertRow(i);
-
-			//if(organizationsList[i][4]){
-				var codeColumn = row.insertCell();
-				var nameColumn = row.insertCell();
-				var contactColumn = row.insertCell();
-				var editColumn = row.insertCell();
-
-				codeColumn.innerHTML = organizationsList[i][0];
-				nameColumn.innerHTML = organizationsList[i][1];
-				contactColumn.innerHTML = organizationsList[i][2];
-
-				var editLink = document.createElement('a');
-				var linkName = document.createTextNode("Editar");
-				editLink.appendChild(linkName);
-				editLink.href = "editar-organizacion.html";
-				editLink.className = 'btn-action-event js-edit-event';
-				editLink.name = organizationsList[i][0];
-
-				editColumn.appendChild(editLink);
-			//}	
-		}
-
-		var btnEdit = document.querySelectorAll('.js-edit-event');
-		btnEdit.forEach(function(btn) {
-			btn.addEventListener('click', function(e) {
-				var currentItem = e.currentTarget;
-				var organizationId = currentItem.getAttribute('name');
-				localStorage.setItem('entityCode', organizationId);
-			}) 
-		});	
-	} else {
-		$error.show();
-	}
+    var btnEdit = document.querySelectorAll('.js-edit-event');
+    
+    btnEdit.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var currentItem = e.currentTarget;
+        var organizationId = currentItem.getAttribute('name');
+        localStorage.setItem('entityCode', organizationId);
+      }) 
+    }); 
+  } else {
+    $error.show();
+  }
 }
-

@@ -72,6 +72,7 @@ textarea[disabled] {
 
 fieldset {
   border: 0;
+  margin-bottom: 2em;
 }
 
 label {
@@ -117,6 +118,10 @@ label {
   }
 }
 
+.field-actions {
+
+}
+
 legend {
   font-family: $font-family-contrast;
   font-weight: 600;
@@ -149,11 +154,18 @@ legend {
     margin: 30px auto;
     max-width: 700px
   }
+  .alert {
+    display: block;
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+  }
 }
 
 .list-form {
-  margin-left: 0;
   float: left;
+  margin-bottom: 0;
+  margin-left: 0;
   padding-left: 0;
   width: 100%;
 }
@@ -169,7 +181,6 @@ legend {
   background: #e5e5e5;
   background: rgba(229, 229, 229, .35);
   border: 1px solid #e5e5e5;
-  margin-bottom: 1em;
   padding: 20px 20px 10px;
 }
 

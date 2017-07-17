@@ -5,13 +5,11 @@ var login = (function(window) {
 
   function initLogin() {
     $util('#submit-login').on('click', validateForm);
-
     loadData.init();
   }
 
   function initRecover() {
     $util('#submit-login').on('click', validateEmail);
-
     loadData.init();
   }
 

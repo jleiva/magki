@@ -1,53 +1,52 @@
 fillTable();
 
 function fillTable() {
-	var studentsList = getStudentsList();
-	var $error = document.querySelector('.no-data');
+  var studentsList = getStudentsList();
+  var $error = document.querySelector('.no-data');
 
-	if (studentsList.length) {
-	$error.hide();
+  if (studentsList.length) {
+    $error.hide();
 
-	var tbody = document.querySelector('#tblStudents tbody');
-	tbody.innerHTML = '';
+    var tbody = document.querySelector('#tblStudents tbody');
+    tbody.innerHTML = '';
 
-	for(var i=0; i<studentsList.length; i++) {
-		var row = tbody.insertRow(i);
+    studentsList.forEach(function(data, index) {
+      var row = tbody.insertRow();
+      var codeColumn = row.insertCell();
+      var nameColumn = row.insertCell();
+      var lastNameColumn = row.insertCell();
+      var beltColumn = row.insertCell();
+      var academyColumn = row.insertCell();
+      var statusColumn = row.insertCell();
+      var editColumn = row.insertCell();
+      var editLink = document.createElement('a');
+      var linkName = document.createTextNode("Editar");
 
-			var idColumn = row.insertCell();
-			var nameColumn = row.insertCell();
-			var lastNameColumn = row.insertCell();
-			var ageColumn = row.insertCell();
-			var beltColumn = row.insertCell();
-			var academyColumn = row.insertCell();
-			var editColumn = row.insertCell();
+      codeColumn.innerHTML = data.identification;
+      nameColumn.innerHTML = data.firstName + ' ' + data.secondName;
+      lastNameColumn.innerHTML = data.firstLastName + ' ' + data.secondLastName;
+      beltColumn.innerHTML = data.beltGrade;
+      academyColumn.innerHTML= data.academy;
+      statusColumn.innerHTML = data.status ? 'Habilitado' : 'Deshabilitado';
 
-			idColumn.innerHTML = studentsList[i][0];
-			nameColumn.innerHTML = studentsList[i][1];
-			lastNameColumn.innerHTML = studentsList[i][3];
-			ageColumn.innerHTML = studentsList[i][10];
-			beltColumn.innerHTML = studentsList[i][16];
-			academyColumn.innerHTML= studentsList[i][14];
+      editLink.appendChild(linkName);
+      editLink.href = 'editar-alumno.html';
+      editLink.className = 'btn-action-event js-edit-event';
+      editLink.name = data.identification;
+      editColumn.appendChild(editLink);
+    });
 
-			var editLink = document.createElement('a');
-			var linkName = document.createTextNode("Editar");
-			editLink.appendChild(linkName);
-			editLink.href = "editar-alumno.html";
-			editLink.className = 'btn-action-event js-edit-event';
-			editLink.name = studentsList[i][0];
+    var btnEdit = document.querySelectorAll('.js-edit-event');
 
-			editColumn.appendChild(editLink);
+    btnEdit.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var currentItem = e.currentTarget;
+        var studentId = currentItem.getAttribute('name');
+        localStorage.setItem('studentCode', studentId);
+      })
+    }); 
 
-	}
-
-	var btnEdit = document.querySelectorAll('.js-edit-event');
-	btnEdit.forEach(function(btn) {
-		btn.addEventListener('click', function(e) {
-			var currentItem = e.currentTarget;
-			var studentId = currentItem.getAttribute('name');
-			localStorage.setItem('studentCode', studentId);
-		})
-	});
-} else {
-	$error.show();
-	}
+  } else {
+    $error.show();
+  }
 }

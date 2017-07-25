@@ -16,8 +16,9 @@ var login = (function(window) {
   function validateEmail(e) {
     e.preventDefault();
     var validForm;
+    var formInputs = document.querySelectorAll('#login-form .js-form-field');
 
-    if (!validate.emptyFields()) {
+    if (!validate.emptyFields(formInputs)) {
       validForm = validate.fieldsValue('login-form');
 
       // no hay errores
@@ -51,8 +52,9 @@ var login = (function(window) {
   function validateForm(e) {
     e.preventDefault();
     var validForm;
+    var formInputs = document.querySelectorAll('#login-form .js-form-field');
 
-    if (!validate.emptyFields()) {
+    if (!validate.emptyFields(formInputs)) {
       validForm = validate.fieldsValue('login-form');
 
       // no hay errores

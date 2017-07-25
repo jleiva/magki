@@ -13,37 +13,36 @@ function getSponsorList(){
   return sponsorList;
 }
 
-function addProductSponsor(pid,pProduct){
-  var sponsorList = getSponsorList();
-
-  for(var i = 0; i < sponsorList.length; i++){
-    if(sponsorList[i][0] == pid){
-      sponsorList[i].push(pProduct);
-    }
-  }
-  localStorage.setItem('sponsorListLS', JSON.stringify(sponsorList));
-}
-
 function getInfoById(idSponsor){
   var sponsorList = getSponsorList();
   var sponsor = [];
 
   for(var i= 0; i < sponsorList.length;i++){
-    if(sponsorList[i][0] == idSponsor){
+    if(sponsorList[i].id == idSponsor){
       sponsor = sponsorList[i];
     }
   }
   return sponsor;
 }
 
-function editSponsor(pInfoEdit){
+function editSponsor(pSponsorList){
 
-  var sponsorList = getSponsorList();
+  localStorage.setItem('sponsorListLS', JSON.stringify(pSponsorList));
+}
 
-  for(var i = 0; i < sponsorList.length; i++){
-    if(sponsorList[i][0] == pInfoEdit[0]){
-      sponsorList[i] = pInfoEdit;
+function uploadImage(pInputIdImg,pDivIdImg){
+  fileSelected = document.getElementById(pInputIdImg).files;
+
+  if (fileSelected.length > 0) {
+    var fileToLoad = fileSelected[0];
+    var fileReader = new FileReader();
+
+    fileReader.onload = function(e) {
+      var srcData = e.target.result; // <--- base64
+      var newImage = document.createElement('img');
+      newImage.src = srcData;
+      document.getElementById(pDivIdImg).innerHTML = newImage.outerHTML;
     }
+    fileReader.readAsDataURL(fileToLoad);
   }
-  localStorage.setItem('sponsorListLS', JSON.stringify(sponsorList));
 }

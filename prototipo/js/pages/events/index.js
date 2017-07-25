@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+  var getValidDatesRange = misc.debounce(function() {
+    var sDate = document.querySelector('#dateStart');
+    var eDate = document.querySelector('#dateEnd');
+      
+    validate.validateDateRange(sDate, eDate);
+  }, 1000);
+
+  var getValidStartDate = misc.debounce(function() {
+    var sDate = document.querySelector('#dateStart');
+      
+    validate.validateStartDate(sDate);
+  }, 1000);
+
   function init() {
     var isEventsPage = document.querySelector('#events-page');
     var isRegisterEventPage = document.querySelector('#event-register');
@@ -14,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function bindEventsPageUI() {
+    document.querySelector('#dateEnd').addEventListener('change', getValidDatesRange);
+
+    document.querySelector('#dateStart').addEventListener('change', getValidStartDate);
+
     document.querySelector('#btn-save').addEventListener('click',function(e) {
       e.preventDefault();
       events.saveEventData(e);
@@ -21,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#btn-publish').addEventListener('click',function(e) {
       e.preventDefault();
+      getValidDatesRange();
       events.publishEvent(e);
     });
 
@@ -40,23 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
       events.updateVenueCapacity(e);
     });
 
-    document.querySelector('input[id="ticketQ"]').addEventListener('change', function(e) {
+    document.querySelector('#ticketQ').addEventListener('change', function(e) {
       events.validateTicketsPerVenue(e);
-    });
-
-    document.querySelector('#dateEnd').addEventListener('change', function(e) {
-      var sDate = document.querySelector('#dateStart');
-      var eDate = document.querySelector('#dateEnd');
-
-      validate.validateDateRange(sDate, eDate);
-    });
-
-    document.querySelector('#priceTicket').addEventListener('change', function(e) {
-      var currentItem = e.currentTarget;
-
-      if (events.validateValue()) {
-
-      }
     });
 
     document.querySelector('#eventName').addEventListener('change', function() {
@@ -88,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Events List page
   function loadEventsData() {
-    loadData.init();
     initEventsList();
   }
 

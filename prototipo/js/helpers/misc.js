@@ -97,6 +97,58 @@ var misc = (function(window, undefined) {
     }
   }
 
+  function populateSponsorSelect(target, optList, array) {
+    if (!target){
+      return false;
+    }
+    else if(array) {
+      select = document.getElementById(target);
+
+      optList.forEach(function(item) {
+        var opt = document.createElement('option');
+        opt.value = item[1];
+        opt.innerHTML = opt.value;
+        select.appendChild(opt);
+      });
+    } else {
+      select = document.getElementById(target);
+
+      optList.forEach(function(item) {
+        var opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerHTML = item.name;
+        opt.setAttribute('id', item.id);
+        select.appendChild(opt);
+      });
+    }
+  }
+
+  function populateSponsorProducts(target, optList, array) {
+    if (!target){
+      return false;
+    }
+    else if(array) {
+      select = document.getElementById(target);
+
+      optList.forEach(function(item) {
+        var opt = document.createElement('option');
+        opt.value = item[1];
+        opt.innerHTML = opt.value;
+        select.appendChild(opt);
+      });
+    } else {
+      select = document.getElementById(target);
+
+      optList.forEach(function(item) {
+        var opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerHTML = item.name;
+        opt.setAttribute('id', item.id);
+        select.appendChild(opt);
+      });
+    }
+  }
+
   // Populate SELECT
   // Usage: populateSelect('selectElementId', arrayItems);
   function populateSelect(target, optList, array) {
@@ -131,6 +183,8 @@ var misc = (function(window, undefined) {
     disableFieldsOnSave: disableFieldsOnSave,
     enabledFieldsOnEdit: enabledFieldsOnEdit,
     populateSelect: populateSelect,
-    populateOrgSelect: populateOrgSelect
+    populateOrgSelect: populateOrgSelect,
+    populateSponsorSelect: populateSponsorSelect,
+    populateSponsorProducts: populateSponsorProducts
   };
 })(window);

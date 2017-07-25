@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Makgi - Registrar Evento</title>
+  <title>Makgi - Registrar Profesor</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
@@ -27,86 +27,99 @@
 		<div class="main-content">
 			<div class="section-intro">
 				<h2>Registrar Profesor</h2>
+        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un profesor, la academia debe existir <strong>previamente</strong> en el Sistema.</p>
 			</div>
 
 			<div class="form__wrap js-form">
 			<form id="register-user">
         <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-        <div class="field-wrapper">
-					<label for="id">Numero de Identificación <abbr title="Requerido">*</abbr> </label>
-					<input type="text" class="js-event-field" id="id" required>
-				</div>
 
-				<div class="field-wrapper">
-					<label for="name">Primer Nombre <abbr title="Requerido">*</abbr></label>
-					<input type="text" class="js-event-field" id="name" required>
-				</div>
+        <fieldset class="feature-fieldset">
+          <legend>Datos Generales</legend>
 
-				<div class="field-wrapper">
-					<label for="secName">Segundo Nombre</label>
-					<input type="text" id="secName" >
-				</div>
+          <div class="field-wrapper">
+            <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr></label>
+            <input type="text" name="id" class="js-form-field" id="id" required>
+          </div>
 
-        <div class="field-wrapper">
-					<label for="lastName">Primer Apellido <abbr title="Requerido">*</abbr></label>
-					<input type="text" class="js-event-field" id="lastName" required>
-				</div>
+  				<div class="field-wrapper">
+  					<label for="name">Primer Nombre <abbr title="Requerido">*</abbr></label>
+  					<input type="text" name="name" class="js-form-field" id="name" required>
+  				</div>
 
-        <div class="field-wrapper">
-					<label for="secLastName">Segundo Apellido </label>
-					<input type="text" id="secLastName" name="">
-				</div>
+  				<div class="field-wrapper">
+  					<label for="secName">Segundo Nombre</label>
+  					<input type="text" name="name2" id="secName" class="js-form-field" >
+  				</div>
 
-				<div class="field-wrapper">
-					<label for="bday">Fecha de Nacimiento <abbr title="Requerido">*</abbr></label>
-					<input type="date" class="js-event-field" id="bday" required>
-				</div>
+          <div class="field-wrapper">
+            <label for="lastName">Primer Apellido <abbr title="Requerido">*</abbr></label>
+            <input type="text" name="lastname" class="js-form-field" id="lastName" required>
+          </div>
 
-        <div class="field-wrapper">
-					<label for="email">Correo Electrónico <abbr title="Requerido">*</abbr></label>
-					<input type="email" class="js-event-field" id="email" required>
-				</div>
+          <div class="field-wrapper">
+  					<label for="secLastName">Segundo Apellido </label>
+  					<input type="text" name="lastname2" id="secLastName" class="js-form-field">
+  				</div>
 
-        <div class="field-wrapper">
-					<label for="phone">Número de Teléfono </label>
-					<input type="number" id="phone" >
-				</div>
+          <div class="field-group">
+            <div class="field-wrapper">
+              <label for="bday">Fecha de Nacimiento <abbr title="Requerido">*</abbr></label>
+              <input type="date" name="bday" class="js-form-field" id="bday" required>
+              <small class="note is-hidden js-bday-error">La fecha no debe ser mayor al dia de hoy.</small>
+            </div>
 
-        <div class="field-wrapper">
-          <label for="gender">Género<abbr title="Requerido">*</abbr></label>
-          <select name="genero" class="js-event-field" id="gender" required>
-            <option value="">Seleccionar</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-          </select>
-        </div>
+            <div class="field-wrapper">
+              <label for="age">Edad </label>
+              <input type="text" name="age" id="age" class="js-form-field" disabled>
+            </div>
+          </div>
 
-        <div class="field-wrapper">
-          <label for="age">Edad </label>
-          <input type="number" id="age" class="short-input">
-        </div>
+          <div class="field-wrapper">
+            <label for="gender">Género</label>
+            <select name="genero" class="js-form-field" id="gender">
+              <option value="">Seleccionar</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
+          </div>
 
-        <div class="field-wrapper">
-          <label for="academy">Academia <abbr title="Requerido">*</abbr></label>
-          <select class="js-event-field" id="academy" required>
-            <option value="">Seleccionar</option>
-          </select>
-        </div>
+          <div class="field-wrapper">
+            <label for="email">Correo Electrónico <abbr title="Requerido">*</abbr></label>
+            <input type="email" name="email" class="js-form-field" id="email" required>
+          </div>
 
-        <div class="field-wrapper">
-          <label for="belt">Grado Cinta</label>
-          <select class="js-event-field" name="belt-grade" id="belt" required>
-            <option value="">Seleccionar</option>
-            <option value="Blanco">Blanco</option>
-            <option value="Amarillo">Amarillo</option>
-            <option value="Verde">Verde</option>
-            <option value="Azul">Azul</option>
-            <option value="Rojo">Rojo</option>
-            <option value="Negro">Negro</option>
-          </select>
-        </div>
+          <div class="field-wrapper">
+            <label for="phone">Numero de Teléfono </label>
+            <input type="text" name="phone" class="js-form-field" id="phone">
+            <small class="note">Ejemplo: 2222-2334</small>
+          </div>
+        </fieldset>
+        
+        <fieldset class="feature-fieldset">
+          <legend>Informaci&oacute;n Academia</legend>
+          <div class="field-wrapper">
+            <label for="academy">Academia <abbr title="Requerido">*</abbr></label>
+            <select name="academy" class="js-form-field" id="academy" required>
+              <option value="">Seleccionar</option>
+            </select>
+          </div>
 
-				<button id="save" value="">Guardar</button>
+          <div class="field-wrapper">
+            <label for="belt">Grado Cinta </label>
+            <select class="js-form-field" name="beltGrade" id="belt">
+              <option value="">Seleccionar</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Amarillo">Amarillo</option>
+              <option value="Verde">Verde</option>
+              <option value="Azul">Azul</option>
+              <option value="Rojo">Rojo</option>
+              <option value="Negro">Negro</option>
+            </select>
+          </div>
+        </fieldset>
+
+				<button id="btn-save" value="">Guardar</button>
 				</form>
 		  </div>
 		</div>
@@ -115,13 +128,13 @@
     <div class="group">
       <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>
     </div>
   </footer>
-	<script src="js/helpers/util.js"></script>
+  <script src="js/helpers/util.js"></script>
+	<script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
 	<script src="js/helpers/messages.js"></script>

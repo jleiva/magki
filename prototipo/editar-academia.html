@@ -33,50 +33,61 @@
         <form id="editAcademy-form">
           <fieldset>
             <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
-            <div class="field-wrapper">
-              <label for="nombreAcademia">Nombre de academia <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="nombreAcademia" name="nombreAcademia" required class="js-event-field">
-            </div>
-            <div class="field-wrapper">
-              <label for="telefonoAcademia">Teléfono <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="telefonoAcademia" name="telefonoAcademia" required class="js-event-field">
-            </div>
-            <div class="field-wrapper">
-              <label for="emailAcademia">Correo Electrónico <abbr title="Requerido">*</abbr></label>
-              <input type="email" id="emailAcademia" name="emailAcademia" required class="js-event-field">
-            </div>
-        
-        <!--CEDULA JURIDICA-->
-            <h4>Datos Encargado</h4>
-            <div class="field-wrapper">
-              <label for="nombreEncargado">Nombre <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="NombreEncargado" name="NombreEncargado" required class="js-event-field">
-            </div>   
-            <div class="field-wrapper">
-              <label for="primerApellidoEncargado">Primer Apellido <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="primerApellidoEncargado" name="primerApellidoEncargado" required class="js-event-field">
-            </div>
-            <div class="field-wrapper">
-              <label for="segundoApellidoEncargado">Segundo Apellido </label>
-             <input type="text" id="segundoApellidoEncargado" name="segundoApellidoEncargado">
-            </div>
-            <div class="field-wrapper">
-              <label for="direccionAcademia">Direcci&oacute; f&iacute;sica</label>
-              <input type="text" id="direccionAcademia" name="direccionAcademia" required class="js-event-field">
-            </div>
+            
+            <fieldset class="feature-fieldset">
+              <legend>Datos generales</legend>
+              <div class="field-wrapper"> 
+                <label for="nombreAcademia">Nombre de academia <abbr title="Requerido">*</abbr></label>
+                <input type="text" id="nombreAcademia" name="nombreAcademia" required class="js-form-field">
+              </div>
+              <div class="field-wrapper">
+                <label for="telefonoAcademia">Teléfono <abbr title="Requerido">*</abbr></label>
+                <input type="text" id="telefonoAcademia" name="telefonoAcademia" required class="js-form-field">
+              </div>
+              <div class="field-wrapper">
+                <label for="emailAcademia">Correo Electrónico <abbr title="Requerido">*</abbr></label>
+                <input type="email" id="emailAcademia" name="emailAcademia" required class="js-form-field">
+              </div>
+            </fieldset>
 
-            <h4>Dirección del lugar por localización satelital</h4>
-            <div class="field-wrapper">
-              <label for="latitudAcademia">Latitud</label>
-          	 <input type="text" id="latitudAcademia" name="latitudAcademia" class="js-event-field">
-          	</div>
-            <div class="field-wrapper">
-              <label for="longitudAcademia">Longitud</label>
-          	 <input type="text" id="longitudAcademia" name="longitudAcademia" class="js-event-field">
-            </div>
+            <fieldset class="feature-fieldset">
+                <legend>Datos Encargado</legend>
+                <div class="field-wrapper">
+                  <label for="nombreEncargado">Nombre <abbr title="Requerido">*</abbr></label>
+                  <input type="text" id="NombreEncargado" name="NombreEncargado" required class="js-form-field">
+                </div>   
+                <div class="field-wrapper">
+                  <label for="primerApellidoEncargado">Primer Apellido <abbr title="Requerido">*</abbr></label>
+                  <input type="text" id="primerApellidoEncargado" name="primerApellidoEncargado" required class="js-form-field">
+                </div>
+                <div class="field-wrapper">
+                  <label for="segundoApellidoEncargado">Segundo Apellido </label>
+                  <input type="text" class="js-form-field" id="segundoApellidoEncargado" name="segundoApellidoEncargado">
+                </div>
+              </fieldset>
+            </fieldset>
 
-           <fieldset class="select field">
-              <legend>Estado<abbr title="Requerido">*</abbr></legend>
+            <fieldset class="feature-fieldset">
+              <legend>Datos de ubicaci&oacute;n</legend>
+              <div class="field-wrapper">
+                <label for="direccionAcademia">Direcci&oacute; f&iacute;sica</label>
+                <textarea name="direccionAcademia" placeholder="Direcci&oacute;n" class="js-form-field" id="direccionAcademia"></textarea>
+              </div>
+              <div class="field-group">
+                <div class="field-wrapper">
+                  <label for="latitudAcademia">Latitud</label>
+                  <input type="text" id="latitudAcademia" name="latitudAcademia" class="js-form-field">
+                  <small class="note">Ejemplo: 41.40338</small>
+                </div>
+                <div class="field-wrapper">
+                  <label for="longitudAcademia">Longitud</label>
+                  <input type="text" id="longitudAcademia" name="longitudAcademia" class="js-form-field">
+                  <small class="note">Ejemplo: 2.17403</small>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="select field">
+             <legend>Estado</legend>
               <ul class="list-form">
                 <li>
                   <label for="able"><input id="able" name="status" type="radio"/>Habilitar</label>
@@ -85,9 +96,10 @@
                   <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
                 </li>
               </ul>
+              <small class="note"><strong>Deshabilitar:</strong> no se muestra en listados p&uacute;blicos &oacute; formularios.</small>
             </fieldset>
 
-            <button id="save" value="Guardar">Guardar</button>
+            <button id="btn-save" value="Guardar">Guardar</button>
         </fieldset>
       </form>
 		</div>
@@ -97,13 +109,13 @@
     <div class="group">
       <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>
     </div>
   </footer>
   <script src="js/helpers/util.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
 	<script src="js/database/storage.js"></script>
 	<script src="js/helpers/validate.js"></script>

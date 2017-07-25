@@ -12,7 +12,8 @@ var events = (function(window) {
       validForm = validate.fieldsValue('event-form');
 
       if (!validForm[1].length) {
-        eventData = buildEventDataObject(formInputs);
+        eventData = misc.buildDataObject(formInputs);
+        eventData.status = true;
         eventData.isPublish = true;
         storageEventData(eventData);
 
@@ -22,7 +23,7 @@ var events = (function(window) {
             .html(msg.key.publishEventSuccess);
         } else {
           $util('.js-form').insertAdjacentHTML('afterbegin', 
-          '<span class="note alert-success js-login-msg">' + msg.key.publishEventSuccess+ '</span>');
+          '<span class="note alert alert-success js-login-msg">' + msg.key.publishEventSuccess+ '</span>');
         }
 
         formInputs.forEach(function(input) {
@@ -41,7 +42,8 @@ var events = (function(window) {
     var eventData = {};
 
     if (eventNameInput.value) {
-      eventData = buildEventDataObject(formInputs);
+      eventData = misc.buildDataObject(formInputs);
+      eventData.status = false;
       eventData.isPublish = false;
       storageEventData(eventData);
 
@@ -51,7 +53,7 @@ var events = (function(window) {
           .html(msg.key.registerEventSuccess);
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-          '<span class="note alert-success js-login-msg">' + msg.key.registerEventSuccess+ '</span>');
+          '<span class="note alert alert-success js-login-msg">' + msg.key.registerEventSuccess+ '</span>');
       }
 
       formInputs.forEach(function(input) {
@@ -66,25 +68,12 @@ var events = (function(window) {
         $alertBox.html(msg.key.nameFieldRequired);
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-failure js-login-msg">' + msg.key.nameFieldRequired + '</span>');
+        '<span class="note alert alert-failure js-login-msg">' + msg.key.nameFieldRequired + '</span>');
       }
       eventNameInput.addClass('error');
     }
 
     window.scrollTo(0, 0);
-  }
-
-  function buildEventDataObject(formInputs) {
-    var eventData = {};
-
-    formInputs.forEach(function(input) {
-      var fName = input.name;
-      var fValue = input.value;
-
-      eventData[fName] = fValue;
-    });
-
-    return eventData;
   }
 
   function changeEventType(e) {
@@ -138,13 +127,21 @@ var events = (function(window) {
   }
 
   function showSponsorInfo(e) {
+    var currentItemId = e.target.value;
     var sponsorFieldset = $util('.js-sponsors-info');
 
-    if (e.target.value) {
+    if (currentItemId) {
       sponsorFieldset.removeClass('is-hidden');
+      populateSponsorProduct(currentItemId);
     } else {
       sponsorFieldset.addClass('is-hidden');
     }
+  }
+
+  function populateSponsorProduct(currentItemId) {
+    var sponsorProducts = orm.findSponsorProducts(currentItemId);
+
+    misc.populateSponsorProducts('sponsorBrand', sponsorProducts, false);
   }
 
   function updateVenueCapacity(e) {
@@ -164,19 +161,27 @@ var events = (function(window) {
 
   function validateTicketsPerVenue(e) {
     var ticketsField = e.target;
-    var ticketsFieldValue = e.target.value;
-    var venueCapField = $util('#venueCap').value;
+    var ticketsFieldValue = Number(e.target.value);
+    var venueCapField = Number($util('#venueCap').value);
     var message = $util('.js-ticket-quantity');
 
-    if (ticketsFieldValue > venueCapField) {
+    if (Number.isInteger(ticketsFieldValue)) {
+      if (ticketsFieldValue > venueCapField) {
+        ticketsField.addClass('error');
+        message.addClass('alert-failure');
+        ticketsField.value = '';
+      } else if (ticketsFieldValue < 0) {
+        ticketsField.addClass('error');
+        message.addClass('alert-failure');
+      } else {
+        ticketsField.removeClass('error');
+        message.removeClass('alert-failure');
+      }
+    } else {
       ticketsField.addClass('error');
       message.addClass('alert-failure');
-    } else if (ticketsFieldValue < 0) {
-      ticketsField.addClass('error');
-    } else {
-      ticketsField.removeClass('error');
-      message.removeClass('alert-failure');
     }
+    
   }
 
   function storageEventData(data) {
@@ -317,9 +322,25 @@ var events = (function(window) {
       anchorRegister.className = 'btn-action-event js-athlete-event';
       anchorRegister.dataset.index = index;
       anchorRegister.href = 'inscribir-competidores.html';
+
+      var anchorResults = document.createElement('a');
+      var linkText = document.createTextNode('Registrar Resultados');
+      anchorResults.appendChild(linkText);
+      anchorResults.className = 'btn-action-event';
+      anchorResults.dataset.index = index;
+      anchorResults.href = 'registrar-resultados.html';
+
+      var anchorDescalificar = document.createElement('a');
+      var linkText = document.createTextNode('Descalificar atleta');
+      anchorDescalificar.appendChild(linkText);
+      anchorDescalificar.className = 'btn-action-event';
+      anchorDescalificar.dataset.index = index;
+      anchorDescalificar.href = 'descalificar-competidor.html';
       
       eventActions.appendChild(anchorEdit);
       eventActions.appendChild(anchorRegister);
+      eventActions.appendChild(anchorDescalificar);
+      eventActions.appendChild(anchorResults);
 
       tr.appendChild(eventName);
       tr.appendChild(eventDate);
@@ -458,13 +479,13 @@ var events = (function(window) {
     var selectOrg = $util('#orgName');
     var selectVenue = $util('#venue');
     var selectSponsor = $util('#sponsor');
-    var orgList = orm.findOrgs();
-    var venueList = orm.findVenues();
-    var sponsorList = orm.findSponsors();
+    var orgList = orm.findActiveOrgs();
+    var venueList = orm.findActiveVenues();
+    var sponsorList = orm.findActiveSponsors();
 
-    orm.populateSelect('orgName', orgList, true);
-    orm.populateSelect('venue', venueList, false);
-    orm.populateSelect('sponsor', sponsorList, true);
+    misc.populateOrgSelect('orgName', orgList, false);
+    misc.populateSelect('venue', venueList, false);
+    misc.populateSponsorSelect('sponsor', sponsorList, false);
   }
 
   return {
@@ -475,7 +496,6 @@ var events = (function(window) {
     buildEventsList: buildEventsList,
     buildEventsListProfile: buildEventsListProfile,
     buildEventsListHome: buildEventsListHome,
-    buildEventDataObject: buildEventDataObject,
     fillEditForm: fillEditForm,
     validateTicketsPerVenue: validateTicketsPerVenue,
     showSponsorInfo: showSponsorInfo,

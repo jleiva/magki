@@ -10,6 +10,24 @@ var validate = (function(window, undefined) {
     var today = new Date();
   }
 
+  function validateBday(bday) {
+    var startDate = bday.value;
+    var endDate = new Date().toISOString().slice(0,10);
+    var endDateMsg = $util('.js-end-date-error');
+    var invalid = false;
+
+    if ((Date.parse(endDate) < Date.parse(startDate))) {
+      endDateMsg.removeClass('is-hidden').addClass('alert-failure');
+      bday.addClass('error');
+      endDate.value = '';
+      invalid = true;
+    } else {
+      
+    } 
+
+    return invalid;
+  }
+
   function getToday() {
     var today = new Date();
     var dd = today.getDate();
@@ -64,7 +82,7 @@ var validate = (function(window, undefined) {
   }
 
   function emptyFields(inputs) {
-    var formInputs = inputs || document.querySelectorAll('input:required');
+    var formInputs = inputs;
     var $alertBox = $util('.js-login-msg');
     var emptyInputs = [];
     var hasEmpty = false;
@@ -81,7 +99,9 @@ var validate = (function(window, undefined) {
 
     if (hasEmpty) {
       if ($alertBox) {
-        $alertBox.html(msg.key.fieldsRequired);
+        $alertBox.html(msg.key.fieldsRequired)
+          .removeClass('alert-success')
+          .addClass('alert-failure');
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
         '<span class="note alert alert-failure js-login-msg">' + msg.key.fieldsRequired + '</span>');
@@ -94,6 +114,10 @@ var validate = (function(window, undefined) {
   function formatErrorMessage(errors) {
     var $alertBox = $util('.js-login-msg');
 
+    errors.forEach(function(errorInput) {
+      errorInput.addClass('error');
+    });
+
     if ($alertBox) {
       $alertBox.html(msg.key.wrongFormat);
     } else {
@@ -104,7 +128,7 @@ var validate = (function(window, undefined) {
 
   function fieldsValue(formId) {
     var form = document.getElementById(formId);
-    var formInputs = document.querySelectorAll('input:required');
+    var formInputs = document.querySelectorAll('#' + formId + ' .js-form-field:required');
 
     if (!form || form.nodeName !== "FORM") {
       return;
@@ -194,6 +218,7 @@ var validate = (function(window, undefined) {
     fieldsValue: fieldsValue,
     checkPassword: checkPassword,
     validateDateRange: validateDateRange,
-    validateStartDate: validateStartDate
+    validateStartDate: validateStartDate,
+    validateBday: validateBday
   };
 })(window);

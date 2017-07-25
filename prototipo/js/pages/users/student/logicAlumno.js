@@ -1,6 +1,4 @@
-var studentsList=[];
-
-function getStudentsList(){
+function getStudentsList() {
   var studentsList = JSON.parse(localStorage.getItem('studentsListLS'));
 
   if(studentsList == null){
@@ -9,38 +7,33 @@ function getStudentsList(){
   return studentsList;
 }
 
-
-function registrar(pPersona){
+function registrar(pPersona) {
   var studentsList = getStudentsList();
   studentsList.push(pPersona);
-  localStorage.setItem('studentsListLS',JSON.stringify(studentsList));
+  localStorage.setItem('studentsListLS', JSON.stringify(studentsList));
 }
 
 function findById(pId) {
-	var studentsList = getStudentsList();
-	var studentsInfo; // se declaro el arreglo
+  var studentsList = getStudentsList();
+  var studentInfo = studentsList.find(function(std) {
+    return std.identification === pId;
+  });
 
-	for(var i=0; i < studentsList.length; i ++){
-		//verifica si esta el pcode que se pidio en el editar
-		if (studentsList[i][0] == pId) {
-			studentsInfo = studentsList[i];
-		}
-	}
-
-	return studentsInfo;
-	//le retorna el valor si esta
+  return studentInfo;
 }
 
 function updateStudentInfo(pInfo) {
-//deme la lista de organizaciones
-	var studentsList = getStudentsList();
-// si la encuentra reemplaza la info
-	for(var i = 0; i < studentsList.length; i++) {
-		if(studentsList[i][0] == pInfo[0]){
-			studentsList[i] = pInfo;
-		}
-	}
+  var studentsList = getStudentsList();
+  var stdLength = studentsList.length;
+  var foundUser = false;
 
-	localStorage.setItem('studentsListLS', JSON.stringify(studentsList));
+  for (var i = 0; i < stdLength && !foundUser; i++) {
+    if (studentsList[i].id == pInfo.id){
+      studentsList[i] = pInfo;
+      foundUser = true;
+    }
+  }
+
+  localStorage.setItem('studentsListLS', JSON.stringify(studentsList));
 }
-// se debe volver a setear el local storage, con la misma que se hace el registrar
+

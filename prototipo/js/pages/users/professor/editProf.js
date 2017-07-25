@@ -1,121 +1,128 @@
-$util('#save').on('click',validateChanges);
+var getValidBday = misc.debounce(function() {
+  validateDateBday();
+}, 1000);
 
+$util('#btn-save').on('click', validateChanges);
+document.querySelector('#bday').addEventListener('change', getValidBday);
+
+fillAcademies();
 loadProfData();
 
 function validateChanges(e) {
+  e.preventDefault();
+  var $alertBox = $util('.js-login-msg');
+  var formInputs = document.querySelectorAll('#edit-proft-form .js-form-field:required');
 
-	e.preventDefault();
+  if (!validate.emptyFields(formInputs)) {
+    var validForm = validate.fieldsValue('edit-proft-form');
 
- if(!validate.emptyFields()) {
-  var validForm = validate.fieldsValue('editProf-form');
+    if (!validForm[1].length) {
+      getUpdateData();
 
-  if (!validForm[1].length) {
-		getUpdateData();
+      if ($alertBox) {
+        $alertBox.removeClass('alert-failure')
+          .addClass('alert-success')
+          .html(msg.key.saveSuccess);
+      } else {
+        $util('.js-form').insertAdjacentHTML('afterbegin',
+        '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+      }
+    } else {
+      if ($alertBox) {
+        $alertBox
+          .removeClass('alert-success')
+          .addClass('alert-failure')
+          .html('Ya hay un usuario registrado con la identificación indicada; no se realizó el registro');
+      } else {
+        $util('.js-form').insertAdjacentHTML('afterbegin',
+        '<span class="note alert alert-failure js-login-msg">Ya hay un usuario registrado con la identificación indicada; no se realizó el registro</span>');
+      }
+    }
   }
- }
 
- window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
 function loadProfData() {
+  var profId = localStorage.getItem('profCode');
+  var profInfo = findById(profId);
+  var formInputs = document.querySelectorAll('#edit-proft-form .js-form-field');
 
-	var profId = localStorage.getItem('profCode');
+  document.querySelector('#id').value = profInfo.id;
+  document.querySelector('#name').value = profInfo.name;
+  document.querySelector('#sec-name').value = profInfo.name2;
+  document.querySelector('#last-name').value = profInfo.lastname;
+  document.querySelector('#sec-last-name').value = profInfo.lastname2;
+  document.querySelector('#bday').value = profInfo.bday;
+  document.querySelector('#email').value = profInfo.email;
+  document.querySelector('#phone').value = profInfo.phone;
+  document.querySelector('#gender').value = profInfo.genero;
+  document.querySelector('#age').value = profInfo.age;
+  document.querySelector('#academy').value =  profInfo.academy;
+  document.querySelector('#belt').value = profInfo.beltGrade;
 
-	var profInfo = findById(profId);
-
-  document.querySelector('#id').value = profInfo[0]; //lllena el primer campo
-	document.querySelector('#id').disabled = true; //y no habilita el campo que yo le diga
-  document.querySelector('#name').value = profInfo[1];
-  document.querySelector('#secName').value =  profInfo[2];
-  document.querySelector('#lastName').value = profInfo[3];
-  document.querySelector('#secLastName').value = profInfo[4];
-  document.querySelector('#bday').value = profInfo[5];
-  document.querySelector('#email').value = profInfo[6];
-  document.querySelector('#phone').value = profInfo[7];
-  document.querySelector('#gender').value = profInfo[8];
-  document.querySelector('#age').value = profInfo[9];
-  document.querySelector('#academy').value =  profInfo[10];
-  document.querySelector('#belt').value = profInfo[11];
-
+  if (profInfo.status) {
+    misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#able').checked = true;
+    document.querySelector('#id').disabled = true;
+    document.querySelector('#age').disabled = true;
+  } else {
+    misc.disableFieldsOnEdit(formInputs);
+  }
 }
-
 
 function getUpdateData() {
+  var formInputs = document.querySelectorAll('#edit-proft-form .js-form-field');
+  var profInfo = misc.buildDataObject(formInputs);
+  var status = document.querySelector('#able').checked;
 
-//declaro los campos de nuevo
-var id='';
-var firstName ='';
-var secName ='';
-var lastName='';
-var secLastName='';
-var bday= '';
-var email='';
-var phone='';
-var gender='';
-var age='';
-var academy='';
-var belt='';
-var status='';
+  profInfo.status = status;
 
-var profInfo = [];
+  if (status){
+    misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#id').disabled = true;
+  } else {
+    misc.disableFieldsOnEdit(formInputs);
+  }
 
-	id = document.querySelector('#id').value;
-	firstName = document.querySelector('#name').value;
-	secName  = document.querySelector('#sec-name').value;
-  lastName  = document.querySelector('#last-name').value;
-  secLastName  = document.querySelector('#sec-last-name').value;
-	bday = document.querySelector('#bday').value;
-  email  = document.querySelector('#email').value;
-  phone = document.querySelector('#phone').value;
-  gender = document.querySelector('#gender').value;
-	age = document.querySelector('#age').value;
-  belt = document.querySelector('#belt').value;
-	status = document.querySelector('#able').checked;
-
-	profInfo.push(id, firstName, secName, lastName,secLastName,bday,email, phone, gender,age,belt, status);
-	updateProfInfo(profInfo); //esta en la principal
-
-
-	if (status){
-	enableFields();
-	}else {
-		disableFields();
-	}
-
+  updateProfInfo(profInfo);
 }
 
-function disableFields() {
-	//document.querySelector('#disable').checked = true;
-  document.querySelector('#id').disabled = true;
-  document.querySelector('#name').disabled = true;
-  document.querySelector('#sec-name').disabled = true;
-  document.querySelector('#last-name').disabled = true;
-  document.querySelector('#sec-last-name').disabled = true;
-  document.querySelector('#bday').disabled = true;
-  document.querySelector('#email').disabled = true;
-  document.querySelector('#phone').disabled = true;
-  document.querySelector('#gender').disabled = true;
-	document.querySelector('#age').disabled = true;
-  document.querySelector('#belt').disabled = true;
+function fillAcademies() {
+ var academiesList = obtenerListaRegistros();
+ var academiesField = document.querySelector('#academy');
 
-
+ for (var i = 0; i < academiesList.length; i++) {
+  var options = document.createElement("option");
+  var academyName = academiesList[i]['nombreAcademia'];
+  options.text = academyName;
+  options.className = 'btn-action-event js-edit-event';
+  academiesField.add(options);
+ }
 }
 
-function enableFields() {
+function calculateAge() {
+  var bday = document.querySelector('#bday').value;
+  var today = new Date();
+  var birthDate = new Date(bday);
+  var age = today.getFullYear() - birthDate.getFullYear();
 
+  document.querySelector('#age').value = age;
+}
 
-  document.querySelector('#name').disabled = false;
-  document.querySelector('#sec-name').disabled = false;
-  document.querySelector('#last-name').disabled = false;
-  document.querySelector('#sec-last-name').disabled = false;
-  document.querySelector('#bday').disabled = false;
-  document.querySelector('#email').disabled = false;
-  document.querySelector('#weight').disabled = false;
-  document.querySelector('#height').disabled =false;
-	document.querySelector('#age').disabled = false;
-  document.querySelector('#part-tournament').disabled = false;
-  document.querySelector('#win-tournament').disabled = false;
-  document.querySelector('#belt').disabled = false;
+function validateDateBday() {
+  var bDate = document.querySelector('#bday');
+  var ageField = document.querySelector('#age');
+  var bDateValue = document.querySelector('#bday').value;
+  var today= new Date();
+  var bdayMsg = $util('.js-bday-error');
 
-
+  if ((Date.parse(bDateValue) < Date.parse(today))) {
+    bdayMsg.addClass('is-hidden');
+    calculateAge();
+  } else {
+    bdayMsg.removeClass('is-hidden').addClass('alert-failure');
+    bDate.value = '';
+    ageField.value = '';
+  }
 }

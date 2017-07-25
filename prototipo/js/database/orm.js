@@ -30,7 +30,7 @@ var orm = (function(window, undefined) {
 
     var orgList = orgListLS.filter(function(org) {
       return org.status === true;
-    })
+    });
 
     return orgList;
   }
@@ -46,7 +46,7 @@ var orm = (function(window, undefined) {
 
     var venuesList = venuesListLS.filter(function(venue) {
       return venue.status === true;
-    })
+    });
 
     return venuesList;
   }
@@ -55,6 +55,63 @@ var orm = (function(window, undefined) {
     var appSponsorsListLS = storage.get('sponsorListLS') || [];
 
     return appSponsorsListLS;
+  }
+
+  function findSponsorbyId(id) {
+    var sponsors = findSponsors();
+    
+    var sponsorSel = sponsors.filter(function(sponsor) {
+      return sponsor.id === id;
+    });
+    
+    return sponsorSel;
+  }
+
+  function findActiveSponsors() {
+    var sponsorsListLS = findSponsors();
+
+    var sponsorsList = sponsorsListLS.filter(function(sponsor) {
+      return sponsor.status === true;
+    });
+
+    return sponsorsList;
+  }
+
+  function findSponsorProducts(sponsorId) {
+    var sponsor = findSponsorbyId(sponsorId);
+    var prods = [];
+
+    sponsor[0].sponsorProds.forEach(function(prod, index) {
+      prods.push(prod[index][0]);
+    });
+    
+    return prods;
+  }
+
+  function findProfesor() {
+    var appProfesirListLS = storage.get('profListLS') || [];
+
+    return appProfesirListLS;
+  }
+
+  function findActiveProfesor() {
+    var profesorListLS = findProfesor();
+
+    var profesorList = profesorListLS.filter(function(user) {
+      return user.status === true;
+    });
+
+    return profesorList;
+  }
+
+  function findProfesorById(id) {
+    var profesores = findProfesor();
+    
+    var profSel = profesores.filter(function(user) {
+      return user.id === id;
+    });
+    
+    return profSel[0];
   }
 
   function findLogguedUser() {
@@ -72,6 +129,11 @@ var orm = (function(window, undefined) {
     findVenues: findVenues,
     findActiveVenues: findActiveVenues,
     findSponsors: findSponsors,
+    findSponsorbyId: findSponsorbyId,
+    findSponsorProducts: findSponsorProducts,
+    findActiveSponsors: findActiveSponsors,
+    findActiveProfesor: findActiveProfesor,
+    findProfesorById: findProfesorById,
     findLogguedUser: findLogguedUser
   };
 })(window);

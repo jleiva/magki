@@ -33,14 +33,14 @@
       <div class="js-form form__wrap">
         <form id="event-form" novalidate>
           <fieldset>
-            <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
+            <legend>Campos obligatorios est&aacute;n marcados con <abbr title="Requerido">*</abbr></legend>
             
             <fieldset class="feature-fieldset">
               <legend>Datos Generales</legend>
               
               <div class="field-wrapper">
                 <label for="eventName">Nombre del Evento <abbr title="Requerido">*</abbr></label>
-                <input class="js-event-field js-event-rs" type="text" placeholder="Evento" id="eventName" name="eventName" required>
+                <input class="js-event-field js-event-rs" type="text" id="eventName" name="eventName" required>
                 <small class="note alert is-hidden js-event-name-warning">Ya existe un evento con este mismo nombre, verifique que no lo esta duplicando.</small>
               </div>
 
@@ -48,11 +48,12 @@
                 <div class="field-wrapper">
                   <label for="dateStart">Fecha inicio <abbr title="Requerido">*</abbr></label>
                   <input class="js-event-field" id="dateStart" class="input" type="date" name="dateStart" required>
+                  <small class="note is-hidden js-start-date-error">Fecha inicio debe ser mayor &oacute; igual a hoy.</small>
                 </div>
                 <div class="field-wrapper">
                   <label for="dateEnd">Fecha final <abbr title="Requerido">*</abbr></label>
                   <input class="js-event-field" id="dateEnd" class="input" type="date" name="dateEnd" required>
-                  <small class="note is-hidden js-end-date-error">Fecha final debe ser mayor o igual a Fecha inicio.</small>
+                  <small class="note is-hidden js-end-date-error">Fecha final debe ser mayor &oacute; igual a Fecha inicio.</small>
                 </div>
               </div>
 
@@ -66,20 +67,27 @@
               <div class="field-group">
                 <div class="field-wrapper">
                   <label for="venueCap">Espacio disponible</label>
-                  <input class="js-event-field" type="number" id="venueCap" value="0" name="venueCap" disabled>
+                  <input class="js-event-field" type="number" id="venueCap" name="venueCap" disabled>
                   <small class="note">Dado por el Lugar seleccionado.</small>
                 </div>
-
                 <div class="field-wrapper">
-                  <label for="ticketQ">Entradas disponibles <abbr title="Requerido">*</abbr></label>
-                  <input class="js-event-field" type="number" placeholder="0" min="0" id="ticketQ" name="ticketQ" required>
-                  <small class="note js-ticket-quantity">Debe ser <strong>menor &oacute; igual</strong> al espacio disponible.</small>
+                  <label for="venueCost">Valor Alquiler Lugar</label>
+                  <input class="js-event-field" type="number" id="venueCost" name="venueCost">
+                  <small class="note">Si no hay costo, deje el campo vac&iacute;o &oacute; ingrese cero (0).</small>
                 </div>
               </div>
 
-              <div class="field-wrapper">
-                <label for="priceTicket">Costo entrada</label>
-                <input class="short-input js-event-field" type="number" placeholder="En Colones" min="0" id="priceTicket" name="priceTicket">
+              <div class="field-group">
+                <div class="field-wrapper">
+                  <label for="ticketQ">Entradas disponibles <abbr title="Requerido">*</abbr></label>
+                  <input class="js-event-field" type="number" min="0" id="ticketQ" name="ticketQ" required>
+                  <small class="note js-ticket-quantity">Debe ser <strong>menor &oacute; igual</strong> al espacio disponible.</small>
+                </div>
+                <div class="field-wrapper">
+                  <label for="priceTicket">Costo entrada</label>
+                  <input class="js-event-field" type="number" min="0" id="priceTicket" name="priceTicket">
+                  <small class="note">El valor es en colones costarricenses.</small>
+                </div>
               </div>
             </fieldset>
 
@@ -100,6 +108,7 @@
                   <div class="field-wrapper">
                     <label for="entryFee">Costo inscripci&oacute;n por atleta <abbr class="is-competition" title="Requerido">*</abbr></label>
                     <input class="js-event-field" type="number" id="entryFee" name="entryFee">
+                    <small class="note">El valor en colones costarricenses.</small>
                   </div>
 
                   <div class="field-wrapper">
@@ -159,12 +168,12 @@
               <div class="is-hidden js-guess">
                 <div class="field-wrapper">
                   <label for="guess">Invitado Especial (opcional)</label>
-                  <input class="js-event-field" type="text" placeholder="Nombre completo" id="guess" name="guess">
+                  <input class="js-event-field" type="text" id="guess" name="guess">
                 </div>
 
                 <div class="field-wrapper">
                   <label for="guessOrg">Organizaci&oacute;n (opcional)</label>
-                  <input class="js-event-field" type="text" placeholder="Organizaci&oacute;n" id="guessOrg" name="guessOrg">
+                  <input class="js-event-field" type="text" id="guessOrg" name="guessOrg">
                 </div>
               </div>
 
@@ -200,9 +209,6 @@
                 <label for="sponsorBrand">Producto patrocinador</label>
                 <select class="js-event-field" name="sponsorBrand" id="sponsorBrand">
                   <option value="">Seleccione un producto...</option>
-                  <option value="coca">Coca Cola</option>
-                  <option value="fanta">Fanta Naranja</option>
-                  <option value="sprite">Sprite</option>
                 </select>
               </div>
 
@@ -238,6 +244,7 @@
                 <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
               </li>
             </ul>
+            <small class="note"><strong>Deshabilitar:</strong> no se muestra en listados p&uacute;blicos &oacute; formularios.</small>
           </fieldset>
 
           <div class="field-wrapper">
@@ -252,7 +259,6 @@
     <div class="group">
       <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>
@@ -260,6 +266,7 @@
   </footer>
   
   <script src="js/helpers/util.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
   <script src="js/helpers/load-data.js"></script>

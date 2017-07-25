@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Makgi - Descalificar Competidor</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html" class="is-active">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="wrapper">
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Descalificar Competidor</h2>
+      </div>
+
+      <div class="form__wrap js-form">
+        <form id="desqualification-form">   
+          <fieldset>
+            <div class="field-wrapper">
+              <label for="academy-name">Academia<abbr title="Requerido">*</abbr></label>
+               <select class="js-form-field" id="academy-name" required>
+                <option value="">Seleccione una academia</option>
+              </select>
+            </div>
+
+            <div class="field-wrapper">
+              <label for="fighter-name">Nombre Competidor<abbr title="Requerido">*</abbr></label>
+              <select class="js-form-field" id="fighter-name" required>
+                <option value="">Seleccione un competidor</option>
+              </select>
+            </div>
+
+            <div class="field-wrapper">
+              <label for="figter-withdrawal">Motivo de la descalificación<abbr title="Requerido">*</abbr></label>
+              <textarea name="" placeholder="Motivo" id="figter-withdrawal"></textarea>
+            </div>
+
+            <button id="btn-save" value="Guardar">Guardar</button>
+          </fieldset>
+        </form>
+      </div>  
+    </div>    
+  </main>
+  <footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Eventos</a></li>
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/helpers/util.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/helpers/messages.js"></script>
+  <script src="js/helpers/validate.js"></script>
+  <script src="js/pages/main.js"></script>
+</body>
+</html>

@@ -1,12 +1,15 @@
-document.querySelector('#save').addEventListener('click', registerProfe);
-document.querySelector('#bday').addEventListener('change', calculateAge);
+var getValidBday = misc.debounce(function() {
+  validateDateBday();
+}, 1000);
+
+document.querySelector('#btn-save').addEventListener('click', registerProfe);
+document.querySelector('#bday').addEventListener('change', getValidBday);
 
 fillAcademies();
 
 function registerProfe(e) {
   e.preventDefault();
-
-  var formInputs = document.querySelectorAll('#register-user .js-event-field:required');
+  var formInputs = document.querySelectorAll('#register-user .js-form-field:required');
 
   if(!validate.emptyFields(formInputs)) {
     var validForm = validate.fieldsValue('register-user');
@@ -19,38 +22,13 @@ function registerProfe(e) {
   window.scrollTo(0, 0);
 }
 
-function getRegisterData(){
-  var id = '';
-  var firstName = '';
-  var secName = '';
-  var lastName= '';
-  var secLastName = '';
-  var bday = '';
-  var email = '';
-  var phone = '';
-  var gender = '';
-  var age = '';
-  var academy = '';
-  var belt = '';
-  var profe = 'Profesor';
-  var professorInfo = [];
+function getRegisterData() {
+  var formInputs = document.querySelectorAll('#register-user .js-form-field');
+  var userData = misc.buildDataObject(formInputs);
 
-  id = document.querySelector('#id').value;
-  firstName = document.querySelector('#name').value;
-  secName = document.querySelector('#secName').value;
-  lastName = document.querySelector('#lastName').value;
-  secLastName = document.querySelector('#secLastName').value;
-  bday = document.querySelector('#bday').value;
-  email = document.querySelector('#email').value;
-  phone = document.querySelector('#phone').value;
-  gender= document.querySelector('#gender').value;
-  age = document.querySelector('#age').value;
-  academy = document.querySelector('#academy').value;
-  belt = document.querySelector('#belt').value;
-
-  professorInfo.push(id,firstName,secName,lastName,secLastName,bday,email,phone,gender,age,academy,belt,profe);
-  registrar(professorInfo);
-
+  userData.status = true;
+  registrar(userData);
+  misc.disableFieldsOnSave(formInputs);
 }
 
 function validateForm() {
@@ -60,25 +38,26 @@ function validateForm() {
 
   if (findById(codeValue) == null) {
     getRegisterData();
-
+    idField.removeClass('error');
     if ($alertBox) {
       $alertBox.removeClass('alert-failure')
         .addClass('alert-success')
         .html(msg.key.saveSuccess);
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin',
-      '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+      '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
 
   } else {
+    idField.addClass('error');
     if ($alertBox) {
       $alertBox
         .removeClass('alert-success')
         .addClass('alert-failure')
-        .html('Esta Identificacion ya existe, no se realizó el registro');
+        .html('Ya hay un usuario registrado con la identificación indicada; no se realizó el registro');
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin',
-        '<span class="note alert-failure js-login-msg">Esta Identificacion ya existe, no se realizó el registro</span>');
+        '<span class="note alert alert-failure js-login-msg">Ya hay un usuario registrado con la identificación indicada; no se realizó el registro</span>');
     }
   }
 }
@@ -86,7 +65,6 @@ function validateForm() {
 function fillAcademies() {
  var academiesList = obtenerListaRegistros();
  var academiesField = document.querySelector('#academy');
-
 
  for(var i = 0; i < academiesList.length; i++) {
    var options = document.createElement("option");
@@ -97,11 +75,32 @@ function fillAcademies() {
  }
 }
 
-function calculateAge() {
-  var bday = document.querySelector('#bday').value;
+function calculateAge(bDateValue) {
   var today = new Date();
-  var birthDate = new Date(bday);
+  var birthDate = new Date(bDateValue);
   var age = today.getFullYear() - birthDate.getFullYear();
+  var months = today.getMonth() - birthDate.getMonth();
+  
+  if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
   document.querySelector('#age').value = age;
-  document.querySelector('#age').disabled = true;
+}
+
+function validateDateBday() {
+  var bDate = document.querySelector('#bday');
+  var ageField = document.querySelector('#age');
+  var bDateValue = document.querySelector('#bday').value;
+  var today= new Date();
+  var bdayMsg = $util('.js-bday-error');
+
+  if ((Date.parse(bDateValue) < Date.parse(today))) {
+    bdayMsg.addClass('is-hidden');
+    calculateAge(bDateValue);
+  } else {
+    bdayMsg.removeClass('is-hidden').addClass('alert-failure');
+    bDate.value = '';
+    ageField.value = '';
+  }
 }

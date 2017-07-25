@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Makgi - Registrar Patrocinador</title>
+  <link rel="shortcut icon" href="img/kar.png" />
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sponsor.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
@@ -28,47 +30,53 @@
       <div class="section-intro">
         <h2>Registrar Patrocinador</h2>
       </div>
+      <div class="js-form form__wrap ">
+          <form id="form-sponsor">
+            <fieldset class="fieldset">
+              <legend>Campos obligatorios están marcados con <abbr title="Requerido">*</abbr></legend>
+              <fieldset class="feature-fieldset">
+                <legend>Patrocinador</legend>
+                <div class="field-wrapper">
+                  <label for="sponsorLogo">Logo</label>
+                  <div id="imgSponsor"></div>
+                  <input id="sponsorLogo" class="input-file" type="file"/>
+                </div>
 
-      <div class="form__wrap">
-        <div class="js-form">
-          <form id="register-sponsor" name="sponsorForm">
-          <legend>Campos obligatorios están marcados con <abbr title="Requerido">*</abbr></legend>
-            <div class="field-wrapper">
-              <label for="txtID">Cédula jurídica <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="txtID" required class="js-event-field">
-            </div>
+                <div class="field-wrapper">
+                  <label for="txtID">Cédula jurídica <abbr title="Requerido">*</abbr></label>
+                  <input type="text" id="txtID" required class="js-form-field">
+                </div>
 
-            <div class="field-wrapper">
-               <label for="txtName">Nombre comercial del patrocinador <abbr title="Requerido">*</abbr></label>
-               <input type="text" id="txtName" required class="js-event-field">
-            </div>
+                <div class="field-wrapper">
+                   <label for="txtName">Nombre comercial del patrocinador <abbr title="Requerido">*</abbr></label>
+                   <input type="text" id="txtName" required class="js-form-field">
+                </div>
 
-            <div class="field-wrapper">
-              <label for="txtBusinessName">Razón social <abbr title="Requerido">*</abbr></label>
-              <input type="text" id="txtBusinessName" required class="js-event-field">
-            </div>
+                <div class="field-wrapper">
+                  <label for="txtBusinessName">Razón social <abbr title="Requerido">*</abbr></label>
+                  <input type="text" id="txtBusinessName" required class="js-form-field">
+                </div>
+              </fieldset>
 
-            <label>Logo</label>
-            <div id="imgSponsor" class="imgLogo"></div>
-            <input id="sponsorLogo" class="remove-square input-file" type="file" class="js-event-field"/>
+              <fieldset class="feature-fieldset">
+                <legend>Producto</legend>
 
-            <fieldset class="save-product">
-              <h4>Agregue los productos que desee:</h4>
+                <div class="add-product">
+                  <div class="product-field" id="divProduct1">
+                    <label for="txtProductName1">Nombre del producto</label>
+                    <input type="text" class="prod-Name" id="txtProductName1"/>
+                    <div class="imgProdLogo" id="imgProducto1"></div>
+                    <input type="file"  id="productLogo1" class="input-file"/>
+                  </div>
+                </div>
+                <div class="divAddBttn">
+                  <img src="img/add.png" class="moveAddBttn"/>
+                </div>
+              </fieldset>
 
-              <div id="imgProducto" class="imgLogo"></div>
-              <input id="productLogo" class="remove-square input-file" type="file"/>
-
-              <div class="field-wrapper">
-                <label for="txtProductName">Nombre del producto </label>
-                <input type="text" id="txtProductName">
-              </div>
-
-              <button id="addProdBttn">Agregar producto</button>
+              <button id="saveBttn">Guardar</button>
             </fieldset>
-
-            <button id="saveBttn">Guardar</button>
           </form>
-        </div>
       </div>
     </div>
   </main>
@@ -76,7 +84,6 @@
     <div class="group">
       <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>

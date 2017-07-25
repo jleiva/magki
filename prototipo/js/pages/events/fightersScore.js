@@ -1,10 +1,102 @@
-
 var saveBtn = document.querySelector('#btn-save');
 saveBtn = addEventListener('click', validateData);
+categorySelected = document.querySelector('#categories');
+categorySelected.addEventListener('change', filterList);
 
 fillTable();
 
 function fillTable() {
+	var fighters = JSON.parse(localStorage.getItem('fightersList'));
+	var $error = document.querySelector('.no-data');
+	$error.hide();
+
+	var tbody = document.querySelector('#tblFighters tbody');
+
+	tbody.innerHTML = '';
+
+  if (fighters.length) {
+
+		for(var i = 0; i < fighters.length; i++) {
+			var row = tbody.insertRow(i);
+
+			var nameColumn = row.insertCell();
+			var lastNameColumn = row.insertCell();
+			var idColumn = row.insertCell();
+			var categoryColumn = row.insertCell();
+			var pointsColumn = row.insertCell();
+
+			nameColumn.innerHTML = fighters[0];
+			lastNameColumn.innerHTML = fighters[1];
+			idColumn.innerHTML = fighters[3];
+			categoryColumn.innerHTML = fighters[2];
+
+	    var scoreField = document.createElement('input');
+	    scoreField.type = 'number';
+	    scoreField.min = '1';
+	    scoreField.max = '5'
+	    scoreField.value = '0';
+	    scoreField.classList.add('figther-points');
+			pointsColumn.appendChild(scoreField);
+
+			var error = document.createElement('p');
+			error.innerHTML = 'Número entre 1 - 5';	
+			error.classList.add('alert-failure');
+			error.hide();
+			pointsColumn.appendChild(error);
+		}
+
+		var btnEdit = document.querySelectorAll('.figther-points');
+		btnEdit.forEach(function(btn) {
+			btn.addEventListener('keypress', function(e) {
+				var currentItem = e.currentTarget;
+				var organizationId = currentItem.getAttribute('name');
+
+				if(e.keyCode == 13) {
+					if(scoreField.value < 1 || scoreField.value > 5){
+						error.show();
+
+					}else{
+						error.hide();
+						validateData();
+					}
+				}
+			}) 
+		});
+
+	} else {
+    $error.show();
+  }	
+}
+
+function filterList() {
+	 categorySelected = document.querySelector('#categories');
+	 var selectedValue = categorySelected.options[categorySelected.selectedIndex].value;
+
+	 switch(selectedValue) {
+	 	case 'Infantil':
+	 		loadFilterList('Infantil');
+	 		break;
+
+	 	case 'Cadete':
+	 		loadFilterList('Cadete');
+	 		break;
+
+	 	case 'Elite':
+	 		loadFilterList('Elite');
+	 		break;
+
+	 	case 'Senior':
+	 		loadFilterList('Senior');
+	 		break;
+
+	 	default:
+	 		fillTable();
+	 		break;
+	 }
+}
+
+function loadFilterList(pcategory) {
+	var fighters = JSON.parse(localStorage.getItem('fightersList'));
 
 	var $error = document.querySelector('.no-data');
 	$error.hide();
@@ -13,53 +105,62 @@ function fillTable() {
 
 	tbody.innerHTML = '';
 
-	for(var i = 0; i < 1; i++) {
-		var row = tbody.insertRow(i);
 
-		var nameColumn = row.insertCell();
-		var lastNameColumn = row.insertCell();
-		var idColumn = row.insertCell();
-		var categoryColumn = row.insertCell();
-		var pointsColumn = row.insertCell();
+ 	if (fighters.length) {
+		for(var i = 0; i < fighters.length; i++) {
 
-		nameColumn.innerHTML = 'Jose Alonso	';
-		lastNameColumn.innerHTML = 'Madrigal Sanchez';
-		idColumn.innerHTML = '304780920';
-		categoryColumn.innerHTML = 'Senior';;
+			if(fighters[3] == pcategory) {
+				var row = tbody.insertRow(i);
 
-    var scoreField = document.createElement('input');
-    scoreField.type = 'number';
-    scoreField.min = '1';
-    scoreField.max = '5'
-    scoreField.value = '0';
-    scoreField.classList.add('figther-points');
-		pointsColumn.appendChild(scoreField);
+				var nameColumn = row.insertCell();
+				var lastNameColumn = row.insertCell();
+				var idColumn = row.insertCell();
+				var categoryColumn = row.insertCell();
+				var pointsColumn = row.insertCell();
 
-		var error = document.createElement('p');
-		error.innerHTML = 'Número entre 1 - 5';	
-		error.classList.add('alert-failure');
-		error.hide();
-		pointsColumn.appendChild(error);
-	}
+				nameColumn.innerHTML = fighters[0];
+				lastNameColumn.innerHTML = fighters[1];
+				idColumn.innerHTML = fighters[3];
+				categoryColumn.innerHTML = fighters[2];
 
-	var btnEdit = document.querySelectorAll('.figther-points');
-	btnEdit.forEach(function(btn) {
-		btn.addEventListener('keypress', function(e) {
-			var currentItem = e.currentTarget;
-			var organizationId = currentItem.getAttribute('name');
+		    var scoreField = document.createElement('input');
+		    scoreField.type = 'number';
+		    scoreField.min = '1';
+		    scoreField.max = '5'
+		    scoreField.value = '0';
+		    scoreField.classList.add('figther-points');
+				pointsColumn.appendChild(scoreField);
 
-			if(e.keyCode == 13) {
-				if(scoreField.value < 1 || scoreField.value > 5){
-					error.show();
-
-				}else{
-					error.hide();
-					validateData();
-				}
+				var error = document.createElement('p');
+				error.innerHTML = 'Número entre 1 - 5';	
+				error.classList.add('alert-failure');
+				error.hide();
+				pointsColumn.appendChild(error);
 			}
-			//localStorage.setItem('entityCode', organizationId);
-		}) 
-	});	
+
+
+			var btnEdit = document.querySelectorAll('.figther-points');
+			btnEdit.forEach(function(btn) {
+				btn.addEventListener('keypress', function(e) {
+					var currentItem = e.currentTarget;
+					var organizationId = currentItem.getAttribute('name');
+
+					if(e.keyCode == 13) {
+						if(scoreField.value < 1 || scoreField.value > 5){
+							error.show();
+
+						}else{
+							error.hide();
+							validateData();
+						}
+					}
+				}) 
+			});	
+		}
+
+  } else {
+  	$error.show();
+  }
 }
 
 function validateData() {

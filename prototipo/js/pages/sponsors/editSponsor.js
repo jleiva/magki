@@ -1,172 +1,174 @@
-var infoSponsor = JSON.parse(localStorage.getItem('infoSponsorLS'));
-var productsInfo=[];
-var srcDataLogoSponsor="";
-var srcDataLogoProduct="";
-var fileSponsorSelected;
-var filesProductSelected;
-$util('#saveBttn').on('click', validateForm);
-$util('#sponsorLogo').addEventListener("change", uploadSponsorImage);
-$util('#productLogo').addEventListener("change", uploadSProductImage);
-$util('#addProdBttn').addEventListener("click", saveProduct);
-fillForm();
-document.querySelector('#txtID').disabled = true;
-
-function fillForm(){
-
-  document.querySelector('#txtID').value = infoSponsor[0];
-  document.querySelector('#txtName').value = infoSponsor[1];
-  document.querySelector('#txtBusinessName').value = infoSponsor[2];
-
-  if (infoSponsor[3]) {
-    document.querySelector('#hab').checked = true;
-    enableFields();
-  } else {
-    disableFields();
-  }
-}
-
-function disableFields() {
-  document.querySelector('#deshab').checked = true;
+document.addEventListener('DOMContentLoaded', function (){
+  var prodsCount = 1;
+  $util('#saveBttn').on('click', validateEditForm);
+  fillForm();
   document.querySelector('#txtID').disabled = true;
-  document.querySelector('#txtName').disabled = true;
-  document.querySelector('#txtBusinessName').disabled = true;
-  document.querySelector('#txtProductName').disabled = true;
-  document.querySelector('#productLogo').disabled = true;
-  document.querySelector('#sponsorLogo').disabled = true;
-  document.querySelector('#addProdBttn').hide();
-  document.getElementsByName('productError').hide();
-  document.getElementsByName('registeredProd').hide();
-}
+  $util('#sponsorLogo').addEventListener("change", function(){uploadImage("sponsorLogo","imgSponsor")});
 
-function enableFields() {
-  document.querySelector('#hab').checked = true;
-  document.querySelector('#txtName').disabled = false;
-  document.querySelector('#txtBusinessName').disabled = false;
-  document.querySelector('#txtProductName').disabled = false;
-  document.querySelector('#sponsorLogo').disabled = false;
-  document.querySelector('#productLogo').disabled = false;
-  document.querySelector('#addProdBttn').show();
-}
+  function fillForm(){
+    var infoSponsor = JSON.parse(localStorage.getItem('infoSponsorLS'));
 
-function validateForm(e) {
-  e.preventDefault();
-  var $alertBox = $util('.js-login-msg');
-  var validForm;
-  var id = document.querySelector('#txtID').value;
+    document.querySelector('#txtID').value = infoSponsor.id;
+    document.querySelector('#txtName').value = infoSponsor.name;
+    document.querySelector('#txtBusinessName').value = infoSponsor.businessName;
 
-  if (!validate.emptyFields()) {
-    validForm = validate.fieldsValue('edit-sponsor');
+    if (infoSponsor.status == false) {
+      disableFields();
+    } else {
+      enableFields();
+    }
+  }
 
-    if (!validForm[1].length) {
-      getInfo();
+  function disableFields() {
+    document.querySelector('#deshab').checked = true;
+    var inputs = document.getElementsByTagName('input');
 
-      if ($alertBox) {
-        $alertBox.removeClass('alert-failure').addClass('alert-success').html(msg.key.saveSuccess);
-      } else {
-        $util('.js-form').insertAdjacentHTML('afterbegin',
-        '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].disabled = true;
+    }
+
+    $util("#deshab").disabled = false;
+    $util("#hab").disabled = false;
+    scrollTo(0,0);
+  }
+
+  function enableFields() {
+    document.querySelector('#hab').checked = true;
+    document.querySelector('#txtName').disabled = false;
+    document.querySelector('#txtBusinessName').disabled = false;
+    document.querySelector('#sponsorLogo').disabled = false;
+  }
+
+  function validateEditForm(e) {
+    e.preventDefault();
+    var $alertBox = $util('.js-login-msg');
+    var validForm;
+    var formInputs = document.querySelectorAll('#edit-sponsor .js-form-field:required');
+    var removeBttns = $util(".add-product").getElementsByClassName('remove-input');
+
+    if (!validate.emptyFields(formInputs)) {
+      validForm = validate.fieldsValue('edit-sponsor');
+      if (!validForm[1].length) {
+        saveData();
+
+        if ($alertBox) {
+          $alertBox.removeClass('alert-failure').addClass('alert-success').html(msg.key.saveSuccess);
+          disableFields()
+
+          for (var i = 0; i < removeBttns.length; i++) {
+            removeBttns[i].hide();
+          }
+
+          $util(".moveAddBttn").hide();
+          $util("#deshab").disabled = true;
+          $util("#hab").disabled = true;
+          $util('#saveBttn').disabled = true;
+        } else {
+          $util('.js-form').insertAdjacentHTML('afterbegin',
+          '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+          disableFields()
+
+          for (var i = 0; i < removeBttns.length; i++) {
+            removeBttns[i].hide();
+          }
+
+          $util(".moveAddBttn").hide();
+          $util("#deshab").disabled = true;
+          $util("#hab").disabled = true;
+          $util('#saveBttn').disabled = true;
+        }
       }
     }
   }
-}
 
-function getInfo(){
-  var info = [];
-  var id = document.querySelector('#txtID').value;
-  var name = document.querySelector('#txtName').value;
-  var businessName = document.querySelector('#txtBusinessName').value;
-  var optionStatus = document.getElementsByName('status');
-  var productName = document.querySelector('#txtProductName').value;
-  var statusRadioButton = false;
-  var status = false;
+  function saveData() {
+    var sponsorList = getSponsorList();
+    var prodInfo = [];
+    var prods = [];
+    var name = $util('#txtName').value;
+    var businessName = $util('#txtBusinessName').value;
+    var id = $util('#txtID').value;
+    var sponsorImg = $util('#sponsorLogo').files;
+    var prodsName = $util(".add-product").getElementsByClassName('prod-Name');
+    var prodsImg = $util(".add-product").getElementsByClassName('input-file');
+    var status = $util('#hab').checked;
 
-  for(i=0;i<optionStatus.length;i++){
-    if (optionStatus[i].checked){
-      statusRadioButton = optionStatus[i].value;
+    if (status) {
+      document.querySelector('#hab').checked = true;
+    } else {
+      document.querySelector('#deshab').checked = true;
     }
-  }
 
-  if (statusRadioButton == "Habilitado") {
-    document.querySelector('#hab').checked = true;
-    status = true;
-    enableFields();
-  } else {
-    document.querySelector('#deshab').checked = true;
-    status = false;
-    disableFields();
-  }
+    for (var i = 0; i < sponsorList.length; i++) {
+      if(sponsorList[i].id == id){
+        sponsorList[i].id = id;
+        sponsorList[i].name = name;
+        sponsorList[i].businessName = businessName;
+        sponsorList[i].status = status;
+        sponsorList[i].sponsorImg = sponsorImg;
 
-  if(srcDataLogoSponsor == ""){
-    srcDataLogoSponsor = infoSponsor[4];
-  }
+        if($util("#txtProductName1").value != "") {
+          for (var h = 0; h < $util(".add-product").getElementsByClassName('product-field').length; h++) {
 
-  if(productName != "") {
-    productsInfo.push(srcDataLogoProduct,productName);
-    info.push(id,name,businessName,status,srcDataLogoSponsor,productsInfo);
-    editSponsor(info);
+            var prodInfo = { prodName: prodsName.item(h).value,
+                             logo: prodsImg.item(h).files };
 
-    $util('.save-product').insertAdjacentHTML('afterbegin',
-    '<span class="note alert-success js-login-msg" name="registeredProd">' + msg.key.registeredProduct+ '</span>');
-    setTimeout(function(){ document.getElementsByName('registeredProd').hide(); }, 5000);
-  }else{
-    info.push(id,name,businessName,status,srcDataLogoSponsor);
-    editSponsor(info);
-  }
-}
+            prods.push(prodInfo);
+          }
 
-function uploadSponsorImage() {
-  fileSponsorSelected = document.getElementById("sponsorLogo").files;
-
-  if (fileSponsorSelected.length > 0) {
-    var fileToLoad = fileSponsorSelected[0];
-    var fileReader = new FileReader();
-
-    fileReader.onload = function(fileLoadedEvent) {
-      srcDataLogoSponsor = fileLoadedEvent.target.result; // <--- base64
-      var newImage = document.createElement('img');
-      newImage.src = srcDataLogoSponsor;
-      document.getElementById("imgSponsor").innerHTML = newImage.outerHTML;
+          for (var x = 0; x < prods.length; x++) {
+            sponsorList[i].sponsorProds.push(prods[x]);
+          }
+        }
+      }
     }
-    fileReader.readAsDataURL(fileToLoad);
-    filesSelected=null;
+
+    editSponsor(sponsorList);
   }
-}
 
-function uploadSProductImage() {
-  filesProductSelected = document.getElementById("productLogo").files;
+  $util(".moveAddBttn").addEventListener('click',function() {
+    prodsCount++;
+    $util("#txtProductName1").required = true;
+    $util("#txtProductName1").classList.add('js-form-field');
+    $util(".add-product").insertAdjacentHTML('beforeend',
+    '<div class=\"product-field\" id=\"divProduct'+ prodsCount +'\"/>');
 
-  if (filesProductSelected.length > 0) {
-    var fileToLoad = filesProductSelected[0];
-    var fileReader = new FileReader();
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<div class=\"field-wrapper\" id=\"divNameProduct'+ prodsCount +'\"/>');
 
-    fileReader.onload = function(fileLoadedEvent) {
-      srcDataLogoProduct = fileLoadedEvent.target.result; // <--- base64
-      var newImage = document.createElement('img');
-      newImage.src = srcDataLogoProduct;
-      document.getElementById("imgProducto").innerHTML = newImage.outerHTML;
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<label for=\"txtProductName' + prodsCount + '\">Nombre del producto <abbr title="Requerido">*</abbr></label>');
+
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<input type=\"text\" class=\"prod-Name js-form-field\" id=\"txtProductName' + prodsCount + '\" required/>');
+
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<div class=\"imgProdLogo\" id=\"imgProducto'+ prodsCount +'\"/>');
+
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<input type=\"file\" class=\"input-file\" id=\"productLogo'+ prodsCount +'\"/>');
+
+    $util("#divProduct"+ prodsCount).insertAdjacentHTML('beforeend',
+    '<div class=\"divRemoveBttn\"><img src=\"img/remove.png\" class=\"remove-input\" id=\"remmoveBttn'+ prodsCount +'\"/></div>');
+  });
+
+  $util('.add-product').addEventListener('change', function (e){
+    if(e.target.classList.contains("input-file")) {
+      var inputIdImgProduct = e.target.id;
+      var num = inputIdImgProduct.split("");
+      var divIdImgProduct = "imgProducto"+ num[11];
+      uploadImage(inputIdImgProduct,divIdImgProduct);
     }
-    fileReader.readAsDataURL(fileToLoad);
-  }
-}
+  });
 
-function saveProduct(e){
-  e.preventDefault();
-  document.getElementsByName('productError').hide();
-  document.getElementsByName('registeredProd').hide();
-  var nameProduct = $util('#txtProductName').value;
-  var id = $util('#txtID').value;
+  $util('.add-product').addEventListener('click', function (e){
+    if(2 == $util(".add-product").getElementsByClassName('product-field').length){
+      $util("#txtProductName1").required = false;
+      $util("#txtProductName1").classList.remove('error');
+    }
 
-  if(nameProduct != ""){
-    productsInfo.push(srcDataLogoProduct,nameProduct);
-    addProductSponsor(id,productsInfo);
-
-    $util('.save-product').insertAdjacentHTML('afterbegin',
-    '<span class="note alert-success js-login-msg" name="registeredProd">' + msg.key.registeredProduct+ '</span>');
-    setTimeout(function(){ document.getElementsByName('registeredProd').hide(); }, 5000);
-
-    $util('#txtProductName').value = "";
-  }else{
-    $util('.save-product').insertAdjacentHTML('afterbegin',
-    '<span class="note alert-failure js-login-msg" name="productError">' + msg.key.productError+ '</span>');
-  }
-}
+    if(e.target.classList.contains("remove-input")) {
+      $util("#"+e.target.id).parentNode.parentNode.remove();
+    }
+  });
+});

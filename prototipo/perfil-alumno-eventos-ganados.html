@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Makgi - Perfil Usuario</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" role="">
+    <div class="group">
+      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
+      <nav class="main-nav" role="">
+        <ul class="menu">
+          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
+          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
+          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
+          <li class="main-nav__item"><a href="">Reportes</a></li>
+          <!-- <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li> -->
+          <li class="main-nav__item main-nav__item--profile"><a href="perfil-alumno.html"><span class="profile-name"></span>Mar&iacute;a Martinez</a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="wrapper">
+    <div class="main-content">
+      <div class="section-intro">
+        <h2>Perfil de Usuario</h2>
+        <p class="section-intro__leading">Administre sus datos personales y contraseña.</p>
+      </div>
+
+      <div class="profile-wrap">
+        <div class="profile-actions">
+          <ul class="menu menu-actions">
+            <li><a href="#" class="is-active">Perfil personal</a></li>
+            <li><a href="perfil-alumno-editar.html">Editar Perfil</a></li>
+            <li><a href="#">Cambiar contraseña</a></li>
+          </ul>
+        </div>
+
+        <div class="profile-info">
+          <!-- <h2 class="js-profile-display-name profile-info__name"></h2> -->
+          <h2 class="profile-info__name">Mar&iacute;a Martinez</h2>
+          
+          <h3>Datos:</h3>
+          <ul>
+            <li><strong>Academia:</strong> Academia Santo Domingo</li>
+            <li><strong>Prof. gu&iacute;a:</strong> Guillermo DelToro</li>
+            <li><strong>Grado:</strong> Rojo</li>
+            <li><strong>Edad:</strong> 17</li>
+            <li><strong>Peso:</strong> 55kg</li>
+            <li><strong>Altura:</strong> 168cm</li>
+            <li><strong>Correo electr&oacute;nico:</strong> mmartinez@mailme.com</li>
+          </ul>
+          <div class="activity">
+          <h3 class="activity__h">Actividad Reciente</h3>
+          <div class="actions-tabs">
+            <ul class="actions-tabs__options">
+              <li class="nav-tab"><a class="nav-tab-link" href="perfil-alumno.html">Eventos</a></li>
+              <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos ganados</a></li>
+            </ul>
+          </div>
+          <table id="">
+            <thead>
+              <tr>
+                <th>Nombre</th>            
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Puntaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">CRF 2017</a></td>
+                <td>10-5-2017</td>
+                <td>Polideportivo Monserrat, Alajuela</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td><a href="#">Torneo TDK Tibas</a></td>
+                <td>10-06-2017</td>
+                <td>Instalaciones Deportivas UCR</td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
+<!--           <div class="no-data">
+            <h3>No hay actividad reciente.</h3>
+          </div> -->
+          </div>
+        </div>
+      </div>
+      
+    </div>    
+  </main>
+  
+  <footer class="site-footer">
+    <div class="group">
+      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
+      <ul class="menu nav-footer">
+        <li><a href="">Ayuda</a></li>
+        <li><a href="">tkdcr.org</a></li>
+      </ul>
+    </div>
+  </footer>
+<!--   <script src="js/helpers/util.js"></script>
+  <script src="js/helpers/misc.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/modules/events.js"></script>
+  <script src="js/pages/events/index.js"></script>
+  <script src="js/pages/profile/index.js"></script>
+  <script src="js/pages/main.js"></script> -->
+</body>
+</html>

@@ -1,116 +1,77 @@
-$util('#save').on('click',validateChanges);
+$util('#btn-save').on('click', validateChanges);
 
 loadAssistData();
 
 function validateChanges(e) {
+  var $alertBox = $util('.js-login-msg');
+  e.preventDefault();
+  var formInputs = document.querySelectorAll('#edit-assist-form .js-form-field:required');
 
-	e.preventDefault();
+  if (!validate.emptyFields(formInputs)) {
+    var validForm = validate.fieldsValue('edit-assist-form');
 
- if(!validate.emptyFields()) {
-  var validForm = validate.fieldsValue('editAssist-form');
+    if (!validForm[1].length) {
+      getUpdateData();
 
-  if (!validForm[1].length) {
-		getUpdateData();
+      if ($alertBox) {
+        $alertBox.removeClass('alert-failure')
+          .addClass('alert-success')
+          .html(msg.key.saveSuccess);
+      } else {
+        $util('.js-form').insertAdjacentHTML('afterbegin',
+        '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+      }
+    } else {
+      if ($alertBox) {
+        $alertBox
+          .removeClass('alert-success')
+          .addClass('alert-failure')
+          .html('Este código ya existe, no se realizó el registro');
+      } else {
+        $util('.js-form').insertAdjacentHTML('afterbegin',
+        '<span class="note alert alert-failure js-login-msg">Ya hay un usuario registrado con la identificación indicada; no se realizó el registro</span>');
+      }
+    }
   }
- }
 
- window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
 function loadAssistData() {
-
+  var formInputs = document.querySelectorAll('#edit-assist-form .js-form-field');
 	var assistId = localStorage.getItem('assistCode');
-	//agarra el codigo que se guardo
 	var assistInfo = findById(assistId);
 
+  document.querySelector('#id').value = assistInfo.id;
+  document.querySelector('#name').value = assistInfo.name;
+  document.querySelector('#secName').value = assistInfo.name2;
+  document.querySelector('#lastName').value = assistInfo.lastname;
+  document.querySelector('#secLastName').value = assistInfo.lastname2;
+  document.querySelector('#email').value = assistInfo.email;
 
-  document.querySelector('#id').value = assistInfo[0];
-	document.querySelector('#id').disabled = true;
-  document.querySelector('#name').value = assistInfo[1];
-  document.querySelector('#secName').value =  assistInfo[2];
-  document.querySelector('#lastName').value = assistInfo[3];
-  document.querySelector('#secLastName').value = assistInfo[4];
-  document.querySelector('#bday').value = assistInfo[5];
-  document.querySelector('#email').value = assistInfo[6];
-  document.querySelector('#phone').value = assistInfo[7];
-  document.querySelector('#gender').value = assistInfo[8];
-  document.querySelector('#age').value = assistInfo[9];
-
+  if (assistInfo.status == true) {
+    misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#able').checked = true;
+    document.querySelector('#id').disabled = true;
+  } else {
+    misc.disableFieldsOnEdit(formInputs);
+  }
 }
-
 
 function getUpdateData() {
+  var formInputs = document.querySelectorAll('#edit-assist-form .js-form-field');
+  var userInfo = misc.buildDataObject(formInputs);
+  var status = document.querySelector('#able').checked;
 
-var id='';
-var firstName ='';
-var secName ='';
-var lastName='';
-var secLastName='';
-var bday= '';
-var email='';
-var phone='';
-var gender='';
-var age='';
+  userInfo.status = status;
 
-var status='';
-
-var assistInfo = [];
-
-	id = document.querySelector('#id').value;
-	firstName = document.querySelector('#name').value;
-	secName  = document.querySelector('#sec-name').value;
-  lastName  = document.querySelector('#last-name').value;
-  secLastName  = document.querySelector('#sec-last-name').value;
-	bday = document.querySelector('#bday').value;
-  email  = document.querySelector('#email').value;
-  phone = document.querySelector('#phone').value;
-  gender = document.querySelector('#gender').value;
-	age = document.querySelector('#age').value;
-	status = document.querySelector('#able').checked;
-
-	assistInfo.push(id, firstName, secName, lastName,secLastName,bday,email, phone, gender,age, status);
-	updateAsistInfo(assistInfo); //esta en la principal
-	//loadNewData(id);
-
-	if (status){
-	enableFields();
-	}else {
-		disableFields();
+	if (status) {
+    misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#able').checked = true;
+    document.querySelector('#id').disabled = true;
+	} else {
+    misc.disableFieldsOnEdit(formInputs);
 	}
 
-}
-
-function disableFields() {
-	//document.querySelector('#disable').checked = true;
-  document.querySelector('#id').disabled = true;
-  document.querySelector('#name').disabled = true;
-  document.querySelector('#sec-name').disabled = true;
-  document.querySelector('#last-name').disabled = true;
-  document.querySelector('#sec-last-name').disabled = true;
-  document.querySelector('#bday').disabled = true;
-  document.querySelector('#email').disabled = true;
-  document.querySelector('#phone').disabled = true;
-  document.querySelector('#gender').disabled = true;
-	document.querySelector('#age').disabled = true;
-
-
-
-}
-
-function enableFields() {
-	//document.querySelector('#disable').checked = true;
-
-  document.querySelector('#name').disabled = false;
-  document.querySelector('#sec-name').disabled = false;
-  document.querySelector('#last-name').disabled = false;
-  document.querySelector('#sec-last-name').disabled = false;
-  document.querySelector('#bday').disabled = false;
-  document.querySelector('#email').disabled = false;
-  document.querySelector('#weight').disabled = false;
-  document.querySelector('#height').disabled =false;
-	document.querySelector('#age').disabled = false;
-  document.querySelector('#part-tournament').disabled = false;
-  document.querySelector('#win-tournament').disabled = false;
-
-
+  updateAsistInfo(userInfo);
 }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Magki - Registro de pesajes</title>
+    <link rel="shortcut icon" href="img/kar.png" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sponsor.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+  </head>
+  <body>
+     <header class="site-header" role="">
+      <div class="group">
+        <h1 class="logo"><a href="perfil-admin.html">Magki</a></h1>
+        <nav class="main-nav" role="">
+          <ul class="menu">
+            <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
+            <li class="main-nav__item"><a href="academias.html">Academias</a></li>
+            <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
+            <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
+            <li class="main-nav__item"><a href="eventos.html"  class="is-active">Eventos</a></li>
+            <li class="main-nav__item"><a href="">Reportes</a></li>
+            <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="wrapper">
+      <div class="main-content">
+        <div class="section-intro">
+          <h2>Registro de pesajes</h2>
+        </div>
+
+        <span class="msgg"></span>
+
+        <div class="actions-tabs">
+          <ul class="actions-tabs__options">
+            <li class="nav-tab"></li>
+          </ul>
+        </div>
+
+        <div class="field-group">
+
+          <div class="field-wrapper">
+            <select id="yearsCategories">
+              <option value="ed" class="tournament-categories">Categorías disponibles</option>
+              <option class="tournament-categories"></option>
+            </select>
+          </div>
+
+          <div class="field-wrapper">
+            <select id="weightCategories">
+              <option value="peso" class="tournament-categories">Categorías de peso</option>
+              <option value="Pluma" class="tournament-categories">Il-Yang (Pluma) menos de 51kg</option>
+              <option value="Gallo" class="tournament-categories">I-Yang (Gallo) 52 - 59kg</option>
+              <option value="Supergallo" class="tournament-categories">O-Yang (Supergallo) 60 - 65kg</option>
+              <option value="Wélter" class="tournament-categories">Sam-yang (Wélter) 66 - 74kg</option>
+              <option value="Pesado" class="tournament-categories">Siu-yang (Pesado) más de 74kg</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="saveBttn">Guardar</button>
+          <button id="searchBttn" class="button-secondary">Buscar</button>
+          <button id="editBttn" class="button-secondary">Editar</button>
+        </div>
+        <br>
+
+        <table id="tblFightersWeight">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Cinta</th>
+              <th>Peso actual</th>
+              <th>Ingresar peso <abbr title="Requerido">*</abbr></th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="no-data">
+          <h3 class="no-data-title">Escoja la categoría que desea</h3>
+        </div>
+
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="group">
+        <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
+        <ul class="menu nav-footer">
+          <li><a href="">Eventos</a></li>
+          <li><a href="">Ayuda</a></li>
+          <li><a href="">tkdcr.org</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="js/helpers/util.js"></script>
+    <script src="js/database/storage.js"></script>
+    <script src="js/database/orm.js"></script>
+    <script src="js/helpers/validate.js"></script>
+    <script src="js/helpers/messages.js"></script>
+    <script src="js/pages/events/fightersWeight.js"></script>
+    <script src="js/pages/main.js"></script>
+  </body>
+</html>

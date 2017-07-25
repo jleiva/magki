@@ -1,8 +1,35 @@
-$util('#btn-save').on('click',validateChanges);
+$util('#btn-save').on('click',saveData);
 
-fillAcademy();
+/*fillAcademy();
 fillTeacher();
-fillHeader();
+fillHeader();*/
+loadData();
+
+function loadData() {
+  var fighterId = JSON.parse(localStorage.getItem('fighterID'));
+  var alumList = getStudentsList();
+
+  var alumInfo = alumList.find(function(alum) {
+    return alum.identification == fighterId;
+  });
+
+  document.querySelector('#academy').disabled = true;
+  document.querySelector('#teacher').disabled = true;
+  document.querySelector('#academy').value = alumInfo.academy;
+  document.querySelector('#teacher').value = alumInfo.professor;
+}
+
+function saveData() {
+   var a = document.querySelector('#academy').value;
+   var b = document.querySelector('#teacher').value;
+   var c = document.querySelector('#category').value;
+   var d = document.querySelector('#weight').value;
+
+   var data = [];
+
+   data.push(a, b, d, c );
+   localStorage.setItem('fightersList', JSON.stringify(data));
+}
 
 function fillHeader() {
   var appLS = storage.get('appLS') || {};
@@ -20,46 +47,46 @@ function fillHeader() {
 }
 
 function fillAcademy() {
-	var academyRelated = localStorage.getItem('academyRelated');
-	var infoAcademy = obtenerListaRegistros();
-	var academy = document.querySelector('#academy');
+  var academyRelated = localStorage.getItem('academyRelated');
+  var infoAcademy = obtenerListaRegistros();
+  var academy = document.querySelector('#academy');
 
-	for(var i = 0; i < infoAcademy.length; i++) {
-		if(infoAcademy[i]['nombreAcademia'] == academyRelated) {
-			
-			academy.value = infoAcademy[i]['nombreAcademia'];
-			academy.disabled = true; 
-		}
-	}
+  for(var i = 0; i < infoAcademy.length; i++) {
+    if(infoAcademy[i]['nombreAcademia'] == academyRelated) {
+      
+      academy.value = infoAcademy[i]['nombreAcademia'];
+      academy.disabled = true; 
+    }
+  }
 }
 
 function fillTeacher() {
-	var alumnTeacher = document.querySelector('#teacher');
-	var studentList = getStudentsList();
-	var studentID = JSON.parse(localStorage.getItem('fighterID'));
+  var alumnTeacher = document.querySelector('#teacher');
+  var studentList = getStudentsList();
+  var studentID = JSON.parse(localStorage.getItem('fighterID'));
 
-	for(var i = 0; i < studentList.length; i++) {
-		if(studentList[i][0] == studentID) {
-			alumnTeacher.value = studentList[i][15]; 
-			alumnTeacher.disabled = true;
-		}
-	}
+  for(var i = 0; i < studentList.length; i++) {
+    if(studentList[i][0] == studentID) {
+      alumnTeacher.value = studentList[i][15]; 
+      alumnTeacher.disabled = true;
+    }
+  }
 }
 
 function validateChanges(e) {
-	var $alertBox = $util('.js-login-msg');
+  var $alertBox = $util('.js-login-msg');
 
-	e.preventDefault();
+  e.preventDefault();
   var formInputs = document.querySelectorAll('#inscription-form .js-event-field:required');
 
-	if(!validate.emptyFields(formInputs)) {
-		 var validForm = validate.fieldsValue('inscription-form');
+  if(!validate.emptyFields(formInputs)) {
+     var validForm = validate.fieldsValue('inscription-form');
 
-		if(!validForm[1].length) {
-			registerFighter();
-			window.scrollTo(0, 0);
-		
-    		if ($alertBox) { 
+    if(!validForm[1].length) {
+      registerFighter();
+      window.scrollTo(0, 0);
+    
+        if ($alertBox) { 
       $alertBox.removeClass('alert-failure')
         .addClass('alert-success')
         .html(msg.key.saveSuccess);
@@ -68,35 +95,35 @@ function validateChanges(e) {
       '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
 
-  	} else {
-    	if ($alertBox) { 
-      	$alertBox
+    } else {
+      if ($alertBox) { 
+        $alertBox
         .removeClass('alert-success')
         .addClass('alert-failure')
         .html('Este código ya existe, no se realizó el registro');
-   	  } else {
-      	$util('.js-form').insertAdjacentHTML('afterbegin', 
+      } else {
+        $util('.js-form').insertAdjacentHTML('afterbegin', 
         '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
-   	  }
-		}
-	}
+      }
+    }
+  }
 }
 
 function registerFighter() {
-	var academy = '';
-	var weight = '';
-	var teacher = '';
-	var category;
-	var fighterInformation = [];
+  var academy = '';
+  var weight = '';
+  var teacher = '';
+  var category;
+  var fighterInformation = [];
 
-	academy = document.querySelector('#academy').value;
-	weight = document.querySelector('#weight').value;
-	teacher  = document.querySelector('#teacher').value;
-	category = document.querySelector('#category');
-	var selectedCategory = category.options[category.selectedIndex].text;
+  academy = document.querySelector('#academy').value;
+  weight = document.querySelector('#weight').value;
+  teacher  = document.querySelector('#teacher').value;
+  category = document.querySelector('#category');
+  var selectedCategory = category.options[category.selectedIndex].text;
 
-	fighterInformation.push(academy, weight, teacher, selectedCategory);
-	localStorage.setItem('fighterInfo', JSON.stringify(fighterInformation));
+  fighterInformation.push(academy, weight, teacher, selectedCategory);
+  localStorage.setItem('fighterInfo', JSON.stringify(fighterInformation));
 }
 
 

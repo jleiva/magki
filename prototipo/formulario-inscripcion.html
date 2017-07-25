@@ -9,7 +9,7 @@
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="#">Magki</a></h1>
+      <h1 class="logo"><a href="perfil-admin.html">Magki</a></h1>
       <nav class="main-nav" role="">
         <ul class="menu">
           <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
@@ -36,29 +36,36 @@
 
       <p><strong>Recuerde:</strong>
 
-El competidor debe asistir al pesaje oficial en la fecha indicada; de no presentarse, o en caso de que el peso no corresponda a la CategorÍa seleccionada, quedará descalificado.</p>
+        El competidor debe asistir al pesaje oficial en la fecha indicada; de no presentarse, o en caso de que el peso no corresponda a la categorÍa seleccionada, quedará descalificado.</p>
           <fieldset>
       
         <div class="field-wrapper">
           <label for="academy">Academia</label>
-          <input type="text" class="js-event-field" id="academy" name="">
-        </div>
-
-         <div class="field-wrapper">
-          <label for="weight">Peso <abbr title="Requerido">*</abbr></label>
-          <input type="text" class="js-event-field" id="weight" name="" required>
+          <input type="text" class="js-form-field" id="academy" name="">
         </div>
 
         <div class="field-wrapper">
           <label for="teacher">Profesor Guía</label>
-          <input type="text" class="js-event-field" id="teacher" name="">
+          <input type="text" class="js-form-field" id="teacher" name="">
+        </div>
+
+        <div class="field-wrapper">
+          <label for="category">Categoría <abbr title="Requerido">*</abbr></label>
+          <select class="js-form-field" id="category" required>
+            <option value="">Seleccione una opción</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Cadete">Cadete</option>
+  
+            <option value="Elite">Elite</option>
+            <option value="Senior">Senior</option>
+          </select>
         </div>
 
 
 
-        <div class="field-wrapper">
+        <!--<div class="field-wrapper">
           <label for="category">Categoría <abbr title="Requerido">*</abbr></label>
-          <select class="js-event-field" id="category" required>
+          <select class="js-form-field" id="category" required>
             <option value="">Seleccione una opción</option>
             <option value="Masculino Infantil il-Yang (pluma) -51kg">Masculino Infantil il-Yang (pluma) -51kg</option>
             <option value="Masculino Infantil i-Yang (Gallo) 52 - 59kg">Masculino Infantil i-Yang (Gallo) 52 - 59kg</option>
@@ -82,7 +89,7 @@ El competidor debe asistir al pesaje oficial en la fecha indicada; de no present
             <option value="Masculino Senior sam-yang (Wélter) 66 - 74kg">Masculino Senior sam-yang (Wélter) 66 - 74kg</option>
             <option value="Masculino Senior siu-yang (Pesado) +74kg">Masculino Senior siu-yang (Pesado) +74kg </option>
           </select>
-        </div>
+        </div>-->
 
         </fieldset>
         <button id="btn-save" value="Guardar">Guardar</button>
@@ -96,7 +103,6 @@ El competidor debe asistir al pesaje oficial en la fecha indicada; de no present
     <div class="group">
       <a href="#" class="footer-tagline">Magki <span>Gestor de eventos</span></a>
       <ul class="menu nav-footer">
-        <li><a href="">Eventos</a></li>
         <li><a href="">Ayuda</a></li>
         <li><a href="">tkdcr.org</a></li>
       </ul>

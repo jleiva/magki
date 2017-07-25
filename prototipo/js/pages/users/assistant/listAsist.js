@@ -1,52 +1,51 @@
 fillTable();
 
 function fillTable() {
-	var assistantList = getAsistList();
-	var $error = document.querySelector('.no-data');
+  var assistantList = getAsistList();
 
-	if(assistantList.length) {
+  if (assistantList.length) {
+    document.querySelector('.no-data').style.display = 'none';
+    buildTable(assistantList);
+  }
+}
 
-		$error.hide();
+function buildTable(assistantList) {
+  var tbody = document.querySelector('#tblAssist tbody');
+  tbody.innerHTML = '';
 
-		var tbody = document.querySelector('#tblAssist tbody');
+  for(var i=0; i<assistantList.length; i++) {
+    var row = tbody.insertRow(i);
+    var idColumn = row.insertCell();
+    var nameColumn = row.insertCell();
+    var emailColumn = row.insertCell();
+    var statuslColumn = row.insertCell();
+    var editColumn = row.insertCell();
 
-		tbody.innerHTML = '';
+    idColumn.innerHTML = assistantList[i].id;
+    nameColumn.innerHTML = assistantList[i].name +" "+ assistantList[i].lastname;
+    emailColumn.innerHTML = assistantList[i].email;
 
-		for(var i=0; i<assistantList.length; i++) {
-			var row = tbody.insertRow(i);
+    if(assistantList[i].status){
+      statuslColumn.innerHTML = 'Habilitado';
+    }else{
+      statuslColumn.innerHTML = 'Deshabilitado';
+    }
 
-			//if(organizationsList[i][4]){
-			var idColumn = row.insertCell();
-			var nameColumn = row.insertCell();
-			var lastNameColumn = row.insertCell();
-			var ageColumn = row.insertCell();
-			var editColumn = row.insertCell();
+    var editLink = document.createElement('a');
+    var linkName = document.createTextNode('Editar');
+    editLink.appendChild(linkName);
+    editLink.href = 'editar-asistente.html';
+    editLink.className = 'btn-action-event js-edit-event';
+    editLink.name = assistantList[i].id;
+    editColumn.appendChild(editLink);
+  }
 
-			idColumn.innerHTML = assistantList[i][0];
-			nameColumn.innerHTML = assistantList[i][1];
-			lastNameColumn.innerHTML = assistantList[i][3];
-			ageColumn.innerHTML=assistantList[i][9];
-
-			var editLink = document.createElement('a');
-			var linkName = document.createTextNode("Editar");
-			editLink.appendChild(linkName);
-			editLink.href = "editar-asistente.html";
-			editLink.className = 'btn-action-event js-edit-event';
-			editLink.name = assistantList[i][0];
-
-			editColumn.appendChild(editLink);
-			//}
-		}
-
-		var btnEdit = document.querySelectorAll('.js-edit-event');
-		btnEdit.forEach(function(btn) {
-			btn.addEventListener('click', function(e) {
-				var currentItem = e.currentTarget;
-				var assitId = currentItem.getAttribute('name');
-				localStorage.setItem('assistCode', assitId);
-			})
-		});
-	} else {
-		$error.show();
-	}
+  var btnEdit = document.querySelectorAll('.js-edit-event');
+  btnEdit.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      var currentItem = e.currentTarget;
+      var assistId = currentItem.getAttribute('name');
+      localStorage.setItem('assistCode', assistId);
+    })
+  });
 }

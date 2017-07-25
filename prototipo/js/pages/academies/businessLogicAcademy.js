@@ -1,8 +1,6 @@
-//var listaRegistros=[];
-function registrar(pAcademia) {
+function registrar(pAcademia){
   var listaRegistros = obtenerListaRegistros();
   listaRegistros.push(pAcademia);
-  document.querySelector('#save').disabled = true;
   localStorage.setItem('listaAcademiasLS', JSON.stringify(listaRegistros));
 }
 
@@ -16,10 +14,9 @@ function obtenerListaRegistros() {
   return listaRegistros;
 }
 
-//MAD
 function findByEmail(email) {
   var academyList = obtenerListaRegistros();
-  var academyInfo = []; // AREGLO NO INCIALIZADO
+  var academyInfo = [];
 
   for (var i=0; i < academyList.length; i ++) {
     if (academyList[i]['emailAcademia'] == email) {

@@ -126,7 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
       var sDate = document.querySelector('#dateStart');
       var eDate = document.querySelector('#dateEnd');
 
-      validate.validateDateRange(sDate, eDate);
+      var initTimer = setTimeout(function() {
+        validate.validateDateRange(sDate, eDate);
+        clearTimeout(initTimer);
+      }, 2000);
     });
 
     // document.querySelector('#priceTicket').addEventListener('change', function(e) {

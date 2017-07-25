@@ -118,10 +118,6 @@ label {
   }
 }
 
-.field-actions {
-
-}
-
 legend {
   font-family: $font-family-contrast;
   font-weight: 600;
@@ -138,9 +134,9 @@ legend {
     width: 48%;
   }
   .field-wrapper:last-child {
-  margin-right: 0;
-  float: right;
-}
+    margin-right: 0;
+    float: right;
+  }
 }
 
 .form__wrap {

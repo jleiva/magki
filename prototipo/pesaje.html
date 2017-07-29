@@ -39,34 +39,15 @@
           </ul>
         </div>
 
-        <div class="field-group">
-
-          <div class="field-wrapper">
-            <select id="yearsCategories">
-              <option value="ed" class="tournament-categories">Categorías disponibles</option>
-              <option class="tournament-categories"></option>
-            </select>
-          </div>
-
-          <div class="field-wrapper">
-            <select id="weightCategories">
-              <option value="peso" class="tournament-categories">Categorías de peso</option>
-              <option value="Pluma" class="tournament-categories">Il-Yang (Pluma) menos de 51kg</option>
-              <option value="Gallo" class="tournament-categories">I-Yang (Gallo) 52 - 59kg</option>
-              <option value="Supergallo" class="tournament-categories">O-Yang (Supergallo) 60 - 65kg</option>
-              <option value="Wélter" class="tournament-categories">Sam-yang (Wélter) 66 - 74kg</option>
-              <option value="Pesado" class="tournament-categories">Siu-yang (Pesado) más de 74kg</option>
-            </select>
-          </div>
+        <div class="field-wrapper half-Field">
+          <label for="categories">Elija una categoría:</label>
+          <select id="categories">
+            <option value="ed" class="tournament-categories">Categorías disponibles</option>
+            <option class="tournament-categories"></option>
+          </select>
         </div>
 
-        <div class="buttons">
-          <button id="saveBttn">Guardar</button>
-          <button id="searchBttn" class="button-secondary">Buscar</button>
-          <button id="editBttn" class="button-secondary">Editar</button>
-        </div>
         <br>
-
         <table id="tblFightersWeight">
           <thead>
             <tr>
@@ -86,6 +67,8 @@
           <h3 class="no-data-title">Escoja la categoría que desea</h3>
         </div>
 
+        <br>
+        <button id="btn-save" class="right-button">Guardar</button>
       </div>
     </main>
     <footer class="site-footer">
@@ -102,6 +85,7 @@
     <script src="js/database/storage.js"></script>
     <script src="js/database/orm.js"></script>
     <script src="js/helpers/validate.js"></script>
+    <script src="js/helpers/misc.js"></script>
     <script src="js/helpers/messages.js"></script>
     <script src="js/pages/events/fightersWeight.js"></script>
     <script src="js/pages/main.js"></script>

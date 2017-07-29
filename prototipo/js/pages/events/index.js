@@ -28,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function bindEventsPageUI() {
     document.querySelector('#dateEnd').addEventListener('change', getValidDatesRange);
-
     document.querySelector('#dateStart').addEventListener('change', getValidStartDate);
-
     document.querySelector('#btn-save').addEventListener('click',function(e) {
       e.preventDefault();
       events.saveEventData(e);

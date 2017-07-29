@@ -324,22 +324,22 @@ var events = (function(window) {
       anchorRegister.href = 'inscribir-competidores.html';
 
       var anchorResults = document.createElement('a');
-      var linkText = document.createTextNode('Registrar Resultados');
+      var linkText = document.createTextNode('Registrar resultados');
       anchorResults.appendChild(linkText);
       anchorResults.className = 'btn-action-event';
       anchorResults.dataset.index = index;
       anchorResults.href = 'registrar-resultados.html';
 
-      var anchorDescalificar = document.createElement('a');
-      var linkText = document.createTextNode('Descalificar atleta');
-      anchorDescalificar.appendChild(linkText);
-      anchorDescalificar.className = 'btn-action-event';
-      anchorDescalificar.dataset.index = index;
-      anchorDescalificar.href = 'descalificar-competidor.html';
+      var anchorPesaje = document.createElement('a');
+      var linkText = document.createTextNode('Registrar pesaje');
+      anchorPesaje.appendChild(linkText);
+      anchorPesaje.className = 'btn-action-event';
+      anchorPesaje.dataset.index = index;
+      anchorPesaje.href = 'pesaje.html';
       
       eventActions.appendChild(anchorEdit);
       eventActions.appendChild(anchorRegister);
-      eventActions.appendChild(anchorDescalificar);
+      eventActions.appendChild(anchorPesaje);
       eventActions.appendChild(anchorResults);
 
       tr.appendChild(eventName);

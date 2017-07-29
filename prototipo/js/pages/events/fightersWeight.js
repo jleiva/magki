@@ -1,35 +1,37 @@
 /////////////////////////////////////////////////////////
 //no se necesita con la base
-fillAvailableCategories()
+fillAvailableCategories();
 datoQuemados();
+var fighters = JSON.parse(localStorage.getItem('fighterInfo'));
 /////////////////////////////////////////////////////////
 
 
-var fighters = JSON.parse(localStorage.getItem('fighterInfo'));
+
 var tbody;
 var filterfighters;
-$util('#searchBttn').addEventListener('click', fillTable);
-$util('#saveBttn').addEventListener('click', validateInputs);
-$util('#editBttn').addEventListener('click', enableFields);
-$util('#editBttn').hide();
+$util('#categories').addEventListener('change', fillTable);
+$util('#btn-save').addEventListener('click', validateInputs);
 
 
 ///////////////////////////////////////////////////////
 //no se necesita con la base
 function fillAvailableCategories(){
+
 	var categorias = [];
 
-	categorias.push('Femenino Infantil/Junior');
-	categorias.push('Femenino Elite');
-	categorias.push('Masculino Elite');
-	categorias.push('Masculino Senior');
+	categorias.push('femCSup');
+	categorias.push('femEG');
+	categorias.push('masEW');
+	categorias.push('masSPs');
 
 	for (var i = 0; i < categorias.length; i++) {
+
 		var option = document.createElement("option");
-		option.value = categorias[i];
+		option.value = msg.key[categorias[i]];
 		option.innerHTML = option.value;
 		option.classList.add('tournament-categories');
-		$util("#yearsCategories").appendChild(option);
+		$util("#categories").appendChild(option);
+
 	}
 }
 
@@ -39,7 +41,7 @@ function datoQuemados(){
 								 name: 'Roberto',
 								 firstName: 'Espinoza',
 								 lastName: 'Hernández',
-								 category: 'Masculino Elite',
+								 category: 'Masculino Elite Wélter',
 								 weightCategory: 'Wélter',
 								 ribbon:'Amarilla',
 								 actualWeight: 70,
@@ -52,7 +54,7 @@ function datoQuemados(){
 								 name: 'María',
 								 firstName: 'Brenes',
 								 lastName: 'Zamora',
-								 category: 'Femenino Infantil/Junior',
+								 category: 'Femenino Cadete Supergallo',
 								 weightCategory: 'Pluma',
 								 ribbon:'Blanca',
 								 actualWeight: 55,
@@ -65,7 +67,7 @@ function datoQuemados(){
 								 name: 'Catalina',
 								 firstName: 'Mora',
 								 lastName: 'Campos',
-								 category: 'Femenino Elite',
+								 category: 'Femenino Elite Gallo',
 								 weightCategory: 'Gallo',
 								 ribbon:'Amarilla',
 								 actualWeight: 50,
@@ -78,7 +80,7 @@ function datoQuemados(){
 								 name: 'Kenneth',
 								 firstName: 'Ramírez',
 								 lastName: 'Soto',
-								 category: 'Masculino Senior',
+								 category: 'Masculino Senior Pesado',
 								 weightCategory: 'Pesado',
 								 ribbon:'Negra',
 								 actualWeight: 75,
@@ -91,7 +93,7 @@ function datoQuemados(){
 								 name: 'Bryan',
 								 firstName: 'Astua',
 								 lastName: 'Bonilla',
-								 category: 'Masculino Elite',
+								 category: 'Masculino Elite Wélter',
 								 weightCategory: 'Wélter',
 								 ribbon:'Verde',
 								 actualWeight: 77,
@@ -102,16 +104,16 @@ function datoQuemados(){
 
 	localStorage.setItem('fighterInfo',JSON.stringify(lista));
 }
+///////////////////////////////////////////
 
-function filterList(){
+function filterList() {
+
 	var filter = [];
-	var weight =  $util('#weightCategories');
-	var weightValue = weight.options[weight.selectedIndex].value;
-	var years = $util('#yearsCategories');
-	var yearsValue = years.options[years.selectedIndex].value;
+	var categories =  $util('#categories');
+	var categoriesValue = categories.options[categories.selectedIndex].value;
 
 	for (var i = 0; i < fighters.length; i++) {
-		if(fighters[i].category == yearsValue && fighters[i].weightCategory == weightValue){
+		if(fighters[i].category == categoriesValue){
 			filter.push(fighters[i]);
 		}
 	}
@@ -119,16 +121,11 @@ function filterList(){
 	return filter;
 }
 
-///////////////////////////////////////////
-
 function fillTable() {
+
 	filterfighters = filterList();
 	tbody = document.querySelector('#tblFightersWeight tbody');
 	tbody.innerHTML = '';
-
-	$util('#saveBttn').disabled = false;
-	$util('#searchBttn').disabled = true;
-	$util('#editBttn').hide();
 
 	$util('.msgg').classList.remove('alert-info');
 	$util('.msgg').classList.remove('alert-success');
@@ -139,6 +136,7 @@ function fillTable() {
     $util('.no-data').hide();
 
 		for(var i = 0; i < filterfighters.length; i++) {
+
 			var row = tbody.insertRow(i);
 
       var idCol = row.insertCell();
@@ -155,6 +153,7 @@ function fillTable() {
       fightWeighInput.min = '1';
 			fightWeighInput.max = '1000';
       fightWeighInput.value = '0';
+			fightWeighInput.step = 0.001;
 
       idCol.innerHTML = filterfighters[i].id;
 			nameCol.innerHTML = filterfighters[i].name +' '+ filterfighters[i].firstName +' '+ filterfighters[i].lastName;
@@ -164,51 +163,70 @@ function fillTable() {
       fightWeighCol.appendChild(fightWeighInput);
       statusCol.innerHTML = "";
 		}
-  }else{
+
+  } else {
+
 		$util('.no-data-title').innerHTML = 'No hay resultados';
     $util('.no-data').show();
-		$util('#editBttn').hide();
-		$util('#searchBttn').disabled = false;
+
   }
 }
 
-function validateInputs(){
+function validateInputs() {
+
 	var inputs = document.getElementsByTagName('input');
 	var hasEmpty = false;
-	$util('#saveBttn').disabled = false;
 
 	for (var i = 0; i < inputs.length; i++) {
+
 		if(inputs[i].value == 0){
+
 			inputs[i].classList.add('error');
 			hasEmpty = true;
+
 		}else{
+
 			inputs[i].classList.remove('error');
+
 		}
 	}
 
-	if(document.getElementsByTagName('input').length != 0){
-		if(hasEmpty != true){
+	if(inputs.length != 0) {
+		if(hasEmpty == false) {
+
 			validateWeight(inputs);
-		}else{
+			$util('.msgg').classList.remove('alert-failure');
+			$util('.msgg').classList.add('note','alert-success','js-login-msg');
+			$util('.msgg').innerHTML = msg.key.saveSuccess;
+			disableFields();
+			window.scrollTo(0, 0);
+
+		} else {
+
 			$util('.msgg').classList.remove('alert-info');
-			$util('.msgg').classList.remove('alert-success');
 			$util('.msgg').classList.add('note','alert-failure','js-login-msg');
 			$util('.msgg').innerHTML = msg.key.fieldsRequired;
 			window.scrollTo(0, 0);
+
 		}
+
 	}else{
+
 		$util('.msgg').classList.add('note','alert-info','js-login-msg');
 		$util('.msgg').innerHTML = msg.key.warningCategory;
 		window.scrollTo(0, 0);
+
 	}
 }
 
 function validateWeight(pInputs) {
+
 	var status = "";
 
 	for (var i = 0; i < pInputs.length; i++) {
 
 	  switch(filterfighters[i].weightCategory) {
+
 		 	case 'Pluma':
 				if(pInputs[i].value < 52){
 					status = 'Califica';
@@ -255,57 +273,30 @@ function validateWeight(pInputs) {
 		}
 
 		if(status == 'Califica') {
+
 			$util("#tblFightersWeight").rows[i+1].cells[6].classList.remove('disqualified');
 			$util("#tblFightersWeight").rows[i+1].cells[6].classList.add('qualified');
-		}
 
-		if(status == 'Descalificado'){
+		}else{
+
 			$util("#tblFightersWeight").rows[i+1].cells[6].classList.remove('qualified');
 			$util("#tblFightersWeight").rows[i+1].cells[6].classList.add('disqualified');
+
 		}
 
 		$util("#tblFightersWeight").rows[i+1].cells[6].innerHTML = status;
+
+		//aqui se envían el id y el estado (descalificado o califica) para el guardado
+		//save(filterfighters[i].id,filterfighters[i].status);
  	}
-
-	if(pInputs.length != 0){
-		disableFields();
-		$util('#editBttn').show();
-		$util('#editBttn').style.display = "inline-block";
-		$util('#searchBttn').disabled = false;
-
-		$util('.msgg').classList.remove('alert-failure');
-		$util('.msgg').classList.add('note','alert-success','js-login-msg');
-		$util('.msgg').innerHTML = msg.key.saveSuccess;
-		window.scrollTo(0, 0);
-	}
 }
 
-function disableFields(){
-	var inputs = document.getElementsByTagName('input');
+function disableFields(pInputs) {
 
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].disabled = true;
+	for (var i = 0; i < pInputs.length; i++) {
+		pInputs[i].disabled = true;
 	}
 
-	$util('#saveBttn').disabled = true;
-}
-
-function enableFields(){
-	var inputs = document.getElementsByTagName('input');
-
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].disabled = false;
-	}
-
-	$util('#saveBttn').disabled = false;
-	$util('#editBttn').hide();
-	$util('#searchBttn').disabled = true;
-	$util('#saveBttn').disabled = false;
-	$util('#searchBttn').disabled = true;
-	$util('#editBttn').hide();
-
-	$util('.msgg').classList.remove('alert-info');
-	$util('.msgg').classList.remove('alert-success');
-	$util('.msgg').classList.remove('alert-failure');
-	$util('.msgg').innerHTML = "";
+	$util('#categories').disabled = true;
+	$util('#btn-save').disabled = true;
 }

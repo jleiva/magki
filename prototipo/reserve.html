@@ -5,6 +5,7 @@
     <title>Makgi - Reservar entradas</title>
     <link rel="shortcut icon" href="img/kar.png" />
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/landing.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
   </head>
   <body>
@@ -48,40 +49,40 @@
         <h2>Haga su reserva</h2>
         <div class="form__wrap">
           <div class="js-form">
-            <form id="reserve">
+            <form id="reserve" novalidate>
             <legend>Campos obligatorios están marcados con <abbr title="Requerido">*</abbr></legend>
 
               <div class="field-wrapper">
                 <label for="txtID">Nombre <abbr title="Requerido">*</abbr></label>
-                <input type="text" id="name" class="js-event-field" required>
+                <input type="text" id="name" name="name" class="js-form-field" required>
               </div>
 
               <div class="field-wrapper">
-                  <label for="txtName">Primer apellido <abbr title="Requerido">*</abbr></label>
-                  <input type="text" id="firstName" class="js-event-field" required>
+                <label for="txtName">Primer apellido <abbr title="Requerido">*</abbr></label>
+                <input type="text" id="lastName" name="lastName" class="js-form-field" required>
               </div>
 
               <div class="field-wrapper">
                 <label for="txtBusinessName">Segundo apellido</label>
-                <input type="text" id="lastName" class="js-event-field">
+                <input type="text" id="secLastName" name="secLastName" class="js-form-field">
               </div>
 
               <div class="field-wrapper">
                 <label for="txtBusinessName">Identificación <abbr title="Requerido">*</abbr></label>
-                <input type="text" id="id" class="js-event-field" required>
+                <input type="number" id="id" name="id" class="js-form-field" required>
               </div>
 
               <div class="field-wrapper">
                 <label for="email">Correo Electronico <abbr title="Requerido">*</abbr></label>
-                <input type="email" class="js-event-field" id="email" required>
+                <input type="email" id="email" name="email" class="js-form-field" required>
               </div>
 
               <div class="field-wrapper">
                   <label for="ticketQ">Cantidad de entradas <abbr title="Requerido">*</abbr></label>
-                  <input class="js-event-field" type="number" placeholder="0" min="0" id="tickets" name="tickets" required>
+                  <input type="number" id="amountTickets" name="amountTickets" class="js-form-field" placeholder="0" min="0" required>
               </div>
 
-              <button id="saveBttn">Reservar</button>
+              <button id="btn-save">Reservar</button>
             </form>
           </div>
         </div>
@@ -105,6 +106,7 @@
   <script src="js/database/storage.js"></script>
 	<script src="js/helpers/messages.js"></script>
 	<script src="js/helpers/validate.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/pages/reservations/businessLogicReservations.js"></script>
   <script src="js/pages/reservations/reserve.js"></script>
   <script src="js/pages/home/index.js"></script>

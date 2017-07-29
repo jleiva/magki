@@ -38,20 +38,19 @@ function fillUsersTable(e) {
     tbody.innerHTML = '';
 
     for (var i=0; i < alumList.length; i++) {
-      if (alumList[0][14] == pacademyName) {
-        var row = tbody.insertRow(i);
+      if (alumList[i].academy == pacademyName) {
+        var row = tbody.insertRow();
         var nameColumn = row.insertCell();
         var editColumn = row.insertCell();
 
-        nameColumn.innerHTML = alumList[i][1] + ' ' + alumList[i][2] + ' ' + alumList[i][3] + ' ' + alumList[i][4] ;
-
+        nameColumn.innerHTML = alumList[i].firstName + ' ' + alumList[i].secondName + ' ' + alumList[i].firstLastName + ' ' + alumList[i].secondLastName;
 
         var editLink = document.createElement('a');
         var linkName = document.createTextNode('Inscribir');
         editLink.appendChild(linkName);
         editLink.href = 'formulario-inscripcion.html';
         editLink.className = 'btn-action-event js-edit-event';
-        editLink.name = alumList[i][0];
+        editLink.name = alumList[i].identification;
         editColumn.appendChild(editLink);
       }
     }

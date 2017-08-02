@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (){
   var prodsCount = 1;
   $util('#saveBttn').addEventListener('click',validateForm);
-  $util('#sponsorLogo').addEventListener("change", function(){uploadImage("sponsorLogo","imgSponsor")});
+  $util('#sponsorLogo').addEventListener('change', function(){uploadImage("sponsorLogo","imgSponsor")});
 
   function validateForm(e) {
     e.preventDefault();
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function (){
       validForm = validate.fieldsValue('form-sponsor');
 
       if (!validForm[1].length) {
-        if (getInfoById(id) == "") {
+        if (orm.findSponsorbyId(id) == "") {
           saveData();
 
           if ($alertBox) {
@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function (){
         }
       }
     }
+
+    window.scroll(0,0);
   }
 
   function saveData() {
@@ -43,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function (){
     var businessName = $util('#txtBusinessName').value;
     var id = $util('#txtID').value;
     var sponsorImg = $util('#sponsorLogo').files;
+    var imgUrl = $util('#img').src;
+    var imgUrlDiv = imgUrl.split("\\");
+    var imgName = imgUrlDiv[2];
     var sponsorProds = [];
     var prodsName = $util(".add-product").getElementsByClassName('prod-Name');
     var prodsImg = $util(".add-product").getElementsByClassName('input-file');
@@ -51,20 +56,19 @@ document.addEventListener('DOMContentLoaded', function (){
       for (var i = 0; i < $util(".add-product").getElementsByClassName('product-field').length; i++) {
 
         var prodInfo = { prodName: prodsName.item(i).value,
-                         logo: prodsImg.item(i).files };
+                         imgUrl: prodsImg.item(i).value,
+                         idOwner: id};
 
-        sponsorProds.push(prodInfo);
+        orm.registerSponsorProducts(prodInfo);
       }
     }
 
     var sponsor = {id: id,
                    name: name,
                    businessName: businessName,
-                   status: true,
-                   sponsorImg: sponsorImg,
-                   sponsorProds };
+                   logoSrc: imgUrl};
 
-    addSponsor(sponsor);
+    orm.registerSponsor(sponsor);
   }
 
   function disableFields(){
@@ -78,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function (){
     for (var i = 0; i < inputs.length; i++) {
       inputs[i].disabled = true;
     }
+    
     $util(".moveAddBttn").hide();
     $util('#saveBttn').disabled = true;
 

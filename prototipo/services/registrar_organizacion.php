@@ -1,18 +1,14 @@
 <?php
     require_once 'conexion.php';
 
-    //$id = '503240387';
-    $nombre1 = $_POST['pnombre1'];
-    $nombre2 = $_POST['pnombre2'];
-    $apellido1 = $_POST['papellido1'];
-    $apellido2 = $_POST['papellido2'];
-    $bday = $_POST['pfecha_nacimiento'];
-    $genero = $_POST['pgenero'];
+    $id = $_POST['pId'];
+    $nombre = $_POST['pNombre'];
+    $tipo = $_POST['pTipo'];
+    $desc = $_POST['pDesc'];
     $estado = 1;
 
-
-    $sentencia_sql = "CALL pa_registrar_org" . "('$nombre1', 
-    '$nombre2','$apellido1','$apellido2','$bday', '$genero', $estado)";
+    $sentencia_sql = "CALL pa_registrar_organizacion" . "('$id', 
+    '$nombre','$tipo','$desc', $estado)";
 
     $result = $conexion->query($sentencia_sql);
 

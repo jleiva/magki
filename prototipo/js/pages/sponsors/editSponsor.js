@@ -1,21 +1,27 @@
-document.addEventListener('DOMContentLoaded', function (){
+document.addEventListener('DOMContentLoaded', function () {
   var prodsCount = 1;
   $util('#saveBttn').on('click', validateEditForm);
-  fillForm();
   document.querySelector('#txtID').disabled = true;
-  $util('#sponsorLogo').addEventListener("change", function(){uploadImage("sponsorLogo","imgSponsor")});
+  fillForm();
+  
+  $util('#sponsorLogo').addEventListener("change", function() {
+    uploadImage("sponsorLogo","imgSponsor");
+  });
 
   function fillForm(){
-    var infoSponsor = JSON.parse(localStorage.getItem('infoSponsorLS'));
+    var queryUrl = misc.getQueryParams(document.location.search);
+    var sponsorId = queryUrl.id;
+    var infoSponsor = orm.findSponsorbyId(sponsorId);
+    var imgSrc = infoSponsor[0].img_src;
+    uploadImgSponsor('imgSponsor', imgSrc);
+    document.querySelector('#txtID').value = infoSponsor[0].id_patrocinador;
+    document.querySelector('#txtName').value = infoSponsor[0].nombre_comercial;
+    document.querySelector('#txtBusinessName').value = infoSponsor[0].razon_social;
 
-    document.querySelector('#txtID').value = infoSponsor.id;
-    document.querySelector('#txtName').value = infoSponsor.name;
-    document.querySelector('#txtBusinessName').value = infoSponsor.businessName;
-
-    if (infoSponsor.status == false) {
-      disableFields();
-    } else {
+    if (infoSponsor[0].estado == 1) {
       enableFields();
+    } else {
+      disableFields();
     }
   }
 
@@ -29,101 +35,105 @@ document.addEventListener('DOMContentLoaded', function (){
 
     $util("#deshab").disabled = false;
     $util("#hab").disabled = false;
+    $util('#productsList').disabled = true;
+    $util(".moveAddBttn").hide();
+
     scrollTo(0,0);
   }
 
   function enableFields() {
     document.querySelector('#hab').checked = true;
-    document.querySelector('#txtName').disabled = false;
-    document.querySelector('#txtBusinessName').disabled = false;
-    document.querySelector('#sponsorLogo').disabled = false;
+    var inputs = document.getElementsByTagName('input');
+
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].disabled = false;
+    }
+
+    $util("#deshab").disabled = false;
+    $util("#hab").disabled = false;
+    $util('#productsList').disabled = false;
+    $util(".moveAddBttn").show();
+    document.querySelector('#txtID').disabled = true;
+
+    scrollTo(0,0);
   }
 
   function validateEditForm(e) {
     e.preventDefault();
     var $alertBox = $util('.js-login-msg');
-    var validForm;
-    var formInputs = document.querySelectorAll('#edit-sponsor .js-form-field:required');
-    var removeBttns = $util(".add-product").getElementsByClassName('remove-input');
+    var formInputs = document.querySelectorAll('#edit-sponsor-form .js-form-field:required');
 
     if (!validate.emptyFields(formInputs)) {
-      validForm = validate.fieldsValue('edit-sponsor');
+      var validForm = validate.fieldsValue('edit-sponsor-form');
+
       if (!validForm[1].length) {
-        saveData();
-
-        if ($alertBox) {
-          $alertBox.removeClass('alert-failure').addClass('alert-success').html(msg.key.saveSuccess);
-          disableFields()
-
-          for (var i = 0; i < removeBttns.length; i++) {
-            removeBttns[i].hide();
-          }
-
-          $util(".moveAddBttn").hide();
-          $util("#deshab").disabled = true;
-          $util("#hab").disabled = true;
-          $util('#saveBttn').disabled = true;
+          saveData();
+      
+        if ($alertBox) { 
+          $alertBox.removeClass('alert-failure')
+            .addClass('alert-success')
+            .html(msg.key.saveSuccess);
         } else {
-          $util('.js-form').insertAdjacentHTML('afterbegin',
-          '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
-          disableFields()
-
-          for (var i = 0; i < removeBttns.length; i++) {
-            removeBttns[i].hide();
-          }
-
-          $util(".moveAddBttn").hide();
-          $util("#deshab").disabled = true;
-          $util("#hab").disabled = true;
-          $util('#saveBttn').disabled = true;
+          $util('.js-form').insertAdjacentHTML('afterbegin', 
+          '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+        }
+      } else {
+        if ($alertBox) { 
+          $alertBox
+            .removeClass('alert-success')
+            .addClass('alert-failure')
+            .html('Este código ya existe, no se realizó el registro');
+        } else {
+          $util('.js-form').insertAdjacentHTML('afterbegin', 
+          '<span class="note alert alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
         }
       }
     }
+
+    window.scrollTo(0, 0);
   }
 
   function saveData() {
-    var sponsorList = getSponsorList();
-    var prodInfo = [];
-    var prods = [];
     var name = $util('#txtName').value;
     var businessName = $util('#txtBusinessName').value;
     var id = $util('#txtID').value;
     var sponsorImg = $util('#sponsorLogo').files;
+    var imgSrc = $util('#img').src;
+    var sponsorProds = [];
     var prodsName = $util(".add-product").getElementsByClassName('prod-Name');
     var prodsImg = $util(".add-product").getElementsByClassName('input-file');
-    var status = $util('#hab').checked;
+    var status = $util("#hab").checked;
+    var statusvalue = 1;
 
-    if (status) {
-      document.querySelector('#hab').checked = true;
+    if(!status) {
+      statusvalue = 0;
+      disableFields();
     } else {
-      document.querySelector('#deshab').checked = true;
-    }
+      enableFields();
+    } 
 
-    for (var i = 0; i < sponsorList.length; i++) {
-      if(sponsorList[i].id == id){
-        sponsorList[i].id = id;
-        sponsorList[i].name = name;
-        sponsorList[i].businessName = businessName;
-        sponsorList[i].status = status;
-        sponsorList[i].sponsorImg = sponsorImg;
+    if($util("#txtProductName1").value != ""){
+      for (var i = 0; i < $util(".add-product").getElementsByClassName('product-field').length; i++) {
 
-        if($util("#txtProductName1").value != "") {
-          for (var h = 0; h < $util(".add-product").getElementsByClassName('product-field').length; h++) {
+        var prodInfo = { 
+                        prodName: prodsName.item(i).value,
+                        imgUrl: prodsImg.item(i).value.split("\\"),
+                        idOwner: id
+                       };
 
-            var prodInfo = { prodName: prodsName.item(h).value,
-                             logo: prodsImg.item(h).files };
-
-            prods.push(prodInfo);
-          }
-
-          for (var x = 0; x < prods.length; x++) {
-            sponsorList[i].sponsorProds.push(prods[x]);
-          }
-        }
+        orm.registerSponsorProducts(prodInfo);
       }
     }
 
-    editSponsor(sponsorList);
+    var sponsorInfo = {
+                  id: id,
+                  name: name,
+                  businessName: businessName,
+                  logoSrc: imgSrc,
+                  status: statusvalue
+                };
+
+    orm.updateSponsorInfo(sponsorInfo);
   }
 
   $util(".moveAddBttn").addEventListener('click',function() {

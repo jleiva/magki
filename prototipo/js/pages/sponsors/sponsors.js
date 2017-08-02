@@ -1,7 +1,7 @@
 fillTable();
 
 function fillTable() {
-  var sponsorList = getSponsorList();
+  var sponsorList = orm.findSponsors();
   var tbody = document.querySelector('#tblSponsors tbody');
 
   if(sponsorList.length != 0) {
@@ -17,29 +17,25 @@ function fillTable() {
       var editLink = document.createElement('a');
       var linkName = document.createTextNode("Editar");
 
-      colID.innerHTML = sponsorList[i].id;
-      colName.innerHTML = sponsorList[i].name;
-      colBusinessName.innerHTML = sponsorList[i].businessName;
+      colID.innerHTML = sponsorList[i].nombre_comercial;
+      colName.innerHTML = sponsorList[i].razon_social;
+      colBusinessName.innerHTML = sponsorList[i].id_patrocinador;
 
-      if(sponsorList[i].status) {
+      if(sponsorList[i].estado == 1) {
 				colStatus.innerHTML = 'Habilitado';
 			}else{
 				colStatus.innerHTML = 'Deshabilitado';
 			}
 
       editLink.appendChild(linkName);
-      editLink.classList.add('btn-action-event');// js-btn-edit
-      editLink.name = sponsorList[i].id;
-      editLink.addEventListener('click', getInfoSponsorByID);
-
+      editLink.href = 'editar-patrocinador.php'+ '?id=' + sponsorList[i].id_patrocinador;
+      editLink.className = 'btn-action-event js-edit-event';
       colEdit.appendChild(editLink);
     }
   }
 }
 
-function getInfoSponsorByID() {
-  var idSponsor = this.name;
-  var info = getInfoById(idSponsor);
-  localStorage.setItem('infoSponsorLS',JSON.stringify(info));
-  window.location="editar-patrocinador.html";
-}
+/*function sendId(psponsorId) {
+  var url = window.location.href='editar-patrocinador.php?id'+'='+psponsorId;
+  window.open(url);
+}*/

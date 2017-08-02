@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <title>Makgi - Editar Organizaci&oacute;n</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
-</head>
-<body>
-  <header class="site-header" role="">
-    <div class="group">
-      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
-      <nav class="main-nav" role="">
-        <ul class="menu">
-          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
-          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
-          <li class="main-nav__item"><a href="organizaciones.html" class="is-active">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
-          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
-          <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<? 
+  $page_title = 'Editar Organización';
+  $page = 'org'; 
+  include("templates/header.php");
+?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
@@ -49,8 +29,9 @@
             <div class="field-wrapper">
               <label for="organizationType">Tipo Organizaci&oacute;n <abbr title="Requerido">*</abbr></label>
               <select class="js-form-field" id="organizationType" name="organizationType" required>
+                <option value="">Seleccione una opción</option>
                 <option value="Gubernamental">Gubernamental</option>
-                <option value="No Gubernamental">No Gubernamental</option>
+                <option value="NoGubernamental">NoGubernamental</option>
               </select>
             </div>
 
@@ -89,11 +70,14 @@
       </ul>
     </div>
   </footer>
+  <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/misc.js"></script>
-  <script src="js/pages/organizations/organizationLogicalPart.js"></script> 
   <script src="js/pages/organizations/editOrganization.js"></script>
+  <script src="js/pages/main.js"></script>
 </body>
 </html>

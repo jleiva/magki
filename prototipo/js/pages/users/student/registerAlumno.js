@@ -89,13 +89,14 @@ function validateForm() {
 }
 
 function fillAcademies() {
- var academiesList = obtenerListaRegistros();
+ var academiesList = orm.findActiveAcad();
  var academiesField = document.querySelector('#academy');
 
  for(var i = 0; i < academiesList.length; i++) {
     var options = document.createElement('option');
-    var academyName = academiesList[i]['nombreAcademia'];
+    var academyName = academiesList[i]['nombre_academia'];
     options.text = academyName;
+    //opt.setAttribute('id', item.id);
     academiesField.add(options);
  }
 }

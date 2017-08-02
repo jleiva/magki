@@ -1,22 +1,19 @@
-$util('#btn-save').on('click',saveData);
+$util('#btn-save').on('click', saveData);
 
-/*fillAcademy();
-fillTeacher();
+/*
 fillHeader();*/
 loadData();
 
 function loadData() {
-  var fighterId = JSON.parse(localStorage.getItem('fighterID'));
-  var alumList = getStudentsList();
-
-  var alumInfo = alumList.find(function(alum) {
-    return alum.identification == fighterId;
-  });
+  var queryUrl = misc.getQueryParams(document.location.search);
+  var userId = queryUrl.id;
+  var userData = orm.findStudentById(userId);
 
   document.querySelector('#academy').disabled = true;
   document.querySelector('#teacher').disabled = true;
-  document.querySelector('#academy').value = alumInfo.academy;
-  document.querySelector('#teacher').value = alumInfo.professor;
+  document.querySelector('#academy').value = userData[0].nombre_academia;
+  fillTeacher(userData[0].id_profesor);
+  //document.querySelector('#teacher').value = userData[0].id_profesor;
 }
 
 function saveData() {
@@ -46,31 +43,10 @@ function fillHeader() {
   fighterHeader.innerHTML = fighterHeader.innerHTML + fighterInfo[1] + ' ' + fighterInfo[2] + ' ' + fighterInfo[3] + ' ' + fighterInfo[4] ;
 }
 
-function fillAcademy() {
-  var academyRelated = localStorage.getItem('academyRelated');
-  var infoAcademy = obtenerListaRegistros();
-  var academy = document.querySelector('#academy');
-
-  for(var i = 0; i < infoAcademy.length; i++) {
-    if(infoAcademy[i]['nombreAcademia'] == academyRelated) {
-      
-      academy.value = infoAcademy[i]['nombreAcademia'];
-      academy.disabled = true; 
-    }
-  }
-}
-
-function fillTeacher() {
-  var alumnTeacher = document.querySelector('#teacher');
-  var studentList = getStudentsList();
-  var studentID = JSON.parse(localStorage.getItem('fighterID'));
-
-  for(var i = 0; i < studentList.length; i++) {
-    if(studentList[i][0] == studentID) {
-      alumnTeacher.value = studentList[i][15]; 
-      alumnTeacher.disabled = true;
-    }
-  }
+function fillTeacher(idUser) {
+  var professor = document.querySelector('#teacher');
+  var profData = orm.findProfesorById(idUser);
+  
 }
 
 function validateChanges(e) {

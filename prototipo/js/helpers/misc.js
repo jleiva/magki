@@ -1,4 +1,20 @@
 var misc = (function(window, undefined) {
+  // var query = getQueryParams(document.location.search);
+  // query.foo
+  function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+  }
+
   // Espera un Array de Inputs
   function buildDataObject(formInputs) {
     var data = {};
@@ -80,8 +96,9 @@ var misc = (function(window, undefined) {
 
       optList.forEach(function(item) {
         var opt = document.createElement('option');
-        opt.value = item[1];
+        opt.value = item.nombre;
         opt.innerHTML = opt.value;
+        opt.setAttribute('id', item.id_organizacion);
         select.appendChild(opt);
       });
     } else {
@@ -89,9 +106,9 @@ var misc = (function(window, undefined) {
 
       optList.forEach(function(item) {
         var opt = document.createElement('option');
-        opt.value = item.organization;
-        opt.innerHTML = item.organization;
-        opt.setAttribute('id', item.codeNumber);
+        opt.value = item.nombre;
+        opt.innerHTML = opt.value;
+        opt.setAttribute('id', item.id_organizacion);
         select.appendChild(opt);
       });
     }
@@ -185,6 +202,7 @@ var misc = (function(window, undefined) {
     populateSelect: populateSelect,
     populateOrgSelect: populateOrgSelect,
     populateSponsorSelect: populateSponsorSelect,
-    populateSponsorProducts: populateSponsorProducts
+    populateSponsorProducts: populateSponsorProducts,
+    getQueryParams: getQueryParams
   };
 })(window);

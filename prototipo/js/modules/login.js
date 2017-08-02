@@ -64,7 +64,7 @@ var login = (function(window) {
         var $alertBox = $util('.js-login-msg');
 
         if (validateCredentials(username, password)) {
-          window.location.replace('perfil-admin.html');
+          window.location.replace('perfil-admin.php');
         } else {
           if ($alertBox) {
             $alertBox.html(msg.key.emailAndPasswordInvalid);

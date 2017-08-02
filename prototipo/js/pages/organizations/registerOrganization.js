@@ -1,4 +1,6 @@
-$util('#btn-save').on('click', registerOrganization);
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('#btn-save').addEventListener('click', registerOrganization);
+});
 
 function registerOrganization(e) {
   e.preventDefault();
@@ -18,8 +20,9 @@ function registerOrganization(e) {
 function getRegisterData() {
   var formInputs = document.querySelectorAll('#organization-form .js-form-field');
   var organizationData = misc.buildDataObject(formInputs);
+  
   organizationData.status = true;
-  addOrganization(organizationData);
+  orm.registrarOrg(organizationData);
   misc.disableFieldsOnSave(formInputs);
 }
 
@@ -27,7 +30,7 @@ function validateForm() {
   var codeField = document.querySelector('#code');
   var codeValue = codeField.value;
   var $alertBox = $util('.js-login-msg');
-  var organizationInfo = findOrgByCode(codeValue);
+  var organizationInfo = orm.findOrgById(codeValue);
 
   if (!organizationInfo) {
     getRegisterData();
@@ -48,7 +51,7 @@ function validateForm() {
         .html(msg.key.orgDuplicate);
     } else {
       $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert alert-failure js-login-msg">' +msg.key.orgDuplicate+'</span>');
+        '<span class="note alert alert-failure js-login-msg">' + msg.key.orgDuplicate +'</span>');
     }
 
     document.querySelector('#code').addClass('error');

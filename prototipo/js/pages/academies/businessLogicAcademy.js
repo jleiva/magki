@@ -1,40 +1,49 @@
-function registrar(pAcademia){
-  var listaRegistros = obtenerListaRegistros();
-  listaRegistros.push(pAcademia);
-  localStorage.setItem('listaAcademiasLS', JSON.stringify(listaRegistros));
-}
-
-function obtenerListaRegistros() {
-  var listaRegistros = JSON.parse(localStorage.getItem('listaAcademiasLS'));
-
-  if (listaRegistros == null) {
-    listaRegistros= [];
-  }
-  
-  return listaRegistros;
-}
-
-function findByEmail(email) {
-  var academyList = obtenerListaRegistros();
-  var academyInfo = [];
-
-  for (var i=0; i < academyList.length; i ++) {
-    if (academyList[i]['emailAcademia'] == email) {
-      academyInfo = academyList[i];
+function registerData(pAcademy) {
+  var request = $.ajax({
+    url: 'services/registrar_academia.php',
+    type: 'post',
+    dataType: 'json',
+    async: false,
+    data: {
+      'academyName': pAcademy.academyName,
+      'academyTel': pAcademy.academyTel,
+      'academyEmail': pAcademy.academyEmail,
+      'attendantName': pAcademy.attendantName,
+      'attendantLastName': pAcademy.attendantLastName,
+      'attendantSecLastName': pAcademy.attendantSecLastName,
+      'academyAddress': pAcademy.academyAddress,
+      'placeLatitude': pAcademy.placeLatitude,
+      'placeLongitude': pAcademy.placeLongitude
     }
-  }
+  });
 
-  return academyInfo;
+  request.done(function() {
+    console.log('Registrado correctamente');
+  })
+
+  request.fail(function(jqXHR, textStatus, errorThrown) {
+
+    console.log(errorThrown);
+  })
 }
 
-function updateAcadInformation(pAcadInfo) {
-	var academyList = obtenerListaRegistros();
+function getAcademyList() {
+  var academiesList = [];
+  var request = $.ajax({
+    url: 'services/listar_academias.php',
+    dataType: 'json',
+    async: false,
+    method: 'get',
+    data:{}
+  });
 
-	for (var i = 0; i < academyList.length; i++) {
-		if (academyList[i][0] == pAcadInfo[0]){
-			academyList[i] = pAcadInfo;
-		}
-	}
+  request.done(function(datos) {
+    academiesList = datos;
+  });
 
-	localStorage.setItem('listaAcademiasLS', JSON.stringify(academyList));
+  request.fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(errorThrown);
+  })
+
+  return academiesList;
 }

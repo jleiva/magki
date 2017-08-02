@@ -1,55 +1,62 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var eventsData;
-  var currentEvent;
-  findEvent();
-  $util('#btn-save').on('click',validateReserve);
+  var tickets;
+  var ticketsSold;
+  var ticketsTotal;
+  var eventId;
+  
+  fillEventData();
+  $util('#btn-save').on('click', validateReserve); 
 
-  function findEvent() {
-    eventsData = storage.get('appLS');
-    var events = eventsData.events;
-    var idEventReserve = eventsData.eventToReserve;
+  function fillEventData() {
+    var queryUrl = misc.getQueryParams(document.location.search);
+    var eventId = queryUrl.id;
+    var eventInfo = orm.findEventbyId(eventId);
+    var placeInfo = orm.findVenue(eventId);
 
-    for (var i = 0; i < events.length; i++) {
-      if(events[i].eventName == idEventReserve){
-        currentEvent = events[i];
-      }
+    $util('.promo-box__title').innerHTML = eventInfo[0].nombre;
+    $util('#place').innerHTML = placeInfo[0].nombre_lugar;
+
+    var fecha_inicio = modifiedDateFormat(eventInfo[0].fecha_inicio);
+    $util('#date').innerHTML = fecha_inicio;
+    $util('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
+    tickets = (parseInt(eventInfo[0].entradas_disponibles) -  parseInt(eventInfo[0].entradas_vendidas));
+    
+    if (tickets === 0) {
+      document.querySelector('.js-reserve-tickets-enable').addClass('is-hidden');
+      document.querySelector('.js-reserve-tickets-disable').removeClass('is-hidden');
     }
 
-    $util(".promo-box__title").innerHTML = currentEvent.eventName;
-    $util("#place").innerHTML = currentEvent.venue;
-    $util("#date").innerHTML = currentEvent.dateStart;
-    $util("#typeEvent").innerHTML = currentEvent.tipoEvento;
+    var ticketsInfo = $util('#availableTickets').innerHTML;
+    $util('#availableTickets').innerHTML = tickets;
+    eventId = eventInfo[0].id_evento;
+    ticketsTotal = parseInt(eventInfo[0].entradas_disponibles);
+    ticketsSold = parseInt(eventInfo[0].entradas_vendidas);
   }
 
   function validateReserve(e) {
-
     e.preventDefault();
     var $alertBox = $util('.js-login-msg');
     var amountTickets = $util('#amountTickets').value;
     var formInputs = document.querySelectorAll('#reserve .js-form-field:required');
 
     if (!validate.emptyFields(formInputs)) {
-
       var validForm = validate.fieldsValue('reserve');
       if (!validForm[1].length) {
 
-        if (currentEvent.ticketQ >= amountTickets) {
-
+        if (tickets >= amountTickets) {
             getRegisterData();
-
+            
             if ($alertBox) {
               $alertBox.removeClass('alert-failure')
                 .addClass('alert-success')
                 .html(msg.key.saveSuccess);
             } else {
               $util('.js-form').insertAdjacentHTML('afterbegin',
-              '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess+ '</span>');
             }
 
         } else {
-
-          if (currentEvent.ticketQ > amountTickets) {
-
+          if (tickets > amountTickets) {
             getRegisterData();
 
             if ($alertBox) {
@@ -58,13 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 .html(msg.key.saveSuccess);
             } else {
               $util('.js-form').insertAdjacentHTML('afterbegin',
-              '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess+ '</span>');
             }
 
           } else {
 
-            if (currentEvent.ticketQ == 0) {
-
+            if (tickets == 0) {
               if ($alertBox) {
                 $alertBox
                   .removeClass('alert-success')
@@ -80,15 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
               }
 
             } else {
-
+              document.querySelector('#amountTickets').addClass('error');
               if ($alertBox) {
                 $alertBox
                   .removeClass('alert-success')
                   .addClass('alert-failure')
-                  .html('Quedan '+ currentEvent.ticketQ +' entradas');
+                  .html('Quedan '+ tickets +' entradas, favor ingrese una cifra válida');
               } else {
                 $util('.js-form').insertAdjacentHTML('afterbegin',
-                  '<span class="note alert alert-failure js-login-msg">Quedan '+ currentEvent.ticketQ +' entradas</span>');
+                  '<span class="note alert alert-failure js-login-msg">Entradas disponibles: '+ tickets +' </span>');
               }
               
             }
@@ -98,27 +104,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-
-  function getRegisterData(){
+  function getRegisterData() {
     var formInputs = document.querySelectorAll('#reserve .js-form-field');
     var userInfo = misc.buildDataObject(formInputs);
-    var deductTickets = currentEvent.ticketQ - $util('#amountTickets').value;
-    saveReserve(userInfo);
-    setTicketQ(deductTickets);
+    var ticketsBought = parseInt(userInfo.amountTickets);
+    var soldTickets = ticketsSold + ticketsBought;
+    orm.saveReserve(userInfo);
+    orm.modifyTicketsAmount(eventId, soldTickets);
     misc.disableFieldsOnSave(formInputs);
-    $util('#secLastName').disabled = true;
   }
 
-  function setTicketQ(pNewTicketQ){
-    eventsData = storage.get('appLS');
-    var events = eventsData.events;
-    var idEventReserve = eventsData.eventToReserve;
-
-    for (var i = 0; i < eventsData.events.length; i++) {
-      if(eventsData.events[i].eventName == idEventReserve){
-        eventsData.events[i].ticketQ = pNewTicketQ;
-      }
+  function modifiedDateFormat(pdate) {
+    var date = new Date(pdate);
+    var day = Number(date.getDate() + 1);
+    var month = Number(date.getMonth() + 1);
+    var year = date.getFullYear();
+    if(day < 10){
+      day = '0' + day;
     }
-    setAppLS(eventsData);
+    
+    if(month < 10){
+      month = '0' + month;
+    }
+
+    var newFormat = day + '-' + month + '-' + year;
+    
+    return newFormat;
   }
 });

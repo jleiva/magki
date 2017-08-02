@@ -1,41 +1,29 @@
-function registrar(pLugar) {
-  var listaRegistros = obtenerListaRegistros();
-  listaRegistros.push(pLugar);
-  localStorage.setItem('listaLugaresLS', JSON.stringify(listaRegistros));
-}
+function registerData(pPlace){
 
-function obtenerListaRegistros() {
-  var listaRegistros = JSON.parse(localStorage.getItem('listaLugaresLS'));
+  var request = $.ajax({
+    url: 'services/registrar_lugar.php',
+    type: 'post',
+    dataType: 'json',
+    async: false,
+    data: {
 
-  if (listaRegistros == null) {
-    listaRegistros= [];
-  }
+      'placeName': pPlace.placeName,
+      'placeTel': pPlace.placeTel,
+      'placeSchedule': pPlace.placeSchedule,
+      'placeCap': pPlace.placeCap,
+      'placeAdress': pPlace.placeAdress,
+      'placeLatitude': pPlace.placeLatitude,
+      'placeLongitude': pPlace.placeLongitude
 
-  return listaRegistros;
-}
-
-//MAD
-function findByTelefono(telefono) {
-  var placeList = obtenerListaRegistros();
-  var placeInfo = []; // AREGLO NO INCIALIZADO
-
-  for (var i=0; i < placeList.length; i ++) {
-    if (placeList[i]['telefonoEncargado'] == telefono) {
-      placeInfo = placeList[i];
     }
-  }
+  });
 
-  return placeInfo;
-}
+  request.done(function(){
+    console.log('Registrado correctamente');
+  })
 
-function updatePlaceInformation(pPlaceInfo) {
-  var placeList = obtenerListaRegistros();
+  request.fail(function(jqXHR, textStatus, errorThrown){
 
-  for (var i = 0; i < placeList.length; i++) {
-    if (placeList[i][0] == pPlaceInfo[0]) {
-      placeList[i] = pPlaceInfo;
-    }
-  }
-
-  localStorage.setItem('listaLugaresLS', JSON.stringify(placeList));
+    console.log(errorThrown);
+  })
 }

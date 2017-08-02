@@ -13,7 +13,7 @@ var validate = (function(window, undefined) {
   function validateBday(bday) {
     var startDate = bday.value;
     var endDate = new Date().toISOString().slice(0,10);
-    var endDateMsg = $util('.js-end-date-error');
+    var endDateMsg = document.querySelector('.js-end-date-error');
     var invalid = false;
 
     if ((Date.parse(endDate) < Date.parse(startDate))) {
@@ -50,7 +50,7 @@ var validate = (function(window, undefined) {
   function validateStartDate(sDate) {
     var startDate = sDate.value;
     var today = getToday();
-    var startDateMsg = $util('.js-start-date-error');
+    var startDateMsg = document.querySelector('.js-start-date-error');
 
     if ((Date.parse(startDate) < Date.parse(today))) {
       startDateMsg.removeClass('is-hidden').addClass('alert-failure');
@@ -65,7 +65,7 @@ var validate = (function(window, undefined) {
   function validateDateRange(sDate, eDate) {
     var startDate = sDate.value;
     var endDate = eDate.value;
-    var endDateMsg = $util('.js-end-date-error');
+    var endDateMsg = document.querySelector('.js-end-date-error');
 
     if ((Date.parse(endDate) < Date.parse(startDate))) {
       endDateMsg.removeClass('is-hidden').addClass('alert-failure');
@@ -83,7 +83,7 @@ var validate = (function(window, undefined) {
 
   function emptyFields(inputs) {
     var formInputs = inputs;
-    var $alertBox = $util('.js-login-msg');
+    var $alertBox = document.querySelector('.js-login-msg');
     var emptyInputs = [];
     var hasEmpty = false;
 
@@ -103,7 +103,7 @@ var validate = (function(window, undefined) {
           .removeClass('alert-success')
           .addClass('alert-failure');
       } else {
-        $util('.js-form').insertAdjacentHTML('afterbegin', 
+        document.querySelector('.js-form').insertAdjacentHTML('afterbegin', 
         '<span class="note alert alert-failure js-login-msg">' + msg.key.fieldsRequired + '</span>');
       }
     }
@@ -112,7 +112,7 @@ var validate = (function(window, undefined) {
   }
 
   function formatErrorMessage(errors) {
-    var $alertBox = $util('.js-login-msg');
+    var $alertBox = document.querySelector('.js-login-msg');
 
     errors.forEach(function(errorInput) {
       errorInput.addClass('error');
@@ -121,7 +121,7 @@ var validate = (function(window, undefined) {
     if ($alertBox) {
       $alertBox.html(msg.key.wrongFormat);
     } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin', 
+      document.querySelector('.js-form').insertAdjacentHTML('afterbegin', 
       '<span class="note alert alert-failure js-login-msg">' + msg.key.wrongFormat + '</span>');
     }
   }

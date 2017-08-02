@@ -1,10 +1,13 @@
-fillAcademiesSelect();
+document.addEventListener('DOMContentLoaded', function() {
+  fillAcademiesSelect();
+  fillGeneralUsersTable();
+});
 
 function fillAcademiesSelect() {
   var appLS = storage.get('appLS') || {};
   var eventId = appLS.eventToEdit || {};
   var eventInfo = orm.findEventbyId(eventId);
-  var academiesList = obtenerListaRegistros();
+  var academiesList = orm.findActiveAcad();
   var academiesField = document.querySelector('#academy-name');
   var tournamentName = document.querySelector('.js-event-name');
   var noAcademiesOpt = document.querySelector('.js-empty-academy');
@@ -13,7 +16,7 @@ function fillAcademiesSelect() {
 
   for(var i = 0; i < academiesList.length; i++) {
      var options = document.createElement('option');        
-     var academyName = academiesList[i]['nombreAcademia'];
+     var academyName = academiesList[i]['nombre_academia'];
 
      noAcademiesOpt.text = 'Seleccione una Academia...';
      options.value = academyName;
@@ -22,49 +25,53 @@ function fillAcademiesSelect() {
   }
 
   document.querySelector('select[name="academy-name"]').addEventListener('change', function(e) {
-    fillUsersTable(e);
+    fillUsersByAcademyTable(e);
   });
 }
 
-function fillUsersTable(e) {
-  var pacademyName = e.target.value;
-  var alumList = getStudentsList();
-  var $error = document.querySelector('.no-data');
+function fillGeneralUsersTable() {
+  var alumList = orm.findActiveStudents();
 
   if (alumList.length) {
-    $error.hide();
-    var tbody = document.querySelector('#tblFighters tbody');
+    fillTable(alumList);
+  }
+}
 
-    tbody.innerHTML = '';
+function fillUsersByAcademyTable(e) {
+  var pacademyName = e.target.value;
+  var alumList = orm.findActiveStudentsByAcademy(pacademyName);
 
-    for (var i=0; i < alumList.length; i++) {
-      if (alumList[i].academy == pacademyName) {
-        var row = tbody.insertRow();
-        var nameColumn = row.insertCell();
-        var editColumn = row.insertCell();
+  if (alumList.length) {
+    fillTable(alumList);
+  } else {
+    fillGeneralUsersTable();
+  }
+}
 
-        nameColumn.innerHTML = alumList[i].firstName + ' ' + alumList[i].secondName + ' ' + alumList[i].firstLastName + ' ' + alumList[i].secondLastName;
+function fillTable(alumList) {
+  var tbody = document.querySelector('#tblFighters tbody');
+  var $error = document.querySelector('.no-data');
 
-        var editLink = document.createElement('a');
-        var linkName = document.createTextNode('Inscribir');
-        editLink.appendChild(linkName);
-        editLink.href = 'formulario-inscripcion.html';
-        editLink.className = 'btn-action-event js-edit-event';
-        editLink.name = alumList[i].identification;
-        editColumn.appendChild(editLink);
-      }
-    }
+  $error.style.display = 'none';
+  tbody.innerHTML = '';
 
-    var btnEdit = document.querySelectorAll('.js-edit-event');
-    btnEdit.forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        var currentItem = e.currentTarget;
-        var fighterID = currentItem.getAttribute('name');
-        localStorage.setItem('academyRelated', pacademyName);
-        localStorage.setItem('fighterID', fighterID);
-      }) 
-    }); 
-  }else {
-    $error.show();
+  for (var i=0; i < alumList.length; i++) {
+    var row = tbody.insertRow();
+    var idColumn = row.insertCell();
+    var nameColumn = row.insertCell();
+    var beltColumn = row.insertCell();
+    var editColumn = row.insertCell();
+
+    idColumn.innerHTML = alumList[i].id_usuario;
+    nameColumn.innerHTML = alumList[i].primer_nombre + ' ' + alumList[i].segundo_nombre + ' ' + alumList[i].primer_apeliido + ' ' + alumList[i].segundo_apellido;
+    beltColumn.innerHTML = alumList[i].nombre_cinturon;
+
+    var editLink = document.createElement('a');
+    var linkName = document.createTextNode('Inscribir');
+    editLink.appendChild(linkName);
+    editLink.href = 'formulario-inscripcion.php' + '?id=' + alumList[i].id_usuario;
+    editLink.className = 'btn-action-event js-edit-event';
+    editLink.name = alumList[i].id_usuario;
+    editColumn.appendChild(editLink);
   }
 }

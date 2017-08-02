@@ -321,7 +321,7 @@ var events = (function(window) {
       anchorRegister.appendChild(linkText);
       anchorRegister.className = 'btn-action-event js-athlete-event';
       anchorRegister.dataset.index = index;
-      anchorRegister.href = 'inscribir-competidores.html';
+      anchorRegister.href = 'inscribir-competidores.php';
 
       var anchorResults = document.createElement('a');
       var linkText = document.createTextNode('Registrar resultados');
@@ -483,7 +483,7 @@ var events = (function(window) {
     var venueList = orm.findActiveVenues();
     var sponsorList = orm.findActiveSponsors();
 
-    misc.populateOrgSelect('orgName', orgList, false);
+    misc.populateOrgSelect('orgName', orgList, true);
     misc.populateSelect('venue', venueList, false);
     misc.populateSponsorSelect('sponsor', sponsorList, false);
   }

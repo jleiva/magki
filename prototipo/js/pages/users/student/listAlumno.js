@@ -1,7 +1,7 @@
 fillTable();
 
 function fillTable() {
-  var studentsList = getStudentsList();
+  var studentsList = orm.findStudents();
   var $error = document.querySelector('.no-data');
 
   if (studentsList.length) {
@@ -22,17 +22,17 @@ function fillTable() {
       var editLink = document.createElement('a');
       var linkName = document.createTextNode("Editar");
 
-      codeColumn.innerHTML = data.identification;
-      nameColumn.innerHTML = data.firstName + ' ' + data.secondName;
-      lastNameColumn.innerHTML = data.firstLastName + ' ' + data.secondLastName;
-      beltColumn.innerHTML = data.beltGrade;
-      academyColumn.innerHTML= data.academy;
-      statusColumn.innerHTML = data.status ? 'Habilitado' : 'Deshabilitado';
+      codeColumn.innerHTML = data.id_usuario;
+      nameColumn.innerHTML = data.primer_nombre + ' ' + data.segundo_nombre;
+      lastNameColumn.innerHTML = data.primer_apeliido + ' ' + data.segundo_apellido;
+      beltColumn.innerHTML = data.nombre_cinturon;
+      academyColumn.innerHTML= data.nombre_academia;
+      statusColumn.innerHTML = Number(data.estado) ? 'Habilitado' : 'Deshabilitado';
 
       editLink.appendChild(linkName);
       editLink.href = 'editar-alumno.html';
       editLink.className = 'btn-action-event js-edit-event';
-      editLink.name = data.identification;
+      editLink.name = data.id_usuario;
       editColumn.appendChild(editLink);
     });
 

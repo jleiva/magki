@@ -37,17 +37,17 @@ function validateChanges(e) {
 }
 
 function loadOrganizationData() {
-  var organizationCode = localStorage.getItem('entityCode');
-  var organizationInfo = {};
-  organizationInfo = findOrgByCode(organizationCode);
+  var queryUrl = misc.getQueryParams(document.location.search);
+  var orgId = queryUrl.id;
+  var organizationInfo = orm.findOrgById(orgId);
   var formInputs = document.querySelectorAll('#edit-organization-form .js-form-field');
 
-  document.querySelector('#code').value = organizationInfo.codeNumber;
-  document.querySelector('#organizationName').value = organizationInfo.organization;
-  document.querySelector('#organizationType').value = organizationInfo.organizationType;
-  document.querySelector('#description').value = organizationInfo.description;
+  document.querySelector('#code').value = organizationInfo.id_organizacion;
+  document.querySelector('#organizationName').value = organizationInfo.nombre;
+  document.querySelector('#organizationType').value = organizationInfo.tipo;
+  document.querySelector('#description').value = organizationInfo.descripcion;
   
-  if (organizationInfo.status) {
+  if (Number(organizationInfo.estado)) {
     misc.enabledFieldsOnEdit(formInputs);
     document.querySelector('#code').disabled = true;
   } else {
@@ -63,9 +63,10 @@ function getUpdateData() {
   
   if (status) {
     misc.enabledFieldsOnEdit(formInputs);
+    document.querySelector('#code').disabled = true;
   } else {
     misc.disableFieldsOnEdit(formInputs);
   }
 
-  updateOrgInformation(organizationData);
+  orm.updateOrg(organizationData);
 }

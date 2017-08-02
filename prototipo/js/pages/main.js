@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (logguedIn) {
     var displayName = logguedIn.name + ' ' + logguedIn.lastName;
-    profileNameContainer.html(displayName);
+    profileNameContainer.innerHTML = displayName;
   }
 
   btnLogOut.addEventListener('click', function() {

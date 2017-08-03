@@ -132,7 +132,7 @@ var events = (function(window) {
 
     if (currentItemId) {
       sponsorFieldset.removeClass('is-hidden');
-      populateSponsorProduct(currentItemId);
+      loadSponsorProducts(currentItemId);
     } else {
       sponsorFieldset.addClass('is-hidden');
     }
@@ -488,6 +488,39 @@ var events = (function(window) {
     misc.populateSponsorSelect('sponsor', sponsorList, false);
   }
 
+  function loadSponsors() {
+    var sponsorList = orm.findSponsors();
+
+    sponsorList.forEach(function(element) {
+      document.querySelector("#sponsor").innerHTML+="<option value='"+element["id_patrocinador"]+"'>"+element["nombre_comercial"]+"</option>";
+    })
+  }
+
+  function loadOrgn() {
+    var sponsorList = orm.findOrgs();
+
+    sponsorList.forEach(function(element){
+      document.querySelector("#orgName").innerHTML+="<option value='"+element["id_organizacion"]+"'>"+element["nombre"]+"</option>";
+    })
+  }
+
+  function loadPlaces() {
+    var placesList = orm.findVenues();
+
+    placesList.forEach(function(element){
+      document.querySelector("#venue").innerHTML+="<option value='"+element["id_lugar"]+"'>"+element["nombre_lugar"]+"</option>";
+    })
+  }
+
+  function loadSponsorProducts(pId) {
+    var productsList = orm.getProductBySponsor(pId);
+    document.querySelector("#sponsorBrand").innerHTML = "";
+    document.querySelector("#sponsorBrand").innerHTML = "<option selected>Seleccione un producto</option>";
+    productsList.forEach(function(element) {
+      document.querySelector("#sponsorBrand").innerHTML+="<option value='"+element["Id_producto"]+"'>"+element["nombre_producto"]+"</option>";
+    })
+  }
+
   return {
     saveEventData: saveEventData,
     publishEvent: publishEvent,
@@ -500,6 +533,10 @@ var events = (function(window) {
     validateTicketsPerVenue: validateTicketsPerVenue,
     showSponsorInfo: showSponsorInfo,
     createSelectedOrganizations: createSelectedOrganizations,
-    populateSelects: populateSelects
+    populateSelects: populateSelects,
+    loadSponsors: loadSponsors,
+    loadOrgn: loadOrgn,
+    loadPlaces: loadPlaces,
+    loadSponsorProducts: loadSponsorProducts
   }
 })(window);

@@ -281,6 +281,47 @@ var orm = (function(window, undefined) {
     return venueInfo;
   }
 
+  function findVenues() {
+    var appPlacesListLS = [];
+    var request = $.ajax({
+        url: 'services/listar_lugares_habilitados.php',
+        dataType: 'json',
+        async: false,
+        method: 'GET',
+        data: {}
+    });
+
+    request.done(function(data) {
+      appPlacesListLS = data;
+    }).fail(function() {
+      console.log('[findOrgs] Error de conexion');
+    });
+
+    return appPlacesListLS;
+  }
+
+  function findAssistById(assistId) {
+    var assistSel = [];
+    var request = $.ajax({
+        url: 'services/buscar_asistente_por_id.php',
+        dataType: 'json',
+        async: false,
+        method: 'get',
+        data: {
+          'idAssist': assistId
+          //se paso al PA php de buscar_asistente
+        }
+    });
+
+    request.done(function(data) {
+      assistSel = data;
+    }).fail(function() {
+      console.log('[findAssist] Error de conexion');
+    });
+
+    return assistSel[0];
+  }
+
   function registrarOrg(orgData) {
     var request = $.ajax({
         url: 'services/registrar_organizacion.php',
@@ -329,6 +370,47 @@ var orm = (function(window, undefined) {
         'idOwner': pproductsInfo.idOwner
       }
     })
+  }
+
+  function registrarAsist(assitData) {
+    var request = $.ajax({
+        url: 'services/registrar_asistente.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'pPrimer_nombre': assitData.name,
+          'pSegundo_nombre': assitData.name2,
+          'pPrimer_apeliido': assitData.lastname,
+          'pSegundo_apellido': assitData.lastname2,
+          'pCorreo': assitData.email,
+          'pIdentificacion': assitData.id
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+      console.log('[registrarAsist] Error de conexion');
+    });
+  }
+
+  function registrarAsistTblAsistente(assitData) {
+    var request = $.ajax({
+        url: 'services/registrar_asistente_tbl_asistente.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'pIdentificacion': assitData.id
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+      console.log('[registrarAsistTblAsistente] Error de conexion');
+    });
   }
 
   function updateSponsorInfo(pSponsorInfo) {
@@ -405,6 +487,27 @@ var orm = (function(window, undefined) {
     })
   }
 
+  function getProductBySponsor(pIdPatrocinador) {
+    var products = [];
+    var request  = $.ajax({
+      url: 'services/listar_producto_por_patrocinador.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'pIdPatrocinador': pIdPatrocinador
+      }
+    });
+    request.done(function(data) {
+      products=data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return products;
+  }
+
   // =========  Linea 25 para abajo no usar mas =============
   // ToDo: borrar las funciones cuando las consultas a BD se vayan completando.
   function findEventByName(name) {  
@@ -417,12 +520,6 @@ var orm = (function(window, undefined) {
     });
 
     return eventExist;
-  }
-
-  function findVenues() {
-    var appVenuesListLS = storage.get('listaLugaresLS') || [];
-
-    return appVenuesListLS;
   }
 
   function findActiveVenues() {
@@ -508,10 +605,14 @@ var orm = (function(window, undefined) {
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
     findActiveSponsors: findActiveSponsors,
     findActiveProfesor: findActiveProfesor,
+    findAssistById: findAssistById,
     findProfesorById: findProfesorById,
     findLogguedUser: findLogguedUser,
+    getProductBySponsor: getProductBySponsor,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
+    registrarAsist: registrarAsist,
+    registrarAsistTblAsistente: registrarAsistTblAsistente,
     registerSponsor: registerSponsor,
     registerSponsorProducts: registerSponsorProducts,
     saveReserve: saveReserve,

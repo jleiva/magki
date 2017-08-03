@@ -1,5 +1,7 @@
-$util('#btn-save').on('click', validateChanges);
-loadOrganizationData();
+document.addEventListener('DOMContentLoaded', function() {
+  $util('#btn-save').on('click', validateChanges);
+  loadOrganizationData();
+});
 
 function validateChanges(e) {
   e.preventDefault();

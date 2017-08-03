@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (isRegisterEventPage) {
       bindEventsPageUI();
-      events.populateSelects();
+      //events.populateSelects();
+      events.loadSponsors();
+      events.loadOrgn();
+      events.loadPlaces();
     }
   }
 

@@ -16,6 +16,7 @@ var msg = (function(window, undefined) {
     placeSucess: 'Se guardó el lugar de manera exitosa.',
     placeUpdate: 'Se actualizó el lugar exitosamente.',
     orgDuplicate: 'Ya existe una organización registrada con el código ingresado.',
+    assistDuplicate: 'Ya existe un asistente registrado con ese número de identificación ingresado.',
     warningCategory: 'Debe buscar los participantes de una categoría primero'
   };
 

@@ -15,39 +15,44 @@ function registerAssist(e) {
   window.scrollTo(0, 0);
 }
 
-function validateForm() {
-  var idField = document.querySelector('#id');
-  var $alertBox = $util('.js-login-msg');
+function getRegisterData() {
+  var formInputs = document.querySelectorAll('#register-user .js-form-field');
+  var assistantData = misc.buildDataObject(formInputs);
+  //assistantData.status = true;
+  orm.registrarAsist(assistantData);
+  orm.registrarAsistTblAsistente(assistantData);
+  misc.disableFieldsOnSave(formInputs);
+}
 
-  if (findById(idField) == null) {
+function validateForm() {
+  var codeValue = document.querySelector('#id').value;
+  //var codeValue = codeField.value;
+  var $alertBox = $util('.js-login-msg');
+  console.log(codeValue);
+  var assistantInfo = orm.findAssistById(codeValue);
+
+  if (!assistantInfo) {
     getRegisterData();
 
-    if ($alertBox) {
+    if ($alertBox) { 
       $alertBox.removeClass('alert-failure')
         .addClass('alert-success')
         .html(msg.key.saveSuccess);
     } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin',
+      $util('.js-form').insertAdjacentHTML('afterbegin', 
       '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
   } else {
-    if ($alertBox) {
+    if ($alertBox) { 
       $alertBox
         .removeClass('alert-success')
         .addClass('alert-failure')
-        .html('Ya hay un usuario registrado con la identificación indicada; no se realizó el registro');
+        .html(msg.key.assistDuplicate);
     } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin',
-        '<span class="note alert alert-failure js-login-msg">Ya hay un usuario registrado con la identificación indicada; no se realizó el registro</span>');
+      $util('.js-form').insertAdjacentHTML('afterbegin', 
+        '<span class="note alert alert-failure js-login-msg">' + msg.key.assistDuplicate +'</span>');
     }
-  }
-}
 
-function getRegisterData(){
-  var formInputs = document.querySelectorAll('#register-user .js-form-field');
-  var userInfo = misc.buildDataObject(formInputs);
-  userInfo.status = true;
-  userInfo.role = 'Asistente';
-  register(userInfo);
-  misc.disableFieldsOnSave(formInputs);
+    document.querySelector('#code').addClass('error');
+  }
 }

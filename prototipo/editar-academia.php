@@ -1,4 +1,4 @@
-<?
+<?php
   $page_title = 'Editar Academia';
   $page = 'acadm';
   include("templates/header.php");

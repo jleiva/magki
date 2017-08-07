@@ -1,4 +1,4 @@
-<?
+<?php
   $page_title = 'Registrar Lugar';
   $page = 'place';
   include("templates/header.php");

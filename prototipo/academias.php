@@ -1,4 +1,4 @@
-<?
+<?php
   $page_title = 'Listado de Academias';
   $page = 'acadm';
   include("templates/header.php");

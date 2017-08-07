@@ -1,4 +1,4 @@
-<? 
+<?php 
   $page_title = 'Listado de Patrocinadores';
   $page = 'org'; 
   include("templates/header.php");

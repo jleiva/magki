@@ -1,4 +1,4 @@
-<? 
+<?php 
   $page_title = 'Registrar Asistente';
   $page = 'user'; 
   include("templates/header.php");

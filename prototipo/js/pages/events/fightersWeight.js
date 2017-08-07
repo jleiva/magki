@@ -11,7 +11,7 @@ var categorySelected;
 function fillAvailableCategories(){
   var categories = document.querySelector('#categories');
   var queryUrl = misc.getQueryParams(document.location.search);
-  eventId = queryUrl.id;
+  eventId = queryUrl.eventId;
   eventCategories = orm.findEventCategories(eventId);
 
   for (var i = 0; i < eventCategories.length; i++) {
@@ -72,7 +72,7 @@ function fillTable(pfightersList) {
       idCol.innerHTML = pfightersList[i].id_usuario;
       idCol.className = 'idFields';
       idCol.name = pfightersList[i].id_usuario;
-      nameCol.innerHTML = pfightersList[i].primer_nombre + ' ' + pfightersList[i].segundo_nombre + ' ' + pfightersList[i].primer_apellido + ' '+ pfightersList[i].segundo_apellido;
+      nameCol.innerHTML = pfightersList[i].primer_nombre + ' ' + pfightersList[i].segundo_nombre + ' ' + pfightersList[i].primer_apeliido + ' '+ pfightersList[i].segundo_apellido;
       ribbon.innerHTML = pfightersList[i].nombre_cinturon;
       fightWeighCol.appendChild(fightWeighInput);
       statusCol.innerHTML = "";
@@ -86,25 +86,20 @@ function fillTable(pfightersList) {
 }
 
 function validateInputs() {
-
   var inputs = document.getElementsByClassName('fight-weight');
   var hasEmpty = false;
 
   for (var i = 0; i < inputs.length; i++) {
-
-    if(inputs[i].value == 0){
-
+    if (inputs[i].value == 0){
       inputs[i].classList.add('error');
       hasEmpty = true;
-
-    }else {
+    } else {
       inputs[i].classList.remove('error');
     }
   }
 
   if(inputs.length != 0) {
     if(!hasEmpty) {
-
       validateWeight(inputs);
       $util('.msgg').classList.remove('alert-failure');
       $util('.msgg').classList.add('note','alert-success','js-login-msg');
@@ -129,19 +124,15 @@ function validateInputs() {
 }
 
 function validateWeight(pInputs) {
-
   var condition;
   var fightersList = document.querySelectorAll('.idFields');
-  var status = false;
   var weightCategoriesByEvent = orm.getWeightCategoryByAlumByEvent(eventId, fightersList[0].name);
   var minWeigth = parseInt(weightCategoriesByEvent[0].peso_min);
   var maxWeight = parseInt(weightCategoriesByEvent[0].peso_max);
 
   for (var i = 0; i < fightersList.length; i++) {
-
     if (pInputs[i].value >= minWeigth && pInputs[i].value <= maxWeight) {
         condition = 'Califica';
-        status = true;
     } else {
         condition = 'Descalificado';
     }
@@ -149,7 +140,6 @@ function validateWeight(pInputs) {
     var fighterId = fightersList[i].name;
     var weight = pInputs[i].value;
   
-
     if (condition == 'Califica') {
         $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('disqualified');
         $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('qualified');
@@ -159,7 +149,7 @@ function validateWeight(pInputs) {
         $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('disqualified');
     }
 
-    orm.registerFighterWeight(fighterId,eventId,weight,status);
+    orm.registerFighterWeight(fighterId,eventId,weight,condition);
     $util("#tblFightersWeight").rows[i+1].cells[4].innerHTML = condition;
   }
 

@@ -407,6 +407,51 @@ var orm = (function(window, undefined) {
     return assistSel[0];
   }
 
+  function getAlumnByCatByEvent(pidCat, peventId) {
+    var fighters = [];
+    var request  = $.ajax({
+      url: 'services/listar_alumnos_x_categoria_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'idCat': pidCat,
+        'eventId': peventId
+      }
+    });
+    request.done(function(data) {
+      fighters = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return fighters;
+  }
+
+  function getWeightCategoryByAlumByEvent(peventId,palumnId) {
+    var categories = [];
+    var request  = $.ajax({
+      url: 'services/buscar_categoria_x_peso_x_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'eventId': peventId,
+        'alumnId': palumnId
+      }
+    });
+
+    request.done(function(data) {
+      categories = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return categories;
+  }
+
   function registrarOrg(orgData) {
     var request = $.ajax({
         url: 'services/registrar_organizacion.php',
@@ -621,6 +666,21 @@ var orm = (function(window, undefined) {
 
     request.fail(function(jqXHR, textStatus, errorThrown) {
       console.log(errorThrown);
+    })
+  }
+
+  function registerFighterWeight(pfighterId,peventId,pweight,psatus) {
+    var request = $.ajax({
+      url: 'services/registrar_pesaje_competidor.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'eventId': peventId,
+        'fighterId': pfighterId,
+        'weight': pweight,
+        'status' : psatus
+      }
     })
   }
 
@@ -862,6 +922,8 @@ var orm = (function(window, undefined) {
     findProfesorById: findProfesorById,
     findLogguedUser: findLogguedUser,
     getProductBySponsor: getProductBySponsor,
+    getAlumnByCatByEvent: getAlumnByCatByEvent,
+    getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
     registerAcademy: registerAcademy,
@@ -873,6 +935,7 @@ var orm = (function(window, undefined) {
     registerPlace: registerPlace,
     registrarProf: registrarProf,
     registrarProfTblProfesor: registrarProfTblProfesor,
+    registerFighterWeight: registerFighterWeight,
     saveReserve: saveReserve,
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,

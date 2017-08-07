@@ -1,43 +1,35 @@
 fillTable();
 
 function fillTable() {
-  var placeList = obtenerListaRegistros();
-  
-  if(placeList.length) {
-    document.querySelector('.no-data').style.display = 'none';
-    buildTable(placeList);
-  } 
-}
-
-function buildTable(placeList) {
+  var placesList = orm.findVenues();
   var tbody = document.querySelector('#tblPLaces tbody');
   tbody.innerHTML = '';
 
-  for (var i=0; i<placeList.length; i++) {
-    var table = document.getElementById('tblPLaces');
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
+  if (placesList.length) {
+    document.querySelector('.no-data').hide();
 
-    row.insertCell(0).innerHTML = placeList[i]['nombreLugar'];
-    row.insertCell(1).innerHTML = placeList[i]['status'] ? 'Habilitado' : 'Deshabilitado';
-    
-    var editColumn = row.insertCell();
-    var editLink = document.createElement('a');
-    var linkName = document.createTextNode('Editar');
-    
-    editLink.appendChild(linkName);
-    editLink.href = 'editar-lugar.html';
-    editLink.className = 'btn-action-event js-btn-edit';
-    editLink.dataset.index = rowCount;
-    editColumn.appendChild(editLink);
+    for (var i=0; i<placesList.length; i++) {
+      var row = tbody.insertRow(i);
+
+      row.insertCell().innerHTML = placesList[i].id_lugar;
+      row.insertCell().innerHTML = placesList[i].nombre_lugar;
+      row.insertCell().innerHTML = placesList[i].telefono;
+      row.insertCell().innerHTML = placesList[i].capacidad;
+      var status = row.insertCell();
+
+      if(placesList[i].estado == '1') {
+        status.innerHTML = 'Habilitado';
+      } else {
+        status.innerHTML = 'Deshabilitado';
+      }
+
+      var editLink = document.createElement('a');
+      var linkName = document.createTextNode('Editar');
+      editLink.appendChild(linkName);
+      editLink.href = 'editar-lugar.php' + '?id=' + placesList[i].id_lugar;
+      editLink.className = 'btn-action-event js-btn-edit';
+
+      row.insertCell().appendChild(editLink);
+    }
   }
-
-  var btnEdit = document.querySelectorAll('.js-btn-edit');
-  btnEdit.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      var currentItem = e.currentTarget;
-      var placeID = currentItem.getAttribute('data-index');
-      localStorage.setItem('placeID', placeID); 
-    }); 
-  });
 }

@@ -1,9 +1,8 @@
 <?
-  $page_title = 'Registrar Academia';
-  $page = 'acadm'; 
+  $page_title = 'Editar Academia';
+  $page = 'acadm';
   include("templates/header.php");
 ?>
-
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
@@ -23,7 +22,7 @@
             </div>
             <div class="field-wrapper">
               <label for="telefonoAcademia">Teléfono <abbr title="Requerido">*</abbr></label>
-              <input type="number" id="telefonoAcademia" name="academyTel" required class="js-form-field">
+              <input type="text" id="telefonoAcademia" name="academyTel" required class="js-form-field">
             </div>
             <div class="field-wrapper">
               <label for="emailAcademia">Correo Electrónico <abbr title="Requerido">*</abbr></label>
@@ -51,7 +50,7 @@
             <legend>Datos de ubicaci&oacute;n</legend>
             <div class="field-wrapper">
               <label for="direccionAcademia">Direcci&oacute;n f&iacute;sica</label>
-              <textarea name="academyAddress" placeholder="Dirección" class="js-form-field" id="direccionAcademia"></textarea>
+              <textarea name="academyAddress" placeholder="Dirección exacta" class="js-form-field" id="direccionAcademia"></textarea>
             </div>
 
             <div class="field-group">

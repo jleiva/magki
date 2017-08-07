@@ -1117,4 +1117,11 @@ td {
   width: 90%;
   height: 400px; }
 
+.register-details {
+  font-size: 1.333em; }
+  .register-details li {
+    background: none;
+    font-weight: bold;
+    padding: 0; }
+
 /*# sourceMappingURL=styles.css.map */

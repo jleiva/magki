@@ -1,3 +1,4 @@
+var academiesList;//global
 var getValidBday = misc.debounce(function() {
   validateDateBday();
 }, 1000);
@@ -24,55 +25,72 @@ function registerProfe(e) {
 
 function getRegisterData() {
   var formInputs = document.querySelectorAll('#register-user .js-form-field');
-  var userData = misc.buildDataObject(formInputs);
-
-  userData.status = true;
-  registrar(userData);
+  var profData = misc.buildDataObject(formInputs);
+  var idAcademia  = findIdAcademy(profData.academy);
+  //profData.status = true;
+  //registrar(profData);
+  orm.registrarProf(profData);
+  orm.registrarProfTblProfesor(profData,idAcademia);
   misc.disableFieldsOnSave(formInputs);
 }
 
 function validateForm() {
-  var idField = document.querySelector('#id');
-  var codeValue = idField.value;
+  var codeValue = document.querySelector('#id').value;
+  //var codeValue = codeField.value;
   var $alertBox = $util('.js-login-msg');
+  console.log(codeValue);
+  var profInfo = orm.findProfesorById(codeValue);
 
-  if (findById(codeValue) == null) {
+  if (!profInfo) {
     getRegisterData();
-    idField.removeClass('error');
-    if ($alertBox) {
+
+    if ($alertBox) { 
       $alertBox.removeClass('alert-failure')
         .addClass('alert-success')
         .html(msg.key.saveSuccess);
     } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin',
+      $util('.js-form').insertAdjacentHTML('afterbegin', 
       '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
-
   } else {
-    idField.addClass('error');
-    if ($alertBox) {
+
+    if ($alertBox) { 
       $alertBox
         .removeClass('alert-success')
         .addClass('alert-failure')
-        .html('Ya hay un usuario registrado con la identificación indicada; no se realizó el registro');
+        .html(msg.key.profDuplicate);
     } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin',
-        '<span class="note alert alert-failure js-login-msg">Ya hay un usuario registrado con la identificación indicada; no se realizó el registro</span>');
+      $util('.js-form').insertAdjacentHTML('afterbegin', 
+        '<span class="note alert alert-failure js-login-msg">' + msg.key.profDuplicate +'</span>');
     }
+
+    document.querySelector('#id').addClass('error');
   }
 }
 
 function fillAcademies() {
- var academiesList = obtenerListaRegistros();
+ academiesList = orm.findActiveAcad();
  var academiesField = document.querySelector('#academy');
 
  for(var i = 0; i < academiesList.length; i++) {
    var options = document.createElement("option");
-     var academyName = academiesList[i]['nombreAcademia'];
+     var academyName = academiesList[i].nombre_academia;
      options.text = academyName;
      options.className = 'btn-action-event js-edit-event';
      academiesField.add(options);
  }
+}
+
+function findIdAcademy(pname_Academia){
+  var idAcademia;
+  for(var i = 0; i < academiesList.length; i++) {
+     var academyName = academiesList[i].nombre_academia;
+     if (pname_Academia === academyName){
+      idAcademia = academiesList[i].id_academia;
+     }
+ }
+ return idAcademia;
+
 }
 
 function calculateAge(bDateValue) {

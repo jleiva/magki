@@ -318,10 +318,13 @@ var events = (function(window) {
 
       var anchorRegister = document.createElement('a');
       var linkText = document.createTextNode('Inscribir atletas');
+      // ToDo: en linea 322 hay que almacenar el valor que tenga el ID del evento.
+      // eventId se usa en linea 327 y 341
+      var eventId = 1;
       anchorRegister.appendChild(linkText);
       anchorRegister.className = 'btn-action-event js-athlete-event';
       anchorRegister.dataset.index = index;
-      anchorRegister.href = 'inscribir-competidores.php';
+      anchorRegister.href = 'inscribir-competidores.php' + '?eventId=' + eventId;
 
       var anchorResults = document.createElement('a');
       var linkText = document.createTextNode('Registrar resultados');
@@ -335,7 +338,7 @@ var events = (function(window) {
       anchorPesaje.appendChild(linkText);
       anchorPesaje.className = 'btn-action-event';
       anchorPesaje.dataset.index = index;
-      anchorPesaje.href = 'pesaje.html';
+      anchorPesaje.href = 'pesaje.php' + '?eventId=' + eventId;
       
       eventActions.appendChild(anchorEdit);
       eventActions.appendChild(anchorRegister);

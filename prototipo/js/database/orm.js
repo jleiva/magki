@@ -23,6 +23,29 @@ var orm = (function(window, undefined) {
     return eventInfo;
   }
 
+  function findEventCategories(peventId) {
+    var catsData = [];
+    var request = $.ajax({
+      url: 'services/buscar_categorias_activas_por_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'idEvento': peventId
+      }      
+    });
+
+    request.done(function(data){
+      catsData = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return catsData;
+  }
+
   function findOrgs() {
     var appOrgListLS = [];
     var request = $.ajax({
@@ -70,6 +93,48 @@ var orm = (function(window, undefined) {
     });
 
     return orgSel[0];
+  }
+
+  function findAcademyById(academyId) {
+    var academySel = [];
+    var request = $.ajax({
+        url: 'services/buscar_academia_por_id.php',
+        dataType: 'json',
+        async: false,
+        method: 'get',
+        data: {
+          'idAcademy': academyId
+        }
+    });
+
+    request.done(function(data) {
+      academySel = data;
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+
+    return academySel[0];
+  }
+
+  function findAcademies() {
+    var academiesList = [];
+    var request = $.ajax({
+      url: 'services/listar_academias.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data:{}
+    });
+
+    request.done(function(datos) {
+      academiesList = datos;
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    })
+
+    return academiesList;
   }
 
   function findSponsors() {
@@ -254,34 +319,54 @@ var orm = (function(window, undefined) {
       console.log('Conexion error');
     });
 
-    return userData;
+    return userData[0];
   }
 
-  function findVenue(peventId) {
-    var venueInfo = [];
-
+  function findVenueById(placeId) {
+    var venueSel = [];
     var request = $.ajax({
-      url: 'services/buscar_lugar.php',
-      dataType: 'json',
-      async: false,
-      method: 'get',
-      data: {
-        'idEvento': peventId
-      }      
+        url: 'services/buscar_lugar_por_id.php',
+        dataType: 'json',
+        async: false,
+        method: 'get',
+        data: {
+          'placeId': placeId
+        }
     });
 
-    request.done(function(data){
-      venueInfo = data;
-    })
+    request.done(function(data) {
+      venueSel = data;
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
 
-    request.fail(function(){
-      console.log('Conexion error');
-    }) 
-
-    return venueInfo;
+    return venueSel[0];
   }
 
   function findVenues() {
+    var placesList = [];
+    var request = $.ajax({
+      url: 'services/listar_lugares.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data:{}
+    });
+
+    request.done(function(data) {
+
+      placesList = data;
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+
+      console.log(errorThrown);
+    })
+
+    return placesList;
+  }
+
+  function findActiveVenues() {
     var appPlacesListLS = [];
     var request = $.ajax({
         url: 'services/listar_lugares_habilitados.php',
@@ -413,6 +498,132 @@ var orm = (function(window, undefined) {
     });
   }
 
+  function registrarProf(profData) {
+    var request = $.ajax({
+        url: 'services/registrar_profesor.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'pPrimer_nombre': profData.name,
+          'pSegundo_nombre': profData.name2,
+          'pPrimer_apeliido': profData.lastname,
+          'pSegundo_apellido': profData.lastname2,
+          'pfecha_nacimiento': profData.bday,
+          'pedad': profData.age,
+          'pCorreo': profData.email,
+          'pgenero': profData.genero,
+          'ptelefono': profData.phone,
+          'pIdentificacion': profData.id
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+      console.log('[registrarProf] Error de conexion');
+    });
+  }
+
+  function registrarProfTblProfesor(profData,pAcademyID) {
+    var request = $.ajax({
+        url: 'services/registrar_profesor_tbl_profesor.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'pid_profesor': profData.id,
+          'pnombre_cinturon': profData.beltGrade,
+          'pid_academia': pAcademyID
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+      console.log('[registrarProfTblProfesor] Error de conexion');
+    });
+  }
+
+  function registerPlace(pPlace) {
+    var request = $.ajax({
+      url: 'services/registrar_lugar.php',
+      type: 'post',
+      dataType: 'json',
+      async: false,
+      data: {
+        'placeName': pPlace.placeName,
+        'placeTel': pPlace.placeTel,
+        'placeSchedule': pPlace.placeSchedule,
+        'placeCap': pPlace.placeCap,
+        'placeAdress': pPlace.placeAdress,
+        'placeLatitude': pPlace.placeLatitude,
+        'placeLongitude': pPlace.placeLongitude
+      }
+    });
+
+    request.done(function(){
+      console.log('Registrado correctamente');
+    })
+
+    request.fail(function(jqXHR, textStatus, errorThrown){
+
+      console.log(errorThrown);
+    })
+  }
+
+  function registerAcademy(pAcademy) {
+    var request = $.ajax({
+      url: 'services/registrar_academia.php',
+      type: 'post',
+      dataType: 'json',
+      async: false,
+      data: {
+        'academyName': pAcademy.academyName,
+        'academyTel': pAcademy.academyTel,
+        'academyEmail': pAcademy.academyEmail,
+        'attendantName': pAcademy.attendantName,
+        'attendantLastName': pAcademy.attendantLastName,
+        'attendantSecLastName': pAcademy.attendantSecLastName,
+        'academyAddress': pAcademy.academyAddress,
+        'placeLatitude': pAcademy.placeLatitude,
+        'placeLongitude': pAcademy.placeLongitude
+      }
+    });
+
+    request.done(function() {
+      console.log('Registrado correctamente');
+    })
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    })
+  }
+
+  function registerAthleteEvent(userData) {
+    var request = $.ajax({
+      url: 'services/registrar_alumno_en_evento.php',
+      type: 'post',
+      dataType: 'json',
+      async: false,
+      data: {
+        'id_alumno': userData.id_alumno,
+        'id_categoria': userData.id_categoria,
+        'id_peso': userData.id_peso,
+        'id_evento': userData.id_evento,
+        'id_academia': userData.id_academia
+      }
+    });
+
+    request.done(function() {
+      console.log('Registrado correctamente');
+    })
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    })
+  }
+
   function updateSponsorInfo(pSponsorInfo) {
     var request = $.ajax({
       url: 'services/actualizar_patrocinador.php',
@@ -457,6 +668,64 @@ var orm = (function(window, undefined) {
     });
   }
 
+  function updateAcademy(academyData, academyId) {
+    var request = $.ajax({
+      url: 'services/actualizar_academia.php',
+      dataType: 'json',
+      async: false,
+      method: 'POST',
+      data: {
+        'academyName': academyData.academyName,
+        'academyTel': academyData.academyTel,
+        'academyEmail': academyData.academyEmail,
+        'attendantName': academyData.attendantName,
+        'attendantLastName': academyData.attendantLastName,
+        'attendantSecLastName': academyData.attendantSecLastName,
+        'academyAddress': academyData.academyAddress,
+        'placeLatitude': academyData.placeLatitude,
+        'placeLongitude': academyData.placeLongitude,
+        'status': academyData.status,
+        'academyId': academyId
+      }
+    });
+
+    request.done(function(data) {
+      console.log('Academia actualizada correctamente');
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+  }
+
+  function updateVenue(pDataPlace,placeId){
+    var request = $.ajax({
+      url: 'services/actualizar_lugar.php',
+      dataType: 'json',
+      async: false,
+      method: 'POST',
+      data: {
+        'namePlace': pDataPlace.namePlace,
+        'telPlace': pDataPlace.telPlace,
+        'schedule': pDataPlace.schedule,
+        'capPlace': pDataPlace.capPlace,
+        'adressPlace': pDataPlace.adressPlace,
+        'placeLatitude': pDataPlace.placeLatitude,
+        'placeLongitude': pDataPlace.placeLongitude,
+        'status': pDataPlace.status,
+        'placeId': placeId
+      }
+    });
+
+    request.done(function(data) {
+      console.log('Academia actualizada correctamente');
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+  }
+
   function saveReserve(pdata) {
     var request = $.ajax({
       url: 'services/registrar_reserva_entradas.php',
@@ -465,6 +734,7 @@ var orm = (function(window, undefined) {
       method: 'post',
       data: {
         'idClient': pdata.id,
+        'idEvento': pdata.eventId,
         'name': pdata.name,
         'firstLastName': pdata.lastName,
         'secondLastName': pdata.secLastName,
@@ -522,16 +792,6 @@ var orm = (function(window, undefined) {
     return eventExist;
   }
 
-  function findActiveVenues() {
-    var venuesListLS = findVenues();
-
-    var venuesList = venuesListLS.filter(function(venue) {
-      return venue.status === true;
-    });
-
-    return venuesList;
-  }
-
   function findActiveSponsors() {
     var sponsorsListLS = findSponsors();
 
@@ -569,16 +829,6 @@ var orm = (function(window, undefined) {
     return profesorList;
   }
 
-  function findProfesorById(id) {
-    var profesores = findProfesor();
-    
-    var profSel = profesores.filter(function(user) {
-      return user.id === id;
-    });
-    
-    return profSel[0];
-  }
-
   function findLogguedUser() {
     var appLS = storage.get('appLS') || {};
     var logguedInUser = appLS.logguedInUser || {};
@@ -587,14 +837,17 @@ var orm = (function(window, undefined) {
   }
   
   return {
+    findAcademies: findAcademies,
+    findAcademyById: findAcademyById,
     findEventbyId: findEventbyId,
+    findEventCategories: findEventCategories,
     findEventByName: findEventByName,
     findOrgs: findOrgs,
     findOrgById: findOrgById,
     findActiveAcad: findActiveAcad,
     findActiveOrgs: findActiveOrgs,
     findVenues: findVenues,
-    findVenue: findVenue,
+    findVenueById: findVenueById,
     findActiveVenues: findActiveVenues,
     findSponsors: findSponsors,
     findSponsorbyId: findSponsorbyId,
@@ -611,12 +864,19 @@ var orm = (function(window, undefined) {
     getProductBySponsor: getProductBySponsor,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
+    registerAcademy: registerAcademy,
     registrarAsist: registrarAsist,
     registrarAsistTblAsistente: registrarAsistTblAsistente,
+    registerAthleteEvent: registerAthleteEvent,
     registerSponsor: registerSponsor,
     registerSponsorProducts: registerSponsorProducts,
+    registerPlace: registerPlace,
+    registrarProf: registrarProf,
+    registrarProfTblProfesor: registrarProfTblProfesor,
     saveReserve: saveReserve,
+    updateAcademy: updateAcademy,
     updateOrg: updateOrg,
-    updateSponsorInfo: updateSponsorInfo
+    updateSponsorInfo: updateSponsorInfo,
+    updateVenue: updateVenue
   };
 })(window);

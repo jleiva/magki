@@ -1,4 +1,4 @@
-<?
+<?php
   $page_title = 'Inscribir Competidores';
   $page = 'event'; 
   include("templates/header.php");
@@ -56,11 +56,11 @@
   </footer>
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/database/storage.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/messages.js"></script>
-  <script src="js/pages/academies/businessLogicAcademy.js"></script>
   <script src="js/pages/users/student/logicAlumno.js"></script>
   <script src="js/pages/events/fightersInscription.js"></script>
   <script src="js/pages/main.js"></script>

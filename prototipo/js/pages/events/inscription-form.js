@@ -1,107 +1,100 @@
-$util('#btn-save').on('click', saveData);
-
-/*
-fillHeader();*/
-loadData();
-
-function loadData() {
+document.addEventListener('DOMContentLoaded', function() {
+  $util('#btn-save').on('click', validateChanges);
   var queryUrl = misc.getQueryParams(document.location.search);
   var userId = queryUrl.id;
+  var eventId = queryUrl.eventId;
   var userData = orm.findStudentById(userId);
-
-  document.querySelector('#academy').disabled = true;
-  document.querySelector('#teacher').disabled = true;
-  document.querySelector('#academy').value = userData[0].nombre_academia;
-  fillTeacher(userData[0].id_profesor);
-  //document.querySelector('#teacher').value = userData[0].id_profesor;
-}
-
-function saveData() {
-   var a = document.querySelector('#academy').value;
-   var b = document.querySelector('#teacher').value;
-   var c = document.querySelector('#category').value;
-   var d = document.querySelector('#weight').value;
-
-   var data = [];
-
-   data.push(a, b, d, c );
-   localStorage.setItem('fightersList', JSON.stringify(data));
-}
-
-function fillHeader() {
-  var appLS = storage.get('appLS') || {};
-  var eventId = appLS.eventToEdit || {};
   var eventData = orm.findEventbyId(eventId);
-  var athleteName = document.querySelector('.js-athlete-name');
-  var eventName = document.querySelector('.js-event-name');
-  
-  eventName.innerHTML = eventData.eventName;
 
-  var fighterID = localStorage.getItem('fighterID');
-  var fighterInfo = findById(fighterID);
-  var fighterHeader = document.querySelector('.js-athlete-name');
-  fighterHeader.innerHTML = fighterHeader.innerHTML + fighterInfo[1] + ' ' + fighterInfo[2] + ' ' + fighterInfo[3] + ' ' + fighterInfo[4] ;
-}
+  fillEventData(eventData)
+  loadUserData(userData);
 
-function fillTeacher(idUser) {
-  var professor = document.querySelector('#teacher');
-  var profData = orm.findProfesorById(idUser);
-  
-}
+  function fillEventData(eventData) {
+    var eventCategories = orm.findEventCategories(eventId);
+    var eventName = document.querySelector('.js-event-name');
+    var userCategories;
 
-function validateChanges(e) {
-  var $alertBox = $util('.js-login-msg');
+    userCategories = eventCategories.filter(function(cat) {
+      return userData[0].genero === cat.genero;
+    });
 
-  e.preventDefault();
-  var formInputs = document.querySelectorAll('#inscription-form .js-event-field:required');
+    populateCategorySelect(userCategories);
+    eventName.innerHTML = eventData[0].nombre;
+  }
 
-  if(!validate.emptyFields(formInputs)) {
-     var validForm = validate.fieldsValue('inscription-form');
+  function populateCategorySelect(optList) {
+    select = document.getElementById('category');
 
-    if(!validForm[1].length) {
-      registerFighter();
-      window.scrollTo(0, 0);
+    optList.forEach(function(item) {
+      var opt = document.createElement('option');
+      opt.value = item.id_categoria;
+      opt.innerHTML = item.description;
+      select.appendChild(opt);
+    });
+  }
+
+  function loadUserData(userData) {
+    document.querySelector('#academy').value = userData[0].nombre_academia;
+    document.querySelector('#athleteName').value = userData[0].primer_nombre + ' ' + userData[0].segundo_nombre + ' ' + userData[0].primer_apeliido + ' ' + userData[0].segundo_apellido;
+    document.querySelector('#athleteId').value = userData[0].id_usuario;
+    fillTeacher(userData[0].id_profesor);
+  }
+
+  function saveAthleteData() {
+    var userId = document.querySelector('#athleteId').value;
+    var academy = document.querySelector('#academy').value;
+    var category = document.querySelector('#category').value;
+    var weight = document.querySelector('#weight').value;
+    var userInfo = {};
+    userInfo.id_alumno = userId;
+    userInfo.id_categoria = category;
+    userInfo.id_peso = weight;
+    userInfo.id_evento = eventId;
+    userInfo.id_academia = userData[0].id_academia;
+
+    orm.registerAthleteEvent(userInfo);
+  }
+
+  function fillTeacher(idUser) {
+    var professor = document.querySelector('#teacher');
+    var profData = orm.findProfesorById(idUser);
     
-        if ($alertBox) { 
-      $alertBox.removeClass('alert-failure')
-        .addClass('alert-success')
-        .html(msg.key.saveSuccess);
-    } else {
-      $util('.js-form').insertAdjacentHTML('afterbegin', 
-      '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
-    }
+    document.querySelector('#teacher').value = profData.primer_nombre + ' ' + profData.segundo_nombre + ' ' + profData.primer_apeliido + ' ' + profData.segundo_apellido;
+  }
 
-    } else {
-      if ($alertBox) { 
-        $alertBox
-        .removeClass('alert-success')
-        .addClass('alert-failure')
-        .html('Este código ya existe, no se realizó el registro');
+  function validateChanges(e) {
+    e.preventDefault();
+    var $alertBox = $util('.js-login-msg');
+    var formInputs = document.querySelectorAll('#inscription-form .js-form-field:required');
+
+    if(!validate.emptyFields(formInputs)) {
+       var validForm = validate.fieldsValue('inscription-form');
+
+      if(!validForm[1].length) {
+        saveAthleteData();
+
+        if ($alertBox) { 
+        $alertBox.removeClass('alert-failure')
+          .addClass('alert-success')
+          .html(msg.key.saveSuccess);
       } else {
         $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
+        '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
+      }
+
+      } else {
+        if ($alertBox) { 
+          $alertBox
+          .removeClass('alert-success')
+          .addClass('alert-failure')
+          .html('Este código ya existe, no se realizó el registro');
+        } else {
+          $util('.js-form').insertAdjacentHTML('afterbegin', 
+          '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
+        }
       }
     }
+
+    window.scrollTo(0, 0);
   }
-}
-
-function registerFighter() {
-  var academy = '';
-  var weight = '';
-  var teacher = '';
-  var category;
-  var fighterInformation = [];
-
-  academy = document.querySelector('#academy').value;
-  weight = document.querySelector('#weight').value;
-  teacher  = document.querySelector('#teacher').value;
-  category = document.querySelector('#category');
-  var selectedCategory = category.options[category.selectedIndex].text;
-
-  fighterInformation.push(academy, weight, teacher, selectedCategory);
-  localStorage.setItem('fighterInfo', JSON.stringify(fighterInformation));
-}
-
-
-
-
+});

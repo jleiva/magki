@@ -12,7 +12,7 @@ function validateAcademy(e) {
     validForm = validate.fieldsValue('register-academy');
 
     if (!validForm[1].length) {
-      registerAcademy();
+      registerData();
 
       if ($alertBox) {
         $alertBox.removeClass('alert-failure')
@@ -28,11 +28,11 @@ function validateAcademy(e) {
   window.scrollTo(0, 0);
 }
 
-function registerAcademy(){
+function registerData(){
   var formInputs = document.querySelectorAll('#register-academy .js-form-field');
   var academyData = misc.buildDataObject(formInputs);
 
-  registerData(academyData);
+  orm.registerAcademy(academyData);
   misc.disableFieldsOnSave(formInputs);
 }
 

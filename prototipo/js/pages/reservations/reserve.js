@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+  var queryUrl = misc.getQueryParams(document.location.search);
+  var eventId = queryUrl.id;
   var tickets;
   var ticketsSold;
   var ticketsTotal;
-  var eventId;
   
   fillEventData();
   $util('#btn-save').on('click', validateReserve); 
 
   function fillEventData() {
-    var queryUrl = misc.getQueryParams(document.location.search);
-    var eventId = queryUrl.id;
     var eventInfo = orm.findEventbyId(eventId);
-    var placeInfo = orm.findVenue(eventId);
+    var placeInfo = orm.findVenueById(eventId);
 
     $util('.promo-box__title').innerHTML = eventInfo[0].nombre;
-    $util('#place').innerHTML = placeInfo[0].nombre_lugar;
+    $util('#place').innerHTML = placeInfo.nombre_lugar;
 
     var fecha_inicio = modifiedDateFormat(eventInfo[0].fecha_inicio);
     $util('#date').innerHTML = fecha_inicio;
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var ticketsInfo = $util('#availableTickets').innerHTML;
     $util('#availableTickets').innerHTML = tickets;
-    eventId = eventInfo[0].id_evento;
     ticketsTotal = parseInt(eventInfo[0].entradas_disponibles);
     ticketsSold = parseInt(eventInfo[0].entradas_vendidas);
   }
@@ -49,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if ($alertBox) {
               $alertBox.removeClass('alert-failure')
                 .addClass('alert-success')
-                .html(msg.key.saveSuccess);
+                .html(msg.key.reserveSucess);
             } else {
               $util('.js-form').insertAdjacentHTML('afterbegin',
-              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess+ '</span>');
+              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess + '</span>');
             }
 
         } else {
@@ -65,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .html(msg.key.saveSuccess);
             } else {
               $util('.js-form').insertAdjacentHTML('afterbegin',
-              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess+ '</span>');
+              '<span class="note alert alert-success js-login-msg">' + msg.key.reserveSucess + '</span>');
             }
 
           } else {
@@ -109,6 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var userInfo = misc.buildDataObject(formInputs);
     var ticketsBought = parseInt(userInfo.amountTickets);
     var soldTickets = ticketsSold + ticketsBought;
+    
+    userInfo.eventId = eventId;
     orm.saveReserve(userInfo);
     orm.modifyTicketsAmount(eventId, soldTickets);
     misc.disableFieldsOnSave(formInputs);

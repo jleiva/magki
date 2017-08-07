@@ -10,7 +10,7 @@
       <a href="organizaciones.php" <?php echo ($page == 'org') ? "class='is-active'" : ""; ?>>Organizaciones</a>
     </li>
     <li class="main-nav__item">
-      <a href="lugares.html" <?php echo ($page == 'place') ? "class='is-active'" : ""; ?>>Lugares</a>
+      <a href="lugares.php" <?php echo ($page == 'place') ? "class='is-active'" : ""; ?>>Lugares</a>
     </li>
     <li class="main-nav__item">
       <a href="eventos.html" <?php echo ($page == 'event') ? "class='is-active'" : ""; ?>>Eventos</a>

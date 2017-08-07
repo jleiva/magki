@@ -14,7 +14,7 @@ function validatePlace(e) {
     validForm = validate.fieldsValue('register-place');
 
     if (!validForm[1].length) {
-      registerPlace();
+      registerData();
 
       if ($alertBox) {
         $alertBox.removeClass('alert-failure')
@@ -30,11 +30,11 @@ function validatePlace(e) {
   window.scrollTo(0, 0);
 }
 
-function registerPlace() {
+function registerData() {
   var formInputs = document.querySelectorAll('#register-place .js-form-field');
   var placeData = misc.buildDataObject(formInputs);
 
-  registerData(placeData);
+  orm.registerPlace(placeData);
   misc.disableFieldsOnSave(formInputs);
 }
 

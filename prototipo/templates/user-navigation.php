@@ -1,16 +1,7 @@
 <nav class="main-nav">
   <ul class="menu">
     <li class="main-nav__item">
-      <a href="alumnos.html" <?php echo ($page == 'user') ? "class='is-active'" : ""; ?>>Usuarios</a>
-    </li>
-    <li class="main-nav__item">
       <a href="academias.php" <?php echo ($page == 'acadm') ? "class='is-active'" : ""; ?>>Academias</a>
-    </li>
-    <li class="main-nav__item">
-      <a href="organizaciones.php" <?php echo ($page == 'org') ? "class='is-active'" : ""; ?>>Organizaciones</a>
-    </li>
-    <li class="main-nav__item">
-      <a href="lugares.php" <?php echo ($page == 'place') ? "class='is-active'" : ""; ?>>Lugares</a>
     </li>
     <li class="main-nav__item">
       <a href="eventos.html" <?php echo ($page == 'event') ? "class='is-active'" : ""; ?>>Eventos</a>

@@ -3,11 +3,14 @@
   $page = 'org'; 
   include("templates/header.php");
 ?>
+
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Organizaciones</h2>
-        <a href="registrar-organizacion.php" class="button btn-small" id="btn-register">Registrar Organización</a>
+        <?php if ($userRol == 1 || $userRol == 2) { ?>
+          <a href="registrar-organizacion.php" class="button btn-small" id="btn-register">Registrar Organización</a>
+        <?php } ?>
       </div>
 
       <div class="actions-tabs">
@@ -44,15 +47,10 @@
     </div>  
   </main>
   
-  <footer class="site-footer">
-    <div class="group">
-      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
-      <ul class="menu nav-footer">
-        <li><a href="">Ayuda</a></li>
-        <li><a href="">tkdcr.org</a></li>
-      </ul>
-    </div>
-  </footer>
+  <?php
+    include("templates/footer.php");
+  ?>
+
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/database/storage.js"></script>
   <script src="js/database/orm.js"></script>

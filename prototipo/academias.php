@@ -7,7 +7,9 @@
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Academias</h2>
-        <a href="registrar-academia.php" class="button btn-small" id="btn-register">Registrar Academia</a>
+          <?php if ($userRol == 1 || $userRol == 2) { ?>
+            <a href="registrar-academia.php" class="button btn-small" id="btn-register">Registrar Academia</a>
+          <?php } ?>
       </div>
 
       <div class="actions-tabs">
@@ -40,15 +42,10 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="group">
-      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
-      <ul class="menu nav-footer">
-        <li><a href="">Ayuda</a></li>
-        <li><a href="">tkdcr.org</a></li>
-      </ul>
-    </div>
-  </footer>
+  <?php
+    include("templates/footer.php");
+  ?>
+  
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
 	<script src="js/helpers/misc.js"></script>

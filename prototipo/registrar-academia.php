@@ -1,5 +1,5 @@
 <?
-  $page_title = 'Editar Academia';
+  $page_title = 'Registrar academia';
   $page = 'acadm';
   include("templates/header.php");
 ?>

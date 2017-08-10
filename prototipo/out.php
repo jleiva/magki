@@ -10,7 +10,9 @@
   <main class="wrapper">
     <div class="main-content">    
       <div class="js-form login-form__wrap">
-        <h1 class="logo"><a href="index.html">Makgi</a></h1> 
+        <h1 class="logo"><a href="index.html">Makgi</a></h1>
+        <h3>No tiene permisos para acceder a esta secci&oacute;n.</h3>
+        <p>Puede volver a la <a href="index.html">secci&oacute;n de inicio</a>, ver los <a href="">pr&oacute;ximos eventos</a> &oacute; <a href="iniciar-sesion.php">iniciar sesi&oacute;n</a>.</p>
       </div>
     </div>    
   </main>

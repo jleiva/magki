@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <title>Makgi - Editar Evento</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
-</head>
-<body id="event-edit">
-  <header class="site-header" role="">
-    <div class="group">
-      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
-      <nav class="main-nav" role="">
-        <ul class="menu">
-          <li class="main-nav__item"><a href="alumnos.html">Usuarios</a></li>
-          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
-          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
-          <li class="main-nav__item"><a href="eventos.html" class="is-active">Eventos</a></li>
-          <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<?php 
+  $page_title = 'Registrar evento';
+  $page = 'event'; 
+  include("templates/header.php");
+?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Editar Evento</h2>
+        <h2>Registrar Evento</h2>
         <p class="section-intro__leading"><strong>Recuerde:</strong> Puede <em>Guardar</em> un evento sin completar los campos requeridos, pero no Publicarlo.</p>
       </div>
       
@@ -214,7 +194,7 @@
 
               <div class="field-wrapper">
                 <label for="sponsorType">Tipo de patrocinio</label>
-                <select class="js-event-field" name="sponsorType" id="sponsorType">
+                <select class="js-event-field" name="sponsorType">
                   <option value="">Seleccione un patrocinio...</option>
                   <option value="money">Dinero</option>
                   <option value="equitment">Equipo</option>
@@ -234,36 +214,18 @@
             </div>
           </fieldset>
 
-          <fieldset class="select field">
-            <legend>Estado<abbr title="Requerido">*</abbr></legend>
-            <ul class="list-form">
-              <li>
-                <label for="able"><input id="able" name="status" type="radio"/>Habilitar</label>
-              </li>
-              <li>
-                <label for="disable"><input id="disable" name="status" type="radio"/>Deshabilitar</label>
-              </li>
-            </ul>
-            <small class="note"><strong>Deshabilitar:</strong> no se muestra en listados p&uacute;blicos &oacute; formularios.</small>
-          </fieldset>
-
           <div class="field-wrapper">
-            <button class="button-secondary" id="btn-save-edit" value="Guardar">Guardar</button> 
-            <button id="btn-publish-edit" value="Publicar">Publicar</button>
+            <button class="button-secondary" id="btn-save" value="Guardar">Guardar</button> 
+            <button id="btn-publish" value="Publicar">Publicar</button>
           </div>
         </form>
       </div>
     </div>    
   </main>
-  <footer class="site-footer">
-    <div class="group">
-      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
-      <ul class="menu nav-footer">
-        <li><a href="">Ayuda</a></li>
-        <li><a href="">tkdcr.org</a></li>
-      </ul>
-    </div>
-  </footer>
+  
+  <?php
+    include("templates/footer.php");
+  ?>
   
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
@@ -274,7 +236,7 @@
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/modules/events.js"></script>
-  <script src="js/pages/events/edit.js"></script>
+  <script src="js/pages/events/index.js"></script>
   <script src="js/pages/main.js"></script>
 </body>
 </html>

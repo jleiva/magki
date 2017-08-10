@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <title>Makgi - Listado de Alumnos</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
-</head>
-<body>
-  <header class="site-header" role="">
-    <div class="group">
-      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
-      <nav class="main-nav" role="">
-        <ul class="menu">
-          <li class="main-nav__item"><a href="alumnos.html" class="is-active">Usuarios</a></li>
-          <li class="main-nav__item"><a href="academias.html">Academias</a></li>
-          <li class="main-nav__item"><a href="organizaciones.html">Organizaciones</a></li>
-          <li class="main-nav__item"><a href="lugares.html">Lugares</a></li>
-          <li class="main-nav__item"><a href="eventos.html">Eventos</a></li>
-          <li class="main-nav__item"><a href="">Reportes</a></li>
-          <li class="main-nav__item main-nav__item--profile"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<?php
+  $page_title = 'Listado de Alumnos';
+  $page = 'user'; 
+  include("templates/header.php");
+?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Alumnos</h2>
-        <a href="registrar-alumno.html" class="button btn-small" id="btn-register">Registrar Alumno</a>
+        <?php if ($userRol == 1 || $userRol == 2) { ?>
+          <a href="registrar-alumno.html" class="button btn-small" id="btn-register">Registrar Alumno</a>
+        <?php } ?>
       </div>
      <div class="actions-tabs">
         <div class="search-form">
@@ -61,15 +43,11 @@
       </div>
   </div>
 </main>
-<footer class="site-footer">
-    <div class="group">
-      <a href="#" class="footer-tagline">Makgi <span>Gestor de eventos</span></a>
-      <ul class="menu nav-footer">
-        <li><a href="">Ayuda</a></li>
-        <li><a href="">tkdcr.org</a></li>
-      </ul>
-    </div>
-  </footer>
+  
+  <?php
+    include("templates/footer.php");
+  ?>
+
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
   <script src="js/database/orm.js"></script>

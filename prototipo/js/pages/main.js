@@ -13,7 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
     appLS.logguedInUser = null;
 
     storage.put('appLS', appLS);
-
+    closeSession();
     window.location.replace('index.html');
   });
+
+  function closeSession() {
+    var request = $.ajax({
+      url: 'services/cerrar_sesion.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}      
+    });
+
+    request.done(function(data){});
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+  }
 });

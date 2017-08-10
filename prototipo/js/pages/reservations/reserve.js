@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $util('.promo-box__title').innerHTML = eventInfo[0].nombre;
     $util('#place').innerHTML = placeInfo.nombre_lugar;
 
-    var fecha_inicio = modifiedDateFormat(eventInfo[0].fecha_inicio);
+    var fecha_inicio = misc.modifiedDateFormat(eventInfo[0].fecha_inicio);
     $util('#date').innerHTML = fecha_inicio;
     $util('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
     tickets = (parseInt(eventInfo[0].entradas_disponibles) -  parseInt(eventInfo[0].entradas_vendidas));
@@ -112,23 +112,5 @@ document.addEventListener('DOMContentLoaded', function() {
     orm.saveReserve(userInfo);
     orm.modifyTicketsAmount(eventId, soldTickets);
     misc.disableFieldsOnSave(formInputs);
-  }
-
-  function modifiedDateFormat(pdate) {
-    var date = new Date(pdate);
-    var day = Number(date.getDate() + 1);
-    var month = Number(date.getMonth() + 1);
-    var year = date.getFullYear();
-    if(day < 10){
-      day = '0' + day;
-    }
-    
-    if(month < 10){
-      month = '0' + month;
-    }
-
-    var newFormat = day + '-' + month + '-' + year;
-    
-    return newFormat;
   }
 });

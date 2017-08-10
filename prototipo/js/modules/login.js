@@ -4,7 +4,7 @@ var login = (function(window) {
   var appLS = {};
 
   function initLogin() {
-    $util('#submit-login').on('click', validateForm);
+    document.querySelector('#submit-login').addEventListener('click', validateForm);
     loadData.init();
   }
 
@@ -57,10 +57,9 @@ var login = (function(window) {
     if (!validate.emptyFields(formInputs)) {
       validForm = validate.fieldsValue('login-form');
 
-      // no hay errores
       if (!validForm[1].length) {
-        var username = $util('#username').val();
-        var password = $util('#password').val();
+        var username = document.querySelector('#username').value;
+        var password = document.querySelector('#password').value;
         var $alertBox = $util('.js-login-msg');
 
         if (validateCredentials(username, password)) {
@@ -94,38 +93,57 @@ var login = (function(window) {
 
   function validateCredentials(userMail, userPassword) {
     var appLS = storage.get('appLS') || {};
-    var usersLS = getUsersInfo(appLS);
+    var userData = findUserCredentials(userPassword, userMail);
     var validCredentials;
     var isValid;
 
-    validCredentials = usersLS.users.find(function findUser(user) {
-      return user.email === userMail;
-    });
-
-    if (validCredentials && validCredentials.password === userPassword) {
+    if (userData) {
       appLS.logguedInUser = {
-        id: validCredentials.id,
-        name: validCredentials.name,
-        lastName: validCredentials.lastName
+        id: userData.id_usuario,
+        name: userData.primer_nombre,
+        lastName: userData.primer_apeliido
       };
 
       storage.put('appLS', appLS);
-
       isValid = true;
     }
 
     return isValid;
   }
 
-  function getUsersInfo(data) {
-    var usersInfo = data;
+  function findUserCredentials(userPass, userEmail) {
+    var userData = [];
+    var request = $.ajax({
+      url: 'services/iniciar_sesion.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'userPass': userPass,
+        'userEmail': userEmail
+      }      
+    });
 
-    if (usersInfo.users === null) {
-        usersInfo = [];
-    };
+    request.done(function(data){
+      userData = data;
+    });
 
-    return usersInfo;
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return userData;
   }
+
+  // function getUsersInfo(data) {
+  //   var usersInfo = data;
+
+  //   if (usersInfo.users === null) {
+  //       usersInfo = [];
+  //   };
+
+  //   return usersInfo;
+  // }
 
   return {
     initLogin: initLogin,

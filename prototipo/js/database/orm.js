@@ -46,6 +46,33 @@ var orm = (function(window, undefined) {
     return catsData;
   }
 
+  // Devuelve id de categorias (edad y peso)
+  // y la descripcion para un alumno registrado en 
+  // un evento.
+  function findUserEventCategory(peventId, puserId) {
+    var catsData = [];
+    var request = $.ajax({
+      url: 'services/buscar_desc_categorias_x_alumno_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'idEvento': peventId,
+        'idUser': puserId
+      }      
+    });
+
+    request.done(function(data){
+      catsData = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return catsData;
+  }
+
   function findOrgs() {
     var appOrgListLS = [];
     var request = $.ajax({
@@ -394,7 +421,6 @@ var orm = (function(window, undefined) {
         method: 'get',
         data: {
           'idAssist': assistId
-          //se paso al PA php de buscar_asistente
         }
     });
 
@@ -405,6 +431,29 @@ var orm = (function(window, undefined) {
     });
 
     return assistSel[0];
+  }
+
+  function findEventoPorAlumno(idEvento, idUsuario) {
+    var userEventData = [];
+    var request  = $.ajax({
+      url: 'services/buscar_evento_por_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'idEvento': idEvento,
+        'idUsuario': idUsuario
+      }
+    });
+
+    request.done(function(data) {
+      userEventData = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return userEventData;
   }
 
   function getAlumnByCatByEvent(pidCat, peventId) {
@@ -633,6 +682,28 @@ var orm = (function(window, undefined) {
         'academyAddress': pAcademy.academyAddress,
         'placeLatitude': pAcademy.placeLatitude,
         'placeLongitude': pAcademy.placeLongitude
+      }
+    });
+
+    request.done(function() {
+      console.log('Registrado correctamente');
+    })
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    })
+  }
+
+  function unsubUserFromEvent(userData) {
+    var request = $.ajax({
+      url: 'services/desinscribir_alumno_evento.php',
+      type: 'post',
+      dataType: 'json',
+      async: false,
+      data: {
+        'id_alumno': userData.id_alumno,
+        'id_evento': userData.id_evento,
+        'desc': userData.desc
       }
     });
 
@@ -920,7 +991,9 @@ var orm = (function(window, undefined) {
     findActiveProfesor: findActiveProfesor,
     findAssistById: findAssistById,
     findProfesorById: findProfesorById,
+    findEventoPorAlumno: findEventoPorAlumno,
     findLogguedUser: findLogguedUser,
+    findUserEventCategory: findUserEventCategory,
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,
@@ -940,6 +1013,7 @@ var orm = (function(window, undefined) {
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,
     updateSponsorInfo: updateSponsorInfo,
-    updateVenue: updateVenue
+    updateVenue: updateVenue,
+    unsubUserFromEvent: unsubUserFromEvent
   };
 })(window);

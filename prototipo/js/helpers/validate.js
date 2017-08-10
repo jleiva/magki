@@ -90,7 +90,6 @@ var validate = (function(window, undefined) {
     formInputs.forEach(function(formInput) {
       if(formInput.value === '') {
         formInput.addClass('error');
-
         hasEmpty = true;
       } else {
         formInput.removeClass('error');
@@ -100,6 +99,7 @@ var validate = (function(window, undefined) {
     if (hasEmpty) {
       if ($alertBox) {
         $alertBox.html(msg.key.fieldsRequired)
+          .removeClass('is-hidden')
           .removeClass('alert-success')
           .addClass('alert-failure');
       } else {

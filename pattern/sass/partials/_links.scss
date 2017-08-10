@@ -13,6 +13,11 @@ a:active {
     border-bottom-color: transparent;
 }
 
+.link-disable {
+  color: #999595 !important;
+  cursor: not-allowed !important;
+}
+
 a img {
   border: none;
 }

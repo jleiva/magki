@@ -193,6 +193,24 @@ var misc = (function(window, undefined) {
     }
   }
 
+  function modifiedDateFormat(pdate) {
+    var date = new Date(pdate);
+    var day = Number(date.getDate() + 1);
+    var month = Number(date.getMonth() + 1);
+    var year = date.getFullYear();
+    if(day < 10){
+      day = '0' + day;
+    }
+    
+    if(month < 10){
+      month = '0' + month;
+    }
+
+    var newFormat = day + '-' + month + '-' + year;
+    
+    return newFormat;
+  }
+
   return {
     buildDataObject: buildDataObject,
     debounce: debounce,
@@ -203,6 +221,7 @@ var misc = (function(window, undefined) {
     populateOrgSelect: populateOrgSelect,
     populateSponsorSelect: populateSponsorSelect,
     populateSponsorProducts: populateSponsorProducts,
-    getQueryParams: getQueryParams
+    getQueryParams: getQueryParams,
+    modifiedDateFormat: modifiedDateFormat
   };
 })(window);

@@ -31,6 +31,7 @@
     </div>    
   </main>
   
+  <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
   <script src="js/database/storage.js"></script>
   <script src="js/helpers/messages.js"></script>

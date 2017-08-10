@@ -2,7 +2,6 @@
     require_once 'conexion.php';
 
     $id = $_GET['idAssist'];
-    //echo $id; exit;
     $sentencia_sql = "CALL pa_buscar_asistente_por_id" . "('$id')";
     $result = $conexion->query($sentencia_sql);
 

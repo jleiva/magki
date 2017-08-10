@@ -31,6 +31,7 @@
             <th>Identificaci&oacute;n</th>
             <th>Nombre</th>
             <th>Grado</th>
+            <th>Estado</th>
             <th></th>
           </tr>
         </thead>
@@ -61,7 +62,6 @@
   <script src="js/database/orm.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/messages.js"></script>
-  <script src="js/pages/users/student/logicAlumno.js"></script>
   <script src="js/pages/events/fightersInscription.js"></script>
   <script src="js/pages/main.js"></script>
 </body>

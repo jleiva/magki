@@ -73,19 +73,34 @@ document.addEventListener('DOMContentLoaded', function() {
       var idColumn = row.insertCell();
       var nameColumn = row.insertCell();
       var beltColumn = row.insertCell();
+      var estadoColumn = row.insertCell();
       var editColumn = row.insertCell();
+      var isRegUser = orm.findEventoPorAlumno(eventId, alumList[i].id_usuario)
 
       idColumn.innerHTML = alumList[i].id_usuario;
       nameColumn.innerHTML = alumList[i].primer_nombre + ' ' + alumList[i].segundo_nombre + ' ' + alumList[i].primer_apeliido + ' ' + alumList[i].segundo_apellido;
       beltColumn.innerHTML = alumList[i].nombre_cinturon;
+      estadoColumn.innerHTML = isRegUser.length ? isRegUser[0].estado : 'No inscrito';
 
       var editLink = document.createElement('a');
+      var unsbLink = document.createElement('a');
       var linkName = document.createTextNode('Inscribir');
+      var unsbName = document.createTextNode('Desinscribir');
       editLink.appendChild(linkName);
+      unsbLink.appendChild(unsbName);
       editLink.href = 'formulario-inscripcion.php' + '?id=' + alumList[i].id_usuario + '&' + 'eventId=' + eventId;
-      editLink.className = 'btn-action-event js-edit-event';
-      editLink.name = alumList[i].id_usuario;
+      unsbLink.href = '#';
+      editLink.className = 'btn-action-event';
+      unsbLink.className = 'btn-action-event link-disable';
       editColumn.appendChild(editLink);
+      editColumn.appendChild(unsbLink);
+
+      if (isRegUser.length) {
+        editLink.classList.add('link-disable');
+        editLink.href = '#';
+        unsbLink.classList.remove('link-disable');
+        unsbLink.href = 'formulario-desinscripcion.php' + '?id=' + alumList[i].id_usuario + '&' + 'eventId=' + eventId;
+      }
     }
   }
 });

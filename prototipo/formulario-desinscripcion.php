@@ -1,12 +1,12 @@
 <?php
-  $page_title = 'Inscribir Competidores';
+  $page_title = 'Desinscribir Competidores';
   $page = 'event'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Datos para la inscripción</h2>
+        <h2>Desinscribir Competidor</h2>
 
         <ul class="register-details">
           <li>Evento: <span class="js-event-name"></span></li>
@@ -19,7 +19,7 @@
           <ul class="register-details">
             <li>Fecha pesaje: <span class="js-event-weightDate"></span></li>
           </ul>
-          <p><strong>Recuerde:</strong> El competidor debe asistir al pesaje oficial en la fecha indicada; de no presentarse, &oacute; en caso de que el peso no corresponda a la categor&iacute;a seleccionada, quedará descalificado.</p>
+          <p>El proceso de desinscripci&oacute;n puede ser revertido, siempre y cuando no se haya realizado el pesaje.</p>
         </div>
         <form class="l-form-half" id="inscription-form" novalidate>
           <fieldset>
@@ -54,27 +54,17 @@
             </div>
             
             <fieldset class="feature-fieldset">
-              <legend>Seleccionar categor&iacute;a</legend>
+              <legend>Categor&iacute;a registrada</legend>
               <div class="field-wrapper">
-                <label for="category">Categoría Edad <abbr title="Requerido">*</abbr></label>
-                <select class="js-form-field" id="category" required>
-                  <option value="">Seleccione una opción</option>
-                </select>
-                <small class="note">Edad del atleta debe estar dentro del rango de la categor&iacute;a seleccionada.</small>
-              </div>
-
-              <div class="field-wrapper">
-                <label for="weight">Categoría Peso <abbr title="Requerido">*</abbr></label>
-                <select class="js-form-field" id="weight" required>
-                  <option value="">Seleccione una opción</option>
-                  <option value="p01">il-Yang (pluma) -51kg</option>
-                  <option value="p02">i-Yang (Gallo) 52 - 59kg</option>
-                  <option value="p03">o-Yang (Supergallo) 60 - 65kg</option>
-                  <option value="p04">sam-yang (Wélter) 66 - 74kg</option>
-                  <option value="p05">siu-yang (Pesado) +74kg </option>
-                </select>
+                <label for="athleteCatAge">Categoría</label>
+                <input type="text" class="js-form-field" id="athleteCatAge" name="athleteCatAge" disabled>
               </div>
             </fieldset>
+
+            <div class="field-wrapper">
+              <label for="description">Motivo desinscripci&oacute;n</label>
+              <textarea id="description" name="description" rows="5" cols="20"></textarea>
+            </div>
           </fieldset>
           <button id="btn-save" value="Guardar">Guardar</button>
           <a href="eventos.html" class="button button-secondary">Cancelar</a>
@@ -98,7 +88,7 @@
   <script src="js/database/orm.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
-  <script src="js/pages/events/inscription-form.js"></script>
+  <script src="js/pages/events/unsub-form.js"></script>
   <script src="js/pages/main.js"></script>
 </body>
 </html>

@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var eventId = queryUrl.eventId;
   var userData = orm.findStudentById(userId);
   var eventData = orm.findEventbyId(eventId);
+  var eventCategories = orm.findEventCategories(eventId);
 
-  fillEventData(eventData)
-  loadUserData(userData);
+  fillEventData()
+  loadUserData();
 
-  function fillEventData(eventData) {
-    var eventCategories = orm.findEventCategories(eventId);
+  function fillEventData() {
     var eventName = document.querySelector('.js-event-name');
+    var eventWeight = document.querySelector('.js-event-weightDate');
+    var eventWeightDate = misc.modifiedDateFormat(eventData[0].fecha_pesaje);
     var userCategories;
 
     userCategories = eventCategories.filter(function(cat) {
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     populateCategorySelect(userCategories);
     eventName.innerHTML = eventData[0].nombre;
+    eventWeight.innerHTML = eventWeightDate;
   }
 
   function populateCategorySelect(optList) {
@@ -33,10 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  function loadUserData(userData) {
+  function loadUserData() {
     document.querySelector('#academy').value = userData[0].nombre_academia;
     document.querySelector('#athleteName').value = userData[0].primer_nombre + ' ' + userData[0].segundo_nombre + ' ' + userData[0].primer_apeliido + ' ' + userData[0].segundo_apellido;
     document.querySelector('#athleteId').value = userData[0].id_usuario;
+    document.querySelector('#athleteAge').value = userData[0].edad;
+    document.querySelector('#athleteBelt').value = userData[0].nombre_cinturon;
     fillTeacher(userData[0].id_profesor);
   }
 
@@ -69,32 +74,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if(!validate.emptyFields(formInputs)) {
        var validForm = validate.fieldsValue('inscription-form');
+       var isValidAge = validateAge();
 
-      if(!validForm[1].length) {
-        saveAthleteData();
+       if(!validForm[1].length) {
+          if (!isValidAge) {
+            $alertBox.removeClass('is-hidden')
+              .addClass('alert-failure')
+              .html('Edad del atleta no se encuentra dentro de un rango valido para la categoria seleccionada.');
+            
+            window.scrollTo(0, 0);
+            
+            return;
+          }
 
-        if ($alertBox) { 
-        $alertBox.removeClass('alert-failure')
-          .addClass('alert-success')
-          .html(msg.key.saveSuccess);
-      } else {
-        $util('.js-form').insertAdjacentHTML('afterbegin', 
-        '<span class="note alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
-      }
+          saveAthleteData();
 
-      } else {
-        if ($alertBox) { 
-          $alertBox
-          .removeClass('alert-success')
-          .addClass('alert-failure')
-          .html('Este código ya existe, no se realizó el registro');
-        } else {
-          $util('.js-form').insertAdjacentHTML('afterbegin', 
-          '<span class="note alert-failure js-login-msg">Este código ya existe, no se realizó el registro</span>');
-        }
-      }
+          $alertBox.removeClass('is-hidden')
+            .removeClass('alert-failure')
+            .addClass('alert-success')
+            .html(msg.key.saveSuccess);
+       }
     }
 
     window.scrollTo(0, 0);
+  }
+
+  function validateAge() {
+    var categorySelected = document.querySelector('#category');
+    var categorySelectedValue = document.querySelector('#category').value;
+    var ageInput = document.querySelector('#athleteAge');
+    var userAge = parseInt(userData[0].edad);
+    var categryData = eventCategories.find(function(cat) {
+      return categorySelectedValue === cat.id_categoria;
+    });
+    var minAge = parseInt(categryData.edad_min);
+    var maxAge = parseInt(categryData.edad_max);
+    var isValidAge = false;
+
+    if (userAge >= minAge && userAge <= maxAge) {
+      isValidAge = true;
+    }
+
+    if (isValidAge) {
+      categorySelected.classList.remove('error');
+      ageInput.classList.remove('error');
+    } else {
+      categorySelected.classList.add('error');
+      ageInput.classList.add('error');
+    }
+
+    return isValidAge;
   }
 });

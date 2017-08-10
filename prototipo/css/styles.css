@@ -248,6 +248,10 @@ a:focus,
 a:active {
   border-bottom-color: transparent; }
 
+.link-disable {
+  color: #999595 !important;
+  cursor: not-allowed !important; }
+
 a img {
   border: none; }
 
@@ -435,7 +439,8 @@ input.button-secondary
 .button-secondary:focus,
 .button-secondary:active {
   background: #e5e5e5;
-  background: rgba(229, 229, 229, 0.6); }
+  background: rgba(229, 229, 229, 0.6);
+  border-width: 1px; }
 
 .btn-action-event,
 .btn-action-event:link,
@@ -587,6 +592,7 @@ legend {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   margin: 0 auto;
+  overflow: hidden;
   padding: 40px; }
   .form__wrap form {
     margin: 30px auto;
@@ -797,6 +803,17 @@ td {
   background-color: #fff;
   border-top: 1px solid #e0e0e0;
   padding: 30px 0; }
+
+.l-form-half {
+  float: left;
+  width: 60%; }
+
+.help-sidebar {
+  background: #fbf9f9;
+  border: 1px solid #ebebeb;
+  float: right;
+  padding: 1em;
+  width: 35%; }
 
 .full-width {
   width: 100% !important;
@@ -1123,7 +1140,5 @@ td {
     background: none;
     font-weight: bold;
     padding: 0; }
-  .register-details span {
-    font-weight: normal; }
 
 /*# sourceMappingURL=styles.css.map */

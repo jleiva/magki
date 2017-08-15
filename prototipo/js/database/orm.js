@@ -1,5 +1,29 @@
 var orm = (function(window, undefined) {
-   function findEventbyId(peventId) {
+  // Devuelve una lista con todos los eventos
+  // que se encuentran en la BD, activos, inactivos, etc
+  // Para listas de Administrador
+  function findEvents() {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_eventos.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
+  function findEventbyId(peventId) {
     var eventInfo = [];
 
     var request = $.ajax({
@@ -800,7 +824,8 @@ var orm = (function(window, undefined) {
         'id_categoria': userData.id_categoria,
         'id_peso': userData.id_peso,
         'id_evento': userData.id_evento,
-        'id_academia': userData.id_academia
+        'id_academia': userData.id_academia,
+        'estado': userData.estado
       }
     });
 
@@ -1143,6 +1168,7 @@ var orm = (function(window, undefined) {
     findAcademies: findAcademies,
     findAcademyById: findAcademyById,
     findAdminUserById: findAdminUserById,
+    findEvents: findEvents,
     findEventbyId: findEventbyId,
     findEventCategories: findEventCategories,
     findEventByName: findEventByName,

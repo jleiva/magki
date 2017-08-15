@@ -3,11 +3,13 @@
   $page = 'event'; 
   include("templates/header.php");
 ?>
-  <main class="wrapper">
+  <main id="events-page" class="wrapper">
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Eventos</h2>
-        <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
+        <?php if ($userRol == 1 || $userRol == 2) { ?>
+          <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
+        <?php } ?>
       </div>
 
       <div class="actions-tabs">

@@ -80,8 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function initEventsList() {
-    var appLS = storage.get('appLS') || {};
-    var eventsList = appLS.events || [];
+    var eventsList = orm.findEvents();
     var $noData = document.querySelector('.no-data');
 
     if (eventsList.length) {

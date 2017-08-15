@@ -299,10 +299,10 @@ var events = (function(window) {
       var eventType = document.createElement('td');
       var eventActions = document.createElement('td');
 
-      var nameTxt = document.createTextNode(data.eventName);
-      var dateTxt = document.createTextNode(data.dateStart);
-      var venueTxt = document.createTextNode(data.venue);
-      var typeTxt = document.createTextNode(data.tipoEvento);
+      var nameTxt = document.createTextNode(data.nombre);
+      var dateTxt = document.createTextNode(misc.modifiedDateFormat(data.fecha_inicio));
+      var venueTxt = document.createTextNode(data.lugar);
+      var typeTxt = document.createTextNode(data.tipo_evento);
 
       eventName.appendChild(nameTxt);
       eventDate.appendChild(dateTxt);
@@ -331,7 +331,7 @@ var events = (function(window) {
       anchorResults.appendChild(linkText);
       anchorResults.className = 'btn-action-event';
       anchorResults.dataset.index = index;
-      anchorResults.href = 'registrar-resultados.html';
+      anchorResults.href = 'registrar-resultados.php' + '?eventId=' + eventId;
 
       var anchorPesaje = document.createElement('a');
       var linkText = document.createTextNode('Registrar pesaje');

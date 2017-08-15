@@ -63,7 +63,7 @@ var login = (function(window) {
         var $alertBox = $util('.js-login-msg');
 
         if (validateCredentials(username, password)) {
-          window.location.replace('perfil-admin.php');
+          window.location.replace('perfil-usuario.php');
         } else {
           if ($alertBox) {
             $alertBox.html(msg.key.emailAndPasswordInvalid);
@@ -101,7 +101,9 @@ var login = (function(window) {
       appLS.logguedInUser = {
         id: userData.id_usuario,
         name: userData.primer_nombre,
-        lastName: userData.primer_apeliido
+        lastName: userData.primer_apeliido,
+        email: userData.correo,
+        rol: userData.id_tipo
       };
 
       storage.put('appLS', appLS);
@@ -134,16 +136,6 @@ var login = (function(window) {
 
     return userData;
   }
-
-  // function getUsersInfo(data) {
-  //   var usersInfo = data;
-
-  //   if (usersInfo.users === null) {
-  //       usersInfo = [];
-  //   };
-
-  //   return usersInfo;
-  // }
 
   return {
     initLogin: initLogin,

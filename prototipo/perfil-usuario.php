@@ -14,21 +14,32 @@
         <div class="profile-actions">
           <ul class="menu menu-actions">
             <li><a href="#" class="is-active">Perfil personal</a></li>
-            <li><a href="#">Editar Perfil</a></li>
-            <li><a href="#">Cambiar contraseña</a></li>
+            <li><a href="perfil-editar.php">Editar Perfil</a></li>
+            <li><a href="perfil-cambiar-contrasena.php">Cambiar contraseña</a></li>
           </ul>
         </div>
 
         <div class="profile-info">
           <h2 class="js-profile-display-name profile-info__name"></h2>
+          
+          <?php
+            switch ($userRol) {
+              case 1:
+                include("templates/acceso-admin.php");
+                break;
+              
+              case 2:
+                include("templates/acceso-asistente.php");
+                break;
+              
+              case 3:
+                include("templates/acceso-profesor.php");
+                break;
 
-          <h4>Accesos r&aacute;pidos</h4>
-          <ul class="menu menu-quick-links">
-            <li><a href="registrar-asistente.html">Registrar Asistente</a></li>
-            <li><a href="registrar-profesor.html">Registrar Profesor</a></li>
-            <li><a href="registrar-academia.html">Registrar Academia</a></li>
-            <li><a href="registrar-evento.html">Registrar Evento</a></li>
-          </ul>
+              default:
+                break;
+            }
+          ?>
           
           <div class="activity">
           <h3 class="activity__h">Actividad Reciente</h3>

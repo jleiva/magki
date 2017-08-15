@@ -34,7 +34,7 @@ function buildTable(assistantList) {
     var editLink = document.createElement('a');
     var linkName = document.createTextNode('Editar');
     editLink.appendChild(linkName);
-    editLink.href = 'editar-asistente.html';
+    editLink.href = 'editar-asistente.php';
     editLink.className = 'btn-action-event js-edit-event';
     editLink.name = assistantList[i].id;
     editColumn.appendChild(editLink);

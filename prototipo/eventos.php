@@ -7,7 +7,7 @@
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Eventos</h2>
-        <a href="registrar-evento.html" class="button btn-small" id="btn-register">Registrar Evento</a>
+        <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
       </div>
 
       <div class="actions-tabs">

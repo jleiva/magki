@@ -2,8 +2,17 @@ var validate = (function(window, undefined) {
   function checkPassword(str) {
     // at least one number, one lowercase and one uppercase letter
     // at least six characters
-    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-    return re.test(str);
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.*[!@#\$%\^&\*])(?=.{6,})");
+    var secLevel = 0;
+
+    if (strongRegex.test(str)) {
+      secLevel = 10;
+    } else if (mediumRegex.test(str)) {
+      secLevel = 5;
+    }
+
+    return secLevel;
   }
 
   function dateEqualOrGreatThanToday() {
@@ -100,6 +109,7 @@ var validate = (function(window, undefined) {
       if ($alertBox) {
         $alertBox.html(msg.key.fieldsRequired)
           .removeClass('is-hidden')
+          .removeClass('warning')
           .removeClass('alert-success')
           .addClass('alert-failure');
       } else {

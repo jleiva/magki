@@ -34,8 +34,3 @@ function fillTable() {
     }
   }
 }
-
-/*function sendId(psponsorId) {
-  var url = window.location.href='editar-patrocinador.php?id'+'='+psponsorId;
-  window.open(url);
-}*/

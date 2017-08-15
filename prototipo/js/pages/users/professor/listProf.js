@@ -33,7 +33,7 @@ function buildTable(professorList) {
     var editLink = document.createElement('a');
     var linkName = document.createTextNode('Editar');
     editLink.appendChild(linkName);
-    editLink.href = 'editar-profesor.html';
+    editLink.href = 'editar-profesor.php';
     editLink.className = 'btn-action-event js-edit-event';
     editLink.name = professorList[i]['id'];
     editColumn.appendChild(editLink);

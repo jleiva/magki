@@ -21,7 +21,7 @@
   <meta charset="utf-8">
   <title>Makgi - <?php echo $page_title ?></title>
   <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+<!--   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"> -->
 </head>
 <body>
   <header class="site-header" role="">
@@ -34,7 +34,7 @@
             include("templates/navigation.php");
             break;
           case 2:
-            include("templates/navigation.php");
+            include("templates/asist-navigation.php");
             break;
           case 3:
             include("templates/prof-navigation.php");
@@ -44,6 +44,7 @@
             break;
           default:
               echo "Your favorite color is neither red, blue, nor green!";
+            break;
         }
       ?>
       

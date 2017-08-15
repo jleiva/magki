@@ -8,7 +8,9 @@
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Profesores</h2>
-        <a href="registrar-profesor.php" class="button btn-small" id="btn-register">Registrar Profesor</a>
+        <?php if ($userRol == 1) { ?>
+          <a href="registrar-profesor.php" class="button btn-small" id="btn-register">Registrar Profesor</a>
+        <?php } ?>
       </div>
 
       <div class="actions-tabs">
@@ -16,9 +18,11 @@
           <input type="text" id="edit-query" name="query" value="" size="30" maxlength="128" class="search-form__text" placeholder="Buscar...">
         </div>
         <ul class="actions-tabs__options">
-          <li class="nav-tab"><a class="nav-tab-link" href="alumnos.html">Alumnos</a></li>
+          <li class="nav-tab"><a class="nav-tab-link" href="alumnos.php">Alumnos</a></li>
           <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Profesores</a></li>
-          <li class="nav-tab"><a class="nav-tab-link" href="asistentes.html">Asistentes</a></li>
+          <?php if ($userRol == 1) { ?>
+            <li class="nav-tab"><a class="nav-tab-link" href="asistentes.php">Asistentes</a></li>
+          <?php } ?>
         </ul>
       </div>
       <table id="tblProfessor">

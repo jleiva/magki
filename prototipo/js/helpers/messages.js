@@ -18,7 +18,15 @@ var msg = (function(window, undefined) {
     orgDuplicate: 'Ya existe una organización registrada con el código ingresado.',
     assistDuplicate: 'Ya existe un asistente registrado con ese número de identificación ingresado.',
     profDuplicate: 'Ya existe un profesor registrado con ese número de identificación ingresado.',
-    warningCategory: 'Debe buscar los participantes de una categoría primero'
+    warningCategory: 'Debe buscar los participantes de una categoría primero.',
+    passwordMatch: 'Las contraseñas especificadas no coinciden.',
+    passwordUpdate: 'La contraseña se actualizó de manera correcta.',
+    passwordWrongSec: 'Contraseña indicada no cumple con los lineamientos de seguridad.',
+    passwordMedium: 'Contraseña nivel medio de seguridad.',
+    passwordStrong: 'Contraseña nivel alto de seguridad.',
+    tieOff: 'Ha habido un empate, favor seleccionar un ganador en la casilla desempatar',
+    invalidNumber: 'Puntaje debe ser entre 1 y 5, favor corregir los campos marcados',
+    automaticWinner: 'Unico participante en la categoría. Se declara automaticamente ganador.'
   };
 
   return {

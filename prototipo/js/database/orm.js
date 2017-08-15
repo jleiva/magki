@@ -303,6 +303,32 @@ var orm = (function(window, undefined) {
     return studentsList;
   }
 
+  // Retorna la informacion de usuarios administrativos
+  // ya sea, Administrador o Asistente.
+  // Recibe el ID, retona nombre, apellidos y correo electrónico
+  function findAdminUserById(pId) {
+    var userData = [];
+    var request = $.ajax({
+      url: 'services/buscar_administrador_por_id.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'id_alumno': pId
+      }
+    })
+
+    request.done(function(data){
+      userData = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return userData;
+  }
+
   function findStudentById(pId) {
     var userData = [];
     var request = $.ajax({
@@ -476,6 +502,53 @@ var orm = (function(window, undefined) {
     });
    
     return fighters;
+  }
+
+  function getAlumnByBeltByEvent(pcatId, peventId, pbelt) {
+    var fighters = [];
+    var request  = $.ajax({
+      url: 'services/listar_alumnos_x_cinta_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'cat': pcatId,
+        'eventId': peventId,
+        'belt': pbelt
+      }
+    });
+    request.done(function(data) {
+      fighters = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return fighters;
+  }
+
+  function getCurrentScoreByAlumnByEvent(peventId, pidAlumn) {
+    var score;
+
+    var request  = $.ajax({
+      url: 'services/puntaje_actual_competidor_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'eventId': peventId,
+        'idAlumn': pidAlumn
+      }
+    });
+
+    request.done(function(data) {
+      score = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return score;
   }
 
   function getWeightCategoryByAlumByEvent(peventId,palumnId) {
@@ -777,6 +850,50 @@ var orm = (function(window, undefined) {
     });
   }
 
+  function updateUserPassword(userId, newPassword) {
+    var request = $.ajax({
+        url: 'services/actualizar_contrasena.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'userId': userId,
+          'newPassword': newPassword
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+    });
+  }
+
+  function registerAlumnResult(peventId,palumnInfo) {
+    var currentScore = getCurrentScoreByAlumnByEvent(peventId, 
+      palumnInfo.id);
+
+    if (parseInt(palumnInfo.position) === 1) {
+      updateAlumWonTournaments(palumnInfo.id); 
+    }
+
+    var score = currentScore[0].puntaje;
+
+    var newScore = (parseInt(score) + parseInt(palumnInfo.score));
+    updateAlumnScore(peventId, palumnInfo.id, newScore);
+
+    var request = $.ajax({
+      url: 'services/registrar_resultado_alumno_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'eventId': peventId,
+        'fighterId': palumnInfo.id,
+        'position': palumnInfo.position,
+      }
+    })
+  }
+
   function updateOrg(orgData) {
     var request = $.ajax({
         url: 'services/actualizar_organizacion.php',
@@ -909,6 +1026,61 @@ var orm = (function(window, undefined) {
     return products;
   }
 
+  function updateAlumnScore(peventId, palumnId, pscore) {
+    var request = $.ajax({
+      url: 'services/actualizar_puntaje_alumno_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'eventId': peventId,
+        'fighterId': palumnId,
+        'score' : pscore
+      }
+    })
+  }
+
+  function updateAlumWonTournaments(palumnId) {
+    var currenAmout = getAlumnWonTournaments(palumnId);
+    var newAmout = (parseInt(currenAmout[0].torneos_ganados) + 1);
+    var b = newAmout;
+
+    var request = $.ajax({
+      url: 'services/actualizar_torneos_ganados_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'fighterId': palumnId,
+        'amount' : newAmout
+      }
+    })
+
+  }
+
+  function getAlumnWonTournaments(palumnId) {
+    var wonTournaments;
+
+    var request  = $.ajax({
+      url: 'services/torneos_ganados_competidor.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'idAlumn': palumnId
+      }
+    });
+
+    request.done(function(data) {
+      wonTournaments = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return wonTournaments;
+  }
+
   // =========  Linea 25 para abajo no usar mas =============
   // ToDo: borrar las funciones cuando las consultas a BD se vayan completando.
   function findEventByName(name) {  
@@ -970,6 +1142,7 @@ var orm = (function(window, undefined) {
   return {
     findAcademies: findAcademies,
     findAcademyById: findAcademyById,
+    findAdminUserById: findAdminUserById,
     findEventbyId: findEventbyId,
     findEventCategories: findEventCategories,
     findEventByName: findEventByName,
@@ -997,6 +1170,8 @@ var orm = (function(window, undefined) {
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,
+    getAlumnByBeltByEvent: getAlumnByBeltByEvent,
+    getCurrentScoreByAlumnByEvent: getCurrentScoreByAlumnByEvent,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
     registerAcademy: registerAcademy,
@@ -1009,11 +1184,16 @@ var orm = (function(window, undefined) {
     registrarProf: registrarProf,
     registrarProfTblProfesor: registrarProfTblProfesor,
     registerFighterWeight: registerFighterWeight,
+    registerAlumnResult: registerAlumnResult,
     saveReserve: saveReserve,
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,
     updateSponsorInfo: updateSponsorInfo,
+    updateUserPassword: updateUserPassword,
     updateVenue: updateVenue,
-    unsubUserFromEvent: unsubUserFromEvent
+    unsubUserFromEvent: unsubUserFromEvent,
+    updateAlumnScore: updateAlumnScore,
+    updateAlumWonTournaments: updateAlumWonTournaments,
+    getAlumnWonTournaments: getAlumnWonTournaments
   };
 })(window);

@@ -90,7 +90,6 @@
 	<script src="js/helpers/messages.js"></script>
 	<script src="js/pages/academies/registerAcademies.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABbEjzd6Y4yV8EE6j0_-MvyT1rZR-tiv0&libraries=places&callback=initMap" async defer></script>
-  <script src="js/pages/academies/businessLogicAcademy.js"></script>
 	<script src="js/pages/main.js"></script>
 </body>
 </html>

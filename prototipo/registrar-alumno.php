@@ -147,10 +147,8 @@
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/misc.js"></script>
-  <script src="js/pages/academies/businessLogicAcademy.js"></script>
   <script src="js/pages/users/professor/logicProf.js"></script>
   <script src="js/pages/users/student/registerAlumno.js"></script>
-  <script src="js/pages/users/student/logicAlumno.js"></script>
   <script src="js/pages/main.js"></script>
 </body>
 </html>

@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     userInfo.id_peso = weight;
     userInfo.id_evento = eventId;
     userInfo.id_academia = userData[0].id_academia;
+    userInfo.estado = true;
 
     orm.registerAthleteEvent(userInfo);
   }
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!isValidAge) {
             $alertBox.removeClass('is-hidden')
               .addClass('alert-failure')
-              .html('Edad del atleta no se encuentra dentro de un rango valido para la categoria seleccionada.');
+              .html('Edad del atleta no se encuentra dentro de un rango válido para la categoría seleccionada.');
             
             window.scrollTo(0, 0);
             

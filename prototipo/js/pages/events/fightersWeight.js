@@ -132,32 +132,30 @@ function validateWeight(pInputs) {
 
   for (var i = 0; i < fightersList.length; i++) {
     if (pInputs[i].value >= minWeigth && pInputs[i].value <= maxWeight) {
-        condition = 'Califica';
+      condition = '1';
     } else {
-        condition = 'Descalificado';
+      condition = '3';
     }
 
     var fighterId = fightersList[i].name;
     var weight = pInputs[i].value;
   
-    if (condition == 'Califica') {
-        $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('disqualified');
-        $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('qualified');
+    if (condition == '1') {
+      $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('disqualified');
+      $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('qualified');
     } else {
-
-        $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('qualified');
-        $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('disqualified');
+      $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('qualified');
+      $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('disqualified');
     }
 
-    orm.registerFighterWeight(fighterId,eventId,weight,condition);
-    $util("#tblFightersWeight").rows[i+1].cells[4].innerHTML = condition;
+    orm.registerFighterWeight(fighterId, eventId, weight, condition);
+    $util("#tblFightersWeight").rows[i+1].cells[4].innerHTML = condition === '1' ? 'Califica' : 'Descalificado, no cumple con el peso';
   }
 
   disableFields(pInputs);
 }
 
 function disableFields(pInputs) {
-
   for (var i = 0; i < pInputs.length; i++) {
     pInputs[i].disabled = true;
   }

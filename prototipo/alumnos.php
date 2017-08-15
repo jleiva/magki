@@ -7,7 +7,7 @@
     <div class="main-content">
       <div class="section-intro">
         <h2>Listado de Alumnos</h2>
-        <?php if ($userRol == 1 || $userRol == 2) { ?>
+        <?php if ($userRol == 1 || $userRol == 2 || $userRol == 3) { ?>
           <a href="registrar-alumno.php" class="button btn-small" id="btn-register">Registrar Alumno</a>
         <?php } ?>
       </div>
@@ -17,7 +17,10 @@
         </div>
         <ul class="actions-tabs__options">
           <li class="nav-tab"><a class="nav-tab-link is-active" href="alumnos.php">Alumnos</a></li>
+          <?php if ($userRol == 1 || $userRol == 2) { ?>
           <li class="nav-tab"><a class="nav-tab-link" href="profesores.php">Profesores</a></li>
+          <?php } ?>
+
           <?php if ($userRol == 1) { ?>
             <li class="nav-tab"><a class="nav-tab-link" href="asistentes.php">Asistentes</a></li>
           <?php } ?>

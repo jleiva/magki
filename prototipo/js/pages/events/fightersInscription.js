@@ -75,12 +75,37 @@ document.addEventListener('DOMContentLoaded', function() {
       var beltColumn = row.insertCell();
       var estadoColumn = row.insertCell();
       var editColumn = row.insertCell();
-      var isRegUser = orm.findEventoPorAlumno(eventId, alumList[i].id_usuario)
+      var isRegUser = orm.findEventoPorAlumno(eventId, alumList[i].id_usuario);
+      var userEstado = 'No inscrito';
 
+      if (isRegUser.length) {
+        switch(isRegUser[0].estado) {
+          case '0':
+            userEstado = 'No inscrito';
+          break;
+
+          case '1':
+            userEstado = 'Inscrito';
+          break;
+
+          case '2':
+            userEstado = 'Desinscrito';
+          break;
+
+          case '3':
+            userEstado = 'Descalificado';
+          break;
+
+          default:
+            userEstado = 'No inscrito';
+            break;
+        }
+      }
+      
       idColumn.innerHTML = alumList[i].id_usuario;
       nameColumn.innerHTML = alumList[i].primer_nombre + ' ' + alumList[i].segundo_nombre + ' ' + alumList[i].primer_apeliido + ' ' + alumList[i].segundo_apellido;
       beltColumn.innerHTML = alumList[i].nombre_cinturon;
-      estadoColumn.innerHTML = isRegUser.length ? isRegUser[0].estado : 'No inscrito';
+      estadoColumn.innerHTML = userEstado;
 
       var editLink = document.createElement('a');
       var unsbLink = document.createElement('a');

@@ -23,6 +23,27 @@ var orm = (function(window, undefined) {
     return events;
   }
 
+  function findNextActiveEvents() {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_proximos_eventos_publicados.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
   function findEventbyId(peventId) {
     var eventInfo = [];
 
@@ -1169,6 +1190,7 @@ var orm = (function(window, undefined) {
     findAcademyById: findAcademyById,
     findAdminUserById: findAdminUserById,
     findEvents: findEvents,
+    findNextActiveEvents: findNextActiveEvents,
     findEventbyId: findEventbyId,
     findEventCategories: findEventCategories,
     findEventByName: findEventByName,

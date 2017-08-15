@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function initEvents() {
-    var appLS = storage.get('appLS') || {};
-    var eventsList = appLS.events || [];
+    var eventsList = orm.findNextActiveEvents();
 
     if (eventsList.length) {
       events.buildEventsListHome(eventsList);

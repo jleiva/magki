@@ -6,9 +6,10 @@
     $idPeso = $_POST['id_peso'];
     $idEvento = $_POST['id_evento'];
     $idAcademia = $_POST['id_academia'];
+    $estado = $_POST['estado'];
 
     $sentencia_sql = "CALL pa_registrar_alumno_en_evento" . "('$id', 
-    '$idCategoria','$idPeso',$idEvento, '$idAcademia')";
+    '$idCategoria','$idPeso',$idEvento, '$idAcademia', $estado)";
 
     $result = $conexion->query($sentencia_sql);
 

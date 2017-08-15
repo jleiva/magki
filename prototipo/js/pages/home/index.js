@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (eventsList.length) {
       events.buildEventsListHome(eventsList);
+      events.fillEventData(eventsList[0]);
     }
   }
 

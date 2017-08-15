@@ -430,8 +430,8 @@ var events = (function(window) {
   function buildEventsListHome(eventsData) {
     var eventsTable = document.querySelector('#next-events tbody');
 
-    eventsData.forEach(function(data, index) {
-      if (data.isPublish) {
+    for (var i = 1; i < eventsData.length; i++) {
+      if (eventsData[i].estado) {
         var $noData = document.querySelector('.no-data');
         var tr = document.createElement('tr');
         var eventName = document.createElement('td');
@@ -440,10 +440,10 @@ var events = (function(window) {
         var eventType = document.createElement('td');
         var eventActions = document.createElement('td');
 
-        var nameTxt = document.createTextNode(data.eventName);
-        var dateTxt = document.createTextNode(data.dateStart);
-        var venueTxt = document.createTextNode(data.venue);
-        var typeTxt = document.createTextNode(data.tipoEvento);
+        var nameTxt = document.createTextNode(eventsData[i].nombre);
+        var dateTxt = document.createTextNode(misc.modifiedDateFormat(eventsData[i].fecha_inicio));
+        var venueTxt = document.createTextNode(eventsData[i].nombre_lugar);
+        var typeTxt = document.createTextNode(eventsData[i].tipo_evento);
 
         $noData.hide();
 
@@ -456,8 +456,8 @@ var events = (function(window) {
         var linkText = document.createTextNode('Reservar Entradas');
         anchorTicket.appendChild(linkText);
         anchorTicket.className = 'btn-action-event js-book-event';
-        anchorTicket.dataset.name = data.eventName;
-        anchorTicket.href = 'reserve.html';
+        anchorTicket.dataset.name = eventsData[i].nombre;
+        anchorTicket.href = 'reserve.php' + '?id=' + eventsData[i].id_evento;
         
         eventActions.appendChild(anchorTicket);
 
@@ -469,13 +469,26 @@ var events = (function(window) {
 
         eventsTable.appendChild(tr);
       }
-    });
+    }
 
     document.querySelectorAll('.js-book-event').forEach(function(btnEdit) {
       btnEdit.addEventListener('click', function(e) {
         triggerReserveTicket(e);
       });
     });
+  }
+
+  function fillEventData(nextEventData) {
+    $util('.promo-box__title').innerHTML = nextEventData.nombre;
+    $util('#place').innerHTML = nextEventData.nombre_lugar;
+    $util('#date').innerHTML = misc.modifiedDateFormat(nextEventData.fecha_inicio);
+    $util('#type').innerHTML = nextEventData.tipo_evento;
+    $util('#price').innerHTML = nextEventData.valor_entrada;
+    $util('#inscDate').innerHTML = misc.modifiedDateFormat(nextEventData.limite_inscripcion);
+    $util('#weightDate').innerHTML = misc.modifiedDateFormat(nextEventData.limite_inscripcion);
+    $util('#cost').innerHTML = nextEventData.costo_inscripcion;
+
+    document.querySelector('#btn-register').addEventListener('click',function(e){location.href = 'reserve.php' + '?id=' + nextEventData.id_evento});
   }
 
   function populateSelects() {
@@ -526,6 +539,7 @@ var events = (function(window) {
 
   return {
     saveEventData: saveEventData,
+    fillEventData: fillEventData,
     publishEvent: publishEvent,
     changeEventType: changeEventType,
     updateVenueCapacity: updateVenueCapacity,

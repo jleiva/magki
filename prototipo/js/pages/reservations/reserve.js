@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function fillEventData() {
     var eventInfo = orm.findEventbyId(eventId);
-    var placeInfo = orm.findVenueById(eventId);
 
     $util('.promo-box__title').innerHTML = eventInfo[0].nombre;
-    $util('#place').innerHTML = placeInfo.nombre_lugar;
+    $util('#place').innerHTML = eventInfo[0].nombre_lugar;
 
     var fecha_inicio = misc.modifiedDateFormat(eventInfo[0].fecha_inicio);
     $util('#date').innerHTML = fecha_inicio;
     $util('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
+    $util('#price').innerHTML = eventInfo[0].valor_entrada;
     tickets = (parseInt(eventInfo[0].entradas_disponibles) -  parseInt(eventInfo[0].entradas_vendidas));
     
     if (tickets === 0) {

@@ -18,7 +18,7 @@
             <li class="main-nav__item"><a href="">Aprenda Taekwondo</a></li>
             <li class="main-nav__item"><a href="" class="is-active">Eventos</a></li>
             <li class="main-nav__item"><a href="">Contacto</a></li>
-            <li class="main-nav__item main-nav__item--profile js-guess-visitor"><a href="login.html">Iniciar Sesi&oacute;n</a></li>
+            <li class="main-nav__item main-nav__item--profile js-guess-visitor"><a href="iniciar-sesion.php">Iniciar Sesi&oacute;n</a></li>
           <li class="main-nav__item main-nav__item--profile is-hidden js-logguedIn-visitor"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
           </ul>
         </nav>
@@ -36,6 +36,7 @@
           <strong>Lugar:</strong> <span id="place"></span><br/>
           <strong>Fecha:</strong> <span id="date"></span><br/>
           <strong>Tipo de evento:</strong> <span id="typeEvent"></span><br/>
+          <strong>Costo entrada:</strong> <span id="price"></span><br/>
           <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
 
           </p>

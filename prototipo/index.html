@@ -18,7 +18,7 @@
           <li class="main-nav__item"><a href="#">Eventos</a></li>
           <li class="main-nav__item"><a href="#">Contacto</a></li>
           <li class="main-nav__item main-nav__item--profile js-guess-visitor"><a href="iniciar-sesion.php">Iniciar Sesi&oacute;n</a></li>
-          <li class="main-nav__item main-nav__item--profile is-hidden js-logguedIn-visitor"><a href="perfil-usuario.php"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
+          <li class="main-nav__item main-nav__item--profile is-hidden js-logguedIn-visitor"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
         </ul>
       </nav>
       </nav>
@@ -28,65 +28,30 @@
     <div class="slider"><img src="img/hero.jpg" alt=""/></div>
     <div class="main-content">
       <div class="promo-box">
-        <h2 class="promo-box__title">2017 Campeonato Nacional de Taekwondo</h2>
+        <h2 class="promo-box__title"></h2>
         <div class="promo-left">
           <h4>Detalles del evento</h4>
           <p>
-          <strong>Lugar:</strong> Ciudad Deportiva de Hatillo<br/>
-          <strong>Fecha:</strong> 30 de Junio de 2017<br/>
-            Detalles del evento<br/><br/>
-           <a href="reserve.html" class="button btn-small" id="btn-register">Reservar Entradas</a>
+          <strong>Lugar:</strong> <span id="place"></span><br/>
+          <strong>Fecha:</strong> <span id="date"></span><br/>
+          <strong>Tipo:</strong> <span id="type"></span><br/>
+          <strong>Costo entrada:</strong> <span id="price"></span><br/>
+           <a href="#">Ver detalle evento<a/><br><br>
+           <a class="button btn-small" id="btn-register">Reservar Entradas</a>
           </p>
         </div>
         <div class="promo-right">
           <h4>Inscripción de Atletas:</h4>
-          <strong>Fecha límite de inscripción:</strong> 20 de Julio de 2017<br/>
-          <strong>Fecha de pesaje:</strong> 28 de Julio de 2017<br/>
-          <strong>Costo de Inscripción:</strong> ¢15.000<br/>
+          <strong>Fecha límite de inscripción:</strong> <span id="inscDate"></span><br/>
+          <strong>Fecha de pesaje:</strong> <span id="weightDate"></span><br/>
+          <strong>Costo de Inscripción:</strong> <span id="cost"></span><br/>
           
-          <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su Academia debe de estar registrada en Makgi previamente.</p>
+          <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su academia debe de estar registrada previamente.</p>
         </div>
       </div>
 
       <div class="next-events">
           <h2>Próximos Eventos</h2>
-<!--           <table>
-              <tr>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Lugar</th>
-                <th>Tipo</th>
-                <th></th>
-              </tr>
-              <tr>
-                <td><a href="#">2017 Las Vegas Open</a></td>
-                <td>June 29 - July 06, 2017</td>
-                <td>Gimnasio Nacional, San Jos<em>é</em></td>
-                <td>Torneo</td>
-                <td><a href="reserve.html">Reservar Entrada</a></td>
-              </tr>
-              <tr>
-                <td><a href="#">USAT Poomsae Referee Seminar</a></td>
-                <td>Sept. 02 -03, 2017</td>
-                <td>Polideportivo de Alajuela</td>
-                <td>Torneo</td>
-                <td><a href="reserve.html">Reservar Entrada</a></td>
-              </tr>
-              <tr>
-                <td><a href="#">2017 NAPA Open International Taekwondo</a></td>
-                <td>Oct. 21, 2017</td>
-                <td>Ciudad Deportiva de Hatillo</td>
-                <td>Torneo</td>
-                <td><a href="reserve.html">Reservar Entrada</a></td>
-              </tr>
-              <tr>
-                <td><a href="#">2017 USAT RDP Seminar Louisiana</a></td>
-                <td>Nov. 11, 2017</td>
-                <td>Ciudad Deportiva de Hatillo</td>
-                <td>Exibicion</td>
-                <td><a href="reserve.html">Reservar Entrada</a></td>
-              </tr>
-          </table> -->
 
           <table id="next-events">
             <thead>
@@ -140,8 +105,9 @@
   </footer>
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
-  <script src="js/database/storage.js"></script>
+  <script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
+  <script src="js/database/storage.js"></script>
   <script src="js/modules/events.js"></script>
   <script src="js/pages/home/index.js"></script>
   <script src="js/pages/main.js"></script>

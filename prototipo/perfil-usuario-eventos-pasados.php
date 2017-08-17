@@ -65,8 +65,8 @@
               <?php } ?>
 
               <?php if ($userRol == 4) { ?>
-                <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos inscrito</a></li>
-                <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario-eventos-pasados.php">Eventos participados</a></li>
+                <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario.php">Eventos inscrito</a></li>
+                <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos participados</a></li>
                 <li class="nav-tab"><a class="nav-tab-link" href="#">Eventos ganados</a></li>
               <?php } ?>
             </ul>
@@ -123,7 +123,7 @@
   <script src="js/modules/build-events-list-role.js"></script>
   <script src="js/modules/events.js"></script>
   <script src="js/pages/profile/fillProfile.js"></script>
-  <script src="js/pages/profile/index.js"></script>
+  <script src="js/pages/profile/past-events.js"></script>
   <script src="js/pages/main.js"></script>
 </body>
 </html>

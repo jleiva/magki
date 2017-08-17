@@ -23,6 +23,56 @@ var orm = (function(window, undefined) {
     return events;
   }
 
+  // Devuelve la lista de proximos eventos del alumno
+  // fecha mayor a hoy
+  function findNextActiveEventsUser(userId) {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_proximos_eventos_por_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'userId': userId
+      }      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
+  // Devuelve lista de eventos en los que
+  // ha participado un Alumno
+  function findPastEventsUser(userId) {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_eventos_pasados_por_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'userId': userId
+      }      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
   function findNextActiveEvents() {
     var events = [];
     var request = $.ajax({
@@ -1230,6 +1280,7 @@ var orm = (function(window, undefined) {
     findAdminUserById: findAdminUserById,
     findEvents: findEvents,
     findNextActiveEvents: findNextActiveEvents,
+    findNextActiveEventsUser: findNextActiveEventsUser,
     findEventbyId: findEventbyId,
     findEventCategories: findEventCategories,
     findEventByName: findEventByName,
@@ -1254,6 +1305,7 @@ var orm = (function(window, undefined) {
     findEventoPorAlumno: findEventoPorAlumno,
     findLogguedUser: findLogguedUser,
     findUserEventCategory: findUserEventCategory,
+    findPastEventsUser: findPastEventsUser,
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,

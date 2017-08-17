@@ -88,8 +88,39 @@ var eventRole = (function(window) {
     });
   }
 
+  function buildEventsListProfileStudent(eventsData) {
+    var eventsTable = document.querySelector('#list-events tbody');
+
+    eventsData.forEach(function(data) {
+      var eventId = data.id_evento;
+      var tr = document.createElement('tr');
+      var eventName = document.createElement('td');
+      var eventSDate = document.createElement('td');
+      var eventFDate = document.createElement('td');
+      var eventPlace = document.createElement('td');
+
+      var nameTxt = document.createTextNode(data.nombre);
+      var sDateTxt = document.createTextNode(data.fecha_inicio);
+      var fDateTxt = document.createTextNode(data.fecha_final);
+      var placeTxt = document.createTextNode(data.nombre_lugar);
+
+      eventName.appendChild(nameTxt);
+      eventSDate.appendChild(sDateTxt);
+      eventFDate.appendChild(fDateTxt);
+      eventPlace.appendChild(placeTxt);
+
+      tr.appendChild(eventName);
+      tr.appendChild(eventSDate);
+      tr.appendChild(eventFDate);
+      tr.appendChild(eventPlace);
+
+      eventsTable.appendChild(tr);
+    });
+  }
+
   return {
     buildEventsListProfile: buildEventsListProfile,
-    buildEventsListProfileProfesor: buildEventsListProfileProfesor
+    buildEventsListProfileProfesor: buildEventsListProfileProfesor,
+    buildEventsListProfileStudent: buildEventsListProfileStudent
   }
 })(window);

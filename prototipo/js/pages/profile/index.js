@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (logguedIn.rol === '3') {
       eventsList = orm.findNextActiveEvents();
     } else if (logguedIn.rol === '4') {
-
+      eventsList = orm.findNextActiveEventsUser(logguedIn.id);
     }
 
     if (eventsList.length) {
@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (logguedIn.rol === '3') {
         eventRole.buildEventsListProfileProfesor(eventsList);
+      }
+
+      if (logguedIn.rol === '4') {
+        eventRole.buildEventsListProfileStudent(eventsList);
       }
     }
   }

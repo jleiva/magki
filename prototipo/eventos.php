@@ -31,13 +31,19 @@
               <th>Estado</th>
               <th></th>
             <?php } ?>
-            
 
-            <?php if ($userRol == 3) { ?>
+            <?php if ($userRol == 3 || $userRol == 4) { ?>
               <th>Fecha Inicio</th>
               <th>Fecha Final</th>
+            <?php } ?>
+            
+            <?php if ($userRol == 3) { ?>
               <th>Cierre inscripciones</th>
               <th></th>
+            <?php } ?>
+
+            <?php if ($userRol == 4) { ?>
+              <th>Lugar</th>
             <?php } ?>
           </tr>
         </thead>

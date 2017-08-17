@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var userCategories;
 
     userCategories = eventCategories.filter(function(cat) {
-      return userData[0].genero === cat.genero;
+      return userData.genero === cat.genero;
     });
 
     populateCategorySelect(userCategories);
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function loadUserData() {
-    document.querySelector('#academy').value = userData[0].nombre_academia;
-    document.querySelector('#athleteName').value = userData[0].primer_nombre + ' ' + userData[0].segundo_nombre + ' ' + userData[0].primer_apeliido + ' ' + userData[0].segundo_apellido;
-    document.querySelector('#athleteId').value = userData[0].id_usuario;
-    document.querySelector('#athleteAge').value = userData[0].edad;
-    document.querySelector('#athleteBelt').value = userData[0].nombre_cinturon;
-    fillTeacher(userData[0].id_profesor);
+    document.querySelector('#academy').value = userData.nombre_academia;
+    document.querySelector('#athleteName').value = userData.primer_nombre + ' ' + userData.segundo_nombre + ' ' + userData.primer_apeliido + ' ' + userData.segundo_apellido;
+    document.querySelector('#athleteId').value = userData.id_usuario;
+    document.querySelector('#athleteAge').value = userData.edad;
+    document.querySelector('#athleteBelt').value = userData.nombre_cinturon;
+    fillTeacher(userData.id_profesor);
   }
 
   function saveAthleteData() {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     userInfo.id_categoria = category;
     userInfo.id_peso = weight;
     userInfo.id_evento = eventId;
-    userInfo.id_academia = userData[0].id_academia;
+    userInfo.id_academia = userData.id_academia;
     userInfo.estado = true;
 
     orm.registerAthleteEvent(userInfo);
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var categorySelected = document.querySelector('#category');
     var categorySelectedValue = document.querySelector('#category').value;
     var ageInput = document.querySelector('#athleteAge');
-    var userAge = parseInt(userData[0].edad);
+    var userAge = parseInt(userData.edad);
     var categryData = eventCategories.find(function(cat) {
       return categorySelectedValue === cat.id_categoria;
     });

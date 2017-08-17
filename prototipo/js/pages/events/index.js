@@ -86,10 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (logguedIn.rol === '1' || logguedIn.rol === '2') {
       eventsList = orm.findEvents();
-    } else if (logguedIn.rol === '3') {
+    } else if (logguedIn.rol === '3' || logguedIn.rol === '4') {
       eventsList = orm.findNextActiveEvents();
-    } else if (logguedIn.rol === '4') {
-
     }
 
     if (eventsList.length) {
@@ -101,6 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (logguedIn.rol === '3') {
         eventRole.buildEventsListProfileProfesor(eventsList);
+      }
+
+      if (logguedIn.rol === '4') {
+        eventRole.buildEventsListProfileStudent(eventsList);
       }
     }
   }

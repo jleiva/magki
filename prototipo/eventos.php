@@ -24,10 +24,21 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <?php if ($userRol == 1 || $userRol == 2) { ?>
             <th>Fecha</th>
             <th>Lugar</th>
             <th>Tipo</th>
-            <th></th>
+              <th>Estado</th>
+              <th></th>
+            <?php } ?>
+            
+
+            <?php if ($userRol == 3) { ?>
+              <th>Fecha Inicio</th>
+              <th>Fecha Final</th>
+              <th>Cierre inscripciones</th>
+              <th></th>
+            <?php } ?>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +63,7 @@
   <script src="js/helpers/load-data.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
+  <script src="js/modules/build-events-list-role.js"></script>
   <script src="js/modules/events.js"></script>
   <script src="js/pages/events/index.js"></script>
   <script src="js/pages/main.js"></script>

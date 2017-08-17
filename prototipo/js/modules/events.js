@@ -193,13 +193,6 @@ var events = (function(window) {
     storage.put('appLS', appLS);
   }
 
-  function triggerEditAction(e) {
-    var currentItem = e.currentTarget;
-    var currentItemId = currentItem.dataset.index;
-
-    setEventToEdit(currentItemId);
-  }
-
   function triggerReserveTicket(e) {
     var currentItem = e.currentTarget;
     var currentItemId = currentItem.dataset.name;
@@ -207,34 +200,11 @@ var events = (function(window) {
     setEventToReserve(currentItemId);
   }
 
-  function triggerRegAthletes(e) {
-    var currentItem = e.currentTarget;
-    var currentItemId = currentItem.dataset.index;
-
-    setEventToRegAthletes(currentItemId);
-  }
-
   function setEventToReserve(currentItemId) {
     var appLS = storage.get('appLS') || {};
     var eventId = currentItemId;
 
     appLS.eventToReserve = eventId;
-    storage.put('appLS', appLS);
-  }
-
-  function setEventToEdit(currentItemId) {
-    var appLS = storage.get('appLS') || {};
-    var eventId = currentItemId;
-
-    appLS.eventToEdit = eventId;
-    storage.put('appLS', appLS);
-  }
-
-  function setEventToRegAthletes(currentItemId) {
-    var appLS = storage.get('appLS') || {};
-    var eventId = currentItemId;
-
-    appLS.eventToEdit = eventId;
     storage.put('appLS', appLS);
   }
 
@@ -291,53 +261,51 @@ var events = (function(window) {
   function buildEventsList(eventsData) {
     var eventsTable = document.querySelector('#list-events tbody');
 
-    eventsData.forEach(function(data, index) {
+    eventsData.forEach(function(data) {
+      var eventId = data.id_evento;
       var tr = document.createElement('tr');
       var eventName = document.createElement('td');
       var eventDate = document.createElement('td');
       var eventVenue = document.createElement('td');
       var eventType = document.createElement('td');
+      var eventEstado = document.createElement('td');
       var eventActions = document.createElement('td');
 
       var nameTxt = document.createTextNode(data.nombre);
       var dateTxt = document.createTextNode(misc.modifiedDateFormat(data.fecha_inicio));
       var venueTxt = document.createTextNode(data.lugar);
       var typeTxt = document.createTextNode(data.tipo_evento);
+      var estadoTxt = document.createTextNode(data.estado == '1' ? 'Publicado' : 'Sin publicar');
 
       eventName.appendChild(nameTxt);
       eventDate.appendChild(dateTxt);
       eventVenue.appendChild(venueTxt);
       eventType.appendChild(typeTxt);
+      eventEstado.appendChild(estadoTxt);
 
       var anchorEdit = document.createElement('a');
       var linkText = document.createTextNode('Editar');
       anchorEdit.appendChild(linkText);
       anchorEdit.className = 'btn-action-event js-edit-event';
-      anchorEdit.dataset.index = index;
       anchorEdit.href = 'editar-evento.html';
 
       var anchorRegister = document.createElement('a');
       var linkText = document.createTextNode('Inscribir atletas');
-      // ToDo: en linea 322 hay que almacenar el valor que tenga el ID del evento.
-      // eventId se usa en linea 327 y 341
-      var eventId = 1;
+
       anchorRegister.appendChild(linkText);
       anchorRegister.className = 'btn-action-event js-athlete-event';
-      anchorRegister.dataset.index = index;
       anchorRegister.href = 'inscribir-competidores.php' + '?eventId=' + eventId;
 
       var anchorResults = document.createElement('a');
       var linkText = document.createTextNode('Registrar resultados');
       anchorResults.appendChild(linkText);
       anchorResults.className = 'btn-action-event';
-      anchorResults.dataset.index = index;
       anchorResults.href = 'registrar-resultados.php' + '?eventId=' + eventId;
 
       var anchorPesaje = document.createElement('a');
       var linkText = document.createTextNode('Registrar pesaje');
       anchorPesaje.appendChild(linkText);
       anchorPesaje.className = 'btn-action-event';
-      anchorPesaje.dataset.index = index;
       anchorPesaje.href = 'pesaje.php' + '?eventId=' + eventId;
       
       eventActions.appendChild(anchorEdit);
@@ -349,81 +317,10 @@ var events = (function(window) {
       tr.appendChild(eventDate);
       tr.appendChild(eventVenue);
       tr.appendChild(eventType);
+      tr.appendChild(eventEstado);
       tr.appendChild(eventActions);
 
       eventsTable.appendChild(tr);
-    });
-
-    document.querySelectorAll('.js-edit-event').forEach(function(btnEdit) {
-      btnEdit.addEventListener('click', function(e) {
-        triggerEditAction(e);
-      });
-    });
-
-    document.querySelectorAll('.js-athlete-event').forEach(function(btnEdit) {
-      btnEdit.addEventListener('click', function(e) {
-        triggerRegAthletes(e);
-      });
-    });
-  }
-
-  function buildEventsListProfile(eventsData) {
-    var eventsTable = document.querySelector('#profile-events tbody');
-
-    eventsData.forEach(function(data, index) {
-      var tr = document.createElement('tr');
-      var eventName = document.createElement('td');
-      var eventType = document.createElement('td');
-      var eventActions = document.createElement('td');
-
-      var nameTxt = document.createTextNode(data.eventName);
-      var typeTxt = document.createTextNode(data.tipoEvento);
-
-      eventName.appendChild(nameTxt);
-      eventType.appendChild(typeTxt);
-
-      var anchorEdit = document.createElement('a');
-      var linkText = document.createTextNode('Editar');
-      anchorEdit.appendChild(linkText);
-      anchorEdit.className = 'btn-action-event js-edit-event';
-      anchorEdit.dataset.index = index;
-      anchorEdit.href = 'editar-evento.html';
-
-      var anchorRegister = document.createElement('a');
-      var linkText = document.createTextNode('Inscribir atletas');
-      anchorRegister.appendChild(linkText);
-      anchorRegister.className = 'btn-action-event js-athlete-event';
-      anchorRegister.dataset.index = index;
-      anchorRegister.href = 'inscribir-competidores.html';
-
-      var anchorResults = document.createElement('a');
-      var linkText = document.createTextNode('Registrar Resultados');
-      anchorResults.appendChild(linkText);
-      anchorResults.className = 'btn-action-event';
-      anchorResults.dataset.index = index;
-      anchorResults.href = 'registrar-resultados.html';
-      
-      eventActions.appendChild(anchorEdit);
-      eventActions.appendChild(anchorRegister);
-      eventActions.appendChild(anchorResults);
-
-      tr.appendChild(eventName);
-      tr.appendChild(eventType);
-      tr.appendChild(eventActions);
-
-      eventsTable.appendChild(tr);
-    });
-
-    document.querySelectorAll('.js-edit-event').forEach(function(btnEdit) {
-      btnEdit.addEventListener('click', function(e) {
-        triggerEditAction(e);
-      });
-    });
-
-    document.querySelectorAll('.js-athlete-event').forEach(function(btnEdit) {
-      btnEdit.addEventListener('click', function(e) {
-        triggerRegAthletes(e);
-      });
     });
   }
 
@@ -544,7 +441,6 @@ var events = (function(window) {
     changeEventType: changeEventType,
     updateVenueCapacity: updateVenueCapacity,
     buildEventsList: buildEventsList,
-    buildEventsListProfile: buildEventsListProfile,
     buildEventsListHome: buildEventsListHome,
     fillEditForm: fillEditForm,
     validateTicketsPerVenue: validateTicketsPerVenue,

@@ -28,8 +28,10 @@
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Encargado</th>
-            <th>Estado</th>
-            <th>Editar</th>
+            <?php if ($userRol == 1 || $userRol == 2) { ?>
+              <th>Estado</th>
+              <th></th>
+            <?php } ?>
           </tr>
         </thead>
         <tbody>

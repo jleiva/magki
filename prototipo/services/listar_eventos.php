@@ -2,7 +2,6 @@
 
   require_once 'conexion.php';
 
-
   $sqlQuery = "CALL pa_listar_eventos";
 
   $result = $conexion->query($sqlQuery);

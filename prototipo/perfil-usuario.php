@@ -48,12 +48,23 @@
               <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos</a></li>
             </ul>
           </div>
-          <table id="profile-events">
+          
+          <table id="list-events">
             <thead>
               <tr>
-                <th>Nombre</th>  
-                <th>Estado</th>
-                <th></th>
+                <th>Nombre</th>
+
+                <?php if ($userRol == 1 || $userRol == 2) { ?>
+                  <th>Estado</th>
+                  <th></th>
+                <?php } ?>
+
+                <?php if ($userRol == 3) { ?>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Final</th>
+                  <th>Cierre inscripciones</th>
+                  <th></th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +90,7 @@
   <script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
+  <script src="js/modules/build-events-list-role.js"></script>
   <script src="js/modules/events.js"></script>
   <script src="js/pages/events/index.js"></script>
   <script src="js/pages/profile/index.js"></script>

@@ -10,7 +10,7 @@
       <a href="eventos.php" <?php echo ($page == 'event') ? "class='is-active'" : ""; ?>>Eventos</a>
     </li>
     <li class="main-nav__item main-nav__item--profile">
-      <a href="perfil-admin.php"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a>
+      <a href="perfil-usuario.php"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a>
     </li>
   </ul>
 </nav>

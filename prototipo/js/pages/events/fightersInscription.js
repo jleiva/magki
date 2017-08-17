@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+  var logguedIn = orm.findLogguedUser();
   var queryUrl = misc.getQueryParams(document.location.search);
   var eventId = queryUrl.eventId;
   var eventInfo = orm.findEventbyId(eventId);
+  var userAcademy;
 
   fillEventData(eventInfo);
   fillAcademiesSelect();
@@ -13,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function fillAcademiesSelect() {
-    var academiesList = orm.findActiveAcad();
     var academiesField = document.querySelector('#academy-name');
     var tournamentName = document.querySelector('.js-event-name');
     var noAcademiesOpt = document.querySelector('.js-empty-academy');
+    var academiesList = orm.findActiveAcad();
 
     for(var i = 0; i < academiesList.length; i++) {
        var options = document.createElement('option');        
@@ -28,13 +30,21 @@ document.addEventListener('DOMContentLoaded', function() {
        academiesField.add(options); 
     }
 
+    if (logguedIn.rol == '3') {
+      var userData = orm.findProfesorById(logguedIn.id)
+      
+      userAcademy = userData.nombre_academia;
+      academiesField.value = userAcademy;
+      academiesField.disabled = true;
+    } 
+
     document.querySelector('select[name="academy-name"]').addEventListener('change', function(e) {
       fillUsersByAcademyTable(e);
     });
   }
 
   function fillGeneralUsersTable() {
-    var alumList = orm.findActiveStudents();
+    var alumList = logguedIn.rol == '3' ? orm.findActiveStudentsByAcademyName(userAcademy) : orm.findActiveStudents();
 
     if (alumList.length) {
       fillTable(alumList);
@@ -48,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var alumList;
 
     if (pacademyName) {
-      alumList = orm.findActiveStudentsByAcademy(pacademyName);
+      alumList = orm.findActiveStudentsByAcademyName(pacademyName);
       
       if (alumList.length) {
         fillTable(alumList);

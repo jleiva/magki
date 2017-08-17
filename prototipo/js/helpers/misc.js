@@ -198,6 +198,7 @@ var misc = (function(window, undefined) {
     var day = Number(date.getDate() + 1);
     var month = Number(date.getMonth() + 1);
     var year = date.getFullYear();
+    
     if(day < 10){
       day = '0' + day;
     }

@@ -1,8 +1,8 @@
 <?php
   require_once 'conexion.php';
 
-  $id = $_GET['id'];
-  $query = "CALL pa_listar_alumnos_activos_por_academia" . "('$id')";
+  $nombreAcademia = $_GET['nombre_academia'];
+  $query = "CALL pa_listar_alumnos_activos_por_nombre_academia" . "('$nombreAcademia')";
 
   $result = $conexion->query($query);
 

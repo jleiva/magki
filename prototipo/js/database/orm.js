@@ -325,7 +325,30 @@ var orm = (function(window, undefined) {
     return studentsList;
   }
 
-  function findActiveStudentsByAcademy(pacademyName) {
+  function findActiveStudentsByAcademyName(academyName) {
+    var studentsList = [];
+    var request = $.ajax({
+      url: 'services/listar_alumnos_activos_por_nombre_academia.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'nombre_academia': academyName
+      }
+    })
+
+    request.done(function(data){
+      studentsList = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return studentsList;
+  }
+
+  function findActiveStudentsByAcademy(id) {
     var studentsList = [];
     var request = $.ajax({
       url: 'services/listar_alumnos_activos_por_academia.php',
@@ -333,7 +356,7 @@ var orm = (function(window, undefined) {
       async: false,
       method: 'get',
       data: {
-        'nombre_academia': pacademyName
+        'id': id
       }
     })
 
@@ -1208,6 +1231,7 @@ var orm = (function(window, undefined) {
     findStudentById: findStudentById,
     findActiveStudents: findActiveStudents,
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
+    findActiveStudentsByAcademyName: findActiveStudentsByAcademyName,
     findActiveSponsors: findActiveSponsors,
     findActiveProfesor: findActiveProfesor,
     findAssistById: findAssistById,

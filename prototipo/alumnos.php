@@ -35,7 +35,11 @@
             <th>Apellido</th>
             <th>Grado</th>
             <th>Academia</th>
-            <th>Estado</th>
+
+            <?php if ($userRol == 1 || $userRol == 2) { ?>
+              <th>Estado</th>
+            <?php } ?>
+
             <th></th>
           </tr>
         </thead>

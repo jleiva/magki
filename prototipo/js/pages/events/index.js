@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  var logguedIn = orm.findLogguedUser();
   var getValidDatesRange = misc.debounce(function() {
     var sDate = document.querySelector('#dateStart');
     var eDate = document.querySelector('#dateEnd');
@@ -80,12 +81,27 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function initEventsList() {
-    var eventsList = orm.findEvents();
+    var eventsList;
     var $noData = document.querySelector('.no-data');
+
+    if (logguedIn.rol === '1' || logguedIn.rol === '2') {
+      eventsList = orm.findEvents();
+    } else if (logguedIn.rol === '3') {
+      eventsList = orm.findNextActiveEvents();
+    } else if (logguedIn.rol === '4') {
+
+    }
 
     if (eventsList.length) {
       $noData.hide();
-      events.buildEventsList(eventsList);
+
+      if (logguedIn.rol === '1' || logguedIn.rol === '2') {
+        events.buildEventsList(eventsList);
+      }
+
+      if (logguedIn.rol === '3') {
+        eventRole.buildEventsListProfileProfesor(eventsList);
+      }
     }
   }
 

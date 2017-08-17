@@ -417,7 +417,7 @@ var orm = (function(window, undefined) {
       console.log('Conexion error');
     });
 
-    return userData;
+    return userData[0];
   }
 
   function findProfesorById(pId) {
@@ -1150,6 +1150,37 @@ var orm = (function(window, undefined) {
     return wonTournaments;
   }
 
+  function updateUserInfo(data) {
+    var request  = $.ajax({
+      url: 'services/actualizar_info_usuario.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'id': data.identification,
+        'firstName': data.firstName,
+        'secondName': data.secondName,
+        'firstLastName': data.firstLastName,
+        'secondLastName': data.secondLastName,
+        'email': data.email
+      }
+    });
+  }
+
+  function updateAlumInfo(pweight,pheight,pidAlumn) {
+    var request  = $.ajax({
+      url: 'services/actualizar_info_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'Get',
+      data: {
+        'id': pidAlumn,
+        'weight': pweight,
+        'height': pheight
+      }
+    });
+  }
+
   // =========  Linea 25 para abajo no usar mas =============
   // ToDo: borrar las funciones cuando las consultas a BD se vayan completando.
   function findEventByName(name) {  
@@ -1185,21 +1216,6 @@ var orm = (function(window, undefined) {
     return prods;
   }
 
-  function findProfesor() {
-    var appProfesirListLS = storage.get('profListLS') || [];
-
-    return appProfesirListLS;
-  }
-
-  function findActiveProfesor() {
-    var profesorListLS = findProfesor();
-
-    var profesorList = profesorListLS.filter(function(user) {
-      return user.status === true;
-    });
-
-    return profesorList;
-  }
 
   function findLogguedUser() {
     var appLS = storage.get('appLS') || {};
@@ -1233,7 +1249,6 @@ var orm = (function(window, undefined) {
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
     findActiveStudentsByAcademyName: findActiveStudentsByAcademyName,
     findActiveSponsors: findActiveSponsors,
-    findActiveProfesor: findActiveProfesor,
     findAssistById: findAssistById,
     findProfesorById: findProfesorById,
     findEventoPorAlumno: findEventoPorAlumno,
@@ -1266,6 +1281,8 @@ var orm = (function(window, undefined) {
     unsubUserFromEvent: unsubUserFromEvent,
     updateAlumnScore: updateAlumnScore,
     updateAlumWonTournaments: updateAlumWonTournaments,
+    updateUserInfo: updateUserInfo,
+    updateAlumInfo: updateAlumInfo,
     getAlumnWonTournaments: getAlumnWonTournaments
   };
 })(window);

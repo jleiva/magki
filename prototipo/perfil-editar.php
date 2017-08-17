@@ -13,7 +13,7 @@
       <div class="profile-wrap">
         <div class="profile-actions">
           <ul class="menu menu-actions">
-            <li><a href="perfil-alumno.html">Perfil personal</a></li>
+            <li><a href="perfil-usuario.php">Perfil personal</a></li>
             <li><a href="#" class="is-active">Editar Perfil</a></li>
             <li><a href="perfil-cambiar-contrasena.php">Cambiar contraseña</a></li>
           </ul>
@@ -21,7 +21,7 @@
 
         <div class="profile-info">
           <div class="form__wrap js-form">
-
+            <span class="note alert is-hidden js-login-msg"></span>
             <?php
               switch ($userRol) {
                 case 1:

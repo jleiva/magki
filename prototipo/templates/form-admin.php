@@ -5,12 +5,12 @@
     
     <div class="field-wrapper">
       <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr> </label>
-      <input type="text" class="js-form-field" name="identification" id="id" value="111720815" required pattern="[0-9]" disabled>
+      <input type="text" class="js-form-field" name="identification" id="id" required pattern="[0-9]" disabled>
     </div>
 
     <div class="field-wrapper">
       <label for="name">Primer Nombre <abbr title="Requerido">*</abbr></label>
-      <input type="text" class="js-form-field" name="firstName" id="name" value="Maria" required>
+      <input type="text" class="js-form-field" name="firstName" id="name" required>
     </div>
 
     <div class="field-wrapper">
@@ -20,7 +20,7 @@
 
     <div class="field-wrapper">
       <label for="last-name">Primer Apellido<abbr title="Requerido">*</abbr> </label>
-      <input type="text" class="js-form-field" name="firstLastName" id="last-name" value="Martinez" required>
+      <input type="text" class="js-form-field" name="firstLastName" id="last-name" required>
     </div>
 
     <div class="field-wrapper">
@@ -30,7 +30,7 @@
 
     <div class="field-wrapper">
       <label for="email">Correo Electrónico <abbr title="Requerido">*</abbr></label>
-      <input type="email" class="js-form-field" name="email" id="email" value="mmartinez@mailme.com" required>
+      <input type="email" class="js-form-field" name="email" id="email" required>
     </div>
   </fieldset>
   <button id="btn-save" value="">Guardar</button>

@@ -36,6 +36,10 @@
                 include("templates/acceso-profesor.php");
                 break;
 
+              case 4:
+                include("templates/acceso-alumno.php");
+                break;
+
               default:
                 break;
             }
@@ -93,6 +97,7 @@
   <script src="js/modules/build-events-list-role.js"></script>
   <script src="js/modules/events.js"></script>
   <script src="js/pages/events/index.js"></script>
+  <script src="js/pages/profile/fillProfile.js"></script>
   <script src="js/pages/profile/index.js"></script>
   <script src="js/pages/main.js"></script>
 </body>

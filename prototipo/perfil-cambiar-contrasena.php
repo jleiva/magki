@@ -28,7 +28,7 @@
                 <div class="field-wrapper">
                   <label for="newPassword">Contraseña <abbr title="Requerido">*</abbr></label>
                   <input type="password" class="js-form-field" name="newPassword" id="newPassword" required pattern="[0-9]">
-                  <p class="note js-password-notes"><strong>Su contraseña debe tener al menos:</strong> una may&uacute;scula, una min&uacute;scula, un caracter especial (*&%$#!?/) y m&iacute;nimo 6 digitos de longitud</p>
+                  <p class="note js-password-notes"><strong>Su contraseña debe tener al menos:</strong> una may&uacute;scula, una min&uacute;scula, un caracter especial (!@#$%^&*) y m&iacute;nimo 6 digitos de longitud</p>
                 </div>
 
                 <div class="field-wrapper">

@@ -66,7 +66,6 @@
   <script src="js/helpers/misc.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
-  <script src="js/helpers/load-data.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/modules/build-events-list-role.js"></script>

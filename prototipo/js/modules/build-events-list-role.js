@@ -59,13 +59,17 @@ var eventRole = (function(window) {
       var eventLDate = document.createElement('td');
       var eventActions = document.createElement('td');
 
+      var anchorName = document.createElement('a');
       var nameTxt = document.createTextNode(data.nombre);
       var sDateTxt = document.createTextNode(data.fecha_inicio);
       var fDateTxt = document.createTextNode(data.fecha_final);
       var wDateTxt = document.createTextNode(data.fecha_pesaje);
       var lDateTxt = document.createTextNode(data.limite_inscripcion);
 
-      eventName.appendChild(nameTxt);
+      anchorName.appendChild(nameTxt);
+      anchorName.href = 'detalle-evento.php' + '?eventId=' + eventId;
+
+      eventName.appendChild(anchorName);
       eventSDate.appendChild(sDateTxt);
       eventFDate.appendChild(fDateTxt);
       eventLDate.appendChild(lDateTxt);
@@ -99,12 +103,16 @@ var eventRole = (function(window) {
       var eventFDate = document.createElement('td');
       var eventPlace = document.createElement('td');
 
+      var anchorName = document.createElement('a');
       var nameTxt = document.createTextNode(data.nombre);
       var sDateTxt = document.createTextNode(data.fecha_inicio);
       var fDateTxt = document.createTextNode(data.fecha_final);
       var placeTxt = document.createTextNode(data.nombre_lugar);
 
-      eventName.appendChild(nameTxt);
+      anchorName.appendChild(nameTxt);
+      anchorName.href = 'detalle-evento.php' + '?eventId=' + eventId;
+
+      eventName.appendChild(anchorName);
       eventSDate.appendChild(sDateTxt);
       eventFDate.appendChild(fDateTxt);
       eventPlace.appendChild(placeTxt);

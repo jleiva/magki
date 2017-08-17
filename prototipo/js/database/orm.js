@@ -470,6 +470,31 @@ var orm = (function(window, undefined) {
     return userData[0];
   }
 
+  // Devuelve la lista de alumnos inscritos
+  // en un evento
+  function findStudentsByEvent(eventId) {
+    var userData = [];
+    var request = $.ajax({
+      url: 'services/listar_alumnos_inscritos_en_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'eventId': eventId
+      }
+    })
+
+    request.done(function(data){
+      userData = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return userData;
+  }
+
   function findProfesorById(pId) {
     var userData = [];
     var request = $.ajax({
@@ -1296,6 +1321,7 @@ var orm = (function(window, undefined) {
     findSponsorProducts: findSponsorProducts,
     findStudents: findStudents,
     findStudentById: findStudentById,
+    findStudentsByEvent: findStudentsByEvent,
     findActiveStudents: findActiveStudents,
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
     findActiveStudentsByAcademyName: findActiveStudentsByAcademyName,

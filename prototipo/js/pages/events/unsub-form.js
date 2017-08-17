@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function loadUserData() {
-    document.querySelector('#academy').value = userData[0].nombre_academia;
-    document.querySelector('#athleteName').value = userData[0].primer_nombre + ' ' + userData[0].segundo_nombre + ' ' + userData[0].primer_apeliido + ' ' + userData[0].segundo_apellido;
-    document.querySelector('#athleteId').value = userData[0].id_usuario;
-    document.querySelector('#athleteAge').value = userData[0].edad;
-    document.querySelector('#athleteBelt').value = userData[0].nombre_cinturon;
+    document.querySelector('#academy').value = userData.nombre_academia;
+    document.querySelector('#athleteName').value = userData.primer_nombre + ' ' + userData.segundo_nombre + ' ' + userData.primer_apeliido + ' ' + userData.segundo_apellido;
+    document.querySelector('#athleteId').value = userData.id_usuario;
+    document.querySelector('#athleteAge').value = userData.edad;
+    document.querySelector('#athleteBelt').value = userData.nombre_cinturon;
     document.querySelector('#athleteCatAge').value = userCategory[0].description;
-    fillTeacher(userData[0].id_profesor);
+    fillTeacher(userData.id_profesor);
   }
 
   function saveAthleteData(e) {

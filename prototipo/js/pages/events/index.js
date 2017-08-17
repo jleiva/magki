@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     validate.validateStartDate(sDate);
   }, 1000);
 
+  init();
+
   function init() {
     var isEventsPage = document.querySelector('#events-page');
     var isRegisterEventPage = document.querySelector('#event-register');
@@ -111,6 +113,4 @@ document.addEventListener('DOMContentLoaded', function() {
   function loadEventsData() {
     initEventsList();
   }
-
-  init();
 });

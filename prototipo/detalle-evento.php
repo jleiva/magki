@@ -7,14 +7,16 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="promo-box promo-box--no-hero">
-        <h2 class="promo-box__title">2017 Campeonato Nacional de Taekwondo</h2>
+        <h2 class="promo-box__title"></h2>
         <div class="promo-left">
           <h4>Detalles del evento</h4>
           <p>
-          <strong>Lugar:</strong> Ciudad Deportiva de Hatillo<br>
-          <strong>Fecha:</strong> 30 de Junio de 2017<br>
-          <br>
-           <a href="reserve.html" class="button btn-small" id="btn-register">Reservar Entradas</a>
+          <strong>Lugar:</strong> <span id="place"></span><br/>
+          <strong>Fecha:</strong> <span id="date"></span><br/>
+          <strong>Tipo de evento:</strong> <span id="typeEvent"></span><br/>
+          <strong>Costo entrada:</strong> <span id="price"></span><br/>
+          <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
+
           </p>
         </div>
         <div class="promo-right">
@@ -33,12 +35,11 @@
           <li class="nav-tab"><a class="nav-tab-link" href="#">Resultados</a></li>
         </ul>
       </div>
-      <table id="">
+      <table id="event-detail-users">
         <thead>
           <tr>
-            <th>Nombre</th>            
-            <th>Apellido</th>
             <th>Identificación</th>
+            <th>Nombre</th>
             <th>Categoría</th>
             <th>Grado</th>
             <th>Academia</th>
@@ -57,6 +58,13 @@
   <?php
     include("templates/footer.php");
   ?>
+  
+  <script src="js/helpers/jquery-3.2.1.min.js"></script>
+  <script src="js/database/storage.js"></script>
+  <script src="js/database/orm.js"></script>
+  <script src="js/helpers/misc.js"></script>
+  <script src="js/pages/events/event-detail.js"></script>
+  <script src="js/pages/main.js"></script>
 
 </body>
 </html>

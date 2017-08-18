@@ -1,5 +1,6 @@
-<?php 
+<?php
   $page_title = 'Perfil Usuario';
+  $page = 'profile';
   include("templates/header.php");
 ?>
   

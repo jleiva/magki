@@ -118,6 +118,29 @@ var orm = (function(window, undefined) {
     return eventInfo;
   }
 
+  function findEventOrgs(peventId) {
+    var catsData = [];
+    var request = $.ajax({
+      url: 'services/buscar_organizaciones_activas_por_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'idEvento': peventId
+      }
+    });
+
+    request.done(function(data){
+      catsData = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return catsData;
+  }
+
   function findEventCategories(peventId) {
     var catsData = [];
     var request = $.ajax({
@@ -581,6 +604,25 @@ var orm = (function(window, undefined) {
     return appPlacesListLS;
   }
 
+  function findLastEvent() {
+    var eventId;
+    var request = $.ajax({
+      url: 'services/buscar_ultimo_evento_registrado.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {}
+    });
+
+    request.done(function(data) {
+      eventId = data;
+    }).fail(function() {
+      console.log('[findOrgs] Error de conexion');
+    });
+
+    return eventId;
+  }
+
   function findAssistById(assistId) {
     var assistSel = [];
     var request = $.ajax({
@@ -736,6 +778,60 @@ var orm = (function(window, undefined) {
     }).fail(function() {
       console.log('[registrarOrg] Error de conexion');
     });
+  }
+
+  function registerEvent(eventData){
+    var request = $.ajax({
+        url: 'services/registrar_evento.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'name': eventData[0],
+          'startDate': eventData[1],
+          'finalDate': eventData[2],
+          'idPlace': eventData[3],
+          'availableTickets': eventData[4],
+          'priceTickets': eventData[5],
+          'eventType': eventData[6],
+          'registrationPrice': eventData[7],
+          'weighingDate': eventData[8],
+          'categoriesSelected': JSON.stringify(eventData[9]),
+          'guest': eventData[10],
+          'organizationList': JSON.stringify(eventData[11]),
+          'sponsorId': eventData[12],
+          'productId': eventData[13],
+          'sponsorshipType': eventData[14],
+          'sponsorshipDesc': eventData[15],
+          'sponsorValue': eventData[16],
+          'isPublished': eventData[17],
+          'maxRegistDate': eventData[18],
+          'venueCost': eventData[19],
+          'orgBenefited': eventData[20]
+        }
+    });
+
+    request.done(function () {
+      console.log('Datos guardados');
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+  }
+
+  function registerExpense(cost, eventId) {
+    var request = $.ajax({
+      url: 'services/registrar_gasto_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'gasto': cost,
+        'eventId': eventId,
+        'cuenta': 'costo_evento',
+      }
+    })
   }
 
   function registerSponsor(pInfoSponsor) {
@@ -1307,6 +1403,7 @@ var orm = (function(window, undefined) {
     findNextActiveEvents: findNextActiveEvents,
     findNextActiveEventsUser: findNextActiveEventsUser,
     findEventbyId: findEventbyId,
+    findEventOrgs: findEventOrgs,
     findEventCategories: findEventCategories,
     findEventByName: findEventByName,
     findOrgs: findOrgs,
@@ -1315,6 +1412,7 @@ var orm = (function(window, undefined) {
     findActiveOrgs: findActiveOrgs,
     findVenues: findVenues,
     findVenueById: findVenueById,
+    findLastEvent: findLastEvent,
     findActiveVenues: findActiveVenues,
     findSponsors: findSponsors,
     findSponsorbyId: findSponsorbyId,
@@ -1339,6 +1437,7 @@ var orm = (function(window, undefined) {
     getCurrentScoreByAlumnByEvent: getCurrentScoreByAlumnByEvent,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
+    registerEvent: registerEvent,
     registerAcademy: registerAcademy,
     registrarAsist: registrarAsist,
     registrarAsistTblAsistente: registrarAsistTblAsistente,
@@ -1350,6 +1449,7 @@ var orm = (function(window, undefined) {
     registrarProfTblProfesor: registrarProfTblProfesor,
     registerFighterWeight: registerFighterWeight,
     registerAlumnResult: registerAlumnResult,
+    registerExpense: registerExpense,
     saveReserve: saveReserve,
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,

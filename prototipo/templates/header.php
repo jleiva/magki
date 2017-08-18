@@ -8,11 +8,11 @@
     exit;
   }
 
-  echo '<ul><li>Logueado: ' . $_SESSION['login'] . '</li>';
-  echo '<li>Email: ' . $_SESSION['usuario'] . '</li>';
-  echo '<li>Nombre: ' . $_SESSION['nombre'] . '</li>';
-  echo '<li>Apellido: ' . $_SESSION['apellido'] . '</li>';
-  echo '<li>Tipo Rol: ' . $_SESSION['rol'] . '</li></ul>';
+  // echo '<ul><li>Logueado: ' . $_SESSION['login'] . '</li>';
+  // echo '<li>Email: ' . $_SESSION['usuario'] . '</li>';
+  // echo '<li>Nombre: ' . $_SESSION['nombre'] . '</li>';
+  // echo '<li>Apellido: ' . $_SESSION['apellido'] . '</li>';
+  // echo '<li>Tipo Rol: ' . $_SESSION['rol'] . '</li></ul>';
 ?>
 
 <!DOCTYPE html>

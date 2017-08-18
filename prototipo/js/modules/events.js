@@ -379,6 +379,36 @@ var events = (function(window) {
     });
   }
 
+  function buildPastEventsList(eventsData) {
+    var eventsTable = document.querySelector('#list-events tbody');
+
+    eventsData.forEach(function(data) {
+      var eventId = data.id_evento;
+      var tr = document.createElement('tr');
+      var eventName = document.createElement('td');
+      var eventDate = document.createElement('td');
+      var eventVenue = document.createElement('td');
+      var eventType = document.createElement('td');
+
+      var nameTxt = document.createTextNode(data.nombre);
+      var dateTxt = document.createTextNode(misc.modifiedDateFormat(data.fecha_inicio));
+      var venueTxt = document.createTextNode(data.lugar);
+      var typeTxt = document.createTextNode(data.tipo_evento);
+
+      eventName.appendChild(nameTxt);
+      eventDate.appendChild(dateTxt);
+      eventVenue.appendChild(venueTxt);
+      eventType.appendChild(typeTxt);
+      
+      tr.appendChild(eventName);
+      tr.appendChild(eventDate);
+      tr.appendChild(eventVenue);
+      tr.appendChild(eventType);
+     
+      eventsTable.appendChild(tr);
+    });
+  }
+
   function fillEventData(nextEventData) {
     $util('.promo-box__title').innerHTML = nextEventData.nombre;
     $util('#place').innerHTML = nextEventData.nombre_lugar;
@@ -446,6 +476,7 @@ var events = (function(window) {
     updateVenueCapacity: updateVenueCapacity,
     buildEventsList: buildEventsList,
     buildEventsListHome: buildEventsListHome,
+    buildPastEventsList: buildPastEventsList,
     fillEditForm: fillEditForm,
     validateTicketsPerVenue: validateTicketsPerVenue,
     showSponsorInfo: showSponsorInfo,

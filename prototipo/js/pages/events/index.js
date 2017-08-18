@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function init() {
     var isEventsPage = document.querySelector('#events-page');
     var isRegisterEventPage = document.querySelector('#event-register');
+    var isPastEventsPage = document.querySelector('#past-events-page');
 
     if (isEventsPage) {
       loadEventsData();
@@ -29,6 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
       events.loadSponsors();
       events.loadOrgn();
       events.loadPlaces();
+    }
+
+    if (isPastEventsPage) {
+      var $noData = document.querySelector('.no-data');
+      var eventsData = orm.findPastEvents();
+
+      if (eventsData.length) {
+        $noData.hide();
+        events.buildPastEventsList(eventsData);
+      }
     }
   }
 

@@ -73,6 +73,27 @@ var orm = (function(window, undefined) {
     return events;
   }
 
+  function findPastEvents() {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_eventos_pasados.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
   function findNextActiveEvents() {
     var events = [];
     var request = $.ajax({
@@ -828,10 +849,9 @@ var orm = (function(window, undefined) {
       method: 'post',
       data: {
         'gasto': cost,
-        'eventId': eventId,
-        'cuenta': 'costo_evento',
+        'eventId': eventId.ultimo_evento
       }
-    })
+    });
   }
 
   function registerSponsor(pInfoSponsor) {
@@ -1117,7 +1137,6 @@ var orm = (function(window, undefined) {
     }
 
     var score = currentScore[0].puntaje;
-
     var newScore = (parseInt(score) + parseInt(palumnInfo.score));
     updateAlumnScore(peventId, palumnInfo.id, newScore);
 
@@ -1429,6 +1448,7 @@ var orm = (function(window, undefined) {
     findEventoPorAlumno: findEventoPorAlumno,
     findLogguedUser: findLogguedUser,
     findUserEventCategory: findUserEventCategory,
+    findPastEvents: findPastEvents,
     findPastEventsUser: findPastEventsUser,
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,

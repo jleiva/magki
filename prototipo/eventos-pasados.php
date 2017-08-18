@@ -1,12 +1,12 @@
 <?php
-  $page_title = 'Listado eventos';
+  $page_title = 'Listado eventos pasados';
   $page = 'event'; 
   include("templates/header.php");
 ?>
-  <main id="events-page" class="wrapper">
+  <main id="past-events-page" class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Eventos</h2>
+        <h2>Listado de Eventos Pasados</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
           <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
         <?php } ?>
@@ -17,8 +17,8 @@
           <input type="text" id="edit-query" name="query" value="" size="30" maxlength="128" class="search-form__text" placeholder="Buscar...">
         </div>
         <ul class="actions-tabs__options">
-          <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos</a></li>
-          <li class="nav-tab"><a class="nav-tab-link" href="eventos-pasados.php">Eventos pasados</a></li>
+          <li class="nav-tab"><a class="nav-tab-link" href="eventos.php">Eventos</a></li>
+           <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos Pasados</a></li>
         </ul>
       </div>
       <table id="list-events">
@@ -29,8 +29,6 @@
             <th>Fecha</th>
             <th>Lugar</th>
             <th>Tipo</th>
-              <th>Estado</th>
-              <th></th>
             <?php } ?>
 
             <?php if ($userRol == 3 || $userRol == 4) { ?>

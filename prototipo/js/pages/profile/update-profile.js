@@ -8,10 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   switch (userRol) {
     case '1':
+    case '2':
       userData = orm.findAdminUserById(userId);
       fillAdminForm(userData);
-      break;
-    case '2':
       break;
     case '3':
       userData = orm.findProfesorById(userId);

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   $util('#btn-save').on('click', saveAthleteData);
+
   var queryUrl = misc.getQueryParams(document.location.search);
   var userId = queryUrl.id;
   var eventId = queryUrl.eventId;

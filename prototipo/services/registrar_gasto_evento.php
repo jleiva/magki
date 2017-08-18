@@ -1,15 +1,18 @@
 <?php
- require_once 'conexion.php';
+    require_once 'conexion.php';
 
- $gasto = $_POST['gasto'];
- $idEvento = $_POST['eventId'];
- $cuenta = $POST['cuenta'];
+    $gasto = $_POST['gasto'];
+    $eventId = $_POST['eventId'];
+    $cuenta = "costo_evento";
 
- $query = "CALL pa_registrar_gasto_evento" . "($gasto,'$cuenta',$idEvento)";
+    $sentencia_sql = 'CALL pa_registrar_gasto_evento' . '("$cuenta",$gasto,$eventId)';
 
- $result = $conexion->query($query);
+    $result = $conexion->query($sentencia_sql);
 
- if(!$result)die($conexion->error);
+    if (!$result) {
+        die('Fallo la consulta SQL '.$conexion->error);
+    }
 
- echo json_encode($result);
+    echo json_encode($result);
+
 ?>

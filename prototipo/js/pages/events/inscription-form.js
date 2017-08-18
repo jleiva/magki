@@ -51,14 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var category = document.querySelector('#category').value;
     var weight = document.querySelector('#weight').value;
     var userInfo = {};
+    var isRegUser = orm.findEventoPorAlumno(eventId, userId);
     userInfo.id_alumno = userId;
     userInfo.id_categoria = category;
     userInfo.id_peso = weight;
     userInfo.id_evento = eventId;
     userInfo.id_academia = userData.id_academia;
-    userInfo.estado = true;
+    userInfo.estado = 1;
 
-    orm.registerAthleteEvent(userInfo);
+    if (isRegUser.length) {
+      orm.updateAthleteEvent(userInfo);
+    } else {
+      orm.registerAthleteEvent(userInfo);
+    }
   }
 
   function fillTeacher(idUser) {

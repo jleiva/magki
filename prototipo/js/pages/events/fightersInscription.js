@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
       editColumn.appendChild(editLink);
       editColumn.appendChild(unsbLink);
 
-      if (isRegUser.length) {
+      if (isRegUser.length && isRegUser[0].estado === '1') {
         editLink.classList.add('link-disable');
         editLink.href = '#';
         unsbLink.classList.remove('link-disable');

@@ -1048,6 +1048,31 @@ var orm = (function(window, undefined) {
     })
   }
 
+  function updateAthleteEvent(userData) {
+    var request = $.ajax({
+      url: 'services/actualizar_datos_alumno_en_evento.php',
+      type: 'post',
+      dataType: 'json',
+      async: false,
+      data: {
+        'id_alumno': userData.id_alumno,
+        'id_categoria': userData.id_categoria,
+        'id_peso': userData.id_peso,
+        'id_evento': userData.id_evento,
+        'id_academia': userData.id_academia,
+        'estado': userData.estado
+      }
+    });
+
+    request.done(function() {
+      console.log('Registrado correctamente');
+    })
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    })
+  }
+
   function registerAthleteEvent(userData) {
     var request = $.ajax({
       url: 'services/registrar_alumno_en_evento.php',
@@ -1481,6 +1506,7 @@ var orm = (function(window, undefined) {
     updateAlumWonTournaments: updateAlumWonTournaments,
     updateUserInfo: updateUserInfo,
     updateAlumInfo: updateAlumInfo,
+    updateAthleteEvent: updateAthleteEvent,
     getAlumnWonTournaments: getAlumnWonTournaments
   };
 })(window);

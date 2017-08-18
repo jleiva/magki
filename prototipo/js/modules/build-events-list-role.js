@@ -10,11 +10,14 @@ var eventRole = (function(window) {
       var eventName = document.createElement('td');
       var eventType = document.createElement('td');
       var eventActions = document.createElement('td');
-
+      var anchorName = document.createElement('a');
       var nameTxt = document.createTextNode(data.nombre);
       var typeTxt = document.createTextNode(data.estado == '1' ? 'Publicado' : 'Sin publicar');
 
-      eventName.appendChild(nameTxt);
+      anchorName.appendChild(nameTxt);
+      anchorName.href = 'detalle-evento.php' + '?eventId=' + eventId;
+
+      eventName.appendChild(anchorName)
       eventType.appendChild(typeTxt);
 
       var anchorEdit = document.createElement('a');

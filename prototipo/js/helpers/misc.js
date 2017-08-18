@@ -194,18 +194,24 @@ var misc = (function(window, undefined) {
   }
 
   function modifiedDateFormat(pdate) {
-    var date = new Date(pdate);
-    var day = Number(date.getDate() + 1);
-    var month = Number(date.getMonth() + 1);
-    var year = date.getFullYear();
+    var bdDate = pdate;
+    var date = bdDate.split('-');
+    var day = date[2];
+    var month = date[1];
+    var year = date[0];
+
+    // var date = new Date(pdate);
+    // var day = Number(date.getDate() + 1);
+    // var month = Number(date.getMonth() + 1);
+    // var year = date.getFullYear();
     
-    if(day < 10){
-      day = '0' + day;
-    }
+    // if(day < 10){
+    //   day = '0' + day;
+    // }
     
-    if(month < 10){
-      month = '0' + month;
-    }
+    // if(month < 10){
+    //   month = '0' + month;
+    // }
 
     var newFormat = day + '-' + month + '-' + year;
     

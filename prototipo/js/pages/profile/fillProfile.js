@@ -5,12 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var userData = {};
 
   switch (userRol) {
-    case '1':
-      userData = orm.findAdminUserById(userId);
-      fillAdminForm(userData);
-      break;
-    case '2':
-      break;
     case '3':
       userData = orm.findProfesorById(userId);
       fillProfessorForm(userData);

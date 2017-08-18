@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: puserInfo.firstName,
       lastName: puserInfo.firstLastName,
       email: puserInfo.email,
-      rol: logguedInUser.rol
+      rol: logguedInUser.rol,
+      isFirstAccess: logguedInUser.isFirstAccess
     };
 
     storage.put('appLS', appLS);

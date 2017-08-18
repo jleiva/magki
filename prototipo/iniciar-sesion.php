@@ -36,7 +36,6 @@
   <script src="js/database/storage.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
-  <script src="js/helpers/load-data.js"></script>
   <script src="js/modules/login.js"></script>
   <script src="js/pages/login/index.js"></script>
 </body>

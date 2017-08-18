@@ -5,12 +5,10 @@ var login = (function(window) {
 
   function initLogin() {
     document.querySelector('#submit-login').addEventListener('click', validateForm);
-    loadData.init();
   }
 
   function initRecover() {
     $util('#submit-login').on('click', validateEmail);
-    loadData.init();
   }
 
   function validateEmail(e) {
@@ -103,7 +101,8 @@ var login = (function(window) {
         name: userData.primer_nombre,
         lastName: userData.primer_apeliido,
         email: userData.correo,
-        rol: userData.id_tipo
+        rol: userData.id_tipo,
+        isFirstAccess: userData.primer_acceso
       };
 
       storage.put('appLS', appLS);

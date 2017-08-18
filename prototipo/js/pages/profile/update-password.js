@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function updatePassword(e) {
     e.preventDefault();
     var newPasswordVal = document.querySelector('#newPassword').value;
+    var appLS = storage.get('appLS') || {};
     var isValidForm = validateForm();
 
     if (isValidForm && goodPassword) {
@@ -48,6 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
       $alertBox.classList.add('alert-success');
       $alertBox.innerHTML = msg.key.passwordUpdate;
       orm.updateUserPassword(logguedInUser.id, newPasswordVal);
+
+      appLS.logguedInUser = {
+        id: logguedInUser.id,
+        name: logguedInUser.name,
+        lastName: logguedInUser.lastName,
+        email: logguedInUser.email,
+        rol: logguedInUser.rol,
+        isFirstAccess: 0
+      };
+
+      storage.put('appLS', appLS);
     }
   }
 

@@ -724,6 +724,13 @@ legend {
   background: #f5f1e0;
   border: 2px solid #fedd44; }
 
+.change-password {
+  margin-bottom: 2em;
+  padding: 2em; }
+
+.change-password__title {
+  margin: 0 0 1em; }
+
 table {
   border-collapse: collapse;
   width: 100%; }

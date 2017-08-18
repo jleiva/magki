@@ -21,8 +21,12 @@
         </div>
 
         <div class="profile-info">
+          <div class="alert warning change-password is-hidden js-change-password">
+            
+          </div>
+
           <h2 class="js-profile-display-name profile-info__name"></h2>
-          
+
           <?php
             switch ($userRol) {
               case 1:

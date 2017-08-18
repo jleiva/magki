@@ -8,7 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (logguedIn) {
       var displayName = logguedIn.name + ' ' + logguedIn.lastName;
+      var updatePassMesg = document.querySelector('.js-change-password');
       profileNameContainer.html(displayName);
+
+      if (logguedIn.isFirstAccess === '1') {
+        updatePassMesg.classList.remove('is-hidden');
+        updatePassMesg.innerHTML = '<h3 class="change-password__title">¡Hola! Este es su primer acceso a Makgi.</h3><p>Por razones de seguridad, es necesario que <a href="perfil-cambiar-contrasena.php">cambie su contraseña</a>.</p>';
+      }
+
       initEventsProfile();
     }
   }

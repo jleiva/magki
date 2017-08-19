@@ -6,9 +6,9 @@
   <main id="events-page" class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Eventos</h2>
+        <h2>Listado de eventos</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
+          <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar evento</a>
         <?php } ?>
       </div>
 

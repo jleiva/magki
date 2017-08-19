@@ -1,4 +1,6 @@
 <?php
+  $page_title = 'Registrar resultados de eventos';
+  $page = 'event';
   include('templates/header.php');
 ?>
   <main class="wrapper">

@@ -43,7 +43,7 @@
             <div class="field-wrapper">
               <label for="bday">Fecha de Nacimiento <abbr title="Requerido">*</abbr></label>
               <input type="date" name="bday" class="js-form-field" id="bday" required>
-              <small class="note is-hidden js-bday-error">La fecha no debe ser mayor al dia de hoy.</small>
+              <small class="note is-hidden js-bday-error">La fecha no debe ser mayor al día de hoy.</small>
             </div>
 
             <div class="field-wrapper">

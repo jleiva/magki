@@ -97,7 +97,7 @@
                   <div class="field-wrapper">
                     <label for="weightDate">Fecha pesaje <abbr class="is-competition" title="Requerido">*</abbr></label>
                     <input class="js-event-field" type="date" id="weightDate" name="weightDate">
-                    <small class="note is-hidden js-start-weighingDate-error">Dos días antes del evento, y mayor o igual a hoy</small>
+                    <small class="note is-hidden js-start-weighingDate-error">Fecha debe ser, como m&aacute;ximo, dos días antes de la fecha inicio del evento.</small>
                   </div>
                 </div>
 
@@ -106,7 +106,7 @@
                   <br>
                   <div class="field-wrapper">
                     <fieldset class="select field">
-                      <legend>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFemenino</legend>
+                      <legend>Femenino</legend>
                       <ul class="list-form">
                         <li>
                           <label for="fem01">
@@ -130,7 +130,7 @@
 
                   <div class="field-wrapper">
                     <fieldset class="select field">
-                      <legend>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMasculino</legend>
+                      <legend>Masculino</legend>
                       <ul class="list-form">
                         <li>
                           <label for="masc01">

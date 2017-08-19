@@ -491,6 +491,28 @@ var orm = (function(window, undefined) {
     return userData;
   }
 
+  // Devuelve listado de asistentes, activos o inactivos
+  function findAssist() {
+    var userList = [];
+    var request = $.ajax({
+      url: 'services/listar_asistentes.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}
+    })
+
+    request.done(function(data){
+      userList = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return userList;
+  }
+
   function findStudentById(pId) {
     var userData = [];
     var request = $.ajax({
@@ -537,6 +559,51 @@ var orm = (function(window, undefined) {
     });
 
     return userData;
+  }
+
+  // Devuelve listado de profesores, activos o inactivos
+  function findProfesors() {
+    var profList = [];
+    var request = $.ajax({
+      url: 'services/listar_profesores.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {}
+    })
+
+    request.done(function(data){
+      profList = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return profList;
+  }
+
+  function findActiveProfs() {
+    var studentsList = [];
+    var request = $.ajax({
+      url: 'services/listar_profesores_activos.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+
+      }
+    })
+
+    request.done(function(data){
+      studentsList = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return studentsList;
   }
 
   function findProfesorById(pId) {
@@ -968,6 +1035,42 @@ var orm = (function(window, undefined) {
 
     }).fail(function() {
       console.log('[registrarProfTblProfesor] Error de conexion');
+    });
+  }
+
+  function registrarAlumno(userData) {
+    var request = $.ajax({
+        url: 'services/registrar_alumno.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'pPrimer_nombre': userData.firstName,
+          'pSegundo_nombre': userData.secondName,
+          'pPrimer_apeliido': userData.firstLastName,
+          'pSegundo_apellido': userData.secondLastName,
+          'pfecha_nacimiento': userData.bday,
+          'pedad': userData.age,
+          'pCorreo': userData.email,
+          'pgenero': userData.gender,
+          'ptelefono': userData.phone,
+          'pIdentificacion': userData.identification,
+          'pAcademyId': userData.academy,
+          'pbelt': userData.beltGrade,
+          'pExib': userData.exhibitions,
+          'pTourn': userData.tournaments,
+          'pWinT': userData.winTournaments,
+          'pUserheight': userData.height,
+          'pUserweight': userData.weight,
+          'pIdProf': userData.professor,
+          'pEstado': 1
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+      console.log('[registrarProf] Error de conexion');
     });
   }
 
@@ -1468,7 +1571,10 @@ var orm = (function(window, undefined) {
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
     findActiveStudentsByAcademyName: findActiveStudentsByAcademyName,
     findActiveSponsors: findActiveSponsors,
+    findAssist: findAssist,
     findAssistById: findAssistById,
+    findProfesors: findProfesors,
+    findActiveProfs: findActiveProfs,
     findProfesorById: findProfesorById,
     findEventoPorAlumno: findEventoPorAlumno,
     findLogguedUser: findLogguedUser,
@@ -1487,6 +1593,7 @@ var orm = (function(window, undefined) {
     registrarAsist: registrarAsist,
     registrarAsistTblAsistente: registrarAsistTblAsistente,
     registerAthleteEvent: registerAthleteEvent,
+    registrarAlumno: registrarAlumno,
     registerSponsor: registerSponsor,
     registerSponsorProducts: registerSponsorProducts,
     registerPlace: registerPlace,

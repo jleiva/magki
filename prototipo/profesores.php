@@ -7,9 +7,9 @@
 
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Profesores</h2>
+        <h2>Listado de profesores</h2>
         <?php if ($userRol == 1) { ?>
-          <a href="registrar-profesor.php" class="button btn-small" id="btn-register">Registrar Profesor</a>
+          <a href="registrar-profesor.php" class="button btn-small" id="btn-register">Registrar profesor</a>
         <?php } ?>
       </div>
 
@@ -51,12 +51,12 @@
     include("templates/footer.php");
   ?>
 
+<script src="js/helpers/jquery-3.2.1.min.js"></script>
 <script src="js/helpers/util.js"></script>
 <script src="js/database/orm.js"></script>
 <script src="js/database/storage.js"></script>
 <script src="js/helpers/validate.js"></script>
 <script src="js/helpers/messages.js"></script>
-<script src="js/pages/users/professor/logicProf.js"></script>
 <script src="js/pages/users/professor/listProf.js"></script>
 <script src="js/pages/main.js"></script>
 </body>

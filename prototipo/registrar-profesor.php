@@ -46,7 +46,7 @@
             <div class="field-wrapper">
               <label for="bday">Fecha de Nacimiento <abbr title="Requerido">*</abbr></label>
               <input type="date" name="bday" class="js-form-field" id="bday">
-              <small class="note is-hidden js-bday-error">La fecha no debe ser mayor al dia de hoy.</small>
+              <small class="note is-hidden js-bday-error">La fecha no debe ser mayor al día de hoy.</small>
             </div>
 
             <div class="field-wrapper">
@@ -59,8 +59,8 @@
             <label for="gender">Género</label>
             <select name="genero" class="js-form-field" id="gender">
               <option value="">Seleccionar</option>
-              <option value="masculino" selected>Masculino</option>
-              <option value="femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
             </select>
           </div>
 

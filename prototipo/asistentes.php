@@ -6,10 +6,10 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Asistentes</h2>
+        <h2>Listado de asistentes</h2>
 
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-asistente.php" class="button btn-small" id="btn-register">Registrar Asistente</a>
+          <a href="registrar-asistente.php" class="button btn-small" id="btn-register">Registrar asistente</a>
         <?php } ?>
       </div>
 
@@ -20,8 +20,9 @@
         <ul class="actions-tabs__options">
           <li class="nav-tab"><a class="nav-tab-link" href="alumnos.php">Alumnos</a></li>
           <li class="nav-tab"><a class="nav-tab-link" href="profesores.php">Profesores</a></li>
+          
           <?php if ($userRol == 1) { ?>
-            <li class="nav-tab"><a class="nav-tab-link" href="asistentes.php">Asistentes</a></li>
+            <li class="nav-tab"><a class="nav-tab-link is-active" href="asistentes.php">Asistentes</a></li>
           <?php } ?>
         </ul>
       </div>
@@ -50,14 +51,13 @@
   <?php
     include("templates/footer.php");
   ?>
-
+  
+  <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
   <script src="js/database/orm.js"></script>
   <script src="js/database/storage.js"></script>
-  <script src="js/helpers/load-data.js"></script>
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
-  <script src="js/pages/users/assistant/logicAsist.js"></script>
   <script src="js/pages/users/assistant/listAsist.js"></script>
   <script src="js/pages/main.js"></script>
 </body>

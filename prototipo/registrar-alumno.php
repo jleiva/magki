@@ -57,8 +57,8 @@
               <label for="gender">Género <abbr title="Requerido">*</label>
               <select name="gender" class="js-form-field" id="gender" required>
                 <option value="">Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
               </select>
             </div>
 
@@ -70,13 +70,13 @@
           <div class="field-group">
             <div class="field-wrapper">
               <label for="weight">Peso(Kg) </label>
-              <input type="number" class="js-form-field" name="weight" id="weight">
+              <input type="number" class="js-form-field" value="0" name="weight" id="weight">
               <small class="note">Peso en kilogramos. Ejem: 80</small>
             </div>
 
             <div class="field-wrapper">
               <label for="height">Altura(cm) </label>
-              <input type="number" class="js-form-field" name="height" id="height">
+              <input type="number" class="js-form-field" value="0" name="height" id="height">
               <small class="note">Altura en cent&iacute;metros. Ejem: 175</small>
             </div>
           </div>
@@ -99,18 +99,18 @@
             <div class="field-group">
               <div class="field-wrapper ">
                 <label for="part-tournament">Torneos Participados </label>
-                <input type="number" class="js-form-field js-tourn-input" name="tournaments" id="part-tournament">
+                <input type="number" class="js-form-field js-tourn-input" value="0" name="tournaments" id="part-tournament">
               </div>
 
               <div class="field-wrapper">
                 <label for="win-tournament">Torneos Ganados </label>
-                <input type="number" class="js-form-field js-tourn-input" name="winTournaments" id="win-tournament" >
+                <input type="number" class="js-form-field js-tourn-input" value="0" name="winTournaments" id="win-tournament" >
               </div>
             </div>
 
             <div class="field-wrapper">
               <label for="exhibition">Exhibiciones Participadas </label>
-              <input type="number" class="short-input js-form-field js-tourn-input" name="exhibitions" id="exhibition">
+              <input type="number" class="short-input js-form-field js-tourn-input" value="0" name="exhibitions" id="exhibition">
             </div>
           </fieldset>
           
@@ -139,7 +139,7 @@
     <?php
       include("templates/footer.php");
     ?>
-    
+  
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
   <script src="js/database/orm.js"></script>
@@ -147,7 +147,6 @@
   <script src="js/helpers/messages.js"></script>
   <script src="js/helpers/validate.js"></script>
   <script src="js/helpers/misc.js"></script>
-  <script src="js/pages/users/professor/logicProf.js"></script>
   <script src="js/pages/users/student/registerAlumno.js"></script>
   <script src="js/pages/main.js"></script>
 </body>

@@ -1,7 +1,7 @@
 fillTable();
 
 function fillTable() {
-  var assistantList = getAsistList();
+  var assistantList = orm.findAssist();
 
   if (assistantList.length) {
     document.querySelector('.no-data').style.display = 'none';
@@ -21,31 +21,21 @@ function buildTable(assistantList) {
     var statuslColumn = row.insertCell();
     var editColumn = row.insertCell();
 
-    idColumn.innerHTML = assistantList[i].id;
-    nameColumn.innerHTML = assistantList[i].name +" "+ assistantList[i].lastname;
-    emailColumn.innerHTML = assistantList[i].email;
+    idColumn.innerHTML = assistantList[i].id_usuario;
+    nameColumn.innerHTML = assistantList[i].primer_nombre +" "+ assistantList[i].primer_apeliido;
+    emailColumn.innerHTML = assistantList[i].correo;
 
-    if(assistantList[i].status){
+    if(assistantList[i].estado === '1') {
       statuslColumn.innerHTML = 'Habilitado';
-    }else{
+    } else {
       statuslColumn.innerHTML = 'Deshabilitado';
     }
 
     var editLink = document.createElement('a');
     var linkName = document.createTextNode('Editar');
     editLink.appendChild(linkName);
-    editLink.href = 'editar-asistente.php';
+    editLink.href = 'editar-asistente.php' + '?id=' + assistantList[i].id_usuario;
     editLink.className = 'btn-action-event js-edit-event';
-    editLink.name = assistantList[i].id;
     editColumn.appendChild(editLink);
   }
-
-  var btnEdit = document.querySelectorAll('.js-edit-event');
-  btnEdit.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      var currentItem = e.currentTarget;
-      var assistId = currentItem.getAttribute('name');
-      localStorage.setItem('assistCode', assistId);
-    })
-  });
 }

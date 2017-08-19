@@ -115,9 +115,11 @@ function validateDateBday() {
 
   if ((Date.parse(bDateValue) < Date.parse(today))) {
     bdayMsg.addClass('is-hidden');
+    bDate.removeClass('error');
     calculateAge(bDateValue);
   } else {
     bdayMsg.removeClass('is-hidden').addClass('alert-failure');
+    bDate.addClass('error');
     bDate.value = '';
     ageField.value = '';
   }

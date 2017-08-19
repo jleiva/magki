@@ -1,14 +1,14 @@
 <?php
-  $page_title = 'Listado de Alumnos';
+  $page_title = 'Listado de alumnos';
   $page = 'user'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Alumnos</h2>
+        <h2>Listado de alumnos</h2>
         <?php if ($userRol == 1 || $userRol == 2 || $userRol == 3) { ?>
-          <a href="registrar-alumno.php" class="button btn-small" id="btn-register">Registrar Alumno</a>
+          <a href="registrar-alumno.php" class="button btn-small" id="btn-register">Registrar alumno</a>
         <?php } ?>
       </div>
      <div class="actions-tabs">

@@ -1,3 +1,4 @@
+var professorList = orm.findActiveProfs();
 var getValidBday = misc.debounce(function() {
   validateDateBday();
 }, 1000);
@@ -49,9 +50,8 @@ function setTournamentValidations() {
 function getRegisterData() {
   var formInputs = document.querySelectorAll('#register-user .js-form-field');
   var studentsInfo = misc.buildDataObject(formInputs);
-  studentsInfo.status = true;
   
-  registrar(studentsInfo);
+  orm.registrarAlumno(studentsInfo);
   misc.disableFieldsOnSave(formInputs);
 }
 
@@ -59,10 +59,11 @@ function validateForm() {
   var idField = document.querySelector('#id');
   var codeValue = idField.value;
   var $alertBox = $util('.js-login-msg');
-  var studentInfo = findById(codeValue);
+  var studentInfo = orm.findStudentById(codeValue);
 
   if (!studentInfo) {
     getRegisterData();
+    idField.removeClass('error');
 
     if ($alertBox) {
       $alertBox.removeClass('alert-failure')
@@ -74,6 +75,7 @@ function validateForm() {
     }
 
   } else {
+    idField.addClass('error');
     if ($alertBox) {
       $alertBox
         .removeClass('alert-success')
@@ -95,15 +97,15 @@ function fillAcademies() {
  for(var i = 0; i < academiesList.length; i++) {
     var options = document.createElement('option');
     var academyName = academiesList[i]['nombre_academia'];
+    options.value = academiesList[i].id_academia;
     options.text = academyName;
-    //opt.setAttribute('id', item.id);
     academiesField.add(options);
  }
 }
 
 function fillProfessor(e) {
-  var pacademyName = e.currentTarget.value;
-  var professorList = orm.findActiveProfesor();
+  var academySelect = $util('#academy');
+  var pacademyName = academySelect.options[academySelect.selectedIndex].innerText;
   var professorField = document.querySelector('#professor');
   var options = document.createElement('option');
 
@@ -113,10 +115,10 @@ function fillProfessor(e) {
   professorField.add(options);
 
   for (var i = 0; i < professorList.length; i++) {
-    if(professorList[i].academy === pacademyName) {
+    if (professorList[i].nombre_academia === pacademyName) {
       var options = document.createElement('option');
-      var professorName = professorList[i].name + ' ' + professorList[i].lastname + ' ' + professorList[i].lastname2;
-      options.value = professorList[i].id;
+      var professorName = professorList[i].primer_nombre + ' ' + professorList[i].primer_apeliido + ' ' + professorList[i].segundo_apellido;
+      options.value = professorList[i].id_usuario;
       options.text = professorName;
       professorField.add(options);
     }

@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Listado de Academias';
+  $page_title = 'Listado de academias';
   $page = 'acadm';
   include("templates/header.php");
 ?>
@@ -8,7 +8,7 @@
       <div class="section-intro">
         <h2>Listado de Academias</h2>
           <?php if ($userRol == 1 || $userRol == 2) { ?>
-            <a href="registrar-academia.php" class="button btn-small" id="btn-register">Registrar Academia</a>
+            <a href="registrar-academia.php" class="button btn-small" id="btn-register">Registrar academia</a>
           <?php } ?>
       </div>
 

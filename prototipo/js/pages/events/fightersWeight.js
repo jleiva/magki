@@ -126,11 +126,12 @@ function validateInputs() {
 function validateWeight(pInputs) {
   var condition;
   var fightersList = document.querySelectorAll('.idFields');
-  var weightCategoriesByEvent = orm.getWeightCategoryByAlumByEvent(eventId, fightersList[0].name);
-  var minWeigth = parseInt(weightCategoriesByEvent[0].peso_min);
-  var maxWeight = parseInt(weightCategoriesByEvent[0].peso_max);
 
   for (var i = 0; i < fightersList.length; i++) {
+    var weightCategoriesByEvent = orm.getWeightCategoryByAlumByEvent(eventId, fightersList[i].name);
+    var minWeigth = parseInt(weightCategoriesByEvent[0].peso_min);
+    var maxWeight = parseInt(weightCategoriesByEvent[0].peso_max);
+    
     if (pInputs[i].value >= minWeigth && pInputs[i].value <= maxWeight) {
       condition = '1';
     } else {

@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $util('.tieOff').innerHTML = "";
 
     for (var i = 0; i < inputs.length; i++) {
-        if(inputs[i].value < 0 || inputs[i].value > 5) {
+        if(inputs[i].value < 0 || inputs[i].value > 5 || inputs[i].value === '') {
           invalidNumber.push(i+1);
           inputs[i].classList.add('error');
         } else {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     evaluateTieOff(fighetrsSameScore);
   }
 
-  function evaluateTieOff (pScores) {
+  function evaluateTieOff(pScores) {
     if (pScores.length > 1) {
       for (var i = 0; i < pScores.length; i++) {
         var position = pScores[i];
@@ -331,13 +331,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkbox[i].checked) {
           position = i;
           winnerId = ppositions[position].id;
-          winnerScore = ppositions[position].score;
+          winnerScore = ppositions[position].score + 1;
         }
       }
 
       reorderList(ppositions,winnerId,winnerScore);
     
-    }else {
+    } else {
       for (var i = 0; i < ppositions.length; i++) {
         ppositions[i].position = i + 1;
       }
@@ -367,8 +367,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function saveData(pdata) {
+    var belts = $util('#belts');
+    var beltName = belts.options[belts.selectedIndex].text;
+
     for (var i = 0; i < pdata.length; i++) {
-      orm.registerAlumnResult(eventId,pdata[i]);
+      orm.registerAlumnResult(eventId,pdata[i],beltName);
     }
 
     $util('.msgg').classList.remove('alert-failure');

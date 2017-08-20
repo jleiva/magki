@@ -1256,15 +1256,19 @@ var orm = (function(window, undefined) {
     });
   }
 
-  function registerAlumnResult(peventId,palumnInfo) {
+  function registerAlumnResult(peventId,palumnInfo,pbelt) {
     var currentScore = getCurrentScoreByAlumnByEvent(peventId, 
       palumnInfo.id);
+    var score = 0;
 
     if (parseInt(palumnInfo.position) === 1) {
       updateAlumWonTournaments(palumnInfo.id); 
     }
 
-    var score = currentScore[0].puntaje;
+    if (currentScore.length) {
+      score = currentScore[0].puntaje;
+    }
+
     var newScore = (parseInt(score) + parseInt(palumnInfo.score));
     updateAlumnScore(peventId, palumnInfo.id, newScore);
 
@@ -1277,6 +1281,8 @@ var orm = (function(window, undefined) {
         'eventId': peventId,
         'fighterId': palumnInfo.id,
         'position': palumnInfo.position,
+        'belt': pbelt,
+        'puntaje': palumnInfo.score
       }
     })
   }

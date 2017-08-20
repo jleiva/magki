@@ -6,9 +6,9 @@
   <main id="past-events-page" class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Eventos Pasados</h2>
+        <h2>Listado de eventos pasados</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar Evento</a>
+          <a href="registrar-evento.php" class="button btn-small" id="btn-register">Registrar evento</a>
         <?php } ?>
       </div>
 
@@ -18,7 +18,7 @@
         </div>
         <ul class="actions-tabs__options">
           <li class="nav-tab"><a class="nav-tab-link" href="eventos.php">Eventos</a></li>
-           <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos Pasados</a></li>
+           <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos pasados</a></li>
         </ul>
       </div>
       <table id="list-events">
@@ -37,8 +37,7 @@
             <?php } ?>
             
             <?php if ($userRol == 3) { ?>
-              <th>Cierre inscripciones</th>
-              <th></th>
+              <th>Tipo evento</th>
             <?php } ?>
 
             <?php if ($userRol == 4) { ?>

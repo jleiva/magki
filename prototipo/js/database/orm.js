@@ -48,6 +48,29 @@ var orm = (function(window, undefined) {
     return events;
   }
 
+  function findWonEventsUser(userId) {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_eventos_ganados_por_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'userId': userId
+      }      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
+  }
+
   // Devuelve lista de eventos en los que
   // ha participado un Alumno
   function findPastEventsUser(userId) {
@@ -1587,6 +1610,7 @@ var orm = (function(window, undefined) {
     findUserEventCategory: findUserEventCategory,
     findPastEvents: findPastEvents,
     findPastEventsUser: findPastEventsUser,
+    findWonEventsUser: findWonEventsUser,
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,

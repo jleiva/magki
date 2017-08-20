@@ -129,9 +129,49 @@ var eventRole = (function(window) {
     });
   }
 
+  function buildEventsListWonProfileStudent(eventsData) {
+    var eventsTable = document.querySelector('#list-events tbody');
+
+    eventsData.forEach(function(data) {
+      var eventId = data.id_evento;
+      var userCategory = orm.findUserEventCategory(eventId, data.id_competidor);
+      var tr = document.createElement('tr');
+      var eventName = document.createElement('td');
+      var eventSDate = document.createElement('td');
+      var eventPlace = document.createElement('td');
+      var eventBelt = document.createElement('td');
+      var eventPos = document.createElement('td');
+
+      var anchorName = document.createElement('a');
+      var nameTxt = document.createTextNode(data.nombre);
+      var sDateTxt = document.createTextNode(data.fecha_inicio);
+      var placeTxt = document.createTextNode(data.nombre_lugar);
+      var beltTxt = document.createTextNode(userCategory[0].description);
+      var positionTxt = document.createTextNode(data.posicion_competidor);
+
+      anchorName.appendChild(nameTxt);
+      anchorName.href = 'detalle-evento.php' + '?eventId=' + eventId;
+
+      eventName.appendChild(anchorName);
+      eventSDate.appendChild(sDateTxt);
+      eventPlace.appendChild(placeTxt);
+      eventBelt.appendChild(beltTxt);
+      eventPos.appendChild(positionTxt);
+
+      tr.appendChild(eventName);
+      tr.appendChild(eventSDate);
+      tr.appendChild(eventPlace);
+      tr.appendChild(eventBelt);
+      tr.appendChild(eventPos);
+
+      eventsTable.appendChild(tr);
+    });
+  }
+
   return {
     buildEventsListProfile: buildEventsListProfile,
     buildEventsListProfileProfesor: buildEventsListProfileProfesor,
-    buildEventsListProfileStudent: buildEventsListProfileStudent
+    buildEventsListProfileStudent: buildEventsListProfileStudent,
+    buildEventsListWonProfileStudent: buildEventsListWonProfileStudent
   }
 })(window);

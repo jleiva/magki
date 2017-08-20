@@ -1,10 +1,10 @@
 <?php 
-  $page_title = 'Perfil Usuario - Eventos pasados';
+  $page_title = 'Perfil Usuario - Eventos ganados';
   $page = 'event';
   include("templates/header.php");
 ?>
   
-  <main class="wrapper" id="profile-past-events">
+  <main class="wrapper" id="profile-won-events">
     <div class="main-content">
       <div class="section-intro">
         <h2>Perfil de Usuario</h2>
@@ -46,7 +46,7 @@
                 break;
             }
           ?>
-          
+
           <div class="activity">
             <?php if ($userRol == 1 || $userRol == 2 || $userRol == 3) { ?>
               <h3 class="activity__h">Actividad Reciente</h3>
@@ -68,44 +68,28 @@
 
                 <?php if ($userRol == 4) { ?>
                   <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario.php">Eventos inscrito</a></li>
-                  <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos participados</a></li>
-                  <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario-eventos-ganados.php">Eventos ganados</a></li>
+                  <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario-eventos-pasados.php">Eventos participados</a></li>
+                  <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos ganados</a></li>
                 <?php } ?>
               </ul>
             </div>
-          
-          <table id="list-events">
-            <thead>
-              <tr>
-                <th>Nombre</th>
 
-                <?php if ($userRol == 1 || $userRol == 2) { ?>
-                  <th>Estado</th>
-                  <th></th>
-                <?php } ?>
-
-                <?php if ($userRol == 3 || $userRol == 4) { ?>
-                  <th>Fecha Inicio</th>
-                  <th>Fecha Final</th>
-                <?php } ?>
-
-                <?php if ($userRol == 3) { ?>
-                  <th>Cierre inscripciones</th>
-                  <th></th>
-                <?php } ?>
-
-                <?php if ($userRol == 4) { ?>
+            <table id="list-events">
+              <thead>
+                <tr>
+                  <th>Nombre</th>            
+                  <th>Fecha</th>
                   <th>Lugar</th>
-                <?php } ?>
-              </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-          </table>
-          <div class="no-data">
-            <h3>No hay resultados.</h3>
-          </div>
+                  <th>Grado</th>
+                  <th>Posici&oacute;n</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <div class="no-data">
+              <h3>No hay actividad reciente.</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +100,7 @@
   <?php
     include("templates/footer.php");
   ?>
-  
+
   <script src="js/helpers/jquery-3.2.1.min.js"></script>
   <script src="js/helpers/util.js"></script>
   <script src="js/helpers/misc.js"></script>

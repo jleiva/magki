@@ -21,9 +21,7 @@
         </div>
 
         <div class="profile-info">
-          <div class="alert warning change-password is-hidden js-change-password">
-            
-          </div>
+          <div class="alert warning change-password is-hidden js-change-password"></div>
 
           <h2 class="js-profile-display-name profile-info__name"></h2>
 
@@ -72,7 +70,7 @@
               <?php if ($userRol == 4) { ?>
                 <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Eventos inscrito</a></li>
                 <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario-eventos-pasados.php">Eventos participados</a></li>
-                <li class="nav-tab"><a class="nav-tab-link" href="#">Eventos ganados</a></li>
+                <li class="nav-tab"><a class="nav-tab-link" href="perfil-usuario-eventos-ganados.php">Eventos ganados</a></li>
               <?php } ?>
             </ul>
           </div>

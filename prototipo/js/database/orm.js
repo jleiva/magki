@@ -1,4 +1,48 @@
 var orm = (function(window, undefined) {
+  function editEventData(eventData) {
+    console.log(eventData);
+    var request = $.ajax({
+        url: 'services/actualizar_evento.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'name': eventData[0],
+          'startDate': eventData[1],
+          'finalDate': eventData[2],
+          'idPlace': eventData[3],
+          'availableTickets': eventData[4],
+          'priceTickets': eventData[5],
+          'eventType': eventData[6],
+          'registrationPrice': eventData[7],
+          'weighingDate': eventData[8],
+          'categoriesSelected': JSON.stringify(eventData[9]),
+          'guest': eventData[10],
+          'organizationList': JSON.stringify(eventData[11]),
+          'sponsorId': eventData[12],
+          'productId': eventData[13],
+          'sponsorshipType': eventData[14],
+          'sponsorshipDesc': eventData[15],
+          'sponsorValue': eventData[16],
+          'status': eventData[17],
+          'maxRegistDate': eventData[18],
+          'venueCost': eventData[19],
+          'orgBenefited': eventData[20],
+          'idEvent': eventData[21]
+        }
+    });
+
+    request.done(function () {
+
+        console.log('Datos guardados');
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+
+        console.log(errorThrown);
+    });
+  }
+
   // Devuelve una lista con todos los eventos
   // que se encuentran en la BD, activos, inactivos, etc
   // Para listas de Administrador
@@ -374,6 +418,29 @@ var orm = (function(window, undefined) {
     return sponsorInfo;
   }
 
+  function findEventSponsors(pEventId) {
+    var sponsosrData = [];
+    var request = $.ajax({
+      url: 'services/buscar_patrocinadores_por_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'idEvento': pEventId
+      }
+    });
+
+    request.done(function(data){
+      sponsosrData = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return sponsosrData[0];
+  }
+
   function findActiveAcad() {
     var academyList = [];
 
@@ -394,6 +461,29 @@ var orm = (function(window, undefined) {
     });
 
     return academyList;
+  }
+
+  function findUserByEmail(userEmail) {
+    var userInfo = [];
+
+    var request  = $.ajax({
+      url: 'services/buscar_usuario_por_email.php',
+      dataType: 'json',
+      async: false,
+      method: 'GET',
+      data: {
+        'email': userEmail
+      }
+    });
+
+    request.done(function(data) {
+      userInfo = data;
+
+    }).fail(function() {
+      console.log('Error de conexion');
+    });
+   
+    return userInfo;
   }
 
   // Devuelve la informacion de un Usuario.
@@ -725,6 +815,29 @@ var orm = (function(window, undefined) {
     });
 
     return userData[0];
+  }
+
+  function findTournamentWinners(eventId) {
+    var events = [];
+    var request = $.ajax({
+      url: 'services/listar_ganadores_por_evento.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'eventId': eventId
+      }      
+    });
+
+    request.done(function(data){
+      events = data;
+    });
+
+    request.fail(function(){
+      console.log('Conexion error');
+    }); 
+
+    return events;
   }
 
   function findVenueById(placeId) {
@@ -1647,6 +1760,7 @@ var orm = (function(window, undefined) {
   }
   
   return {
+    editEventData: editEventData,
     findAcademies: findAcademies,
     findAcademyById: findAcademyById,
     findAdminUserById: findAdminUserById,
@@ -1667,6 +1781,7 @@ var orm = (function(window, undefined) {
     findActiveVenues: findActiveVenues,
     findSponsors: findSponsors,
     findSponsorbyId: findSponsorbyId,
+    findEventSponsors: findEventSponsors,
     findSponsorProducts: findSponsorProducts,
     findUserById: findUserById,
     findStudents: findStudents,
@@ -1689,6 +1804,8 @@ var orm = (function(window, undefined) {
     findPastEvents: findPastEvents,
     findPastEventsUser: findPastEventsUser,
     findWonEventsUser: findWonEventsUser,
+    findTournamentWinners: findTournamentWinners,
+    findUserByEmail: findUserByEmail,
     getProductBySponsor: getProductBySponsor,
     getAlumnByCatByEvent: getAlumnByCatByEvent,
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,

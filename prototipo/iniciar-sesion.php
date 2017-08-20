@@ -24,7 +24,7 @@
 
           <button id="submit-login" type="submit" value="Ingresar" class="full-width" tabindex="3">Ingresar</button>
 
-          <p class="note"><strong>Ayuda:</strong>  <a href="recuperar.html">¿Olvidó su contraseña?</a></p>
+          <p class="note"><strong>Ayuda:</strong>  <a href="recuperar.php">¿Olvidó su contraseña?</a></p>
         </form>
       </div>
       <p class="note help-txt"><strong>¿Necesita una cuenta en Makgi?</strong> <a href="index.html">Cont&aacute;ctenos para iniciar el registro.</a></p>

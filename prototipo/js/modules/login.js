@@ -19,7 +19,6 @@ var login = (function(window) {
     if (!validate.emptyFields(formInputs)) {
       validForm = validate.fieldsValue('login-form');
 
-      // no hay errores
       if (!validForm[1].length) {
         var username = $util('#username').val();
         var $alertBox = $util('.js-login-msg');
@@ -75,16 +74,14 @@ var login = (function(window) {
   }
 
   function validateRecoverEmail(userMail) {
-    var appLS = storage.get('appLS') || {};
-    var usersLS = getUsersInfo(appLS);
-    var validCredentials;
-    var isValid;
+    var isValid = false;
+    var userInfo = orm.findUserByEmail(userMail);
 
-    validCredentials = usersLS.users.find(function findUser(user) {
-      if (user.email === userMail) {
-        isValid = true;
-      }
-    });
+    if(userInfo.length) {
+      orm.updateUserPassword(userInfo[0].id_usuario,'12345');
+      // orm.sendChangePasswordMail('12345', userInfo[0].correo);
+      isValid = true;
+    }
 
     return isValid;
   }

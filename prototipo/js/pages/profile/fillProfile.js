@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
     $util('#academia').innerHTML = userData.nombre_academia;
     $util('#profesor').innerHTML = alumProf.primer_nombre + ' ' + alumProf.segundo_nombre + ' ' + alumProf.primer_apeliido + ' ' + alumProf.segundo_apellido;
     $util('#grado').innerHTML = userData.nombre_cinturon;
-    $util('#edad').innerHTML = userData.edad;
-    $util('#peso').innerHTML = userData.peso;
-    $util('#altura').innerHTML = userData.altura;
+    $util('#edad').innerHTML = userData.edad + ' años';
+    $util('#peso').innerHTML = userData.peso + ' kg';
+    $util('#altura').innerHTML = userData.altura + ' cm';
     $util('#correo').innerHTML = userData.correo;
   }
 
   function fillProfessorForm(userData) {
     $util('#academia').innerHTML = userData.nombre_academia;
     $util('#grado').innerHTML = userData.nombre_cinturon;
-    $util('#edad').innerHTML = userData.edad;
+    $util('#edad').innerHTML = userData.edad + ' años';
     $util('#correo').innerHTML = userData.correo;
   }
 });

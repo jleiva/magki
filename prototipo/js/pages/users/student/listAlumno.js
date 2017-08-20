@@ -26,8 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var beltColumn = row.insertCell();
         var academyColumn = row.insertCell();
         var editColumn = row.insertCell();
+
         var editLink = document.createElement('a');
-        var linkName = document.createTextNode("Editar");
+        var linkName = document.createTextNode('Editar');
+        var detailLink = document.createElement('a');
+        var detialLinkName = document.createTextNode('Detalles');
 
         codeColumn.innerHTML = data.id_usuario;
         nameColumn.innerHTML = data.primer_nombre + ' ' + data.segundo_nombre;
@@ -36,9 +39,16 @@ document.addEventListener('DOMContentLoaded', function() {
         academyColumn.innerHTML= data.nombre_academia;
 
         editLink.appendChild(linkName);
-        editLink.href = 'editar-alumno.html';
+        editLink.href = 'editar-alumno.php';
         editLink.className = 'btn-action-event js-edit-event';
         editLink.name = data.id_usuario;
+        
+        detailLink.appendChild(detialLinkName);
+        detailLink.href = 'detalle-usuario.php' + '?id=' + data.id_usuario;
+        detailLink.className = 'btn-action-event';
+        detailLink.name = data.id_usuario;
+
+        editColumn.appendChild(detailLink);
         editColumn.appendChild(editLink);
       });
 
@@ -77,7 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var statusColumn = row.insertCell();
         var editColumn = row.insertCell();
         var editLink = document.createElement('a');
-        var linkName = document.createTextNode("Editar");
+        var linkName = document.createTextNode('Editar');
+        var detailLink = document.createElement('a');
+        var detialLinkName = document.createTextNode('Detalles');
 
         codeColumn.innerHTML = data.id_usuario;
         nameColumn.innerHTML = data.primer_nombre + ' ' + data.segundo_nombre;
@@ -87,9 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
         statusColumn.innerHTML = Number(data.estado) ? 'Habilitado' : 'Deshabilitado';
 
         editLink.appendChild(linkName);
-        editLink.href = 'editar-alumno.html';
+        editLink.href = 'editar-alumno.php';
         editLink.className = 'btn-action-event js-edit-event';
         editLink.name = data.id_usuario;
+
+        detailLink.appendChild(detialLinkName);
+        detailLink.href = 'detalle-usuario.php' + '?id=' + data.id_usuario;
+        detailLink.className = 'btn-action-event';
+        detailLink.name = data.id_usuario;
+
+        editColumn.appendChild(detailLink);
         editColumn.appendChild(editLink);
       });
 

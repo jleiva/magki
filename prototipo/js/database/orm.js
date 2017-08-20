@@ -396,6 +396,31 @@ var orm = (function(window, undefined) {
     return academyList;
   }
 
+  // Devuelve la informacion de un Usuario.
+  // Para uso general, por ejemplo, saber el rol
+  function findUserById(id) {
+    var studentsList = [];
+    var request = $.ajax({
+      url: 'services/buscar_usuario_por_id.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'id': id
+      }
+    })
+
+    request.done(function(data){
+      studentsList = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return studentsList;
+  }
+
   function findStudents() {
     var studentsList = [];
     var request = $.ajax({
@@ -536,10 +561,37 @@ var orm = (function(window, undefined) {
     return userList;
   }
 
+  // Devuelve la informacion de un Alumno, 
+  // no importa el estado en el que este habilitado/deshabilitado
   function findStudentById(pId) {
     var userData = [];
     var request = $.ajax({
       url: 'services/buscar_alumno_por_id.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'id_alumno': pId
+      }
+    })
+
+    request.done(function(data){
+      userData = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return userData[0];
+  }
+
+  // Devuelve la informacion de un Alumno, el cual esta en 
+  // estado activo (true)
+  function findActiveStudentById(pId) {
+    var userData = [];
+    var request = $.ajax({
+      url: 'services/buscar_alumno_activo_por_id.php',
       dataType: 'json',
       async: false,
       method: 'get',
@@ -633,6 +685,29 @@ var orm = (function(window, undefined) {
     var userData = [];
     var request = $.ajax({
       url: 'services/buscar_profesor_por_id.php',
+      dataType: 'json',
+      async: false,
+      method: 'get',
+      data: {
+        'id_profesor': pId
+      }
+    })
+
+    request.done(function(data){
+      userData = data;
+    })
+
+    request.fail(function(){
+      console.log('Conexion error');
+    });
+
+    return userData[0];
+  }
+
+  function findActiveProfesorById(pId) {
+    var userData = [];
+    var request = $.ajax({
+      url: 'services/buscar_profesor_activo_por_id.php',
       dataType: 'json',
       async: false,
       method: 'get',
@@ -1593,8 +1668,10 @@ var orm = (function(window, undefined) {
     findSponsors: findSponsors,
     findSponsorbyId: findSponsorbyId,
     findSponsorProducts: findSponsorProducts,
+    findUserById: findUserById,
     findStudents: findStudents,
     findStudentById: findStudentById,
+    findActiveStudentById: findActiveStudentById,
     findStudentsByEvent: findStudentsByEvent,
     findActiveStudents: findActiveStudents,
     findActiveStudentsByAcademy: findActiveStudentsByAcademy,
@@ -1605,6 +1682,7 @@ var orm = (function(window, undefined) {
     findProfesors: findProfesors,
     findActiveProfs: findActiveProfs,
     findProfesorById: findProfesorById,
+    findActiveProfesorById: findActiveProfesorById,
     findEventoPorAlumno: findEventoPorAlumno,
     findLogguedUser: findLogguedUser,
     findUserEventCategory: findUserEventCategory,

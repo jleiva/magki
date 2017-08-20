@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var queryUrl = misc.getQueryParams(document.location.search);
   var userId = queryUrl.id;
   var eventId = queryUrl.eventId;
-  var userData = orm.findStudentById(userId);
+  var userData = orm.findActiveStudentById(userId);
   var eventData = orm.findEventbyId(eventId);
   var eventCategories = orm.findEventCategories(eventId);
 

@@ -31,11 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
       beltColumn.innerHTML = professorList[i]['nombre_cinturon'];
       statusColumn.innerHTML = professorList[i]['estado'] === '1' ? 'Habilitado' : 'Deshabilitado';
 
+      var detailLink = document.createElement('a');
+      var detialLinkName = document.createTextNode('Detalles');
       var editLink = document.createElement('a');
       var linkName = document.createTextNode('Editar');
+
+      detailLink.appendChild(detialLinkName);
+      detailLink.href = 'detalle-usuario.php' + '?id=' + professorList[i]['id_usuario'];
+      detailLink.className = 'btn-action-event';
+      detailLink.name = professorList[i]['id_usuario'];
+
       editLink.appendChild(linkName);
       editLink.href = 'editar-profesor.php' + '?id=' + professorList[i]['id_usuario'];
       editLink.className = 'btn-action-event js-edit-event';
+
+      editColumn.appendChild(detailLink);
       editColumn.appendChild(editLink);
     }
   }

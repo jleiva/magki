@@ -1,7 +1,7 @@
 var queryUrl = misc.getQueryParams(document.location.search);
 var eventId = queryUrl.id;
 fillEventData();
-
+initMap();
 var map;
 var tickets;
 var ticketsSold;

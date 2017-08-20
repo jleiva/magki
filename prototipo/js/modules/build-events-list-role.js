@@ -24,7 +24,7 @@ var eventRole = (function(window) {
       var linkText = document.createTextNode('Editar');
       anchorEdit.appendChild(linkText);
       anchorEdit.className = 'btn-action-event js-edit-event';
-      anchorEdit.href = 'editar-evento.html';
+      anchorEdit.href = 'editar-evento.php' + '?eventId=' + eventId;
 
       var anchorRegister = document.createElement('a');
       var linkText = document.createTextNode('Inscribir atletas');

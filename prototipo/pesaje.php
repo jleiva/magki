@@ -34,7 +34,7 @@
               <th>ID</th>
               <th>Nombre</th>
               <th>Cinta</th>
-              <!--<th>Peso actual</th>-->
+              <th>Categoría peso</th>
               <th>Ingresar peso <br>(Obligatorio)</th>
               <th>Estado</th>
             </tr>

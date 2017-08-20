@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     filterList(e);
   });
 
+  document.querySelector('#categories').addEventListener('change', function(e) {
+    filterList(e);
+  });
+
   disableButtons();
   fillAvailableCategories();
 
@@ -43,38 +47,37 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterList(e) {
     var categories = $util('#categories');
     var categorySelected = categories.options[categories.selectedIndex].value;
-    var belt = e.currentTarget.value;
+    var belts = $util('#belts');
+    var beltSelected = belts.options[belts.selectedIndex].value;
+    var fightersList = [];
 
     $util('.msgg').innerHTML = "";
 
-    if (categorySelected != '') {
+    if (categorySelected != '' && beltSelected != '') {
       var catInfo = eventCategories.find(function(cat) {
         return cat.description === categorySelected;
       });
 
       var categoryId = catInfo.id_categoria;
 
-      var fightersList = orm.getAlumnByBeltByEvent(categoryId,eventId,belt);
+       fightersList = orm.getAlumnByBeltByEvent(categoryId,eventId,beltSelected);
 
       disableButtons();
-      fillTable(fightersList);
-
-    } else{
-      $util('.msgg').classList.add('note','alert-info','js-login-msg');
-      $util('.msgg').innerHTML = msg.key.warningCategory;
-      $util('#belts').selectedIndex = 0;
-      window.scrollTo(0, 0);
     }
+
+    fillTable(fightersList);
   }
 
   function fillTable(pfightersList) {
     var tbody = document.querySelector('#tblFighters tbody');
     tbody.innerHTML = '';
 
+    $util('.tieOff').classList.remove('note','alert-info','js-login-msg');
     $util('.msgg').classList.remove('alert-info');
     $util('.msgg').classList.remove('alert-failure');
     $util('.msgg').classList.remove('alert-success');
     $util('.msgg').innerHTML = "";
+    $util('.tieOff').innerHTML = "";
 
     if (pfightersList.length) {
 

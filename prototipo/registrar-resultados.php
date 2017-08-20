@@ -63,9 +63,9 @@
       
       <div class="field-wrapper">
         <button id="btn-save" value="Guardar" class="">Guardar</button>
-        <button id="btn-score" value="Puntaje" class="">Cambiar Puntaje</button>
-        <button id="btn-process" value="Procesar" class="">Procesar Puntaje</button>
-        <button id="btn-change" value="Cambiar" class="">Cambiar Ganador</button>
+        <button id="btn-score" value="Puntaje" class="button-secondary">Cambiar Puntaje</button>
+        <button id="btn-process" value="Procesar" class="button-secondary">Procesar Puntaje</button>
+        <button id="btn-change" value="Cambiar" class="button-secondary">Cambiar Ganador</button>
       </div>   
     </div>    
   </main>

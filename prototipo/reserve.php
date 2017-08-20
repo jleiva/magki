@@ -33,17 +33,14 @@
         <div class="promo-left">
           <h4>Detalles del evento</h4>
           <p>
-          <strong>Lugar:</strong> <span id="place"></span><br/>
-          <strong>Fecha:</strong> <span id="date"></span><br/>
-          <strong>Tipo de evento:</strong> <span id="typeEvent"></span><br/>
-          <strong>Costo entrada:</strong> <span id="price"></span><br/>
-          <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
-
+            <strong>Lugar:</strong> <span id="place"></span><br/>
+            <strong>Fecha:</strong> <span id="date"></span><br/>
+            <strong>Tipo de evento:</strong> <span id="typeEvent"></span><br/>
+            <strong>Costo entrada:</strong> <span id="price"></span><br/>
+            <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
           </p>
         </div>
-        <div class="promo-right">
-          <h4>Mostrar mapa del lugar y ubicacion</h4>
-        </div>
+        <div id="map"></div>
       </div>
 
       <div class="js-reserve-tickets-disable promo-box is-hidden">
@@ -107,15 +104,14 @@
       </ul>
     </div>
   </footer>
-  <script src="js/helpers/jquery-3.2.1.min.js"></script>
-  <script src="js/helpers/util.js"></script>
-  <script src="js/database/orm.js"></script>
-  <script src="js/database/storage.js"></script>
-	<script src="js/helpers/messages.js"></script>
-	<script src="js/helpers/validate.js"></script>
-  <script src="js/helpers/misc.js"></script>
-  <script src="js/pages/reservations/reserve.js"></script>
-  <!--<script src="js/pages/home/index.js"></script>-->
-  <script src="js/pages/main.js"></script>
+    <script src="js/helpers/jquery-3.2.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABbEjzd6Y4yV8EE6j0_-MvyT1rZR-tiv0&libraries=places&callback=initMap" async defer></script>
+    <script src="js/helpers/util.js"></script>
+    <script src="js/helpers/misc.js"></script>
+    <script src="js/database/orm.js"></script>
+    <script src="js/database/storage.js"></script>
+    <script src="js/helpers/validate.js"></script>
+    <script src="js/helpers/messages.js"></script>  
+    <script src="js/pages/reservations/reserve.js"></script>
 </body>
 </html>

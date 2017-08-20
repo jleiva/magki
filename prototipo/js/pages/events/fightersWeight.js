@@ -59,6 +59,7 @@ function fillTable(pfightersList) {
       var idCol = row.insertCell();
       var nameCol = row.insertCell();
       var ribbon = row.insertCell();
+      var weightCatCol = row.insertCell();
       var fightWeighCol = row.insertCell();
       var statusCol = row.insertCell();
 
@@ -68,12 +69,14 @@ function fillTable(pfightersList) {
       fightWeighInput.min = '1';
       fightWeighInput.max = '1000';
       fightWeighInput.value = '0';
+      var catWeigth = orm.getWeightCategoryByAlumByEvent(eventId,pfightersList[i].id_usuario);
 
       idCol.innerHTML = pfightersList[i].id_usuario;
       idCol.className = 'idFields';
       idCol.name = pfightersList[i].id_usuario;
       nameCol.innerHTML = pfightersList[i].primer_nombre + ' ' + pfightersList[i].segundo_nombre + ' ' + pfightersList[i].primer_apeliido + ' '+ pfightersList[i].segundo_apellido;
       ribbon.innerHTML = pfightersList[i].nombre_cinturon;
+      weightCatCol.innerHTML = catWeigth[0].description;
       fightWeighCol.appendChild(fightWeighInput);
       statusCol.innerHTML = "";
     }
@@ -126,31 +129,31 @@ function validateInputs() {
 function validateWeight(pInputs) {
   var condition;
   var fightersList = document.querySelectorAll('.idFields');
-
+  
   for (var i = 0; i < fightersList.length; i++) {
     var weightCategoriesByEvent = orm.getWeightCategoryByAlumByEvent(eventId, fightersList[i].name);
     var minWeigth = parseInt(weightCategoriesByEvent[0].peso_min);
     var maxWeight = parseInt(weightCategoriesByEvent[0].peso_max);
-    
-    if (pInputs[i].value >= minWeigth && pInputs[i].value <= maxWeight) {
+    var weight = parseFloat(pInputs[i].value);
+
+    if (weight >= minWeigth && weight <= maxWeight) {
       condition = '1';
     } else {
       condition = '3';
     }
 
     var fighterId = fightersList[i].name;
-    var weight = pInputs[i].value;
   
     if (condition == '1') {
-      $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('disqualified');
-      $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('qualified');
+      $util("#tblFightersWeight").rows[i+1].cells[5].classList.remove('disqualified');
+      $util("#tblFightersWeight").rows[i+1].cells[5].classList.add('qualified');
     } else {
-      $util("#tblFightersWeight").rows[i+1].cells[4].classList.remove('qualified');
-      $util("#tblFightersWeight").rows[i+1].cells[4].classList.add('disqualified');
+      $util("#tblFightersWeight").rows[i+1].cells[5].classList.remove('qualified');
+      $util("#tblFightersWeight").rows[i+1].cells[5].classList.add('disqualified');
     }
 
     orm.registerFighterWeight(fighterId, eventId, weight, condition);
-    $util("#tblFightersWeight").rows[i+1].cells[4].innerHTML = condition === '1' ? 'Califica' : 'Descalificado, no cumple con el peso';
+    $util("#tblFightersWeight").rows[i+1].cells[5].innerHTML = condition === '1' ? 'Califica' : 'Descalificado, no cumple con el peso';
   }
 
   disableFields(pInputs);

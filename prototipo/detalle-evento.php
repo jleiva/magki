@@ -4,7 +4,7 @@
   include("templates/header.php");
 ?>
   
-  <main class="wrapper">
+  <main class="wrapper" id="detail-page">
     <div class="main-content">
       <div class="promo-box promo-box--no-hero">
         <h2 class="promo-box__title"></h2>
@@ -32,7 +32,7 @@
       <div class="actions-tabs">
         <ul class="actions-tabs__options">
           <li class="nav-tab"><a class="nav-tab-link is-active" href="#">Atletas inscritos</a></li>
-          <li class="nav-tab"><a class="nav-tab-link" href="#">Resultados</a></li>
+          <li class="nav-tab"><a class="nav-tab-link non-active" href="resultados-evento.php">Ganadores por categor&iacute;a</a></li>
         </ul>
       </div>
       <table id="event-detail-users">

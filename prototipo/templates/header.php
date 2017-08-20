@@ -8,11 +8,6 @@
     exit;
   }
 
-  // echo '<ul><li>Logueado: ' . $_SESSION['login'] . '</li>';
-  // echo '<li>Email: ' . $_SESSION['usuario'] . '</li>';
-  // echo '<li>Nombre: ' . $_SESSION['nombre'] . '</li>';
-  // echo '<li>Apellido: ' . $_SESSION['apellido'] . '</li>';
-  // echo '<li>Tipo Rol: ' . $_SESSION['rol'] . '</li></ul>';
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +16,12 @@
   <meta charset="utf-8">
   <title>Makgi - <?php echo $page_title ?></title>
   <link rel="stylesheet" href="css/styles.css">
-<!--   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" role="">
     <div class="group">
-      <h1 class="logo"><a href="perfil-admin.html">Makgi</a></h1>
+      <h1 class="logo"><a href="perfil-usuario.php">Makgi</a></h1>
 
       <?php
         switch ($userRol) {

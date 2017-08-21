@@ -5,6 +5,11 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="eventos.php">Listado eventos</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
         <h2>Asignar Puntaje Competidores</h2>
         <h3 class="section-intro__leading">Registro de Puntajes</h3>

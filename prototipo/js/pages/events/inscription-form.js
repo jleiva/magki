@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   fillEventData()
   loadUserData();
+  updateBreadcrumb();
+
+  function updateBreadcrumb() {
+    var breadLink = document.querySelector('.js-bread-event');
+    breadLink.href = 'inscribir-competidores.php' + '?eventId=' + eventId;
+  }
 
   function fillEventData() {
     var eventName = document.querySelector('.js-event-name');

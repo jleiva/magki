@@ -5,6 +5,12 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="eventos.php">Listado eventos</a></li>
+            <li><a class="js-bread-event">Inscribir competidores</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
         <h2>Desinscribir Competidor</h2>
 
@@ -67,7 +73,7 @@
             </div>
           </fieldset>
           <button id="btn-save" value="Guardar">Guardar</button>
-          <a href="eventos.html" class="button button-secondary">Cancelar</a>
+          <a href="eventos.php" class="button button-secondary">Cancelar</a>
         </form>
       </div>  
     </div>    

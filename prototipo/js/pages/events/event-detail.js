@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var isDetailPage = document.querySelector('#detail-page');
 
   fillEventData();
+  fillSponsorData();
+  fillOrgData();
 
   if (isRankingPage) {
     var winnersPage = document.querySelector('.non-active');
@@ -61,15 +63,45 @@ document.addEventListener('DOMContentLoaded', function() {
     fillUsersTable();
   }
 
+  function fillOrgData() {
+    var orgBox = document.querySelector('.js-org-event-box');
+    var orgInfo = document.querySelector('#js-org-event');
+    var orgData = orm.findEventOrgs(eventId);
+
+    if (orgData.length) {
+      orgInfo.innerHTML = orgData[0].nombre;
+      orgBox.classList.remove('is-hidden');
+    }
+  }
+
+  function fillSponsorData() {
+    var sponsotBox = document.querySelector('.js-sponsors-section');
+    var sponsorList = document.querySelector('.js-event-sponsor-list');
+    var sponsorData = orm.findEventSponsors(eventId);
+
+    if (sponsorData && sponsorData.nombre_producto) {
+      var liEl = document.createElement('li');
+      var liTxt = document.createTextNode(sponsorData.nombre_producto);
+      liEl.appendChild(liTxt);
+      sponsorList.appendChild(liEl);
+      sponsotBox.classList.remove('is-hidden');
+    }
+  }
+
   function fillEventData() {
+    var fecha_inicio = misc.modifiedDateFormat(eventInfo[0].fecha_inicio);
+    var fecha_limite = misc.modifiedDateFormat(eventInfo[0].limite_inscripcion);
+    var fecha_pesaje = misc.modifiedDateFormat(eventInfo[0].fecha_pesaje);
+
     document.querySelector('.promo-box__title').innerHTML = eventInfo[0].nombre;
     document.querySelector('#place').innerHTML = eventInfo[0].nombre_lugar;
-
-    var fecha_inicio = misc.modifiedDateFormat(eventInfo[0].fecha_inicio);
     document.querySelector('#date').innerHTML = fecha_inicio;
     document.querySelector('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
     document.querySelector('#price').innerHTML = '¢' + eventInfo[0].valor_entrada;
     document.querySelector('#availableTickets').innerHTML = eventInfo[0].entradas_disponibles;
+    document.querySelector('#limitDate').innerHTML = fecha_limite;
+    document.querySelector('#weightDate').innerHTML = fecha_limite;
+    document.querySelector('#regPrice').innerHTML = '¢' + eventInfo[0].costo_inscripcion;
   }
 
   function fillUsersTable() {

@@ -5,6 +5,11 @@
 ?>
     <main class="wrapper">
       <div class="main-content">
+        <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="eventos.php">Listado eventos</a></li>
+        </ul>
+      </nav>
         <div class="section-intro">
           <h2>Registro de pesajes</h2>
         </div>

@@ -273,7 +273,7 @@ var events = (function(window) {
 
       var anchorName = document.createElement('a');
       var nameTxt = document.createTextNode(data.nombre);
-      var dateTxt = document.createTextNode(data.fecha_inicio);
+      var dateTxt = document.createTextNode(misc.modifiedDateFormat(data.fecha_inicio));
       var venueTxt = document.createTextNode(data.lugar);
       var typeTxt = document.createTextNode(data.tipo_evento);
       var estadoTxt = document.createTextNode(data.estado == '1' ? 'Publicado' : 'Sin publicar');
@@ -390,12 +390,16 @@ var events = (function(window) {
       var eventVenue = document.createElement('td');
       var eventType = document.createElement('td');
 
+      var anchorName = document.createElement('a');
       var nameTxt = document.createTextNode(data.nombre);
       var dateTxt = document.createTextNode(misc.modifiedDateFormat(data.fecha_inicio));
       var venueTxt = document.createTextNode(data.lugar);
       var typeTxt = document.createTextNode(data.tipo_evento);
 
-      eventName.appendChild(nameTxt);
+      anchorName.appendChild(nameTxt);
+      anchorName.href = 'detalle-evento.php' + '?eventId=' + eventId;
+
+      eventName.appendChild(anchorName);
       eventDate.appendChild(dateTxt);
       eventVenue.appendChild(venueTxt);
       eventType.appendChild(typeTxt);

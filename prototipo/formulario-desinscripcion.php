@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Desinscribir Competidores';
+  $page_title = 'Desinscribir competidores';
   $page = 'event'; 
   include("templates/header.php");
 ?>

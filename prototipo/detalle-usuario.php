@@ -7,19 +7,11 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Perfil de Usuario</h2>
+        <h2>Perfil de usuario</h2>
         <h3 class="js-profile-display-name profile-info__name"></h3>
       </div>
 
-      <div class="profile-wrap">
-<!--         <div class="profile-actions">
-          <ul class="menu menu-actions">
-            <li><a href="#" class="is-active">Perfil personal</a></li>
-            <li><a href="perfil-editar.php">Editar Perfil</a></li>
-            <li><a href="perfil-cambiar-contrasena.php">Cambiar contraseña</a></li>
-          </ul>
-        </div> -->
-          
+      <div class="profile-wrap">          
           <h3>Datos:</h3>
           <ul>
             <li><strong>Academia:</strong> <span id="academia"></span></li>

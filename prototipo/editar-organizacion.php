@@ -1,12 +1,17 @@
 <?php
-  $page_title = 'Editar Organización';
+  $page_title = 'Editar organización';
   $page = 'org'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="organizaciones.php">Listado organizaciones</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Editar Organización</h2>
+        <h2>Editar organización</h2>
       </div>
       <div class="form__wrap js-form">
  

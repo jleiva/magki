@@ -1,12 +1,17 @@
 <?php
-  $page_title = 'Registrar Patrocinador';
+  $page_title = 'Registrar patrocinador';
   $page = 'org'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="patrocinadores.php">Listado patrocinadores</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Registrar Patrocinador</h2>
+        <h2>Registrar patrocinador</h2>
       </div>
       <div class="js-form form__wrap ">
           <form id="form-sponsor">
@@ -53,6 +58,7 @@
               </fieldset>
 
               <button id="saveBttn">Guardar</button>
+              <a href="registrar-patrocinador.php" class="button button-secondary">Registrar otro patrocinador</a>
             </fieldset>
           </form>
       </div>

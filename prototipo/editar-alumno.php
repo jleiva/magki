@@ -5,9 +5,14 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+    <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="alumnos.php">Listado alumnos</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Registrar Alumno</h2>
-        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un alumno, la academia y profesor gu&iacute;a deben existir <strong>previamente</strong> en el Sistema.</p>
+        <h2>Editar alumno</h2>
+        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un alumno, la academia y profesor gu&iacute;a deben existir <strong>previamente</strong> en el sistema.</p>
       </div>
       <div class="form__wrap js-form">
         <form id="edit-student-form">

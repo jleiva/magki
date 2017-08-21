@@ -62,9 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
   function getRegisterData() {
     var formInputs = document.querySelectorAll('#register-user .js-form-field');
     var studentsInfo = misc.buildDataObject(formInputs);
+    var userInfo = {
+      'email': studentsInfo.email,
+      'firstName': studentsInfo.firstName,
+      'lastName': studentsInfo.firstLastName
+    };
     
     orm.registrarAlumno(studentsInfo);
     misc.disableFieldsOnSave(formInputs);
+    orm.sendRegistrationEmail(userInfo);
   }
 
   function validateForm() {

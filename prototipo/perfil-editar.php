@@ -1,12 +1,13 @@
 <?php 
   $page_title = 'Editar perfil';
+  $page = '';
   include("templates/header.php");
 ?>
   
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Perfil de Usuario</h2>
+        <h2>Perfil de usuario</h2>
         <p class="section-intro__leading">Administre sus datos personales y contraseña.</p>
       </div>
 
@@ -14,7 +15,7 @@
         <div class="profile-actions">
           <ul class="menu menu-actions">
             <li><a href="perfil-usuario.php">Perfil personal</a></li>
-            <li><a href="#" class="is-active">Editar Perfil</a></li>
+            <li><a href="#" class="is-active">Editar perfil</a></li>
             <li><a href="perfil-cambiar-contrasena.php">Cambiar contraseña</a></li>
           </ul>
         </div>

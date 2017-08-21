@@ -1,11 +1,17 @@
 <?php
-  $page_title = 'Editar Evento';
+  $page_title = 'Editar evento';
   $page = 'event';
   include("templates/header.php");
 ?>
 
 <main class="wrapper">
   <div class="main-content">
+    <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="eventos.php">Listado eventos</a></li>
+        </ul>
+      </nav>
+      
     <div class="section-intro">
       <h2>Registrar Evento</h2>
       <p class="section-intro__leading"><strong>Recuerde:</strong> Puede <em>Guardar</em> un evento sin completar los campos requeridos, pero no Publicarlo.</p>

@@ -1,13 +1,18 @@
 <?php
-  $page_title = 'Registrar Lugar';
+  $page_title = 'Registrar lugar';
   $page = 'place';
   include("templates/header.php");
 ?>
 
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="lugares.php">Listado lugares</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Registrar Lugar</h2>
+        <h2>Registrar lugar</h2>
       </div>
       <div class="js-form form__wrap">
       <form id="register-place">
@@ -61,6 +66,7 @@
           </fieldset>
 
           <button id="btn-save">Guardar</button>
+          <a href="registrar-lugar.php" class="button button-secondary">Registrar otro lugar</a>
         </fieldset>
       </form>
 	</div>

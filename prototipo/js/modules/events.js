@@ -416,7 +416,7 @@ var events = (function(window) {
     $util('#type').innerHTML = nextEventData.tipo_evento;
     $util('#price').innerHTML = nextEventData.valor_entrada;
     $util('#inscDate').innerHTML = misc.modifiedDateFormat(nextEventData.limite_inscripcion);
-    $util('#weightDate').innerHTML = misc.modifiedDateFormat(nextEventData.limite_inscripcion);
+    $util('#weightDate').innerHTML = misc.modifiedDateFormat(nextEventData.fecha_pesaje);
     $util('#cost').innerHTML = nextEventData.costo_inscripcion;
 
     document.querySelector('#btn-register').addEventListener('click',function(e){location.href = 'reserve.php' + '?id=' + nextEventData.id_evento});

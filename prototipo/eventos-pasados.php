@@ -50,7 +50,7 @@
         </tbody>
       </table>
       <div class="no-data">
-        <h3>No hay Eventos disponibles.</h3>
+        <h3>No hay eventos disponibles.</h3>
       </div>
     </div>    
   </main>

@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Inscribir Competidores';
+  $page_title = 'Inscribir competidores';
   $page = 'event'; 
   include("templates/header.php");
 ?>

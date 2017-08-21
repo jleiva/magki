@@ -1,13 +1,18 @@
 <?php 
-  $page_title = 'Registrar Profesor';
+  $page_title = 'Registrar profesor';
   $page = 'user'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
 		<div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="profesores.php">Listado profesores</a></li>
+        </ul>
+      </nav>
 			<div class="section-intro">
-				<h2>Registrar Profesor</h2>
-        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un profesor, la academia debe existir <strong>previamente</strong> en el Sistema.</p>
+				<h2>Registrar profesor</h2>
+        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un profesor, la academia debe existir <strong>previamente</strong> en el sistema.</p>
 			</div>
 
 			<div class="form__wrap js-form">
@@ -15,7 +20,7 @@
         <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
 
         <fieldset class="feature-fieldset">
-          <legend>Datos Generales</legend>
+          <legend>Datos generales</legend>
 
           <div class="field-wrapper">
             <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr></label>
@@ -77,7 +82,7 @@
         </fieldset>
         
         <fieldset class="feature-fieldset">
-          <legend>Informaci&oacute;n Academia</legend>
+          <legend>Informaci&oacute;n academia</legend>
           <div class="field-wrapper">
             <label for="academy">Academia <abbr title="Requerido">*</abbr></label>
             <select name="academy" class="js-form-field" id="academy" required>
@@ -100,6 +105,7 @@
         </fieldset>
 
 				<button id="btn-save" value="">Guardar</button>
+        <a href="registrar-profesor.php" class="button button-secondary">Registrar otro profesor</a>
 				</form>
 		  </div>
 		</div>
@@ -117,7 +123,6 @@
 	<script src="js/helpers/messages.js"></script>
 	<script src="js/helpers/validate.js"></script>
 	<script src="js/pages/users/professor/registerProfe.js"></script>
-  <script src="js/pages/users/professor/logicProf.js"></script>
 	<script src="js/pages/main.js"></script>
 </body>
 </html>

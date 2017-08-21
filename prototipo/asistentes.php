@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Listado de Asistentes';
+  $page_title = 'Listado de asistentes';
   $page = 'user'; 
   include("templates/header.php");
 ?>

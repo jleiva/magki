@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Registrar Lugar';
+  $page_title = 'Registrar lugar';
   $page = 'place';
   include("templates/header.php");
 ?>
@@ -7,9 +7,9 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listar Lugares</h2>
+        <h2>Listar lugares</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-lugar.php" class="button btn-small" id="btn-register">Registrar Lugar</a>
+          <a href="registrar-lugar.php" class="button btn-small" id="btn-register">Registrar lugar</a>
         <?php } ?>
       </div>
       <div class="actions-tabs">

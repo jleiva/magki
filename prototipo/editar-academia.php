@@ -1,13 +1,18 @@
 <?php
-  $page_title = 'Editar Academia';
+  $page_title = 'Editar academia';
   $page = 'acadm';
   include("templates/header.php");
 ?>
 
     <main class="wrapper">
       <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="academias.php">Listado academias</a></li>
+        </ul>
+      </nav>
         <div class="section-intro">
-          <h2>Editar Academia</h2>
+          <h2>Editar academia</h2>
         </div>
 
         <div class="js-form form__wrap">
@@ -32,7 +37,7 @@
               </fieldset>
 
               <fieldset class="feature-fieldset">
-                <legend>Datos Encargado</legend>
+                <legend>Datos encargado</legend>
                 <div class="field-wrapper">
                   <label for="nombreEncargado">Nombre <abbr title="Requerido">*</abbr></label>
                   <input type="text" id="attendantName" name="attendantName" required class="js-form-field">
@@ -51,7 +56,7 @@
                 <legend>Datos de ubicación</legend>
                 <div class="field-wrapper">
                   <label for="direccionAcademia">Dirección física</label>
-                  <textarea name="academyAddress" placeholder="Dirección" class="js-form-field" id="academyAddress"></textarea>
+                  <textarea name="academyAddress" placeholder="Dirección por señas" class="js-form-field" id="academyAddress"></textarea>
                 </div>
 
                 <div class="field-group">

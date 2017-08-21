@@ -1,12 +1,12 @@
 <?php 
-  $page_title = 'Listado de Patrocinadores';
+  $page_title = 'Listado de patrocinadores';
   $page = 'org'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Patrocinadores</h2>
+        <h2>Listado de patrocinadores</h2>
         
         <?php if ($userRol == 1 || $userRol == 2) { ?>
           <a href="registrar-patrocinador.php" class="button btn-small" id="btn-register">Registrar patrocinador</a>
@@ -26,8 +26,6 @@
           <li class="nav-tab"><a class="nav-tab-link is-active" href="patrocinadores.php">Patrocinadores</a></li>
         </ul>
       </div>
-
-<!--       <input type="text" id="txtSearch"> -->
 
       <table id="tblSponsors">
         <thead>

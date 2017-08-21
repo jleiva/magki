@@ -1385,6 +1385,57 @@ var orm = (function(window, undefined) {
     })
   }
 
+  function sendRegistrationEmail(userInfo) {
+    var request = $.ajax({
+      url: 'services/correo_registro_sistema.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'userEmail': userInfo.email,
+        'firstName': userInfo.firstName,
+        'lastName': userInfo.lastName
+      }
+    })
+  }
+
+  function updateStudentInfo(pStudentInfo) {
+    var request = $.ajax({
+      url: 'services/actualizar_alumno.php',
+      dataType: 'json',
+      async: false,
+      method: 'POST',
+      data: {
+        'identification': pStudentInfo.identification,
+        'firstName': pStudentInfo.firstName,
+        'secondName': pStudentInfo.secondName,
+        'firstLastName': pStudentInfo.firstLastName,
+        'secondLastName': pStudentInfo.secondLastName,
+        'bday': pStudentInfo.bday,
+        'age': pStudentInfo.age,
+        'gender': pStudentInfo.gender,
+        'email': pStudentInfo.email,
+        'weight': pStudentInfo.weight,
+        'height': pStudentInfo.height,
+        'beltGrade': pStudentInfo.beltGrade,
+        'tournaments': pStudentInfo.tournaments,
+        'winTournaments': pStudentInfo.winTournaments,
+        'exhibitions': pStudentInfo.exhibitions,
+        'academy': pStudentInfo.academy,
+        'professor': pStudentInfo.professor,
+        'status': pStudentInfo.status
+      }
+    });
+
+    request.done(function(data) {
+      console.log('Estudiante actualizado');
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+  }
+
   function registerAthleteEvent(userData) {
     var request = $.ajax({
       url: 'services/registrar_alumno_en_evento.php',
@@ -1714,6 +1765,27 @@ var orm = (function(window, undefined) {
     });
   }
 
+  function updateUserTblInfo(data) {
+    var request  = $.ajax({
+      url: 'services/actualizar_tabla_usuario.php',
+      dataType: 'json',
+      async: false,
+      method: 'POST',
+      data: {
+        'primer_nombre': data.firstName,
+        'segundo_nombre': data.secondName,
+        'primer_apeliido': data.firstLastName,
+        'segundo_apellido': data.secondLastName,
+        'fecha_nacimiento': data.bday,
+        'edad': data.age,
+        'correo': data.email,
+        'genero': data.gender,
+        'estado': data.status,
+        'id_usuario': data.identification
+      }
+    });
+  }
+
   function sendChangePasswordMail(newPassword, userEmail) {
     var request = $.ajax({
         url: 'services/correo_cambio_contrasena.php',
@@ -1908,16 +1980,19 @@ var orm = (function(window, undefined) {
     sendChangePasswordMail: sendChangePasswordMail,
     sendEmailReservation: sendEmailReservation,
     sendInscriptionEmail: sendInscriptionEmail,
+    sendRegistrationEmail: sendRegistrationEmail,
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,
     updateSponsorInfo: updateSponsorInfo,
     updateUserPassword: updateUserPassword,
+    updateStudentInfo: updateStudentInfo,
     updateVenue: updateVenue,
     unsubUserFromEvent: unsubUserFromEvent,
     updateAlumnScore: updateAlumnScore,
     updateAlumWonTournaments: updateAlumWonTournaments,
     updateUserInfo: updateUserInfo,
     updateAlumInfo: updateAlumInfo,
+    updateUserTblInfo: updateUserTblInfo,
     updateAthleteEvent: updateAthleteEvent,
     getAlumnWonTournaments: getAlumnWonTournaments
   };

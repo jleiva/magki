@@ -1,10 +1,15 @@
 <?php
-  $page_title = 'Editar Patrocinador';
+  $page_title = 'Editar patrocinador';
   $page = 'org'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="patrocinadores.php">Listado patrocinadores</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
         <h2>Editar patrocinador</h2>
       </div>

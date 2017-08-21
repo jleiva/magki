@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Listado de Organizaciones';
+  $page_title = 'Listado de organizaciones';
   $page = 'org'; 
   include("templates/header.php");
 ?>
@@ -7,7 +7,7 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Listado de Organizaciones</h2>
+        <h2>Listado de organizaciones</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
           <a href="registrar-organizacion.php" class="button btn-small" id="btn-register">Registrar organización</a>
         <?php } ?>

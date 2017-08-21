@@ -1,4 +1,4 @@
-var academiesList;//global
+var academiesList;
 var getValidBday = misc.debounce(function() {
   validateDateBday();
 }, 1000);
@@ -26,22 +26,24 @@ function registerProfe(e) {
 function getRegisterData() {
   var formInputs = document.querySelectorAll('#register-user .js-form-field');
   var profData = misc.buildDataObject(formInputs);
-  var idAcademia  = findIdAcademy(profData.academy);
-  //profData.status = true;
-  //registrar(profData);
+  var userInfo = {
+    'email':profData.email,
+    'firstName':profData.name,
+    'lastName': profData.lastname
+  };
+  
   orm.registrarProf(profData);
-  orm.registrarProfTblProfesor(profData,idAcademia);
+  orm.registrarProfTblProfesor(profData,profData.academy);
   misc.disableFieldsOnSave(formInputs);
+  orm.sendRegistrationEmail(userInfo);
 }
 
 function validateForm() {
   var codeValue = document.querySelector('#id').value;
-  //var codeValue = codeField.value;
   var $alertBox = $util('.js-login-msg');
-  console.log(codeValue);
-  var profInfo = orm.findProfesorById(codeValue);
+  var profInfo = orm.findUserById(codeValue);
 
-  if (!profInfo) {
+  if (!profInfo.length) {
     getRegisterData();
 
     if ($alertBox) { 
@@ -53,7 +55,6 @@ function validateForm() {
       '<span class="note alert alert-success js-login-msg">' + msg.key.saveSuccess+ '</span>');
     }
   } else {
-
     if ($alertBox) { 
       $alertBox
         .removeClass('alert-success')
@@ -76,7 +77,7 @@ function fillAcademies() {
    var options = document.createElement("option");
      var academyName = academiesList[i].nombre_academia;
      options.text = academyName;
-     options.className = 'btn-action-event js-edit-event';
+     options.value = academiesList[i].id_academia;
      academiesField.add(options);
  }
 }

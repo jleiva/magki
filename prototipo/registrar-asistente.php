@@ -1,12 +1,18 @@
 <?php 
-  $page_title = 'Registrar Asistente';
+  $page_title = 'Registrar asistente';
   $page = 'user'; 
   include("templates/header.php");
 ?>
     <main class="wrapper">
       <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="asistentes.php">Listado asistentes</a></li>
+        </ul>
+      </nav>
         <div class="section-intro">
-          <h2>Registrar Asistente</h2>
+          <h2>Registrar asistente</h2>
+          <p class="section-intro__leading"><strong>Recuerde:</strong> usuarios con rol de asistente deben ser autorizados previamente por la Federaci&oacute;n Costarricense de Taekwondo.</p>
         </div>
         <div class="js-form form__wrap ">
             <form id="register-user" novalidate>
@@ -35,7 +41,7 @@
 
                   <div class="field-wrapper">
           					<label for="secLastName">Segundo Apellido </label>
-          					<input type="text" name="lastname2" id="secLastName">
+          					<input type="text" class="js-form-field" name="lastname2" id="secLastName">
           				</div>
 
                   <div class="field-wrapper">
@@ -45,6 +51,7 @@
                 </fieldset>
 
                 <button id="btn-save" value="Guardar">Guardar</button>
+                <a href="registrar-asistente.php" class="button button-secondary">Registrar otro asistente</a>
               </fieldset>
             </form>
         </div>
@@ -63,7 +70,6 @@
     <script src="js/helpers/messages.js"></script>
     <script src="js/helpers/validate.js"></script>
     <script src="js/helpers/misc.js"></script>
-    <script src="js/pages/users/assistant/logicAsist.js"></script>
     <script src="js/pages/users/assistant/registerAsistente.js"></script>
     <script src="js/pages/main.js"></script>
   </body>

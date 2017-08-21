@@ -21,10 +21,7 @@ $academy = $_POST['academy'];
 $professor = $_POST['professor'];
 $status = $_POST['status'];
 
-$query = "CALL pa_actualizar_alumno" . "('$firstName','$secondName','$firstLastName',
-'$secondLastName','$bday','$age','$email','$gender',$status,'$weight',
-'$height','$tournaments','$winTournaments','$exhibitions','$beltGrade',
-'$academy','$professor','$idStudent')";
+$query = "CALL pa_actualizar_alumno" . "($weight,$height,$tournaments,$winTournaments,$exhibitions,'$beltGrade',$academy,'$professor','$idStudent')";
 
 $result = $conexion->query($query);
 if (!$result)die($conexion->error);

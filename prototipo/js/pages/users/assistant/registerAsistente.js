@@ -18,7 +18,6 @@ function registerAssist(e) {
 function getRegisterData() {
   var formInputs = document.querySelectorAll('#register-user .js-form-field');
   var assistantData = misc.buildDataObject(formInputs);
-  //assistantData.status = true;
   orm.registrarAsist(assistantData);
   orm.registrarAsistTblAsistente(assistantData);
   misc.disableFieldsOnSave(formInputs);

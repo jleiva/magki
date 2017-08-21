@@ -1,13 +1,18 @@
 <?php 
-  $page_title = 'Registrar Organización';
+  $page_title = 'Registrar organización';
   $page = 'org'; 
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="organizaciones.php">Listado organizaciones</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Registrar Organización</h2>
-        <p class="section-intro__leading">C&oacute;digo (C&eacute;dula Jur&iacute;dica) de la organizaci&oacute;n es un campo obligatorio, confirme que cuenta con el dato antes de iniciar el registro.</p>
+        <h2>Registrar organización</h2>
+        <p class="section-intro__leading">C&oacute;digo (C&eacute;dula jur&iacute;dica) de la organizaci&oacute;n es un campo obligatorio, confirme que cuenta con el dato antes de iniciar el registro.</p>
       </div>
 
       <div class="form__wrap js-form">
@@ -19,7 +24,7 @@
               <div class="field-wrapper">
                 <label for="code">C&oacute;digo (C&eacute;dula Jur&iacute;dica) <abbr title="Requerido">*</abbr></label>
                 <input type="text" class="js-form-field" id="code" name="codeNumber" required>
-                <small class="note">Cédula Jurídica &oacute; identificaci&oacute;n.</small>
+                <small class="note">Cédula jurídica &oacute; identificaci&oacute;n.</small>
               </div>
 
               <div class="field-wrapper">
@@ -43,6 +48,7 @@
             </fieldset>
 
             <button id="btn-save" value="Guardar">Guardar</button>
+            <a href="registrar-organizacion.php" class="button button-secondary">Registrar otra organizaci&oacute;n</a>
           </fieldset>
         </form>
       </div>  

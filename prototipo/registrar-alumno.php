@@ -5,9 +5,12 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
-      <ul class="menu">
-        <li><a href="alumnos.php">Usuarios</a></li>
-      </ul>
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="alumnos.php">Listado alumnos</a></li>
+        </ul>
+      </nav>
+      
       <div class="section-intro">
         <h2>Registrar alumno</h2>
         <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un alumno, la academia y profesor gu&iacute;a deben existir <strong>previamente</strong> en el sistema.</p>

@@ -1,13 +1,19 @@
 <?php
-  $page_title = 'Registrar Patrocinador';
+  $page_title = 'Registrar patrocinador';
   $page = 'event';
   include("templates/header.php");
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="eventos.php">Listado eventos</a></li>
+        </ul>
+      </nav>
+
       <div class="section-intro">
-        <h2>Registrar Evento</h2>
-        <p class="section-intro__leading"><strong>Recuerde:</strong> Puede <em>Guardar</em> un evento sin completar los campos requeridos, pero no Publicarlo.</p>
+        <h2>Registrar evento</h2>
+        <p class="section-intro__leading"><strong>Recuerde:</strong> Puede <em>guardar</em> un evento sin completar los campos requeridos, pero no publicarlo.</p>
       </div>
 
       <div class="js-form form__wrap">
@@ -16,7 +22,7 @@
             <legend>Campos obligatorios est&aacute;n marcados con <abbr title="Requerido">*</abbr></legend>
 
             <fieldset class="feature-fieldset">
-              <legend>Datos Generales</legend>
+              <legend>Datos generales</legend>
 
               <div class="field-wrapper">
                 <label for="eventName">Nombre del Evento <abbr title="Requerido">*</abbr></label>
@@ -74,7 +80,7 @@
             </fieldset>
 
             <fieldset class="feature-fieldset">
-              <legend>Tipo de Evento</legend>
+              <legend>Tipo de evento</legend>
               <div class="field-wrapper">
                 <label for="tipoEvento">Tipo <abbr title="Requerido">*</abbr></label>
                 <select class="js-event-field" name="tipoEvento" id="tipoEvento" required>
@@ -102,7 +108,7 @@
                 </div>
 
                 <div class="field-group">
-                  <legend>Habilitar Categorías:</legend>
+                  <legend>Habilitar categorías:</legend>
                   <br>
                   <div class="field-wrapper">
                     <fieldset class="select field">

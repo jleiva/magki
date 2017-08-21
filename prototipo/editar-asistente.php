@@ -5,8 +5,13 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+    <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="asistentes.php">Listado asistentes</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Editar Asistente</h2>
+        <h2>Editar asistente</h2>
       </div>
       <div class="js-form form__wrap ">
           <form id="edit-assist-form" novalidate>

@@ -5,6 +5,11 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+    <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="profesores.php">Listado profesores</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
         <h2>Editar Profesor</h2>
       </div>

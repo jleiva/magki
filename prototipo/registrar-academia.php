@@ -5,8 +5,13 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <nav class="nav-breadcrumbs" role="navigation">
+        <ul>
+            <li><a href="academias.php">Listado academias</a></li>
+        </ul>
+      </nav>
       <div class="section-intro">
-        <h2>Registrar Academia</h2>
+        <h2>Registrar academia</h2>
       </div>
 
       <div class="js-form form__wrap">
@@ -31,7 +36,7 @@
           </fieldset>
 
           <fieldset class="feature-fieldset">
-            <legend>Datos Encargado</legend>
+            <legend>Datos encargado</legend>
             <div class="field-wrapper">
               <label for="nombreEncargado">Nombre <abbr title="Requerido">*</abbr></label>
               <input type="text" id="NombreEncargado" name="attendantName" required class="js-form-field">
@@ -50,7 +55,7 @@
             <legend>Datos de ubicaci&oacute;n</legend>
             <div class="field-wrapper">
               <label for="direccionAcademia">Direcci&oacute;n f&iacute;sica</label>
-              <textarea name="academyAddress" placeholder="Dirección exacta" class="js-form-field" id="direccionAcademia"></textarea>
+              <textarea name="academyAddress" placeholder="Dirección por señas" class="js-form-field" id="direccionAcademia"></textarea>
             </div>
 
             <div class="field-group">
@@ -71,6 +76,7 @@
             <div id="map"></div>
           </fieldset>
           <button id="btn-save" value="Guardar">Guardar</button>
+          <a href="registrar-academia.php" class="button button-secondary">Registrar otra academia</a>
         </fieldset>
       </form>
 		</div>

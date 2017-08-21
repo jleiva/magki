@@ -1,7 +1,7 @@
 <form id="edit-student-form" novalidate>
   <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
   <fieldset class="feature-fieldset">
-    <legend>Datos Generales</legend>
+    <legend>Datos generales</legend>
     
     <div class="field-wrapper">
       <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr> </label>

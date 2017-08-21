@@ -1,9 +1,21 @@
+var logguedIn = orm.findLogguedUser();
+var academySelect = document.querySelector('#academy');
+var professorList = orm.findActiveProfs();
 var getValidBday = misc.debounce(function() {
   validateDateBday();
 }, 1000);
 
 fillAcademies();
 loadStudentData();
+
+if (logguedIn.rol === '3') {
+  var activeProfData = orm.findActiveProfesorById(logguedIn.id);
+  academySelect.value = activeProfData.id_academia;
+  academySelect.disabled = true;
+  prePopulateProfessor();
+  document.querySelector('#professor').value = activeProfData.id_usuario;
+  document.querySelector('#professor').disabled = true;
+}
 
 document.querySelector('#btn-save').addEventListener('click', registerStudent);
 document.querySelector('input[id="weight"]').addEventListener('change', validateNumbers);
@@ -41,23 +53,12 @@ function loadStudentData() {
   document.querySelector('#part-tournament').value = parseInt(studentInfo.torneos_participados);
   document.querySelector('#win-tournament').value = parseInt(studentInfo.torneos_ganados);
   document.querySelector('#exhibition').value = parseInt(studentInfo.exhibiciones_participadas);
-
-  var beltSelect = document.querySelector('#belt');
-  for (var i = 0; i < beltSelect.length; i++) {
-    if (beltSelect[i].text == studentInfo.nombre_cinturon) {
-      beltSelect[i].selected = true;
-    }
-  }
-
-  var academySelect = document.querySelector('#academy');
-  for (var i = 0; i < academySelect.length; i++) {
-    if (academySelect[i].text == studentInfo.nombre_academia) {
-      academySelect[i].selected = true;
-    }
-  }
+  document.querySelector('#belt').value = studentInfo.nombre_cinturon; 
+  document.querySelector('#academy').value = studentInfo.id_academia;
+  
 
   var professorSelect = document.querySelector('#professor');
-  var professorList = orm.findActiveProfs();
+  
   for (var i = 0; i < professorList.length; i++) {
     if (professorList[i].nombre_academia == studentInfo.nombre_academia) {
 
@@ -112,15 +113,17 @@ function getRegisterData() {
   var formInputs = document.querySelectorAll('#edit-student-form .js-form-field');
   var studentInfo = misc.buildDataObject(formInputs);
   var status = document.querySelector('#able').checked;
-  studentInfo.status = status;
 
   if (status) {
     misc.enabledFieldsOnEdit(formInputs);
+    studentInfo.status = 1;
     document.querySelector('#id').disabled = true;
   } else {
     misc.disableFieldsOnEdit(formInputs);
+    studentInfo.status = 0;
   }
 
+  orm.updateUserTblInfo(studentInfo);
   orm.updateStudentInfo(studentInfo);
 }
 
@@ -186,7 +189,6 @@ function calculateAge(bDateValue) {
 }
 
 function validateNumbers(e) {
-
   var idField = e.target.id;
   var field = e.target;
   var fieldValue = Number(e.target.value);
@@ -222,3 +224,25 @@ function validateNumbers(e) {
     message.removeClass('alert-failure');
   }
 }
+
+function prePopulateProfessor() {
+    var academySelect = $util('#academy');
+    var pacademyName = academySelect.options[academySelect.selectedIndex].innerText;
+    var professorField = document.querySelector('#professor');
+    var options = document.createElement('option');
+
+    professorField.options.length = 0;
+    options.text = 'Seleccionar';
+    options.value = '';
+    professorField.add(options);
+
+    for (var i = 0; i < professorList.length; i++) {
+      if (professorList[i].nombre_academia === pacademyName) {
+        var options = document.createElement('option');
+        var professorName = professorList[i].primer_nombre + ' ' + professorList[i].primer_apeliido + ' ' + professorList[i].segundo_apellido;
+        options.value = professorList[i].id_usuario;
+        options.text = professorName;
+        professorField.add(options);
+      }
+    }
+  }

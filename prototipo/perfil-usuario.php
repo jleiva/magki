@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Perfil Usuario';
+  $page_title = 'Perfil usuario';
   $page = 'profile';
   include("templates/header.php");
 ?>
@@ -7,7 +7,7 @@
   <main class="wrapper">
     <div class="main-content">
       <div class="section-intro">
-        <h2>Perfil de Usuario</h2>
+        <h2>Perfil de usuario</h2>
         <p class="section-intro__leading">Administre sus datos personales y contraseña.</p>
       </div>
 
@@ -15,7 +15,7 @@
         <div class="profile-actions">
           <ul class="menu menu-actions">
             <li><a href="#" class="is-active">Perfil personal</a></li>
-            <li><a href="perfil-editar.php">Editar Perfil</a></li>
+            <li><a href="perfil-editar.php">Editar perfil</a></li>
             <li><a href="perfil-cambiar-contrasena.php">Cambiar contraseña</a></li>
           </ul>
         </div>
@@ -50,7 +50,7 @@
           
           <div class="activity">
           <?php if ($userRol == 1 || $userRol == 2 || $userRol == 3) { ?>
-            <h3 class="activity__h">Actividad Reciente</h3>
+            <h3 class="activity__h">Actividad reciente</h3>
           <?php } ?>
 
           <?php if ($userRol == 4) { ?>

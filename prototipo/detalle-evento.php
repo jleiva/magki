@@ -5,8 +5,12 @@
 ?>
   
   <main class="wrapper" id="detail-page">
+    <div class="slider">
+      <input id="input-map" class="controls" type="text" placeholder="Escriba el lugar">
+      <div id="map"></div>
+    </div>
     <div class="main-content">
-      <div class="promo-box promo-box--no-hero">
+      <div class="promo-box">
         <h2 class="promo-box__title"></h2>
         <div class="promo-left">
           <h4>Detalles del evento</h4>
@@ -64,6 +68,7 @@
   <script src="js/database/orm.js"></script>
   <script src="js/helpers/misc.js"></script>
   <script src="js/pages/events/event-detail.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABbEjzd6Y4yV8EE6j0_-MvyT1rZR-tiv0&libraries=places&callback=initMap" async defer></script>
   <script src="js/pages/main.js"></script>
 
 </body>

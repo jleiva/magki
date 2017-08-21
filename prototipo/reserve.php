@@ -14,10 +14,10 @@
         <nav class="main-nav" role="">
           <nav class="main-nav" role="">
           <ul class="menu">
-            <li class="main-nav__item"><a href="">Acerca de</a></li>
-            <li class="main-nav__item"><a href="">Aprenda Taekwondo</a></li>
-            <li class="main-nav__item"><a href="" class="is-active">Eventos</a></li>
-            <li class="main-nav__item"><a href="">Contacto</a></li>
+            <li class="main-nav__item"><a href="acerca.html">Acerca de</a></li>
+            <li class="main-nav__item"><a href="aprenda-taekwondo.html">Aprenda Taekwondo</a></li>
+            <li class="main-nav__item"><a href="#" class="is-active">Eventos</a></li>
+            <li class="main-nav__item"><a href="#">Contacto</a></li>
             <li class="main-nav__item main-nav__item--profile js-guess-visitor"><a href="iniciar-sesion.php">Iniciar Sesi&oacute;n</a></li>
           <li class="main-nav__item main-nav__item--profile is-hidden js-logguedIn-visitor"><a href="perfil-admin.html"><span class="profile-name js-profile-name"></span></a> <a href="#" class="js-logout">Cerrar Sesi&oacute;n</a></li>
           </ul>
@@ -27,6 +27,7 @@
     </header>
     <main class="wrapper">
       <div class="slider">
+        <input id="input-map" class="controls" type="text" placeholder="Escriba el lugar">
         <div id="map"></div>
       </div>
       
@@ -43,7 +44,14 @@
             <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
           </p>
         </div>
-        
+        <div class="promo-right">
+          <h4>Inscripción de Atletas:</h4>
+          <strong>Fecha límite de inscripción:</strong> <span id="inscDate"></span><br/>
+          <strong>Fecha de pesaje:</strong> <span id="weightDate"></span><br/>
+          <strong>Costo de Inscripción:</strong> <span id="cost"></span><br/>
+          
+          <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su academia debe de estar registrada previamente.</p>
+        </div>
       </div>
 
       <div class="js-reserve-tickets-disable promo-box is-hidden">
@@ -108,13 +116,14 @@
     </div>
   </footer>
     <script src="js/helpers/jquery-3.2.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABbEjzd6Y4yV8EE6j0_-MvyT1rZR-tiv0&libraries=places&callback=initMap" async defer></script>
     <script src="js/helpers/util.js"></script>
     <script src="js/helpers/misc.js"></script>
     <script src="js/database/orm.js"></script>
     <script src="js/database/storage.js"></script>
     <script src="js/helpers/validate.js"></script>
-    <script src="js/helpers/messages.js"></script>  
+    <script src="js/helpers/messages.js"></script> 
     <script src="js/pages/reservations/reserve.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABbEjzd6Y4yV8EE6j0_-MvyT1rZR-tiv0&libraries=places&callback=initMap" async defer></script>
+    <script src="js/pages/main.js"></script> 
 </body>
 </html>

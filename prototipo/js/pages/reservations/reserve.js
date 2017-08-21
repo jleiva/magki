@@ -1,18 +1,18 @@
 var queryUrl = misc.getQueryParams(document.location.search);
 var eventId = queryUrl.id;
-fillEventData();
-
+var eventInfo = orm.findEventbyId(eventId);
+var venueData = orm.findVenueById(eventInfo[0].id_lugar);
 var map;
+var marker;
 var tickets;
 var ticketsSold;
-var ticketsTotal
-var eventInfo;
+var ticketsTotal;
+
+fillEventData();
 
 $util('#btn-save').on('click', validateReserve); 
 
 function fillEventData() {
-  eventInfo = orm.findEventbyId(eventId);
-
   $util('.promo-box__title').innerHTML = eventInfo[0].nombre;
   $util('#place').innerHTML = eventInfo[0].nombre_lugar;
 
@@ -21,6 +21,9 @@ function fillEventData() {
   $util('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
   $util('#price').innerHTML = eventInfo[0].valor_entrada;
   tickets = (parseInt(eventInfo[0].entradas_disponibles) -  parseInt(eventInfo[0].entradas_vendidas));
+  $util('#inscDate').innerHTML = misc.modifiedDateFormat(eventInfo[0].limite_inscripcion);
+  $util('#weightDate').innerHTML = misc.modifiedDateFormat(eventInfo[0].fecha_pesaje);
+  $util('#cost').innerHTML = eventInfo[0].costo_inscripcion;
   
   if (tickets === 0) {
     document.querySelector('.js-reserve-tickets-enable').addClass('is-hidden');
@@ -127,25 +130,39 @@ function getRegisterData() {
 }
 
 function initMap() {
-  var places = orm.findVenues();
-  var venue = places.find(function(pcl) {
-        return pcl.nombre_lugar === eventInfo[0].nombre_lugar;
-      });
+  var input = document.getElementById('input-map');
+  var pLat = parseFloat(venueData.latitud);
+  var pLong = parseFloat(venueData.longitud);
 
-  var lat = parseFloat(venue.latitud);
-  var long = parseFloat(venue.longitud);
-  
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: lat, lng: long},
+    center: { 
+    lat: pLat ? pLat : 9.935674, 
+    lng: pLong ? pLong : -84.103978 
+    },
     zoom: 18,
     mapTypeId: 'hybrid',
   });
 
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   marker = new google.maps.Marker({
     map: map,
     animation: google.maps.Animation.DROP,
     visible: false
+  });
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  autocomplete.addListener('place_changed', function() {
+
+    var place = autocomplete.getPlace();
+    map.setCenter(place.geometry.location);
+    marker.setVisible(true);
+    marker.setPosition(place.geometry.location);
+    map.setZoom(18);
+    //$util('#latitudLugar').value = place.geometry.location.lat();
+    //$util('#longitudLugar').value = place.geometry.location.lng();
+
   });
 }
 

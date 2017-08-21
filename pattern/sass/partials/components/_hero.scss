@@ -8,3 +8,26 @@
 .slider img {
   width: 100%;
 }
+
+.super-hero {
+  position: relative;
+  margin: 0;
+  padding: 60px;
+  text-align: center;
+  background-size: cover;
+
+  h1 {
+    font-size: 3.5em;
+    margin: 0;
+  }
+
+  h2 {
+    color: rgba(0, 0, 0, .5);
+    margin: 0.5em 0 0;
+  }
+}
+
+.hero-learn {
+  background: url('../img/cheap_diagonal_fabric.png') repeat;
+  background-repeat: repeat;
+}

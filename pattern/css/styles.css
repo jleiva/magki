@@ -354,6 +354,9 @@ ul li {
   font-size: 1.333em;
   margin: 0; }
 
+.center-h {
+  text-align: center; }
+
 button,
 .button,
 .button:link,
@@ -764,6 +767,11 @@ td {
   margin: 0 0 3em;
   width: 100%; }
 
+.call-out {
+  font-size: 1.333em;
+  margin: 6em auto;
+  max-width: 700px; }
+
 .source {
   width: auto;
   background-color: #fff;
@@ -821,6 +829,14 @@ td {
   float: right;
   padding: 1em;
   width: 35%; }
+
+.panel-white {
+  background-color: #fff;
+  overflow: hidden; }
+
+.panel-gray {
+  background-color: #f4f4f4;
+  overflow: hidden; }
 
 .full-width {
   width: 100% !important;
@@ -1058,6 +1074,57 @@ td {
 
 .slider img {
   width: 100%; }
+
+.super-hero {
+  position: relative;
+  margin: 0;
+  padding: 60px;
+  text-align: center;
+  background-size: cover; }
+  .super-hero h1 {
+    font-size: 3.5em;
+    margin: 0; }
+  .super-hero h2 {
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0.5em 0 0; }
+
+.hero-learn {
+  background: url("../img/cheap_diagonal_fabric.png") repeat;
+  background-repeat: repeat; }
+
+blockquote.about-quote {
+  margin: 40px 0 60px 0;
+  padding: 80px 200px;
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  text-indent: -.35em;
+  color: #444;
+  background: #fff; }
+
+blockquote.about-quote p.author {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: right;
+  color: #444; }
+
+blockquote.about-quote p.author a {
+  font-weight: 500;
+  line-height: 1.4;
+  color: #dd6360; }
+
+blockquote.about-quote p.author span.sep {
+  margin: 0 6px;
+  font-weight: 300;
+  color: #ccc; }
+
+blockquote.about-quote p.author a.more {
+  border: 0;
+  color: #bbb;
+  font-weight: normal; }
 
 .profile-actions {
   background-color: #fff;

@@ -1,0 +1,38 @@
+blockquote.about-quote {
+  margin: 40px 0 60px 0;
+  padding: 80px 200px;
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  text-indent: -.35em;
+  color: #444;
+  background: #fff;
+}
+
+blockquote.about-quote p.author {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: right;
+  color: #444;
+}
+
+blockquote.about-quote p.author a {
+  font-weight: 500;
+  line-height: 1.4;
+  color: #dd6360;
+}
+
+blockquote.about-quote p.author span.sep {
+  margin: 0 6px;
+  font-weight: 300;
+  color: #ccc;
+}
+
+blockquote.about-quote p.author a.more {
+  border: 0;
+  color: #bbb;
+  font-weight: normal;
+}

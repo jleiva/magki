@@ -33,13 +33,11 @@ var orm = (function(window, undefined) {
     });
 
     request.done(function () {
-
-        console.log('Datos guardados');
+      console.log('Datos guardados');
     });
 
     request.fail(function (jqXHR, textStatus, errorThrown) {
-
-        console.log(errorThrown);
+      console.log(errorThrown);
     });
   }
 

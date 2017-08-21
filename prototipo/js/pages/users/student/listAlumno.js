@@ -39,9 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         academyColumn.innerHTML= data.nombre_academia;
 
         editLink.appendChild(linkName);
-        editLink.href = 'editar-alumno.php';
-        editLink.className = 'btn-action-event js-edit-event';
-        editLink.name = data.id_usuario;
+        editLink.href = 'editar-alumno.php' + '?id=' + data.id_usuario;
+        editLink.className = 'btn-action-event';
         
         detailLink.appendChild(detialLinkName);
         detailLink.href = 'detalle-usuario.php' + '?id=' + data.id_usuario;
@@ -50,16 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         editColumn.appendChild(detailLink);
         editColumn.appendChild(editLink);
-      });
-
-      var btnEdit = document.querySelectorAll('.js-edit-event');
-
-      btnEdit.forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          var currentItem = e.currentTarget;
-          var studentId = currentItem.getAttribute('name');
-          localStorage.setItem('studentCode', studentId);
-        })
       }); 
 
     } else {
@@ -99,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         statusColumn.innerHTML = Number(data.estado) ? 'Habilitado' : 'Deshabilitado';
 
         editLink.appendChild(linkName);
-        editLink.href = 'editar-alumno.php';
+        editLink.href = 'editar-alumno.php' + '?id=' + data.id_usuario;
         editLink.className = 'btn-action-event js-edit-event';
         editLink.name = data.id_usuario;
 

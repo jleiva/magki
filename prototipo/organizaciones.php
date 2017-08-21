@@ -9,7 +9,7 @@
       <div class="section-intro">
         <h2>Listado de Organizaciones</h2>
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-organizacion.php" class="button btn-small" id="btn-register">Registrar Organización</a>
+          <a href="registrar-organizacion.php" class="button btn-small" id="btn-register">Registrar organización</a>
         <?php } ?>
       </div>
 

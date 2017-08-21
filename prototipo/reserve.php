@@ -26,7 +26,10 @@
       </div>
     </header>
     <main class="wrapper">
-      <div class="slider"><img src="img/hero.jpg" alt=""/></div>
+      <div class="slider">
+        <div id="map"></div>
+      </div>
+      
       <div class="main-content">
       <div class="promo-box">
         <h2 class="promo-box__title"></h2>
@@ -40,7 +43,7 @@
             <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
           </p>
         </div>
-        <div id="map"></div>
+        
       </div>
 
       <div class="js-reserve-tickets-disable promo-box is-hidden">

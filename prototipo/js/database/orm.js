@@ -1714,6 +1714,84 @@ var orm = (function(window, undefined) {
     });
   }
 
+  function sendChangePasswordMail(newPassword, userEmail) {
+    var request = $.ajax({
+        url: 'services/correo_cambio_contrasena.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'newPassword': newPassword,
+          'email': userEmail
+        }
+    });
+
+    request.done(function(data) {
+
+    }).fail(function() {
+    });
+  }
+
+  function sendEmailReservation(pdata) {
+    var reservationNumber = getLastReservationNumber();
+
+    var request = $.ajax({
+      url: 'services/correo_reservacion_entradas.php',
+      dataType: 'json',
+      async: false,
+      method: 'post',
+      data: {
+        'email': pdata.email,
+        'numTickets': pdata.tickets,
+        'numReservation': reservationNumber,
+        'eventDate': pdata.eventDate,
+        'eventName': pdata.eventName,
+        'place': pdata.place
+      }
+    })
+  }
+
+  function sendInscriptionEmail(emailInfo) {
+    var request = $.ajax({
+        url: 'services/correo_inscripcion_evento.php',
+        dataType: 'json',
+        async: false,
+        method: 'POST',
+        data: {
+          'eventName': emailInfo.eventName,
+          'eventDate': emailInfo.eventDate,
+          'eventPlace': emailInfo.eventPlace,
+          'academyName': emailInfo.academyName,
+          'email': emailInfo.email,
+          'belt': emailInfo.belt,
+          'category': emailInfo.category,
+          'weight': emailInfo.weight
+        }
+    });
+  }
+
+  function getLastReservationNumber() {
+    var reservationNumber;
+
+    var request = $.ajax({
+      url: 'services/obtener_ultima_reservacion.php',
+      dataType: 'json',
+      async: false,
+      method: 'GET',
+      data: {}
+    });
+
+    request.done(function(data) {
+      reservationNumber = data[0].id_reserva;
+    });
+
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(errorThrown);
+    });
+
+    return reservationNumber;
+  }
+
   // =========  Linea 25 para abajo no usar mas =============
   // ToDo: borrar las funciones cuando las consultas a BD se vayan completando.
   function findEventByName(name) {  
@@ -1809,6 +1887,7 @@ var orm = (function(window, undefined) {
     getWeightCategoryByAlumByEvent: getWeightCategoryByAlumByEvent,
     getAlumnByBeltByEvent: getAlumnByBeltByEvent,
     getCurrentScoreByAlumnByEvent: getCurrentScoreByAlumnByEvent,
+    getLastReservationNumber: getLastReservationNumber,
     modifyTicketsAmount: modifyTicketsAmount,
     registrarOrg: registrarOrg,
     registerEvent: registerEvent,
@@ -1826,6 +1905,9 @@ var orm = (function(window, undefined) {
     registerAlumnResult: registerAlumnResult,
     registerExpense: registerExpense,
     saveReserve: saveReserve,
+    sendChangePasswordMail: sendChangePasswordMail,
+    sendEmailReservation: sendEmailReservation,
+    sendInscriptionEmail: sendInscriptionEmail,
     updateAcademy: updateAcademy,
     updateOrg: updateOrg,
     updateSponsorInfo: updateSponsorInfo,

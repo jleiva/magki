@@ -9,7 +9,7 @@
         <h2>Listado de Patrocinadores</h2>
         
         <?php if ($userRol == 1 || $userRol == 2) { ?>
-          <a href="registrar-patrocinador.php" class="button btn-small" id="btn-register">Registrar Patrocinador</a>
+          <a href="registrar-patrocinador.php" class="button btn-small" id="btn-register">Registrar patrocinador</a>
         <?php } ?>
       
       </div>

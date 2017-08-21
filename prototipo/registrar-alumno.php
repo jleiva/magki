@@ -5,16 +5,19 @@
 ?>
   <main class="wrapper">
     <div class="main-content">
+      <ul class="menu">
+        <li><a href="alumnos.php">Usuarios</a></li>
+      </ul>
       <div class="section-intro">
-        <h2>Registrar Alumno</h2>
-        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un alumno, la academia y profesor gu&iacute;a deben existir <strong>previamente</strong> en el Sistema.</p>
+        <h2>Registrar alumno</h2>
+        <p class="section-intro__leading"><strong>Recuerde:</strong> Para registrar un alumno, la academia y profesor gu&iacute;a deben existir <strong>previamente</strong> en el sistema.</p>
       </div>
       <div class="form__wrap js-form">
         <form id="register-user">
           <legend>Campos obligatorios estan marcados con <abbr title="Requerido">*</abbr></legend>
           
           <fieldset class="feature-fieldset">
-            <legend>Datos Generales</legend>
+            <legend>Datos generales</legend>
             <div class="field-wrapper">
               <label for="id">Numero de Identificación <abbr title="Requerido">*</abbr> </label>
               <input type="text"  class="js-form-field" name="identification" id="id" required>
@@ -115,7 +118,7 @@
           </fieldset>
           
           <fieldset class="feature-fieldset">
-            <legend>Informaci&oacute;n Academia</legend>
+            <legend>Informaci&oacute;n academia</legend>
             <div class="field-wrapper">
               <label for="academy">Academia <abbr title="Requerido">*</abbr></label>
               <select class="js-form-field" name="academy" id="academy" required>
@@ -131,6 +134,7 @@
             </div>
           </fieldset>
           <button id="btn-save" value="">Guardar</button>
+          <a href="registrar-alumno.php" class="button button-secondary">Registrar otro alumno</a>
           </form>
         </div>
       </div>

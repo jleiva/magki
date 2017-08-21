@@ -63,6 +63,23 @@ document.addEventListener('DOMContentLoaded', function() {
       orm.updateAthleteEvent(userInfo);
     } else {
       orm.registerAthleteEvent(userInfo);
+      var category = $util('#category');
+      var catName = category.options[category.selectedIndex].text;
+      var weight = $util('#weight');
+      var weightName = weight.options[weight.selectedIndex].text;
+
+      var emailInfo = {
+        eventName: eventData[0].nombre,
+        eventDate: $util('.js-event-weightDate').innerHTML,
+        eventPlace: eventData[0].nombre_lugar,
+        academyName: userData.nombre_academia,
+        email: userData.correo,
+        belt: userData.nombre_cinturon,
+        category: catName,
+        weight: weightName
+      }
+
+      orm.sendInscriptionEmail(emailInfo);
     }
   }
 

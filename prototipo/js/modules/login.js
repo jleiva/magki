@@ -79,7 +79,7 @@ var login = (function(window) {
 
     if(userInfo.length) {
       orm.updateUserPassword(userInfo[0].id_usuario,'12345');
-      // orm.sendChangePasswordMail('12345', userInfo[0].correo);
+      orm.sendChangePasswordMail('12345', userInfo[0].correo);
       isValid = true;
     }
 

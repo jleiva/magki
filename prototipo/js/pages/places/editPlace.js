@@ -85,10 +85,15 @@ function searchCoordinates(){
 
 function initMap() {
   var input = document.getElementById('input-map');
+  var pLat = parseFloat(document.querySelector('#placeLatitude').value);
+  var pLong = parseFloat(document.querySelector('#placeLongitude').value);
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 9.935674, lng: -84.103978},
-    zoom: 16,
+    center: { 
+      lat: pLat ? pLat : 9.935674, 
+      lng: pLong ? pLong : -84.103978 
+    },
+    zoom: 18,
     mapTypeId: 'hybrid',
   });
 

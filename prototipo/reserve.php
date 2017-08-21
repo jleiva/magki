@@ -43,6 +43,10 @@
             <strong>Costo entrada:</strong> <span id="price"></span><br/>
             <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
           </p>
+          <div class="is-hidden js-org-event-box">
+            <h4>A beneficio de:</h4>
+            <p id="js-org-event"></p>
+          </div>
         </div>
         <div class="promo-right">
           <h4>Inscripción de Atletas:</h4>
@@ -52,6 +56,14 @@
           
           <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su academia debe de estar registrada previamente.</p>
         </div>
+      </div>
+
+      <div class="sponsors-section js-sponsors-section is-hidden">
+        <h3>Patrocinadores</h3>
+
+        <ul class="js-event-sponsor-list">
+          
+        </ul>
       </div>
 
       <div class="js-reserve-tickets-disable promo-box is-hidden">

@@ -9,6 +9,8 @@ var ticketsSold;
 var ticketsTotal;
 
 fillEventData();
+fillSponsorData();
+fillOrgData();
 
 $util('#btn-save').on('click', validateReserve); 
 
@@ -19,11 +21,11 @@ function fillEventData() {
   var fecha_inicio = misc.modifiedDateFormat(eventInfo[0].fecha_inicio);
   $util('#date').innerHTML = fecha_inicio;
   $util('#typeEvent').innerHTML = eventInfo[0].tipo_evento;
-  $util('#price').innerHTML = eventInfo[0].valor_entrada;
+  $util('#price').innerHTML = '¢' + eventInfo[0].valor_entrada;
   tickets = (parseInt(eventInfo[0].entradas_disponibles) -  parseInt(eventInfo[0].entradas_vendidas));
   $util('#inscDate').innerHTML = misc.modifiedDateFormat(eventInfo[0].limite_inscripcion);
   $util('#weightDate').innerHTML = misc.modifiedDateFormat(eventInfo[0].fecha_pesaje);
-  $util('#cost').innerHTML = eventInfo[0].costo_inscripcion;
+  $util('#cost').innerHTML = '¢' + eventInfo[0].costo_inscripcion;
   
   if (tickets === 0) {
     document.querySelector('.js-reserve-tickets-enable').addClass('is-hidden');
@@ -34,6 +36,31 @@ function fillEventData() {
   $util('#availableTickets').innerHTML = tickets;
   ticketsTotal = parseInt(eventInfo[0].entradas_disponibles);
   ticketsSold = parseInt(eventInfo[0].entradas_vendidas);
+}
+
+function fillOrgData() {
+  var orgBox = document.querySelector('.js-org-event-box');
+  var orgInfo = document.querySelector('#js-org-event');
+  var orgData = orm.findEventOrgs(eventId);
+
+  if (orgData.length) {
+    orgInfo.innerHTML = orgData[0].nombre;
+    orgBox.classList.remove('is-hidden');
+  }
+}
+
+function fillSponsorData() {
+  var sponsotBox = document.querySelector('.js-sponsors-section');
+  var sponsorList = document.querySelector('.js-event-sponsor-list');
+  var sponsorData = orm.findEventSponsors(eventId);
+
+  if (sponsorData && sponsorData.nombre_producto) {
+    var liEl = document.createElement('li');
+    var liTxt = document.createTextNode(sponsorData.nombre_producto);
+    liEl.appendChild(liTxt);
+    sponsorList.appendChild(liEl);
+    sponsotBox.classList.remove('is-hidden');
+  }
 }
 
 function validateReserve(e) {

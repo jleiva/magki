@@ -20,17 +20,29 @@
           <strong>Tipo de evento:</strong> <span id="typeEvent"></span><br/>
           <strong>Costo entrada:</strong> <span id="price"></span><br/>
           <strong>Entradas disponibles:</strong> <span id="availableTickets"></span><br/>
-
           </p>
+
+          <div class="is-hidden js-org-event-box">
+            <h4>A beneficio de:</h4>
+            <p id="js-org-event"></p>
+          </div>
         </div>
         <div class="promo-right">
           <h4>Inscripción de Atletas:</h4>
-          <strong>Fecha límite de inscripción:</strong> 20 de Julio de 2017<br>
-          <strong>Fecha de pesaje:</strong> 28 de Julio de 2017<br>
-          <strong>Costo de Inscripción:</strong> ¢15.000<br>
+          <strong>Fecha límite de inscripción:</strong> <span id="limitDate"></span><br>
+          <strong>Fecha de pesaje:</strong> <span id="weightDate"></span><br>
+          <strong>Costo de Inscripción:</strong> <span id="regPrice"></span><br>
           
           <p class="note help-txt"><strong>Recuerde:</strong> para poder inscribir a sus atletas en un torneo, su Academia debe de estar registrada en Makgi previamente.</p>
         </div>
+      </div>
+
+      <div class="sponsors-section js-sponsors-section is-hidden">
+        <h3>Patrocinadores</h3>
+
+        <ul class="js-event-sponsor-list">
+          
+        </ul>
       </div>
 
       <div class="actions-tabs">

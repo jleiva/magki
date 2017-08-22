@@ -48,7 +48,7 @@ function loadEventData() {
 
   if (placeInfo) {
 
-    document.querySelector('#venueCap').value = Number(placeInfo.capacidad);
+    document.querySelector('#venueCap').value = parseInt(placeInfo.capacidad);
 
     var venueSelect = document.querySelector('#venue');
     for (i = 0; i < venueSelect.length; i++) {
@@ -60,12 +60,14 @@ function loadEventData() {
 
   if (eventInfo[0].tipo_evento != "") {
 
-    document.querySelector('#venueCost').value = Number(eventInfo[0].valor_alquiler_lugar);
+    document.querySelector('#venueCost').value = parseInt(eventInfo[0].valor_alquiler_lugar) ? parseInt(eventInfo[0].valor_alquiler_lugar) : 0;
     var typeEventSelect = document.querySelector('#tipoEvento');
-    var typeEventSelectText = typeEventSelect.options[typeEventSelect.selectedIndex].text;
+    var typeEventSelectText = eventInfo[0].tipo_evento;
     var guestFields = $util('.js-guess');
     var competitionFields = $util('.js-competition-info');
     var registerPrice = $util('#entryFee');
+
+    // typeEventSelect.value = eventInfo[0].tipo_evento;
 
     for (i = 0; i < typeEventSelect.length; i++) {
       if (typeEventSelect[i].text == eventInfo[0].tipo_evento) {

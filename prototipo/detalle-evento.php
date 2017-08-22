@@ -26,10 +26,10 @@
             <h4>A beneficio de:</h4>
             <p id="js-org-event"></p>
           </div>
-          
+
         </div>
         <div class="promo-right">
-          <h4>Inscripción de Atletas:</h4>
+          <h4>Inscripción de atletas:</h4>
           <strong>Fecha límite de inscripción:</strong> <span id="limitDate"></span><br>
           <strong>Fecha de pesaje:</strong> <span id="weightDate"></span><br>
           <strong>Costo de Inscripción:</strong> <span id="regPrice"></span><br>

@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="promo-right">
-          <h4>Inscripción de Atletas:</h4>
+          <h4>Inscripción de atletas:</h4>
           <strong>Fecha límite de inscripción:</strong> <span id="inscDate"></span><br/>
           <strong>Fecha de pesaje:</strong> <span id="weightDate"></span><br/>
           <strong>Costo de Inscripción:</strong> <span id="cost"></span><br/>
@@ -66,7 +66,7 @@
         </ul>
       </div>
 
-      <div class="js-reserve-tickets-disable promo-box is-hidden">
+      <div class="js-reserve-tickets-disable promo-box promo-box--no-hero is-hidden">
         <h3>Se han agotado las entradas para este evento.</h3>
       </div>
         

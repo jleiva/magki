@@ -86,7 +86,7 @@
                 <select class="js-event-field" name="tipoEvento" id="tipoEvento" required>
                   <option value="">Seleccione el Tipo de Evento...</option>
                   <option value="Torneo">Torneo</option>
-                  <option value="Exibicion">Exhibici&oacute;n</option>
+                  <option value="Exibición">Exhibici&oacute;n</option>
                   <option value="Fogueo">Fogueo</option>
                 </select>
               </div>
